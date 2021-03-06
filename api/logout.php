@@ -1,9 +1,11 @@
 <?php 
-  require_once './utils/error-helper.php';
-  session_start();
+  require_once './utils/import-helper.php';
 
-  if(isset($_SESSION["username"])) {
-    setcookie('key', '', time()-60*60);
+  if(!isset($_SESSION["username"])) {
+    unauthorizedResponse();
+  }
+
+  setcookie('key', '', time()-60*60);
 
     $_SESSION = [];
     session_unset();
@@ -13,8 +15,4 @@
     $response['message'] = 'Logout succesfully.';
 
     echo json_encode($response);
-    exit;
-  }
-
-  unauthorizedResponse();
 ?>

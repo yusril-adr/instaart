@@ -182,6 +182,24 @@
     return false;
   }
 
+  public function updateImage(string $imageName) {
+    global $conn;
+
+    $user = mysqli_query(
+      $conn, 
+      "UPDATE users 
+      SET
+        image = '{$imageName}'
+      WHERE id = {$this->id};"
+    );
+
+    if ($user) {
+      return $this->getUser();
+    }
+
+    return false;
+  }
+
   public function changePassword(string $oldPassword, string $newPassword) {
     if ($this->verifyPassword($oldPassword)) {
       $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);

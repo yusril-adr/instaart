@@ -10,7 +10,7 @@
         if(isset($_GET['username'])) {
           $user = new User($_GET['username']);
           $result = $user->getUser();
-  
+
           if($result) {
             echo json_encode($result);
             exit;

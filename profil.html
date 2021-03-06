@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <a href="./">Home</a>
+  <a href="./logout.html">logout</a>
+  <script>
+    window.addEventListener('load', async (event) => {
+      try {
+        const response = await fetch('./api/user.php');
+        if (response.status === 401) {
+          location.href = './index.html';
+        }
+      } catch (error) {
+        console.log(error);
+      }
+
+      try {
+        const response = await fetch('./api/user.php');
+        const { display_name, username, image, email, phone_number, biodata, followers, following } = await response.json();
+
+        document.body.innerHTML += `
+          <h1>${display_name}<h1>
+          <h2>${username}</h2>
+          <ul>
+            <li>Email: ${email}</li>  
+            <li>Phone Number : ${phone_number}</li>
+            <li>Followers : ${followers.length}</li>
+            <li>Following : ${following.length}</li>
+          </ul>
+          <img src="./public/img/users/${image}">
+          <p>${biodata}</p>
+        `;
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  </script>
+</body>
+</html>

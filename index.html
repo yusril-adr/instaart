@@ -8,5 +8,30 @@
 </head>
 <body>
   <h1>InstaArt</h1>
+  <nav>
+    <ul></ul>
+  </nav>
+
+  <script>
+    window.addEventListener('load', async event => {
+      const ul = document.querySelector('ul');
+
+      try {
+        const response = await fetch('./api/user.php');
+        
+        if (response.status === 401) {
+          ul.innerHTML += '<li><a href="login.html">Login</a></li>';
+          return;
+        } 
+
+        ul.innerHTML += `
+          <li><a href="profil.html">Profil</a></li>
+          <li><a href="logout.html">Logout</a></li>
+        `;
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  </script>
 </body>
 </html>
