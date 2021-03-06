@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <a href="./">Home</a>
+  <a href="./profil.html">profil</a>
+  <a href="./logout.html">logout</a>
+
+  <form style="display: flex; flex-direction: column; width: 300px;">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
+
+    <label for="displayName">Display Name</label>
+    <input type="text" name="displayName" id="displayName">
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email">
+
+    <label for="phoneNumber">Phone Number</label>
+    <input type="text" name="phoneNumber" id="phoneNumber">
+
+    <label for="biodata">Biodata</label>
+    <textarea name="biodata" id="biodata"></textarea>
+
+    <button type="submit">Save</button>
+  </form>
+
+  <script>
+    const setDefaultValue = async ({username, display_name, email, phone_number, biodata}) => {
+      const usernameElement = document.getElementById('username');
+      usernameElement.value = username;
+
+      const displayNameElement = document.getElementById('displayName');
+      displayNameElement.value = display_name;
+
+      const emailElement = document.getElementById('email');
+      emailElement.value = email;
+
+      const phoneNumberElement = document.getElementById('phoneNumber');
+      phoneNumberElement.value = phone_number;
+
+      const biodataElement = document.getElementById('biodata');
+      biodataElement.value = biodata;
+    };
+
+    window.addEventListener('load', async (event) => {
+      try {
+        const response = await fetch('./api/user.php');
+        if (response.status === 401) location.href = './index.html';
+
+        const user = await response.json();
+
+        setDefaultValue(user);
+      } catch (error) {
+        console.log(error);
+      }
+
+      const form = document.querySelector('form');
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        try {
+          const response = await fetch('./api/user.php', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: event.target.username.value,
+                display_name: event.target.displayName.value,
+                email: event.target.email.value,
+                phone_number: event.target.phoneNumber.value,
+                biodata: event.target.biodata.value,
+            }),
+          });
+          const responseJSON = await response.json();
+
+          location.href = './profil.html';
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
