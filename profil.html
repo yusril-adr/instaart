@@ -19,21 +19,25 @@
   <a href="./logout.html">logout</a>
 
   <script>
+    const params = new URLSearchParams(location.search);
+    const user = params.get('username') || null;
+  
     window.addEventListener('load', async (event) => {
       try {
-        const response = await fetch('./api/user.php');
-        if (response.status === 401) {
-          location.href = './index.html';
+        if(!user) {
+          const response = await fetch('./api/user.php');
+          if (response.status === 401) {
+            location.href = './index.html';
+          }
         }
-      } catch (error) {
-        console.log(error);
-      }
 
-      try {
-        const response = await fetch('./api/user.php');
-        const { display_name, username, image, email, phone_number, biodata, followers, following } = await response.json();
+        const response = await fetch(`./api/user.php${user ? '?username='+user : ''}`);
+        const { id, display_name, username, image, email, phone_number, biodata, followers, following } = await response.json();
 
         document.body.innerHTML += `
+          <button id="follow" user="${id}">follow</button>
+          <button id="unfollow" user="${id}">unfollow</button>.
+
           <h1>${display_name}<h1>
           <h2>${username}</h2>
           <ul>
@@ -48,6 +52,30 @@
       } catch (error) {
         console.log(error);
       }
+
+      const follow = document.querySelector('#follow');
+      follow.addEventListener('click', async event => {
+        event.stopPropagation();
+
+        const follow_id = parseInt(event.target.getAttribute('user'));
+
+        try {
+          const response = await fetch('./api/following.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              user_id: follow_id,
+            }),
+          });
+
+          const responseJSON = await response.json();
+          console.log(responseJSON);
+        } catch (error) {
+          console.log(error);
+        }
+      });
     });
   </script>
 </body>

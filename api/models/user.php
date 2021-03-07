@@ -156,6 +156,23 @@
     return $followings;
   }
 
+  public function followUser(int $id) {
+    global $conn;
+
+    if($this->id === $id) throw new Exception('Users can\'t follow theiself', 428);
+
+    $result = mysqli_query($conn,
+    "INSERT INTO follows (
+      following_id,
+      follower_id
+    ) values (
+      '{$id}', 
+      '{$this->id}'
+    );");
+
+    return $result;
+  }
+
   public function updateUser($data) {
     global $conn;
 
