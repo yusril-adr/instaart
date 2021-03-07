@@ -1,5 +1,5 @@
 <?php 
-  function errorResponse(string $message, int $errorCode = 400) {
+  function errorResponse(string $message, int $errorCode = 500) {
     http_response_code($errorCode);
     $response['status'] = 'error';
     $response['message'] = $message;

@@ -30,8 +30,6 @@
         echo json_encode($user->getUser());
         exit;
       }
-  
-      errorResponse('Register failed.');
     }
   } catch (Exception $error) {
     errorResponse($error->getMessage());
