@@ -45,9 +45,9 @@
       $conn, 
       "SELECT
         username,  
-        email, 
+        email
       FROM users 
-      WHERE username = '{$id}':"
+      WHERE id = {$id};"
     );
 
     $user = mysqli_fetch_assoc($result);

@@ -8,8 +8,9 @@
       $user = $user->getUser();
       $_SESSION['username'] = $user['username'];
       $_SESSION['email'] = $user['email'];
+      $_SESSION['id'] = $user['id'];
 
-      $_COOKIE['key'] = $user['id'];
+      setcookie('key', "{$user['id']}", time()+24*60*60, '/');
       return true;
     }
 
@@ -17,14 +18,18 @@
   }
 
   function checkCookie() {
-    if (isset($_COOKIE['key'])) {
-      $user = User::getUserFromId($_COOKIE['key']);
-
-      if($user) {
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['email'] = $user['email'];
-        return true;
+    try {
+      if (isset($_COOKIE['key'])) {
+        $user = User::getUserFromId((int) $_COOKIE['key']);
+  
+        if($user) {
+          $_SESSION['username'] = $user['username'];
+          $_SESSION['email'] = $user['email'];
+          return true;
+        }
       }
+    } catch(Exception $error) {
+      errorResponse($error->getMessage());
     }
   }
 ?>
