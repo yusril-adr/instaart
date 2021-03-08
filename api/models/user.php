@@ -8,7 +8,7 @@
 
     // Check if user exist, add id into property
     $data = $this->getUser();
-    if($data) $this->id = $data['id'];
+    if($data) $this->id = (int) $data['id'];
   }
 
   public static function registerUser($data) {
@@ -126,8 +126,6 @@
     $followers = [];
 
     if($result->num_rows > 0) {
-      $followers = mysqli_fetch_assoc($result);
-
       while($follower = mysqli_fetch_assoc($result)) $followers[] = $follower;
     }
 
@@ -148,18 +146,62 @@
     $followings = [];
 
     if($result->num_rows > 0) {
-      $followings = mysqli_fetch_assoc($result);
-
       while($following = mysqli_fetch_assoc($result)) $followings[] = $following;
     }
 
     return $followings;
   }
 
+  public function getFollowingUser() {
+    global $conn;
+
+    $result = mysqli_query(
+      $conn, 
+      "SELECT
+        users.username,
+        users.image
+      FROM follows
+      INNER JOIN users
+      ON follows.following_id = users.id
+      WHERE follower_id = '{$this->id}';"
+    );
+
+    $followings = [];
+
+    if($result->num_rows > 0) {
+      while($following = mysqli_fetch_assoc($result)) $followings[] = $following;
+    }
+
+    return $followings;
+  }
+
+  public function getFollowersUser() {
+    global $conn;
+
+    $result = mysqli_query(
+      $conn, 
+      "SELECT
+        users.username,
+        users.image
+      FROM follows
+      INNER JOIN users
+      ON follows.follower_id = users.id
+      WHERE following_id = '{$this->id}';"
+    );
+
+    $followers = [];
+
+    if($result->num_rows > 0) {
+      while($follower = mysqli_fetch_assoc($result)) $followers[] = $follower;
+    }
+
+    return $followers;
+  }
+
   public function followUser(int $id) {
     global $conn;
 
-    if($this->id === $id) throw new Exception('Users can\'t follow theiself', 428);
+    if($this->id === $id) throw new Exception('Users can\'t follow his own account.', 428);
 
     $result = mysqli_query($conn,
     "INSERT INTO follows (
@@ -169,6 +211,19 @@
       '{$id}', 
       '{$this->id}'
     );");
+
+    return $result;
+  }
+
+  public function unFollowUser(int $id) {
+    global $conn;
+
+    if($this->id === $id) throw new Exception('sers can\'t unfollow his own account.', 428);
+
+    $result = mysqli_query($conn,
+    "DELETE FROM follows 
+    WHERE following_id = {$id}
+    AND follower_id = {$this->id};");
 
     return $result;
   }
@@ -236,6 +291,8 @@
 
       return false; 
     }
+
+    throw new Exception('Old password incorrect.', 401);
   }
  }
 ?>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      max-width: 50px;
+      display: inline-block;
+      border: 1px solid black;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <a href="./">Home</a>
+  <a href="./logout.html">logout</a>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const user = params.get('username') || null;
+  
+    window.addEventListener('load', async (event) => {
+      try {
+        if(!user) {
+          const response = await fetch('./api/user.php');
+          if (response.status === 401) {
+            location.href = './index.html';
+          }
+        }
+
+        const response = await fetch(`./api/followers.php${user ? '?username='+user : ''}`);
+        const followers = await response.json();
+
+        if (followers.length < 1) {
+          document.body.innerHTML += 'No any followers yet.';
+          return;
+        }
+
+        const ul = document.createElement('ul');
+        followers.forEach(({username, image}) => {
+          const li = document.createElement('li');
+
+          li.innerHTML = `
+            <img src="./public/img/users/${image}">
+            <a href="./profil.html?username=${username}">${username}</a>
+          `;
+
+          ul.appendChild(li);
+        });
+
+        document.body.appendChild(ul);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  </script>
+</body>
+</html>

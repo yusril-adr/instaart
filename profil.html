@@ -36,15 +36,15 @@
 
         document.body.innerHTML += `
           <button id="follow" user="${id}">follow</button>
-          <button id="unfollow" user="${id}">unfollow</button>.
+          <button id="unfollow" user="${id}">unfollow</button>
 
           <h1>${display_name}<h1>
           <h2>${username}</h2>
           <ul>
             <li>Email: ${email}</li>  
             <li>Phone Number : ${phone_number}</li>
-            <li>Followers : ${followers.length}</li>
-            <li>Following : ${following.length}</li>
+            <li><a href="./followers.html?username=${username}" style="color: black; text-decoration: none;">Followers : ${followers.length}</a></li>
+            <li><a href="./following.html?username=${username}" style="color: black; text-decoration: none;">Following : ${following.length}</a></li>
           </ul>
           <img src="./public/img/users/${image}">
           <p>${biodata}</p>
@@ -62,6 +62,30 @@
         try {
           const response = await fetch('./api/following.php', {
             method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              user_id: follow_id,
+            }),
+          });
+
+          const responseJSON = await response.json();
+          console.log(responseJSON);
+        } catch (error) {
+          console.log(error);
+        }
+      });
+
+      const unfollow = document.querySelector('#unfollow');
+      unfollow.addEventListener('click', async event => {
+        event.stopPropagation();
+
+        const follow_id = parseInt(event.target.getAttribute('user'));
+
+        try {
+          const response = await fetch('./api/following.php', {
+            method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
             },
