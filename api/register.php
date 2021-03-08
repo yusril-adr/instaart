@@ -9,9 +9,7 @@
   }
 
   try {
-    if(isset($_SESSION['username'])) {
-      errorResponse('You need to logout first');
-    }
+    if(isset($_SESSION['username'])) errorResponse('You need to logout first');
   
     if(isset($request['username'])) {
       $oldUserWithUsername = new User($request['username']);
@@ -32,6 +30,9 @@
       }
     }
   } catch (Exception $error) {
+    if($error->getCode() !== 0) {
+      errorResponse($error->getMessage(), $error->getCode());
+    }
     errorResponse($error->getMessage());
   }
 ?>

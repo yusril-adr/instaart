@@ -21,6 +21,9 @@
 
     echo json_encode($response);
   } catch(Exception $error) {
+    if($error->getCode() !== 0) {
+      errorResponse($error->getMessage(), $error->getCode());
+    }
     errorResponse($error->getMessage());
   }
 ?>

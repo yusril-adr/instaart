@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form style="display: flex; flex-direction: column; width: 300px;" id="post">
+    <input type="text" placeholder="Title" id="title">
+    <input type="text" placeholder="Caption" id="caption">
+    <input type="file" id="image">
+
+    <button type="submit">Post</button>
+  </form>
+
+  <script>
+    window.addEventListener('load', async (event) => {
+      try {
+        const response = await fetch('./api/user.php');
+        if (response.status === 401) location.href = './index.html';
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async event => {
+          event.stopPropagation();
+          event.preventDefault();
+
+          const formData = new FormData();
+          formData.append('image', event.target.image.files[0]);
+          const responseImg = await fetch('./api/post-image.php', {
+            method: 'POST',
+            body: formData,
+          });
+
+          const imgName = (await responseImg.json()).fileName;
+          console.log(imgName);
+
+          const responsePost = await fetch('./api/post.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              title: event.target.title.value,
+              caption: event.target.caption.value,
+              image: imgName,
+            }),
+          });
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  </script>
+</body>
+</html>

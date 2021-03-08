@@ -41,6 +41,9 @@
       
         unauthorizedResponse();
       } catch (Exception $error) {
+        if($error->getCode() !== 0) {
+          errorResponse($error->getMessage(), $error->getCode());
+        }
         errorResponse($error->getMessage());
       }
       break;
@@ -54,14 +57,14 @@
           if($oldUserWithUsername->getUser() && $request['username'] !== $_SESSION['username']) {
             errorResponse('Username already exist.', 428);
           }
-  
+
           if($oldUserWithEmail->getUser() && $request['email'] !== $_SESSION['email']) {
             errorResponse('Email already exist.', 428);
           }
-      
+
           $user = new User($_SESSION['username']);
           $result = $user->updateUser($request);
-  
+
           if ($result) {
             $_SESSION['username'] = $request['username'];
             $_SESSION['email'] = $request['email'];
@@ -72,9 +75,12 @@
           errorResponse('Register failed with unknown error.');
           exit;
         }
-      
+
         unauthorizedResponse();
       } catch (Exception $error) {
+        if($error->getCode() !== 0) {
+          errorResponse($error->getMessage(), $error->getCode());
+        }
         errorResponse($error->getMessage());
       }
       break;
