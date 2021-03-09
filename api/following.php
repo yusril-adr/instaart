@@ -66,7 +66,8 @@
         $user->followUser($request['user_id']);
 
         $response['status'] = 'success'; 
-        $response['message'] = 'successfully followed.'; 
+        $response['message'] = 'successfully followed.';
+        $response['followers'] = $user->getFollowers();
         echo json_encode($response);
         exit;
       } catch (Exception $error) {
@@ -89,6 +90,7 @@
 
         $response['status'] = 'success'; 
         $response['message'] = 'successfully unfollowed.'; 
+        $response['followers'] = $user->getFollowers();
         echo json_encode($response);
         exit;
       } catch (Exception $error) {

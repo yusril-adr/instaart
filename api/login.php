@@ -5,7 +5,7 @@
   $requestMethod = $_SERVER["REQUEST_METHOD"];
 
   if ($requestMethod !== 'POST') {    
-    errorResponse('This request method is not supprted for this endpoint.', 405);
+    errorResponse('This request method is not supported for this endpoint.', 405);
   }
 
   $loginstatus = login($request['identifier'], $request['password']);

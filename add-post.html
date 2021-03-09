@@ -28,29 +28,35 @@
           event.stopPropagation();
           event.preventDefault();
 
-          const formData = new FormData();
-          formData.append('image', event.target.image.files[0]);
-          const responseImg = await fetch('./api/post-image.php', {
-            method: 'POST',
-            body: formData,
-          });
+          try {
+            const formData = new FormData();
+            formData.append('image', event.target.image.files[0]);
+            const responseImg = await fetch('./api/post-image.php', {
+              method: 'POST',
+              body: formData,
+            });
 
-          const imgName = (await responseImg.json()).fileName;
-          console.log(imgName);
+            const imgStatus = await responseImg.json();
+            if(await responseImg.status !== 200) throw new Error(imgStatus.message);
+            const imgName = (imgStatus).fileName;
+            console.log(imgName);
 
-          const responsePost = await fetch('./api/post.php', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              title: event.target.title.value,
-              caption: event.target.caption.value,
-              image: imgName,
-            }),
-          });
+            const responsePost = await fetch('./api/post.php', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                title: event.target.title.value,
+                caption: event.target.caption.value,
+                image: imgName,
+              }),
+            });
 
-          location.href = './post.html';
+            location.href = './post.html';
+          } catch (error) {
+            console.log(error);
+          }
         });
 
       } catch (error) {

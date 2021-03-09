@@ -1,14 +1,14 @@
 <?php 
  class User {
   private $identifier;
-  private $id;
+  private int $id;
 
   public function __construct($identifier) {
     $this->identifier = $identifier;
 
     // Check if user exist, add id into property
-    $data = $this->getUser();
-    if($data) $this->id = (int) $data['id'];
+    $id = $this->getId();
+    if($id) $this->id = (int) $id;
   }
 
   public static function registerUser($data) {
@@ -81,6 +81,25 @@
     }
 
     return password_verify($password, $userFound[0]["password"]);
+  }
+
+  public function getId() {
+    global $conn;
+
+    $result = mysqli_query(
+      $conn, 
+      "SELECT
+        id
+      FROM users 
+      WHERE username = '{$this->identifier}' 
+      OR email = '{$this->identifier}';"
+    );
+
+    if(!$result) throw new Exception('User not found', 404);
+
+    $data = mysqli_fetch_assoc($result);
+
+    return $data['id'];
   }
 
   public function getUser() {
@@ -224,6 +243,32 @@
     "DELETE FROM follows 
     WHERE following_id = {$id}
     AND follower_id = {$this->id};");
+
+    return $result;
+  }
+
+  public function likePost(int $postId) {
+    global $conn;
+
+    $result = mysqli_query($conn,
+    "INSERT INTO likes (
+      post_id,
+      user_id
+    ) values (
+      {$postId}, 
+      {$this->id}
+    );");
+
+    return $result;
+  }
+
+  public function unlikePost(int $postId) {
+    global $conn;
+
+    $result = mysqli_query($conn, 
+    "DELETE FROM likes 
+    WHERE post_id = {$postId}
+    AND user_id = {$this->id};");
 
     return $result;
   }

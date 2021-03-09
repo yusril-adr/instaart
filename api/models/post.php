@@ -1,17 +1,17 @@
 <?php 
   class Post {
-    public $id;
+    private int $id;
 
     public function __construct(int $id) {
       $this->id = $id;
     }
 
-    public static function getPostsFromUser(string $username) {
+    public static function getPostsFromUser(string $id) {
       global $conn;
 
       $result = mysqli_query(
         $conn, 
-        "SELECT * FROM posts WHERE user_id = '{$username}';"
+        "SELECT * FROM posts WHERE user_id = {$id};"
       );
 
       if (!$result) throw new Exception('User not found.', 404);
@@ -53,13 +53,46 @@
 
       $result = mysqli_query(
         $conn, 
-        "SELECT * FROM posts WHERE id = {$this->id};"
+        "SELECT 
+        posts.id,
+        posts.title,
+        posts.caption,
+        posts.image,
+        posts.date,
+        posts.user_id,
+        users.image as user_image,
+        users.username
+      FROM `posts`
+      INNER JOIN users
+      ON users.id = posts.user_id
+      WHERE posts.id = {$this->id};"
       );
 
       if (!$result) throw new Exception('Post not found.', 404);
 
       $post = mysqli_fetch_assoc($result);
+      $likes = $this->getLikes();
+      $post['likes'] = $likes;
       return $post;
+    }
+
+    public function getLikes() {
+      global $conn;
+
+      $result = mysqli_query(
+        $conn, 
+        "SELECT user_id
+        FROM likes
+        WHERE post_id = '{$this->id}';"
+      );
+  
+      $likes = [];
+  
+      if($result->num_rows > 0) {
+        while($like = mysqli_fetch_assoc($result)) $likes[] = $like;
+      }
+
+      return $likes;
     }
 
     public function updatePost($data) {
@@ -88,14 +121,28 @@
       $info = $this->getPost();
       unlink("../public/img/posts/{$info['image']}");
 
+      $this->deleteLikes();
+
       $result = mysqli_query(
         $conn, 
         "DELETE FROM posts
         WHERE id = {$this->id};"
       );
 
-      if (!$result) throw new Exception('Post not found.', 404);
+      if (!$result) throw new Exception(mysqli_error($conn));
 
+      return $result;
+    }
+
+    private function deleteLikes() {
+      global $conn;
+  
+      $result = mysqli_query(
+        $conn, 
+        "DELETE FROM likes
+        WHERE post_id = {$this->id};"
+      );
+  
       return $result;
     }
   }
