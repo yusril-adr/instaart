@@ -36,7 +36,6 @@
       break;
     
     case 'POST':
-
       try {
         if(!isset($_SESSION['id'])) unauthorizedResponse();
 
@@ -49,6 +48,24 @@
           echo json_encode($response);
           exit;
         }
+      } catch (Exception $error) {
+        if($error->getCode() !== 0) {
+          errorResponse($error->getMessage(), $error->getCode());
+        }
+        errorResponse($error->getMessage());
+      }
+      break;
+
+    case 'PUT':
+      try {
+        if(!isset($_SESSION['id'])) unauthorizedResponse();
+
+        $post = new Post((int) $request['id']);
+
+        $result = $post->updatePost($request);
+
+        echo json_encode($post->getPost());
+        exit;
       } catch (Exception $error) {
         if($error->getCode() !== 0) {
           errorResponse($error->getMessage(), $error->getCode());

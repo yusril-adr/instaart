@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Post</title>
+</head>
+<body>
+  <a href="./post.html">Post</a>.
+
+  <form style="display: flex; flex-direction: column; width: 300px;">
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title">
+
+    <label for="caption">Caption</label>
+    <textarea name="caption" id="caption"></textarea>
+
+    <button type="submit">Save</button>
+  </form>
+
+  <button id="delete-post">Delete post</button>
+
+  <script>
+    window.addEventListener('load', async () => {
+      const response = await fetch('./api/user.php');
+      if (response.status === 401) location.href = './index.html';
+
+      const params = new URLSearchParams(location.search);
+      const postParams = params.get('post') || null;
+      if (!postParams) location.href = './post.html';
+
+      try {
+        const response = await fetch(`./api/post.php?id=${postParams}`);
+
+        if (response.status === 404) {
+          document.body.innerHTML += 'Post not found.';
+          return;
+        }
+
+        const post = await response.json();
+        document.querySelector('#title').value = post.title;
+        document.querySelector('#caption').value = post.caption;
+      } catch (error) {
+        console.log(error);
+      }
+
+      const form = document.querySelector('form');
+      form.addEventListener('submit', async event => {
+        event.stopPropagation();
+        event.preventDefault();
+
+        try {
+          const response = await fetch('./api/post.php', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              id: postParams,
+              title: event.target.title.value,
+              caption: event.target.caption.value,
+            }),
+          });
+
+          console.log((await response.json()));
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

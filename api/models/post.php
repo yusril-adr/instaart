@@ -61,5 +61,25 @@
       $post = mysqli_fetch_assoc($result);
       return $post;
     }
+
+    public function updatePost($data) {
+      global $conn;
+
+      $title = stripslashes($data['title']);
+      $caption = stripslashes($data['caption']);
+
+      $result = mysqli_query(
+        $conn, 
+        "UPDATE posts
+        SET
+          title = '$title',
+          caption = '{$caption}'
+        WHERE id = {$this->id};"
+      );
+
+      if (!$result) throw new Exception('Post not found.', 404);
+
+      return $result;
+    }
   }
 ?>
