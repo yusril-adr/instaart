@@ -81,5 +81,22 @@
 
       return $result;
     }
+
+    public function deletePost() {
+      global $conn;
+
+      $info = $this->getPost();
+      unlink("../public/img/posts/{$info['image']}");
+
+      $result = mysqli_query(
+        $conn, 
+        "DELETE FROM posts
+        WHERE id = {$this->id};"
+      );
+
+      if (!$result) throw new Exception('Post not found.', 404);
+
+      return $result;
+    }
   }
 ?>

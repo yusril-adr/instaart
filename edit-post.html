@@ -68,6 +68,27 @@
           console.log(error);
         }
       });
+
+      const deleteBtn = document.querySelector('#delete-post');
+      deleteBtn.addEventListener('click', async (event) => {
+        event.stopPropagation();
+
+        try {
+          const response = await fetch('./api/post.php', {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              id: postParams,
+            }),
+          });
+
+          console.log((await response.json()));
+        } catch (error) {
+          console.log(error);
+        }
+      });
     });
   </script>
 </body>

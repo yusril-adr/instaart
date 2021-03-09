@@ -74,6 +74,27 @@
       }
       break;
 
+    case 'DELETE':
+      try {
+        if(!isset($_SESSION['id'])) unauthorizedResponse();
+
+        $post = new Post((int) $request['id']);
+
+        $result = $post->deletePost();
+
+        $response['status'] = 'success'; 
+        $response['message'] = 'Post successfully Deleted'; 
+
+        echo json_encode($response);
+        exit;
+      } catch (Exception $error) {
+        if($error->getCode() !== 0) {
+          errorResponse($error->getMessage(), $error->getCode());
+        }
+        errorResponse($error->getMessage());
+      }
+      break;
+
     default:
       errorResponse('This request method is not supprted for this endpoint.', 405);
       break;
