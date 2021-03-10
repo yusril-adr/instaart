@@ -11,12 +11,12 @@
       try {
         $user = new User($_SESSION['username']);
 
-        $result = $user->likePost((int) $request['id']);
+        $result = $user->commentPost($request['body'], (int) $request['post_id']);
 
-        $post = new Post((int) $request['id']);
+        $post = new Post((int) $request['post_id']);
 
         $response['status'] = 'success';
-        $response['likes'] = $post->getLikes();
+        $response['comments'] = $post->getComments();
         echo json_encode($response);
         exit;
       } catch (Exception $error) {
@@ -33,12 +33,9 @@
       try {
         $user = new User($_SESSION['username']);
 
-        $result = $user->unlikePost((int) $request['id']);
-
-        $post = new Post((int) $request['id']);
+        $result = $user->deleteComment((int) $request['comment_id']);
 
         $response['status'] = 'success';
-        $response['likes'] = $post->getLikes();
         echo json_encode($response);
         exit;
       } catch (Exception $error) {

@@ -14,6 +14,7 @@
   public static function registerUser($data) {
     global $conn;
 
+    $username = htmlspecialchars($data['username']);
     $username = stripslashes($data['username']);
     $username = strtolower($username);
     $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -269,6 +270,41 @@
     "DELETE FROM likes 
     WHERE post_id = {$postId}
     AND user_id = {$this->id};");
+
+    return $result;
+  }
+
+  public function commentPost(string $comment, int $postId) {
+    global $conn;
+
+    $comment =  htmlspecialchars($comment);
+    $comment =  stripslashes($comment);
+
+    $result = mysqli_query($conn,
+    "INSERT INTO comments (
+      post_id,
+      user_id,
+      body
+    ) values (
+      {$postId}, 
+      {$this->id},
+      '{$comment}'
+    );");
+
+    if (!$result) throw new Exception(mysqli_error($conn));
+
+    return $result;
+  }
+
+  public function deleteComment(int $commentId) {
+    global $conn;
+
+    $result = mysqli_query($conn, 
+      "DELETE FROM comments 
+      WHERE id = {$commentId};"
+    );
+    
+    if (!$result) throw new Exception(mysqli_error($conn));
 
     return $result;
   }

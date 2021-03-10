@@ -18,7 +18,11 @@
 
       $posts = [];
       if($result->num_rows > 0) {
-        while($post = mysqli_fetch_assoc($result)) $posts[] = $post;
+        while($post = mysqli_fetch_assoc($result)) {
+          $post = new Post((int) $post['id']);
+          $post = $post->getPost();
+          $posts[] = $post;
+        }
       }
 
       return $posts;
@@ -73,6 +77,9 @@
       $post = mysqli_fetch_assoc($result);
       $likes = $this->getLikes();
       $post['likes'] = $likes;
+
+      $comments = $this->getComments();
+      $post['comments'] = $comments;
       return $post;
     }
 
@@ -93,6 +100,32 @@
       }
 
       return $likes;
+    }
+
+    public function getComments() {
+      global $conn;
+
+      $result = mysqli_query(
+        $conn, 
+        "SELECT 
+          users.username,
+          users.image AS user_image,
+          comments.id,
+          comments.body,
+          comments.date
+        FROM comments
+        INNER JOIN users
+        ON comments.user_id = users.id
+        WHERE post_id = '{$this->id}';"
+      );
+  
+      $comments = [];
+  
+      if($result->num_rows > 0) {
+        while($comment = mysqli_fetch_assoc($result)) $comments[] = $comment;
+      }
+
+      return $comments;
     }
 
     public function updatePost($data) {
@@ -122,6 +155,7 @@
       unlink("../public/img/posts/{$info['image']}");
 
       $this->deleteLikes();
+      $this->deleteComments();
 
       $result = mysqli_query(
         $conn, 
@@ -140,6 +174,18 @@
       $result = mysqli_query(
         $conn, 
         "DELETE FROM likes
+        WHERE post_id = {$this->id};"
+      );
+  
+      return $result;
+    }
+
+    private function deleteComments() {
+      global $conn;
+  
+      $result = mysqli_query(
+        $conn, 
+        "DELETE FROM comments
         WHERE post_id = {$this->id};"
       );
   
