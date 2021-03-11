@@ -28,6 +28,40 @@
       return $posts;
     }
 
+    public static function getExplore(array $usersId) {
+      global $conn;
+
+      $query = "SELECT 
+       posts.id,
+       posts.image,
+       posts.title,
+       posts.date,
+       users.image as user_image,
+       users.username
+       FROM posts 
+       INNER JOIN users
+       ON posts.user_id = users.id
+       WHERE posts.user_id = {$usersId[0]}";
+
+      foreach ($usersId as $id) {
+        if($id === $usersId[0]) continue;
+        $query .= " OR posts.user_id = {$id}";
+      }
+
+      $query .= ' ORDER BY posts.date DESC;';
+
+      $result = mysqli_query($conn, $query);
+
+      if (!$result) throw new Exception(mysqli_error($conn));
+
+      $posts = [];
+      if($result->num_rows > 0) {
+        while($post = mysqli_fetch_assoc($result)) $posts[] = $post;
+      }
+
+      return $posts;
+    }
+
     public static function newPost($data, int $id) {
       global $conn;
 

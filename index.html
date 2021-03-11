@@ -5,6 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>InstaArt</title>
+
+  <style>
+    img {
+      max-width: 250px;
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <h1>InstaArt</h1>
@@ -30,7 +37,27 @@
           <li><a href="./edit-profil.html">Edit profile</a></li>
           <li><a href="./post.html">Post</a></li>
           <li><a href="./logout.html">Logout</a></li>
+
+          <ul id="posts"></ul>
         `;
+
+        const responseExplore = await fetch('./api/explore.php');
+        const posts = await responseExplore.json();
+
+        const ulPosts = document.querySelector('ul#posts');
+
+        ulPosts.innerHTML = '';
+        posts.forEach(async post => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+          <img src="./public/img/posts/${post.image}">
+          <h2>${post.title}</h2>
+          <h3>${new Date(post.date).toLocaleString()}</h3>
+
+          <a href="./post.html?post=${post.id}">Visit</a>
+          `;
+          ulPosts.appendChild(li);
+        });
       } catch (error) {
         console.log(error);
       }
