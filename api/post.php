@@ -60,7 +60,7 @@
       try {
         if(!isset($_SESSION['id'])) unauthorizedResponse();
 
-        $post = new Post((int) $request['id']);
+        $post = new Post((int) $request['post_id']);
 
         $result = $post->updatePost($request);
 
@@ -78,7 +78,7 @@
       try {
         if(!isset($_SESSION['id'])) unauthorizedResponse();
 
-        $post = new Post((int) $request['id']);
+        $post = new Post((int) $request['post_id']);
 
         $result = $post->deletePost();
 

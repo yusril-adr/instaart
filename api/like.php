@@ -11,9 +11,9 @@
       try {
         $user = new User($_SESSION['username']);
 
-        $result = $user->likePost((int) $request['id']);
+        $result = $user->likePost((int) $request['post_id']);
 
-        $post = new Post((int) $request['id']);
+        $post = new Post((int) $request['post_id']);
 
         $response['status'] = 'success';
         $response['likes'] = $post->getLikes();
@@ -33,9 +33,9 @@
       try {
         $user = new User($_SESSION['username']);
 
-        $result = $user->unlikePost((int) $request['id']);
+        $result = $user->unlikePost((int) $request['post_id']);
 
-        $post = new Post((int) $request['id']);
+        $post = new Post((int) $request['post_id']);
 
         $response['status'] = 'success';
         $response['likes'] = $post->getLikes();

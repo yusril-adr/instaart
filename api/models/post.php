@@ -52,6 +52,29 @@
       return $result;
     }
 
+    public static function searchPost(string $keyword) {
+      global $conn;
+  
+      $result = mysqli_query(
+        $conn, 
+        "SELECT
+          id,
+          title,
+          image
+        FROM posts
+        WHERE title LIKE '%{$keyword}%'
+        OR caption LIKE '%{$keyword}%';"
+      );
+  
+      $postFounds = [];
+  
+      if($result->num_rows > 0) {
+        while($postFound = mysqli_fetch_assoc($result)) $postFounds[] = $postFound;
+      }
+  
+      return $postFounds;
+    }
+
     public function getPost() {
       global $conn;
 

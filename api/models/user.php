@@ -60,6 +60,28 @@
     return false;
   }
 
+  public static function searchUser(string $keyword) {
+    global $conn;
+
+    $result = mysqli_query(
+      $conn, 
+      "SELECT
+        username,
+        image
+      FROM users
+      WHERE username LIKE '%{$keyword}%'
+      OR display_name LIKE '%{$keyword}%';"
+    );
+
+    $userFounds = [];
+
+    if($result->num_rows > 0) {
+      while($userFound = mysqli_fetch_assoc($result)) $userFounds[] = $userFound;
+    }
+
+    return $userFounds;
+  }
+
   public function verifyPassword(string $password) {
     global $conn;
 
