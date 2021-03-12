@@ -11,7 +11,7 @@
     $defaultFileName = 'default_user.png';
 
     if($info['image'] !== $defaultFileName) {
-      unlink("../public/img/users/{$info['image']}");
+      unlink("../public/images/users/{$info['image']}");
     }
 
     $user->updateImage($defaultFileName);

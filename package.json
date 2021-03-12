@@ -1,0 +1,31 @@
+{
+  "name": "instaart",
+  "version": "1.0.0",
+  "description": "Portfolio apps for designer",
+  "main": "scripts/index.js",
+  "scripts": {
+    "dev": "tailwind build ./styles/tailwind.css -o ./styles/style.css",
+    "build": "postcss ./styles/tailwind.css -o ./styles/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yusril-adr/instaart.git"
+  },
+  "keywords": [
+    "portfolio",
+    "designer",
+    "social media"
+  ],
+  "author": "Yusril A. P.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yusril-adr/instaart/issues"
+  },
+  "homepage": "https://github.com/yusril-adr/instaart#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.8",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.3"
+  }
+}

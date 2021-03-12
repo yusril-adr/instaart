@@ -1,67 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./public/images/logo.png" type="image/png">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./styles/style.css">
   <title>InstaArt</title>
-
-  <style>
-    img {
-      max-width: 250px;
-      display: block;
-    }
-  </style>
 </head>
+
 <body>
-  <h1>InstaArt</h1>
-  <nav>
-    <ul></ul>
-  </nav>
+  <header class="shadow">
+    <div class="container py-4 flex justify-center items-center leading-8">
+      <a class="flex items-center" href="/">
+        <img class="mr-4 h-8" src="./public/images/logo.png" alt="Logo">
+        <span class="font-redressed font-bold text-2xl">InstaArt</span>
+      </a>
+  
+      <!-- <nav class="w-1/2 hidden md:block">
+        <ul class="flex justify-evenly">
+          <li class="w-2/5 lg:w-2/6">
+            <form id="header-search" class="relative">
+              <input class="search-text w-full px-2 pr-4 focus:outline-none border focus:shadow-lg" type="text"
+                placeholder="Search ...">
+              <button type="submit" class="header-search-trigger absolute right-4 leading-8">
+                <i class="fas fa-search text-gray-400" aria-label="Search"></i>
+              </button>
+            </form>
+          </li>
+          <li>
+            <button class="px-4 text-white bg-blue-500 hover:bg-green-500 rounded">Sign up</button>
+          </li>
+          <li>
+            <button class="px-4 text-white bg-blue-500 hover:bg-green-500 rounded">Sign in</button>
+          </li>
+        </ul>
+      </nav> -->
+    </div>
+  </header>
 
-  <script>
-    window.addEventListener('load', async event => {
-      const ul = document.querySelector('ul');
+  <main class="mt-4 md:mt-8 lg:mt-6" id="home">
+    <div class="container">
+      <div class="flex flex-wrap justify-center items-center">
+        <img class="md:w-1/2" src="./public/images/illust/work.svg" alt="illustration">
+  
+        <div class="w-full md:w-60 lg:w-72 flex flex-col items-center border-2 border-gray-200 rounded">
+          <nav class="w-full flex justify-evenly">
+            <button class="w-1/2 py-4 text-pink-500">Sign in</button>
+            <button class="w-1/2 py-4 text-gray-400 bg-gray-200">Sign up</button>
+          </nav>
+  
+          <span class="my-4 font-redressed font-bold text-2xl">InstaArt</span>
+  
+          <form class="w-full flex flex-col items-center" id="signin-form">
+            <input class="p-4 py-2 border-2 rounded" id="identifier" placeholder="Username/email" type="text" autocomplete="off" required>
+  
+            <input class="p-4 py-2 mt-4 border-2 rounded" id="password" type="password" placeholder="password" autocomplete="off" required>
+            
+            <button type="submit" class="text-white bg-blue-500 hover:bg-pink-500 rounded p-2 my-4">Sign in</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
 
-      try {
-        const response = await fetch('./api/user.php');
-        
-        if (response.status === 401) {
-          ul.innerHTML += '<li><a href="login.html">Login</a></li>';
-          return;
-        } 
+  <footer class="p-4">
+    <div class="container flex flex-col items-center">
+      <h2 class="text-gray-500">Created By:</h2>
 
-        ul.innerHTML += `
-          <li><a href="./profil.html">Profil</a></li>
-          <li><a href="./search.html">Search</a></li>
-          <li><a href="./edit-profil.html">Edit profile</a></li>
-          <li><a href="./post.html">Post</a></li>
-          <li><a href="./logout.html">Logout</a></li>
+      <div class="w-full lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 mt-4 text-center">
+        <span class="text-gray-500">Reyka Ayu Kartikasari</span>
+        <span class="text-gray-500">Yusril Adriansyah Putra</span>
+        <span class="text-gray-500">Choirotus Sa’adah</span>
+        <span class="text-gray-500">Ardianto Tri Candra P.</span>
+      </div>
 
-          <ul id="posts"></ul>
-        `;
-
-        const responseExplore = await fetch('./api/explore.php');
-        const posts = await responseExplore.json();
-
-        const ulPosts = document.querySelector('ul#posts');
-
-        ulPosts.innerHTML = '';
-        posts.forEach(async post => {
-          const li = document.createElement('li');
-          li.innerHTML = `
-          <img src="./public/img/posts/${post.image}">
-          <h2>${post.title}</h2>
-          <h3>${new Date(post.date).toLocaleString()}</h3>
-
-          <a href="./post.html?post=${post.id}">Visit</a>
-          `;
-          ulPosts.appendChild(li);
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    });
-  </script>
+      <h3 class="text-sm text-gray-500 mt-8">© Copyright 2021 All rights reserved.</h3>
+    </div>
+  </footer>
 </body>
+
 </html>

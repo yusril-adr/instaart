@@ -31,7 +31,7 @@
     $randomString = uniqid();
     $newFileName = "{$randomString}.{$extension}";
     $fileTmp = $imgFile["tmp_name"];
-    move_uploaded_file($fileTmp, "../public/img/posts/$newFileName");
+    move_uploaded_file($fileTmp, "../public/images/posts/$newFileName");
 
     $response['status'] = 'success';
     $response['message'] = 'Image updated.';
