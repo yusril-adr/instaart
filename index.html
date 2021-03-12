@@ -14,31 +14,29 @@
 
 <body>
   <header class="shadow">
-    <div class="container py-4 flex justify-center items-center leading-8">
+    <div class="container py-4 flex justify-center md:justify-between items-center leading-8">
       <a class="flex items-center" href="/">
         <img class="mr-4 h-8" src="./public/images/logo.png" alt="Logo">
         <span class="font-redressed font-bold text-2xl">InstaArt</span>
       </a>
   
-      <!-- <nav class="w-1/2 hidden md:block">
+      <nav class="w-2/5 hidden md:block">
         <ul class="flex justify-evenly">
-          <li class="w-2/5 lg:w-2/6">
+          <li class="w-44 lg:w-60">
             <form id="header-search" class="relative">
-              <input class="search-text w-full px-2 pr-4 focus:outline-none border focus:shadow-lg" type="text"
+              <input class="search-text w-full px-2 pr-4 focus:outline-none border focus:shadow" type="text"
                 placeholder="Search ...">
               <button type="submit" class="header-search-trigger absolute right-4 leading-8">
                 <i class="fas fa-search text-gray-400" aria-label="Search"></i>
               </button>
             </form>
           </li>
+
           <li>
-            <button class="px-4 text-white bg-blue-500 hover:bg-green-500 rounded">Sign up</button>
-          </li>
-          <li>
-            <button class="px-4 text-white bg-blue-500 hover:bg-green-500 rounded">Sign in</button>
+            <button class="px-4 text-white bg-blue-500 hover:bg-pink-500 rounded">Sign in</button>
           </li>
         </ul>
-      </nav> -->
+      </nav>
     </div>
   </header>
 
@@ -47,7 +45,7 @@
       <div class="flex flex-wrap justify-center items-center">
         <img class="md:w-1/2" src="./public/images/illust/work.svg" alt="illustration">
   
-        <div class="w-full md:w-60 lg:w-72 flex flex-col items-center border-2 border-gray-200 rounded">
+        <div class="w-72 flex flex-col items-center border-2 border-gray-200 rounded">
           <nav class="w-full flex justify-evenly">
             <button class="w-1/2 py-4 text-pink-500">Sign in</button>
             <button class="w-1/2 py-4 text-gray-400 bg-gray-200">Sign up</button>
@@ -60,14 +58,14 @@
   
             <input class="p-4 py-2 mt-4 border-2 rounded" id="password" type="password" placeholder="password" autocomplete="off" required>
             
-            <button type="submit" class="text-white bg-blue-500 hover:bg-pink-500 rounded p-2 my-4">Sign in</button>
+            <button type="submit" class="text-white bg-blue-500 hover:bg-pink-500 rounded p-2 px-4 my-4">Sign in</button>
           </form>
         </div>
       </div>
     </div>
   </main>
 
-  <footer class="p-4">
+  <footer class="p-4 mt-6">
     <div class="container flex flex-col items-center">
       <h2 class="text-gray-500">Created By:</h2>
 
