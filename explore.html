@@ -39,49 +39,26 @@
             </div>
           </form>
 
-          <a class="mt-2 mt-lg-0 ml-lg-4 btn btn-primary" href="./signup.html">Join us</a>
+          <ul class="navbar-nav mx-lg-4">
+            <li class="nav-item active">
+              <a class="nav-link" href="./index.html"><i class="fas fa-home"></i> <span class="d-lg-none">Home</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./new-post.html"><i class="fas fa-plus-circle"></i><span class="d-lg-none">New Post</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./profile.html"><i class="fas fa-user-circle"></i> <span class="d-lg-none">Profile</span></a>
+            </li>
+          </ul>
+
+          <a class="mt-2 mt-lg-0 btn btn-primary" href="./signup.html">Join us</a>
         </div>
       </nav>
     </div>
   </header>
 
   <main class="mt-5">
-    <div class="container" id="home">
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <img src="./public/images/illust/work.svg" alt="Illustration">
-        </div>
-
-        <div class="col-sm-12 col-md-6">
-          <div style="width: 320px;" class="card shadow-sm mt-3 mx-auto">
-            <div class="card-body">
-              <span class="card-title d-block font-redressed font-weight-bold h3 text-center mb-3">InstaArt</span>
-
-              <form id="signin-form">
-                <div class="form-group">
-                  <label for="identifier">Username/Email</label>
-                  <input type="text" placeholder="Username or Email" class="form-control" id="identifier" autocomplete="off" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" placeholder="Password" class="form-control" id="password" required>
-                </div>
-      
-                <button type="submit" class="btn btn-primary d-block mx-auto">Sign in</button>
-              </form>
-            </div>
-          </div>
-
-          <div style="width: 320px;" class="card shadow-sm mt-3 mx-auto">
-            <div class="card-body d-flex justify-content-center">
-              Don't have account?
-              <a href="./signup.html" class="ml-2 font-weight-bold text-primary">Sign up</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="container" id="explore"></div>
   </main>
 
   <footer class="d-flex flex-column align-items-center text-black-50 text-center mt-5 mb-4">
