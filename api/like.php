@@ -33,7 +33,7 @@
       try {
         $user = new User($_SESSION['username']);
 
-        $result = $user->unlikePost((int) $request['post_id']);
+        $result = $user->dislikePost((int) $request['post_id']);
 
         $post = new Post((int) $request['post_id']);
 

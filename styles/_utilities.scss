@@ -1,0 +1,99 @@
+.font-redressed {
+  font-family: 'Redressed', 'serif';
+}
+
+.pb-2px {
+  padding-bottom: 2px !important;
+}
+
+.w-300px {
+  width: 300px;
+}
+
+.hover\:text-primary {
+  color: $dark;
+
+  &:hover {
+    color: $primary !important;
+  }
+}
+
+.empty-result-container {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .empty-img {
+    height: 20rem;
+  }
+}
+
+.user-image-sm,
+.user-image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+  }
+}
+
+.user-image-sm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.post-list {
+  .post-img-container {
+    position: relative;
+    min-height: 240px;
+    overflow: hidden;
+  
+    img {
+      position: absolute;
+      width: 100%;
+    }
+  
+    .hover-post {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      display: flex;
+      background-color: rgba(0, 0, 0, 0);
+      transition: background-color .3s ease;
+  
+      i {
+        margin: auto;
+        font-size: 3rem;
+        transform: scale(0);
+        transition: transform .3s ease;
+      }
+    }
+  
+    &:hover .hover-post {
+      background-color: rgba(0, 0, 0, .5);
+  
+      i {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 576px) {
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 992px) {
+  .lg\:w-85 {
+    width: 85%;
+  }
+}

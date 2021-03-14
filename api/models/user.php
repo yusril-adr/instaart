@@ -285,7 +285,7 @@
     return $result;
   }
 
-  public function unlikePost(int $postId) {
+  public function dislikePost(int $postId) {
     global $conn;
 
     $result = mysqli_query($conn, 
