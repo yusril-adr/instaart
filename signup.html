@@ -34,7 +34,7 @@
               <input type="text" class="form-control" placeholder="Search ..." aria-label="Search">
 
               <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="submit" id="search"><i class="fas fa-search"></i> Search</button>
+                <button class="btn btn-outline-primary" type="submit" id="search" aria-label="search"><i class="fas fa-search"></i></button>
               </div>
             </div>
           </form>
@@ -45,7 +45,7 @@
     </div>
   </header>
 
-  <main class="mt-5">
+  <main class="mt-4">
     <div class="container" id="sign-up">
       <div class="row">
         <div class="col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2">
@@ -60,13 +60,18 @@
                 </div>
 
                 <div class="form-group">
+                  <label for="phone-number">Phone number</label>
+                  <input type="text" placeholder="Phone number" class="form-control" id="phone-number">
+                </div>
+
+                <div class="form-group">
                   <label for="username">Username</label>
                   <input type="text" placeholder="Username" class="form-control" id="username">
                 </div>
 
                 <div class="form-group">
-                  <label for="display-name">Display Name</label>
-                  <input type="text" placeholder="Display Name" class="form-control" id="display-name">
+                  <label for="display-name">Display name</label>
+                  <input type="text" placeholder="Display name" class="form-control" id="display-name">
                 </div>
 
                 <div class="form-group">

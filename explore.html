@@ -34,7 +34,7 @@
               <input type="text" class="form-control" placeholder="Search ..." aria-label="Search">
 
               <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="submit" id="search"><i class="fas fa-search"></i> Search</button>
+                <button class="btn btn-outline-primary" type="submit" id="search" aria-label="search"><i class="fas fa-search"></i></button>
               </div>
             </div>
           </form>
@@ -51,18 +51,151 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="./profile.html"><i class="fas fa-sign-out-alt"></i> <span class="d-lg-none">Sign out</span></a>
+              <a class="nav-link" href="./index.html"><i class="fas fa-sign-out-alt"></i> <span class="d-lg-none">Sign out</span></a>
             </li>
           </ul>
-
-          <!-- <a class="mt-2 mt-lg-0 btn btn-outline-danger" href="./index.html">Sign out</a> -->
         </div>
       </nav>
     </div>
   </header>
 
-  <main class="mt-5">
-    <div class="container" id="explore"></div>
+  <main class="mt-4">
+    <div class="container" id="explore">
+      <!-- Empty response -->
+      <!-- <div class="empty-result-container">
+        <i class="far fa-smile-wink h1 text-secondary"></i>
+        <h4 class="text-secondary">There are no post right now.</h4>
+        <h6 class="mt-4 text-secondary">Submit your first design <a href="./new-post.html" class="text-primary">Here</a>.</h6>
+      </div> -->
+
+      <div class="row post-list">
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="card shadow rounded">
+            <div class="card-header d-flex align-items-center text-dark">
+              <a href='./profile.html' class="user-image">
+                <img src="./public/images/users/default_user.png" alt="user-image">
+              </a>
+
+              <a href='./profile.html' class="ml-2 text-dark text-decoration-none">Username</a>
+            </div>
+
+            <a href="./post.html" class="post-img-container">
+              <img src="./public/images/posts/example.png" class="post-img" alt="post title">
+
+              <div class="hover-post">
+                <i class="fas fa-search"></i>
+              </div>
+            </a>
+            
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <button class="like border-0 p-0 mr-1" aria-label="like this design">
+                  <i class="far fa-heart"></i>
+                </button>
+
+                <span class="pb-2px">100<span class="sr-only"> like this design</span></span>
+
+                <a href="./post.html" class="text-dark text-decoration-none pb-2px ml-2 mr-1" aria-label="comment this design">
+                  <i class="far fa-comment"></i>
+                </a>
+
+                <span class="pb-2px">100<span class="sr-only"> commented this design</span></span>
+              </div>
+
+              <a href="./post.html" class="card-title text-dark text-decoration-none h3">Post Title</a>
+            </div>
+
+            <div class="card-footer d-flex">
+              <span class="d-block mx-auto h6">March 14, 2021</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="card shadow rounded">
+            <div class="card-header d-flex align-items-center text-dark">
+              <a href='./profile.html' class="user-image">
+                <img src="./public/images/users/default_user.png" alt="user-image">
+              </a>
+
+              <a href='./profile.html' class="ml-2 text-dark text-decoration-none">Username</a>
+            </div>
+
+            <a href="./post.html" class="post-img-container">
+              <img src="./public/images/posts/example.png" class="post-img" alt="post title">
+
+              <div class="hover-post">
+                <i class="fas fa-search"></i>
+              </div>
+            </a>
+            
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <button class="like border-0 p-0 mr-1" aria-label="like this design">
+                  <i class="far fa-heart"></i>
+                </button>
+
+                <span class="pb-2px">100<span class="sr-only"> like this design</span></span>
+
+                <a href="./post.html" class="text-dark text-decoration-none pb-2px ml-2 mr-1" aria-label="comment this design">
+                  <i class="far fa-comment"></i>
+                </a>
+
+                <span class="pb-2px">100<span class="sr-only"> commented this design</span></span>
+              </div>
+
+              <a href="./post.html" class="card-title text-dark text-decoration-none h3">Post Title</a>
+            </div>
+
+            <div class="card-footer d-flex">
+              <span class="d-block mx-auto h6">March 14, 2021</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="card shadow rounded">
+            <div class="card-header d-flex align-items-center text-dark">
+              <a href='./profile.html' class="user-image">
+                <img src="./public/images/users/default_user.png" alt="user-image">
+              </a>
+
+              <a href='./profile.html' class="ml-2 text-dark text-decoration-none">Username</a>
+            </div>
+
+            <a href="./post.html" class="post-img-container">
+              <img src="./public/images/posts/example.png" class="post-img" alt="post title">
+
+              <div class="hover-post">
+                <i class="fas fa-search"></i>
+              </div>
+            </a>
+            
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <button class="like border-0 p-0 mr-1" aria-label="like this design">
+                  <i class="far fa-heart"></i>
+                </button>
+
+                <span class="pb-2px">100<span class="sr-only"> like this design</span></span>
+
+                <a href="./post.html" class="text-dark text-decoration-none pb-2px ml-2 mr-1" aria-label="comment this design">
+                  <i class="far fa-comment"></i>
+                </a>
+
+                <span class="pb-2px">100<span class="sr-only"> commented this design</span></span>
+              </div>
+
+              <a href="./post.html" class="card-title text-dark text-decoration-none h3">Post Title</a>
+            </div>
+
+            <div class="card-footer d-flex">
+              <span class="d-block mx-auto h6">March 14, 2021</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer class="container d-flex flex-column align-items-center text-black-50 text-center mt-5 mb-4">

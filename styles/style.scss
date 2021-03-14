@@ -46,3 +46,65 @@
 .font-redressed {
   font-family: 'Redressed', 'serif';
 }
+
+.pb-2px {
+  padding-bottom: 2px !important;
+}
+
+.empty-result-container {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-list {
+  .user-image {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .post-img-container {
+    position: relative;
+    min-height: 240px;
+    overflow: hidden;
+  
+    img {
+      position: absolute;
+      width: 100%;
+    }
+  
+    .hover-post {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      display: flex;
+      background-color: rgba(0, 0, 0, 0);
+      transition: background-color .3s ease;
+  
+      i {
+        margin: auto;
+        font-size: 3rem;
+        transform: scale(0);
+        transition: transform .3s ease;
+      }
+    }
+  
+    &:hover .hover-post {
+      background-color: rgba(0, 0, 0, .5);
+  
+      i {
+        transform: scale(1);
+      }
+    }
+  }
+}
