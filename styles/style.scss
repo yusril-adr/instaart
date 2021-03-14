@@ -1,3 +1,6 @@
+$primary: #007bff;
+$dark: #343a40;
+
 @font-face {
   font-family: 'Montserrat Black';
   font-weight: 400;
@@ -49,6 +52,14 @@
 
 .pb-2px {
   padding-bottom: 2px !important;
+}
+
+.hover\:text-primary {
+  color: $dark;
+
+  &:hover {
+    color: $primary !important;
+  }
 }
 
 .empty-result-container {
@@ -108,15 +119,3 @@
     }
   }
 }
-
-// @media screen and (min-width: 768px) {
-//   .post-list .post-img-container {
-//     min-height: 200px;
-//   }
-// }
-
-// @media screen and (min-width: 992px) {
-//   .post-list .post-img-container {
-//     min-height: 160px;
-//   }
-// }
