@@ -18,12 +18,36 @@
   width: 300px;
 }
 
+.min-h-0 {
+  min-height: 0 !important;
+}
+
+.min-h-200px {
+  min-height: 200px;
+}
+
+.max-h-250px {
+  max-height: 250px !important;
+}
+
 .hover\:text-primary {
   color: $dark;
 
   &:hover {
     color: $primary !important;
   }
+}
+
+.\-top-3 {
+  top: -3rem;
+}
+
+.mt-2rem {
+  margin-top: 2rem;
+}
+
+.bg-cubes {
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
 }
 
 .empty-result-container {
@@ -39,7 +63,8 @@
 }
 
 .user-image-sm,
-.user-image {
+.user-image,
+.user-image-lg {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
@@ -53,6 +78,11 @@
 .user-image-sm {
   width: 2rem;
   height: 2rem;
+}
+
+.user-image-lg {
+  width: 6rem;
+  height: 6rem;
 }
 
 .post-list {
