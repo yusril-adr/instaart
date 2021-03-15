@@ -34,24 +34,29 @@
               <input type="text" class="form-control" placeholder="Search ..." aria-label="Search">
 
               <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="submit" id="search" aria-label="search"><i class="fas fa-search"></i></button>
+                <button class="btn btn-outline-primary" type="submit" id="search" aria-label="search"><i
+                    class="fas fa-search"></i></button>
               </div>
             </div>
           </form>
 
           <ul class="navbar-nav mx-lg-4">
             <li class="nav-item home">
-              <a class="nav-link" href="./index.html"><i class="fas fa-home"></i> <span class="d-lg-none">Home</span></a>
+              <a class="nav-link" href="./index.html"><i class="fas fa-home"></i> <span
+                  class="d-lg-none">Home</span></a>
             </li>
             <li class="nav-item new-post">
-              <a class="nav-link" href="./new-post.html"><i class="fas fa-plus-circle"></i> <span class="d-lg-none">New Post</span></a>
+              <a class="nav-link" href="./new-post.html"><i class="fas fa-plus-circle"></i> <span class="d-lg-none">New
+                  Post</span></a>
             </li>
             <li class="nav-item profile">
-              <a class="nav-link" href="./profile.html"><i class="fas fa-user-circle"></i> <span class="d-lg-none">Profile</span></a>
+              <a class="nav-link" href="./profile.html"><i class="fas fa-user-circle"></i> <span
+                  class="d-lg-none">Profile</span></a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="./index.html"><i class="fas fa-sign-out-alt"></i> <span class="d-lg-none">Sign out</span></a>
+              <a class="nav-link" href="./index.html"><i class="fas fa-sign-out-alt"></i> <span class="d-lg-none">Sign
+                  out</span></a>
             </li>
           </ul>
         </div>
@@ -77,11 +82,12 @@
 
         <div class="d-flex flex-column ml-2">
           <span class="font-weight-bold">Post Title</span>
-          
+
           <a href="./profile.html" class="text-decoration-none hover:text-primary">Username</a>
         </div>
 
-        <a href="./public/images/posts/example.png" target="_blank" class="btn btn-outline-primary ml-auto">Full image</a>
+        <a href="./public/images/posts/example.png" target="_blank" class="btn btn-outline-primary ml-auto">Full
+          image</a>
       </div>
 
       <div class="card shadow mt-4">
@@ -96,7 +102,7 @@
           <div class="d-flex justify-content-center align-items-center text-secondary">
             <i class="far fa-heart"></i>
             <span class="ml-1">100<span class="sr-only"> like this design</span></span>
-            
+
             <i class="far fa-comment ml-2"></i>
             <span class="ml-1">100<span class="sr-only"> commented this design</span></span>
           </div>
@@ -112,12 +118,85 @@
 
                 <input type="text" placeholder="Type your comment ..." class="form-control rounded-pill lg:w-85">
 
-                <button class="btn btn-primary rounded-circle ml-2 ml-lg-0" aria-label="send"><i class="fas fa-paper-plane"></i></button>
+                <button class="btn btn-primary rounded-circle ml-2 ml-lg-0" aria-label="send"><i
+                    class="fas fa-paper-plane"></i></button>
               </form>
+            </div>
+
+            <div class="card-body">
+              <span class="h2 card-title">Comments</span>
+
+              <!-- Empty comment -->
+              <!-- <div class="p-5 d-flex flex-column align-items-center">
+                <i class="far fa-smile-wink h1 text-secondary"></i>
+                <span class="text-secondary h5 mt-2">There aren't any comment yet.</span>
+                <span class="mt-2 h6 text-secondary">
+                  Be the first one to comment.
+                </span>
+              </div> -->
+
+              <div class="d-flex py-4">
+                <div>
+                  <a href="./profile.html" class="user-image-sm d-block mr-2 mr-lg-3">
+                    <img src="./public/images/users/example.png" alt="user-image">
+                  </a>
+                </div>
+
+                <div class="d-flex flex-column">
+                  <div class="d-flex align-items-center">
+                    <a href="./profile.html" class="font-weight-bold text-decoration-none hover:text-primary">Username</a>
+                    <span class="text-sm ml-1">| March 14, 2021</span>
+                  </div>
+
+                  <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque dolore et ipsum qui explicabo
+                    non vel consectetur expedita iure dolorem, autem possimus provident fugiat eos ratione id debitis
+                    beatae numquam?</span>
+                </div>
+              </div>
+
+              <div class="d-flex py-4">
+                <div>
+                  <a href="./profile.html" class="user-image-sm d-block mr-2 mr-lg-3">
+                    <img src="./public/images/users/example.png" alt="user-image">
+                  </a>
+                </div>
+
+                <div class="d-flex flex-column">
+                  <div class="d-flex align-items-center">
+                    <a href="./profile.html" class="font-weight-bold text-decoration-none hover:text-primary">Username</a>
+                    <span class="text-sm ml-1">| March 14, 2021</span>
+                  </div>
+
+                  <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque dolore et ipsum qui explicabo
+                    non vel consectetur expedita iure dolorem, autem possimus provident fugiat eos ratione id debitis
+                    beatae numquam?</span>
+                </div>
+              </div>
+
+              <div class="d-flex py-4">
+                <div>
+                  <a href="./profile.html" class="user-image-sm d-block mr-2 mr-lg-3">
+                    <img src="./public/images/users/example.png" alt="user-image">
+                  </a>
+                </div>
+
+                <div class="d-flex flex-column">
+                  <div class="d-flex align-items-center">
+                    <a href="./profile.html" class="font-weight-bold text-decoration-none hover:text-primary">Username</a>
+                    <span class="text-sm ml-1">| March 14, 2021</span>
+                  </div>
+
+                  <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque dolore et ipsum qui explicabo
+                    non vel consectetur expedita iure dolorem, autem possimus provident fugiat eos ratione id debitis
+                    beatae numquam?</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <a id="edit" href="./edit-post.html" class="btn btn-info rounded-circle" aria-label="Edit post"><i class="fas fa-pen"></i></a>
     </div>
   </main>
 
