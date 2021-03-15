@@ -85,6 +85,17 @@
   height: 6rem;
 }
 
+.btn-float {
+  width: 3rem;
+  height: 3rem;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .post-list {
   .post-img-container {
     position: relative;

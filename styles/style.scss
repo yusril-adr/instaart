@@ -5,18 +5,8 @@
 // Post detail page
 #post {
   button.like,
-  button.dislike,
-  a#edit {
+  button.dislike {
     width: 3rem;
     height: 3rem;
-  }
-
-  a#edit {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
