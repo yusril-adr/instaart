@@ -67,10 +67,12 @@
       $conn, 
       "SELECT
         username,
+        display_name,
         image
       FROM users
       WHERE username LIKE '%{$keyword}%'
-      OR display_name LIKE '%{$keyword}%';"
+      OR display_name LIKE '%{$keyword}%'
+      OR email LIKE '%{$keyword}%';"
     );
 
     $userFounds = [];

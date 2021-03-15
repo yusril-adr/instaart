@@ -12,13 +12,12 @@
     $followingData = $user->getFollowing();
 
     $response = [];
+    $following = [ (int) $_SESSION['id'] ];
 
-    if(count($followingData) > 0) {
-      foreach ($followingData as $id) {
-        $following[] = $id['following_id'];
-      }
-      $response = Post::getExplore($following);
+    foreach($followingData as $id) {
+      $following[] = $id['following_id'];
     }
+    $response = Post::getExplore($following);
 
     echo json_encode($response);
     exit;
