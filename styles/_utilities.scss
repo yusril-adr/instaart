@@ -68,9 +68,8 @@
 
 .user-image-sm,
 .user-image,
-.user-image-lg {
-  width: 3rem;
-  height: 3rem;
+.user-image-lg,
+.user-image-responsive {
   border-radius: 50%;
   overflow: hidden;
 
@@ -79,9 +78,15 @@
   }
 }
 
-.user-image-sm {
+.user-image-sm,
+.user-image-responsive {
   width: 2rem;
   height: 2rem;
+}
+
+.user-image {
+  width: 3rem;
+  height: 3rem;
 }
 
 .user-image-lg {
@@ -143,10 +148,19 @@
 }
 
 @media screen and (min-width: 768px) {
+  .user-image-responsive {
+    width: 3rem;
+    height: 3rem;
+  }
 }
 
 @media screen and (min-width: 992px) {
   .lg\:w-85 {
     width: 85%;
+  }
+
+  .user-image-responsive {
+    width: 5rem;
+    height: 5rem;
   }
 }
