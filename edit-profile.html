@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
   <link rel="stylesheet" href="./styles/style.css">
-  <title>InstaArt | Edit Post</title>
+  <title>InstaArt | Profile Setting</title>
 </head>
 
 <body>
@@ -60,28 +60,56 @@
   </header>
 
   <main class="mt-4">
-    <div class="container" id="edit-post">
+    <div class="container" id="edit-profile">
       <div class="row">
-        <div class="col-sm-12 col-md-6 offset-md-3">
-          <div class="card shadow-sm mt-3 mx-auto">
+        <div class="col-sm-12 col-md-4">
+          <div class="card sahdow">
+            <div class="card-header font-weight-bold">
+              Account settings
+            </div>
+
+            <div class="list-group">
+              <a href="./edit-profile.html" class="list-group-item list-group-item-action hover:bg-secondary disabled">
+                Profile
+              </a>
+              <a href="./edit-profile-picture.html" class="list-group-item list-group-item-action hover:bg-secondary">Profile picture</a>
+              <a href="./edit-password.html" class="list-group-item list-group-item-action hover:bg-secondary">Password</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-8 col-lg-6 offset-lg-1">
+          <div class="card shadow-sm mx-auto">
             <div class="card-body">
-              <span class="card-title d-block font-weight-bold h3 text-center mb-3">Edit post</span>
+              <span class="card-title d-block font-weight-bold h3 text-center mb-3">Profile</span>
 
               <form id="signup-form">
                 <div class="form-group">
-                  <label for="title">Title</label>
-                  <input type="text" placeholder="Title" class="form-control" id="title">
+                  <label for="username">Username</label>
+                  <input type="text" placeholder="Username" class="form-control" id="username">
                 </div>
 
                 <div class="form-group">
-                  <label for="caption">Caption</label>
-                  <textarea class="form-control" id="caption" rows="4" placeholder="Caption"></textarea>
+                  <label for="display-name">Display name</label>
+                  <input type="text" placeholder="Display name" class="form-control" id="display-name">
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" placeholder="Email" class="form-control" id="email">
+                </div>
+
+                <div class="form-group">
+                  <label for="phone-number">Phone number</label>
+                  <input type="text" placeholder="Phone number" class="form-control" id="phone-number">
+                </div>
+
+                <div class="form-group">
+                  <label for="caption">Bio</label>
+                  <textarea class="form-control" id="caption" rows="4" placeholder="Tell something about yourself"></textarea>
                 </div>
       
-                <div class="d-flex justify-content-evenly align-items-center">
-                  <button type="button" class="btn btn-danger d-block mx-auto mt-4">Delete</button>
-                  <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Save</button>
-                </div>
+                <button type="submit" class="btn btn-primary d-block mx-auto">Save</button>
               </form>
             </div>
           </div>
@@ -114,7 +142,6 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
   <script src="./scripts/index.js" type="module"></script>
-  
 
 </body>
 
