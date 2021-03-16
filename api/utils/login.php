@@ -2,19 +2,24 @@
   session_start();
 
   function login($identifier, $password) {
-    $user = new User($identifier);
+    try {
+      $user = new User($identifier);
 
-    if ($user->verifyPassword($password)) {
-      $user = $user->getUser();
-      $_SESSION['username'] = $user['username'];
-      $_SESSION['email'] = $user['email'];
-      $_SESSION['id'] = $user['id'];
+      if ($user->verifyPassword($password)) {
+        $user = $user->getUser();
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['id'] = $user['id'];
 
-      setcookie('key', "{$user['id']}", time()+24*60*60, '/');
-      return true;
+        setcookie('key', "{$user['id']}", time()+24*60*60, '/');
+        return true;
+      }
+
+      return false;
+    } catch (Exception $error) {
+      throw new Exception('User or password is incorrect', 404);
     }
 
-    return false;
   }
 
   function checkCookie() {

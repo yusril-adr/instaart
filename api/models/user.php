@@ -120,10 +120,11 @@
       OR email = '{$this->identifier}';"
     );
 
-    if(!$result) throw new Exception('User not found', 404);
+    if(!$result) throw new Exception(mysqli_error($conn));
 
     $data = mysqli_fetch_assoc($result);
 
+    if($data === null) throw new Exception('User not found', 404);
     return $data['id'];
   }
 
