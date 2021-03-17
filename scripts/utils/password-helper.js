@@ -11,6 +11,10 @@ const PasswordHelper = {
       button.innerHTML = input.type === 'password'? Templates.showPassswordToggler() : Templates.hidePasswordToggler();
     });
   },
+
+  async confirmPassword(password, confirmPassword) {
+    return password === confirmPassword;
+  },
 };
 
 export default PasswordHelper;

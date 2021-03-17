@@ -8,7 +8,7 @@ const home = {
   },
 
   async afterRender(user) {
-    if (user) location.hash = '#/explore';
+    if (user) location.hash = '#/explore/';
 
     await this._initPasswordToggler();
     await this._initSignInEvent();
@@ -36,7 +36,7 @@ const home = {
         const changeEvent = new CustomEvent('signInOrOut');
         window.dispatchEvent(changeEvent);
 
-        location.hash = '#/explore';
+        location.hash = '#/explore/';
       } catch (error) {
         await Swal.fire(
           'Oops ...',

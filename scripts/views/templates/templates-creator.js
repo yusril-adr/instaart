@@ -31,7 +31,7 @@ const Templates = {
             </div>
           </form>
 
-          <a class="mt-2 mt-lg-0 ml-lg-4 btn btn-primary" href="#/sign-up">Join us</a>
+          <a href="#/sign-up/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-primary">Join us</a>
         </div>
       </nav>
     </div>
@@ -66,14 +66,14 @@ const Templates = {
               <a class="nav-link" href="#/"><i class="fas fa-home"></i> <span class="d-lg-none">Home</span></a>
             </li>
             <li class="nav-item new-post">
-              <a class="nav-link" href="#/new-post"><i class="fas fa-plus-circle"></i> <span class="d-lg-none">New Post</span></a>
+              <a class="nav-link" href="#/new-post/"><i class="fas fa-plus-circle"></i> <span class="d-lg-none">New Post</span></a>
             </li>
             <li class="nav-item profile">
-              <a class="nav-link" href="#/profile"><i class="fas fa-user-circle"></i> <span class="d-lg-none">Profile</span></a>
+              <a class="nav-link" href="#/profile/"><i class="fas fa-user-circle"></i> <span class="d-lg-none">Profile</span></a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#/sign-out"><i class="fas fa-sign-out-alt"></i> <span class="d-lg-none">Sign out</span></a>
+              <a class="nav-link" href="#/sign-out/"><i class="fas fa-sign-out-alt"></i> <span class="d-lg-none">Sign out</span></a>
             </li>
           </ul>
         </div>
@@ -102,7 +102,7 @@ const Templates = {
                 <div class="form-group">
                   <label for="password">Password</label>
 
-                  <div class="input-group password-container">
+                  <div class="input-group">
                     <input type="password" placeholder="Password" class="form-control" id="password" autocomplete="off" required>
     
                     <div class="input-group-append">
@@ -121,7 +121,81 @@ const Templates = {
           <div style="width: 320px;" class="card shadow-sm mt-3 mx-auto">
             <div class="card-body d-flex justify-content-center">
               Don't have account?
-              <a href="#/sign-up" class="ml-2 font-weight-bold text-primary">Sign up</a>
+              <a href="#/sign-up/" class="ml-2 font-weight-bold text-primary">Sign up</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+
+  signUp: () =>`
+    <div class="container" id="sign-up">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 offset-md-3">
+          <div class="card shadow-sm mt-3 mx-auto">
+            <div class="card-body">
+              <span class="card-title d-block font-redressed font-weight-bold h1 text-center mb-3">InstaArt</span>
+
+              <form id="signup-form">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" placeholder="Username" class="form-control" id="username" autocomplete="off" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" placeholder="Email" class="form-control" id="email" autocomplete="off" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="password">Password</label>
+
+                  <div class="input-group">
+                    <input type="password" placeholder="Password" class="form-control" id="password" autocomplete="off" required>
+
+                    <div class="input-group-append">
+                      <button type="button" class="btn btn-light" aria-label="show password" id="password-toggler"><i class="far fa-eye"></i></button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="confirm-password">Confirm Password</label>
+
+                  <div class="input-group">
+                    <input type="password" placeholder="Confirm Password" class="form-control" id="confirm-password" autocomplete="off" required>
+
+                    <div class="input-group-append">
+                      <button type="button" class="btn btn-light" id="confirm-password-toggler" aria-label="show password"><i class="far fa-eye"></i></button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="display-name">Display name</label>
+                  <input type="text" placeholder="Display name" class="form-control" id="display-name" autocomplete="off" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone-number">Phone number</label>
+                  <input type="text" placeholder="Ex: 08xxx" class="form-control" id="phone-number" autocomplete="off" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="biodata">Bio</label>
+                  <textarea class="form-control" id="biodata" rows="4" placeholder="Tell something about yourself"></textarea>
+                </div>
+      
+                <button type="submit" class="btn btn-primary d-block mx-auto">Sign up</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="card shadow-sm mt-3 mx-auto">
+            <div class="card-body d-flex justify-content-center">
+              Have an account?
+              <a href="#/" class="ml-2 font-weight-bold text-primary">Sign in</a>
             </div>
           </div>
         </div>

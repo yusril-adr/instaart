@@ -25,5 +25,5 @@
     errorResponse($error->getMessage());
   }
 
-  errorResponse('User not found or your password is incorrect', 401);
+  errorResponse('User not found or your password is incorrect.', 401);
 ?>

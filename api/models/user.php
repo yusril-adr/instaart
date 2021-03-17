@@ -124,7 +124,7 @@
 
     $data = mysqli_fetch_assoc($result);
 
-    if($data === null) throw new Exception('User not found', 404);
+    if($data === null) $data['id'] = null;
     return $data['id'];
   }
 

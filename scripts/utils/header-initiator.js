@@ -6,6 +6,10 @@ const HeaderInitiator = {
   }) {
     header.innerHTML = user ? Templates.loginHeader() : Templates.header();
   },
+
+  async collapse() {
+    $('.navbar-collapse').collapse('hide');
+  },
 };
 
 export default HeaderInitiator;

@@ -15,14 +15,17 @@
       $oldUserWithUsername = new User($request['username']);
       $oldUserWithEmail = new User($request['email']);
   
-      if($oldUserWithUsername->getUser() || $oldUserWithEmail->getUser()) {
-        errorResponse('User already exist.', 428);
+      if($oldUserWithUsername->getUser()) {
+        errorResponse('Username already exist.', 428);
+      }
+
+      if($oldUserWithEmail->getUser()) {
+        errorResponse('Email already exist.', 428);
       }
   
       $user = User::registerUser($request);
       if ($user) {
         $user = new User($request['username']);
-  
         login($request['username'], $request['password']);
 
         echo json_encode($user->getUser());
