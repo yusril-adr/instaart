@@ -11,8 +11,10 @@ const signOut = {
         await User.signOut();
 
         const changeEvent = new CustomEvent('signInOrOut');
-        window.dispatchEvent(changeEvent);
-    } else location.hash = '#/';
+        return window.dispatchEvent(changeEvent);
+      } 
+      
+      location.hash = '#/';
     } catch (error) {
       await Swal.fire(
         'Oops ...',
