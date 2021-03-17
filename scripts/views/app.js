@@ -28,10 +28,19 @@ class App {
 
   async renderPage() {
     await HeaderInitiator.collapse();
+    await this._scrollToTop();
+
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url] || routes['/'];
     this._content.innerHTML = await page.render();
     await page.afterRender(this._user);
+  }
+
+  async _scrollToTop() {
+    scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }
 }
 
