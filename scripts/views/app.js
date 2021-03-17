@@ -2,6 +2,7 @@ import HeaderInitiator from '../utils/header-initiator.js';
 import UrlParser from '../routes/url-parser.js';
 import routes from '../routes/routes.js';
 import User from '../data/user.js';
+import TitleHelper from '../utils/title-helper.js';
 
 class App {
   constructor({
@@ -29,6 +30,7 @@ class App {
   async renderPage() {
     await HeaderInitiator.collapse();
     await this._scrollToTop();
+    await TitleHelper.setDefaultTitle();
 
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url] || routes['/'];

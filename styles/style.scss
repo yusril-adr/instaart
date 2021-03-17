@@ -2,6 +2,13 @@
 
 @import 'utilities';
 
+// Profile Page
+.container#profile {
+  .user-image-border{
+    border: 3px double #fff;
+  }
+}
+
 // Post detail page
 .container#post {
   button.like,

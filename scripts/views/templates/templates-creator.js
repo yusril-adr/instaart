@@ -1,3 +1,6 @@
+import CONFIG from '../../global/config.js';
+import DateHelper from '../../utils/date-helper.js';
+
 const Templates = {
   hidePasswordToggler: () => `
     <i class="far fa-eye-slash"></i>
@@ -11,7 +14,7 @@ const Templates = {
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#/">
-          <img src="./public/images/logo.png" width="32" height="32" alt="Logo" class="d-inline-block align-top">
+          <img src="${CONFIG.IMAGE_PATH.BASE}/logo.png" width="32" height="32" alt="Logo" class="d-inline-block align-top">
           <span class="font-redressed font-weight-bold ml-2">InstaArt</span>
         </a>
 
@@ -41,7 +44,7 @@ const Templates = {
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#/">
-          <img src="./public/images/logo.png" width="32" height="32" alt="Logo" class="d-inline-block align-top">
+          <img src="${CONFIG.IMAGE_PATH.BASE}/logo.png" width="32" height="32" alt="Logo" class="d-inline-block align-top">
           <span class="font-redressed font-weight-bold ml-2">InstaArt</span>
         </a>
 
@@ -85,7 +88,7 @@ const Templates = {
     <div class="container" id="home">
       <div class="row">
         <div class="col-sm-12 col-md-6">
-          <img src="./public/images/illust/work.svg" alt="Illustration">
+          <img src="${CONFIG.IMAGE_PATH.ILLUST}/work.svg" alt="Illustration">
         </div>
 
         <div class="col-sm-12 col-md-6">
@@ -129,7 +132,7 @@ const Templates = {
     </div>
   `,
 
-  signUp: () =>`
+  signUpPage: () =>`
     <div class="container" id="sign-up">
       <div class="row">
         <div class="col-sm-12 col-md-6 offset-md-3">
@@ -202,6 +205,151 @@ const Templates = {
       </div>
     </div>
   `,
+
+  profilePage: () =>`
+    <div class="container" id="profile">
+      <div class="row">
+        <div class="col-sm-12 col-lg-10 offset-lg-1">
+          <div class="card shadow-sm">
+            <div class="bg-primary bg-cubes min-h-200px"></div>
+
+            <div class="card-body position-relative d-flex flex-column align-items-center">
+              <div class="user-image-lg position-absolute -top-3 bg-grey user-image-border">
+                <img src="${CONFIG.IMAGE_PATH.USER}/default_user.png" alt="Profile image" class="user-image-element">
+              </div>
+
+              <div class="d-flex flex-column align-items-center mt-2rem">
+                <span class="h4 text-center user-display-name"></span>
+                <span class="h6 text-secondary text-center user-username"></span>
+
+                <div id="user-button-container"></div>
+
+                <span class="mt-3 user-bio"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-1 mt-4">
+          <div class="card shadow max-h-250px">
+            <div class="card-header text-center">
+              Profile
+            </div>
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>Followers</span>
+                <span class="user-followers"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>Following</span>
+                <span class="user-following"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>Email</span>
+                <span class="user-email"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>Phone Number</span>
+                <span class="user-phone-number"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 post-list">
+          <div class="loading-container">
+            <div class="spinner-border text-secondary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+
+  profileNotFound: () =>`
+    <div class="empty-result-container">
+      <img src="${CONFIG.IMAGE_PATH.ILLUST}/404.png" alt="404 Illustration" class="empty-img">
+      <span class="text-secondary mt-2 h1">User not found.</span>
+      <span class="mt-2 h6 text-secondary">
+        Find best design <a href="#/" class="text-primary">Here</a>.
+      </span>
+    </div>
+  `,
+
+  profileNewPost: () =>`
+    <a id="edit" href="#/new-post/" class="btn btn-info rounded-circle btn-float" aria-label="New post">
+      <i class="fas fa-plus"></i>
+    </a>
+  `,
+
+  profileEditBtn: () =>`
+    <a href="#/edit-profile/" class="btn btn-outline-primary mt-2">
+      <i class="far fa-edit"></i> Edit profile
+    </a>
+  `,
+
+  profileFollowBtn: () =>`
+    <button class="btn btn-outline-primary my-3" id="follow">Follow</button>
+  `,
+
+  profileUnfollowBtn: () =>`
+    <button class="btn btn-primary my-3" id="unfollow">Unfollow</button>
+  `,
+
+  profileEmptyPostsList: () => `
+    <div class="empty-result-container">
+      <i class="far fa-smile-wink h1 text-secondary"></i>
+      <span class="h4 text-secondary">There aren't any post right now.</span>
+    </div>
+  `,
+
+  profilePost: (post) => {
+    const { month, date, year } = DateHelper.parse(post.date);
+    
+    return `
+      <div class="card shadow rounded mt-4">
+        <a href="#/profile/${post.username}/" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
+          <div class="user-image-sm">
+            <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="${post.username} profile picture">
+          </div>
+
+          <span class="ml-2">${post.username}</span>
+        </a>
+
+        <a href="./post/${post.id}" class="post-img-container">
+          <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title}">
+
+          <div class="hover-post">
+            <i class="fas fa-search" aria-label="visit ${post.title}"></i>
+          </div>
+        </a>
+        
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-2">
+            <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary" aria-label="like this design">
+              <i class="far fa-thumbs-up"></i>
+            </button>
+
+            <span class="pb-2px">${post.likes.length}<span class="sr-only"> like this design</span></span>
+
+            <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="comment this design">
+              <i class="far fa-comment"></i>
+            </a>
+
+            <span class="pb-2px">${post.comments.length}<span class="sr-only"> commented this design</span></span>
+          </div>
+
+          <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
+        </div>
+
+        <div class="card-footer d-flex">
+          <span class="d-block mx-auto">${month} ${date}, ${year}</span>
+        </div>
+      </div>
+    `;
+  },
 };
 
 export default Templates;

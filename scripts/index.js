@@ -10,7 +10,8 @@ window.addEventListener('load', async () => {
   app.initUser();
 });
 
-window.addEventListener('hashchange', async () => {
+window.addEventListener('hashchange', async (event) => {
+  event.stopPropagation();
   app.renderPage();
 });
 

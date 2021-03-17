@@ -12,6 +12,7 @@
           $result = $user->getUser();
 
           if($result) {
+            $result['posts'] = Post::getPostsFromUser($result['id']);
             echo json_encode($result);
             exit;
           } else {

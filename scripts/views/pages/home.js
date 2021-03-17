@@ -8,7 +8,10 @@ const home = {
   },
 
   async afterRender(user) {
-    if (user) location.hash = '#/explore/';
+    if (user) {
+      location.hash = '#/explore/';
+      return;
+    }
 
     await this._initPasswordToggler();
     await this._initSignInEvent();

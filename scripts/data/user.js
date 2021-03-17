@@ -1,4 +1,5 @@
 import API_ENDPOINT from '../global/api-endpoint.js';
+import CONFIG from '../global/config.js';
 
 const User = {
   async getUser() {
@@ -6,6 +7,16 @@ const User = {
     const responseJSON = await response.json();
 
     if (response.status === 401) return null;
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async getUserByUsername(username) {
+    const response = await fetch(`${API_ENDPOINT.USER}?username=${username}`);
+    const responseJSON = await response.json();
+
+    if (response.status === 404) return null;
     if (response.status !== 200) throw new Error(responseJSON.message);
 
     return responseJSON;
@@ -55,6 +66,32 @@ const User = {
         email,
         phone_number,
       }),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async followUser(userId) {
+    const response = await fetch(API_ENDPOINT.FOLLOWING, {
+      method: 'POST',
+      'Content-Type': 'application/json',
+      body: JSON.stringify({ user_id: userId }),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async unFollowUser(userId) {
+    const response = await fetch(API_ENDPOINT.FOLLOWING, {
+      method: 'DELETE',
+      'Content-Type': 'application/json',
+      body: JSON.stringify({ user_id: userId }),
     });
     const responseJSON = await response.json();
 

@@ -171,7 +171,7 @@
     $followers = [];
 
     if($result->num_rows > 0) {
-      while($follower = mysqli_fetch_assoc($result)) $followers[] = $follower;
+      while($follower = mysqli_fetch_assoc($result)) $followers[] = $follower['follower_id'];
     }
 
     return $followers;
@@ -191,7 +191,7 @@
     $followings = [];
 
     if($result->num_rows > 0) {
-      while($following = mysqli_fetch_assoc($result)) $followings[] = $following;
+      while($following = mysqli_fetch_assoc($result)) $followings[] = $following['following_id'];
     }
 
     return $followings;

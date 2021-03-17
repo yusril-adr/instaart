@@ -10,8 +10,24 @@
   font-size: 1.5rem;
 }
 
+.hover\:text-primary {
+  color: $dark;
+
+  &:hover {
+    color: $primary !important;
+  }
+}
+
 .pb-2px {
   padding-bottom: 2px !important;
+}
+
+.mt-2rem {
+  margin-top: 2rem;
+}
+
+.\-top-3 {
+  top: -3rem;
 }
 
 .w-300px {
@@ -30,28 +46,24 @@
   max-height: 250px !important;
 }
 
-.hover\:text-primary {
-  color: $dark;
-
-  &:hover {
-    color: $primary !important;
-  }
-}
-
 .hover\:bg-secondary:hover {
   background-color: $secondary;
 }
 
-.\-top-3 {
-  top: -3rem;
-}
-
-.mt-2rem {
-  margin-top: 2rem;
-}
-
 .bg-cubes {
   background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+}
+
+.bg-grey {
+  background-color: #e0e0e0;
+}
+
+.loading-container {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .empty-result-container {

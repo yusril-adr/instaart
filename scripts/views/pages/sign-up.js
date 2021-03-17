@@ -1,16 +1,21 @@
 import Templates from '../templates/templates-creator.js';
+import TitleHelper from '../../utils/title-helper.js';
 import PasswordHelper from '../../utils/password-helper.js';
 import User from "../../data/user.js";
 import CONFIG from '../../global/config.js';
 
 const signUp = {
   async render() {
-    return Templates.signUp();
+    return Templates.signUpPage();
   },
 
   async afterRender(user) {
-    if(user) location.hash = '#/explore';
+    if(user) {
+      location.hash = '#/explore/';
+      return;
+    }
 
+    await TitleHelper.setTitle('Sign up');
     await this._initPasswordToggler();
     await this._formSubmitEvent();
   },
@@ -64,6 +69,7 @@ const signUp = {
     const { PASSWORD_MIN_LENGTH, MAX_LENGTH } = CONFIG;
 
     if(input.username.length > MAX_LENGTH.USER.USERNAME) throw new Error('Username is too long.');
+    if(input.username.includes(' ')) throw new Error('Username should not contains any space.');
 
     if(input.email.length > MAX_LENGTH.USER.EMAIL) throw new Error('Email is too long.');
 
