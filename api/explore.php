@@ -15,9 +15,16 @@
     $following = [ (int) $_SESSION['id'] ];
 
     foreach($followingData as $id) {
-      $following[] = $id['following_id'];
+      $following[] = $id;
     }
-    $response = Post::getExplore($following);
+    $posts = Post::getExplore($following);
+
+    foreach ($posts as $post) {
+      $data = new Post($post['id']);
+      $post['likes'] = $data->getLikes();
+      $post['comments'] = $data->getComments();
+      $response[] = $post;
+    }
 
     echo json_encode($response);
     exit;

@@ -1,7 +1,7 @@
 import Templates from '../templates/templates-creator.js';
 import TitleHelper from '../../utils/title-helper.js';
 import PasswordHelper from '../../utils/password-helper.js';
-import User from "../../data/user.js";
+import User from '../../data/user.js';
 import CONFIG from '../../global/config.js';
 
 const signUp = {

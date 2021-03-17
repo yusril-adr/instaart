@@ -1,0 +1,81 @@
+import Templates from '../templates/templates-creator.js';
+import Post from '../../data/post.js';
+import User from '../../data/user.js';
+
+const explore = {
+  async render() {
+    return Templates.explorePage();
+  },
+  
+  async afterRender(user) {
+    if(!user) {
+      location.hash = '#/';
+      return;
+    }
+
+    await this._renderList(user);
+  },
+
+  async _renderList(user) {
+    try {
+      const postList = await Post.getExplore();
+    
+      if(postList.length < 1) {
+        const container = document.querySelector('.container#explore');
+        container.innerHTML = Templates.exploreEmptyList();
+        return;
+      }
+
+      const listElem = document.querySelector('.post-list');
+      listElem.innerHTML = '';
+      postList.forEach(async (post) => {
+        listElem.innerHTML += Templates.explorePost(post, user.id);
+      });
+
+      await this._initLikeBtn(user);
+    } catch (error) {
+      await Swal.fire(
+        'Oops ...',
+        error.message,
+        'error'
+      );
+    }
+  },
+
+  async _initLikeBtn(user) {
+    const buttons = document.querySelectorAll('button.like');
+    buttons.forEach(async (button) => {
+      button.addEventListener('click', async (event) => {
+        event.stopPropagation();
+
+        if(!user) return await Swal.fire(
+          'Sign in required',
+          'Please sign in or sign up first',
+          'error'
+        );
+
+        try {
+          const postId = button.getAttribute('post-id');
+          const isLiked = button.classList.contains('liked');
+
+          if(isLiked) await User.dislikePost(postId);
+          else await User.likePost(postId);
+
+          button.innerHTML = isLiked? Templates.likedIcon() : Templates.likeIcon();
+          button.ariaLabel = isLiked? 'dislike this design': 'like this design';
+          button.classList.toggle('liked');
+
+          return this.afterRender(user);
+        } catch (error) {
+          await Swal.fire(
+            'Oops ...',
+            error.message,
+            'error'
+          );
+        }
+      });
+    });
+  },
+};
+
+export default explore;

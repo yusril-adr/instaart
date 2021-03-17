@@ -50,7 +50,7 @@ const profile = {
     await this._renderFollowing(targetedUser);
     await this._renderEmail(targetedUser);
     await this._renderPhoneNumber(targetedUser);
-    await this._renderPostList(targetedUser);
+    await this._renderPostList(targetedUser, currentUser);
   },
 
   async _renderNotFound() {
@@ -201,7 +201,7 @@ const profile = {
     });
   },
 
-  async _renderPostList({ posts }) {
+  async _renderPostList({ posts }, currentUser) {
     const lists = document.querySelector('.post-list');
     if(posts.length < 1) {
       lists.innerHTML = Templates.profileEmptyPostsList();
@@ -210,7 +210,48 @@ const profile = {
 
     lists.innerHTML = '';
     posts.forEach(async (post) => {
-      lists.innerHTML += Templates.profilePost(post);
+      if(currentUser) {
+        lists.innerHTML += Templates.profilePost(post, currentUser.id);
+      } else {
+        lists.innerHTML += Templates.profilePost(post);
+      }
+    });
+
+    await this._initLikeBtn(currentUser);
+  },
+
+  async _initLikeBtn(user) {
+    const buttons = document.querySelectorAll('button.like');
+    buttons.forEach(async (button) => {
+      button.addEventListener('click', async (event) => {
+        event.stopPropagation();
+
+        if(!user) return await Swal.fire(
+          'Sign in required',
+          'Please sign in or sign up first',
+          'error'
+        );
+
+        try {
+          const postId = button.getAttribute('post-id');
+          const isLiked = button.classList.contains('liked');
+
+          if(isLiked) await User.dislikePost(postId);
+          else await User.likePost(postId);
+
+          button.innerHTML = isLiked? Templates.likedIcon() : Templates.likeIcon();
+          button.ariaLabel = isLiked? 'dislike this design': 'like this design';
+          button.classList.toggle('liked');
+
+          return this.afterRender(user);
+        } catch (error) {
+          await Swal.fire(
+            'Oops ...',
+            error.message,
+            'error'
+          );
+        }
+      });
     });
   },
 };

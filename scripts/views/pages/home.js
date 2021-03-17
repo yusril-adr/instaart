@@ -45,7 +45,7 @@ const home = {
           'Oops ...',
           error.message,
           'error'
-        )
+        );
       }
     });
   },

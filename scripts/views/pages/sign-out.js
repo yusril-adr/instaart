@@ -1,8 +1,8 @@
-import User from "../../data/user.js";
+import User from '../../data/user.js';
 
 const signOut = {
   async render() {
-    return;
+    return '';
   },
 
   async afterRender(user) {
@@ -12,9 +12,7 @@ const signOut = {
 
         const changeEvent = new CustomEvent('signInOrOut');
         window.dispatchEvent(changeEvent);
-      }
-
-      location.hash = '#/';
+    } else location.hash = '#/';
     } catch (error) {
       await Swal.fire(
         'Oops ...',

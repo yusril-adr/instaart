@@ -1,5 +1,4 @@
 import API_ENDPOINT from '../global/api-endpoint.js';
-import CONFIG from '../global/config.js';
 
 const User = {
   async getUser() {
@@ -92,6 +91,32 @@ const User = {
       method: 'DELETE',
       'Content-Type': 'application/json',
       body: JSON.stringify({ user_id: userId }),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async likePost(postId) {
+    const response = await fetch(API_ENDPOINT.LIKE_POST, {
+      method: 'POST',
+      'Content-Type': 'application/json',
+      body: JSON.stringify({ post_id: postId }),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async dislikePost(postId) {
+    const response = await fetch(API_ENDPOINT.LIKE_POST, {
+      method: 'DELETE',
+      'Content-Type': 'application/json',
+      body: JSON.stringify({ post_id: postId }),
     });
     const responseJSON = await response.json();
 

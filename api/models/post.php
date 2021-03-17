@@ -153,7 +153,7 @@
       $likes = [];
   
       if($result->num_rows > 0) {
-        while($like = mysqli_fetch_assoc($result)) $likes[] = $like;
+        while($like = mysqli_fetch_assoc($result)) $likes[] = $like['user_id'];
       }
 
       return $likes;
