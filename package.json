@@ -4,7 +4,8 @@
   "description": "Portfolio Web Apps for Designer",
   "main": "./scripts/index.js",
   "scripts": {
-    "build": "node-sass styles/style.scss -o styles"
+    "build": "node-sass styles/style.scss -o styles",
+    "dev": "npm run build && node-sass styles/style.scss -wo styles"
   },
   "repository": {
     "type": "git",
