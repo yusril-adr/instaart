@@ -6,6 +6,7 @@ import profile from '../views/pages/profile.js';
 import editProfile from '../views/pages/edit-profile.js';
 import editProfilePicture from '../views/pages/edit-profile-picture.js';
 import editPassword from '../views/pages/edit-password.js';
+import post from '../views/pages/post.js';
 import newPost from '../views/pages/new-post.js';
 
 const routes = {
@@ -18,6 +19,8 @@ const routes = {
   '/edit-profile': editProfile,
   '/edit-profile-picture': editProfilePicture,
   '/edit-password': editPassword,
+  '/post': post,
+  '/post/verb': post,
   '/new-post': newPost,
 };
 

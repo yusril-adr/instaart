@@ -14,9 +14,9 @@ const Templates = {
     `;
   },
 
-  likedIcon() {
+  likedIcon( { color = 'primary' } = {} ) {
     return `
-      <i class="fas fa-thumbs-up text-primary"></i>
+      <i class="fas fa-thumbs-up ${color? `text-${color}`: ''}"></i>
     `;
   },
 
@@ -260,7 +260,7 @@ const Templates = {
     return `
       <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
         <div class="card shadow rounded">
-          <a href="#/profile/${post.username}" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
+          <a href="#/profile/${post.username}/" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
             <div class="user-image-sm">
               <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
             </div>
@@ -268,7 +268,7 @@ const Templates = {
             <span class="ml-2">${post.username}</span>
           </a>
 
-          <a href="#/post/${post.id}" class="post-img-container">
+          <a href="#/post/${post.id}/" class="post-img-container">
             <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title} image">
 
             <div class="hover-post">
@@ -287,7 +287,7 @@ const Templates = {
 
               <span class="pb-2px">${post.likes.length}<span class="sr-only"> like this design</span></span>
 
-              <a href="#/post/${post.id}" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="comment this design">
+              <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="comment this design">
                 <i class="far fa-comment"></i>
               </a>
 
@@ -431,7 +431,7 @@ const Templates = {
           <span class="ml-2">${post.username}</span>
         </a>
 
-        <a href="./post/${post.id}" class="post-img-container">
+        <a href="#/post/${post.id}/" class="post-img-container">
           <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title}">
 
           <div class="hover-post">
@@ -654,7 +654,19 @@ const Templates = {
     `;
   },
 
-  postDetail(post) {
+  postNotFound() {
+    return `
+      <div class="empty-result-container">
+        <img src="${CONFIG.IMAGE_PATH.ILLUST}/404.png" alt="404 Illustration" class="empty-img">
+        <h1 class="text-secondary mt-2">Post not found.</h1>
+        <h2 class="mt-2 h6 text-secondary">
+          Find best design <a href="./index.html" class="text-primary">Here</a>.
+        </h2>
+      </div>
+    `;
+  },
+
+  postDetail(post, userId = null) {
     const { month, date, year } = DateHelper.parse(post.date);
 
     return `
@@ -679,8 +691,11 @@ const Templates = {
         <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" alt="${post.title} Image" class="card-img-top w-100">
 
         <div class="bg-dark py-5">
-          <button class="like d-block mx-auto btn btn-primary rounded-circle">
-            <i class="far fa-thumbs-up"></i>
+          <button 
+            class="like d-block mx-auto btn btn-primary rounded-circle ${post.likes.includes(userId)? 'liked': '' }" 
+            aria-label="${post.likes.includes(userId)? 'dislike this design' : 'like this design'}"
+          >
+            ${post.likes.includes(userId)? this.likedIcon({ color: false }) : this.likeIcon()}
           </button>
 
           <h1 class="h2 font-weight-bold text-white text-center mt-2">${post.title}</h1>
@@ -700,12 +715,12 @@ const Templates = {
 
         <div class="card-footer">
           <div class="card">
-            <div class="card-header comment-form-container"></div>
+            <div class="card-header" id="comment-form-container"></div>
 
             <div class="card-body">
               <span class="h2 card-title">Comments</span>
 
-              <div class="comments-container">
+              <div id="comments-container">
                 <div class="loading-container">
                   <div class="spinner-border text-secondary" role="status">
                     <span class="sr-only">Loading...</span>
@@ -716,8 +731,6 @@ const Templates = {
           </div>
         </div>
       </div>
-
-      <a id="edit" href="./edit-post.html" class="btn btn-info rounded-circle btn-float" aria-label="Edit post"><i class="fas fa-pen"></i></a>
     `;
   },
 
@@ -728,7 +741,7 @@ const Templates = {
           <img src="${CONFIG.IMAGE_PATH.USER}/${user.image}" alt="${user.username} profile picture">
         </div>
 
-        <input type="text" placeholder="Type your comment ..." class="form-control rounded-pill lg:w-85" autocomplete="off" required>
+        <input type="text" placeholder="Type your comment ..." id="comment-text" class="form-control rounded-pill lg:w-85" autocomplete="off" required>
 
         <button type="submit" class="btn btn-primary rounded-circle ml-2 ml-lg-0" aria-label="send"><i
             class="fas fa-paper-plane"></i></button>
@@ -777,15 +790,9 @@ const Templates = {
     `;
   },
 
-  postEmpty() {
+  postEditBtn(post) {
     return `
-      <div class="empty-result-container">
-        <img src="./public/images/404.png" alt="404 Illustration" class="empty-img">
-        <h1 class="text-secondary mt-2">Post not found.</h1>
-        <h2 class="mt-2 h6 text-secondary">
-          Find best design <a href="./index.html" class="text-primary">Here</a>.
-        </h2>
-      </div>
+      <a id="edit" href="#/edit-post/${post.id}/" class="btn btn-info rounded-circle btn-float" aria-label="Edit post"><i class="fas fa-pen"></i></a>
     `;
   },
 

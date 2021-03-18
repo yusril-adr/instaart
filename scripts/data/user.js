@@ -193,6 +193,19 @@ const User = {
 
     return responseJSON;
   },
+
+  async commentPost(inputData) {
+    const response = await fetch(API_ENDPOINT.COMMENT, {
+      method: 'POST',
+      'Content-Type': 'application/json',
+      body: JSON.stringify(inputData),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
 };
 
 export default User;

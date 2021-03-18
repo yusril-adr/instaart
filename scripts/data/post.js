@@ -14,6 +14,7 @@ const Post = {
     const response = await fetch(`${API_ENDPOINT.POST}?id=${id}`);
     const responseJSON = await response.json();
 
+    if (response.status === 404) return null;
     if (response.status !== 200) throw new Error(responseJSON.message);
 
     return responseJSON;

@@ -27,12 +27,10 @@ const profile = {
   },
 
   async _newPostBtn(targetUsername, currentUsername) {
-    if(targetUsername === currentUsername) {
-      const container = document.querySelector('.container#profile');
-      container.innerHTML += Templates.profileNewPost();
-    }
+    if(targetUsername !== currentUsername) return;
 
-    return;
+    const container = document.querySelector('.container#profile');
+    container.innerHTML += Templates.profileNewPost();
   }, 
 
   async _renderProfile(targetedUsername, currentUser) {

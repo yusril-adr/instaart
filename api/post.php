@@ -11,9 +11,6 @@
           $post = new Post((int) $_GET['id']);
 
           $result = $post->getPost();
-          if (!$result) {
-            errorResponse('Post not found.', 404);
-          }
 
           echo json_encode($result);
           exit;
