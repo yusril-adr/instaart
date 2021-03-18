@@ -11,10 +11,10 @@
 
       $result = mysqli_query(
         $conn, 
-        "SELECT * FROM posts WHERE user_id = {$id};"
+        "SELECT * FROM posts WHERE user_id = {$id} ORDER BY date DESC;"
       );
 
-      if (!$result) throw new Exception('User not found.', 404);
+      if (!$result) throw new Exception(mysqli_error($conn));
 
       $posts = [];
       if($result->num_rows > 0) {
@@ -80,8 +80,6 @@
         '{$caption}',  
         '{$data['image']}'
       );");
-
-
 
       return $result;
     }

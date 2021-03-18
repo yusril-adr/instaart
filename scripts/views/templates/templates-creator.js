@@ -58,7 +58,7 @@ const Templates = {
     `;
   },
 
-  loginHeader() {
+  loginHeader({ username }) {
     return `
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -91,7 +91,7 @@ const Templates = {
                 <a class="nav-link" href="#/new-post/"><i class="fas fa-plus-circle"></i> <span class="d-lg-none">New Post</span></a>
               </li>
               <li class="nav-item profile">
-                <a class="nav-link" href="#/profile/"><i class="fas fa-user-circle"></i> <span class="d-lg-none">Profile</span></a>
+                <a class="nav-link" href="#/profile/${username}"><i class="fas fa-user-circle"></i> <span class="d-lg-none">Profile</span></a>
               </li>
 
               <li class="nav-item">
@@ -166,19 +166,19 @@ const Templates = {
                 <form id="signup-form">
                   <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" placeholder="Username" class="form-control" id="username" autocomplete="off" required>
+                    <input type="text" placeholder="Username" class="form-control" id="username" autocomplete="off" maxlength=${CONFIG.MAX_LENGTH.USER.USERNAME} required>
                   </div>
 
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" placeholder="Email" class="form-control" id="email" autocomplete="off" required>
+                    <input type="email" placeholder="Email" class="form-control" id="email" autocomplete="off" maxlength=${CONFIG.MAX_LENGTH.USER.EMAIL} required>
                   </div>
 
                   <div class="form-group">
                     <label for="password">Password</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Password" class="form-control" id="password" autocomplete="off" required>
+                      <input type="password" placeholder="Password" class="form-control" id="password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
 
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" aria-label="show password" id="password-toggler"><i class="far fa-eye"></i></button>
@@ -190,7 +190,7 @@ const Templates = {
                     <label for="confirm-password">Confirm Password</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Confirm Password" class="form-control" id="confirm-password" autocomplete="off" required>
+                      <input type="password" placeholder="Confirm Password" class="form-control" id="confirm-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
 
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="confirm-password-toggler" aria-label="show password"><i class="far fa-eye"></i></button>
@@ -200,12 +200,12 @@ const Templates = {
 
                   <div class="form-group">
                     <label for="display-name">Display name</label>
-                    <input type="text" placeholder="Display name" class="form-control" id="display-name" autocomplete="off" required>
+                    <input type="text" placeholder="Display name" class="form-control" id="display-name" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.DISPLAY_NAME}" required>
                   </div>
 
                   <div class="form-group">
                     <label for="phone-number">Phone number</label>
-                    <input type="text" placeholder="Ex: 08xxx" class="form-control" id="phone-number" autocomplete="off" required>
+                    <input type="text" placeholder="Ex: 08xxx" class="form-control" id="phone-number" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.PHONE_NUMBER}" required>
                   </div>
 
                   <div class="form-group">
@@ -287,14 +287,14 @@ const Templates = {
 
               <span class="pb-2px">${post.likes.length}<span class="sr-only"> like this design</span></span>
 
-              <a href="./post.html" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="comment this design">
+              <a href="#/post/${post.id}" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="comment this design">
                 <i class="far fa-comment"></i>
               </a>
 
               <span class="pb-2px">${post.comments.length}<span class="sr-only"> commented this design</span></span>
             </div>
 
-            <a href="./post.html" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
+            <a href="#/post/${post.id}" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
           </div>
 
           <div class="card-footer d-flex">
@@ -336,7 +336,7 @@ const Templates = {
                 Profile
               </div>
 
-              <ul class="list-group list-group-flush">
+              <ul class="list-group list-group-flush text-sm md:text-md">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                   <span>Followers</span>
                   <span class="user-followers"></span>
@@ -411,9 +411,9 @@ const Templates = {
 
   profileEmptyPostsList() {
     return `
-      <div class="empty-result-container">
+      <div class="empty-result-container mt-4">
         <i class="far fa-smile-wink h1 text-secondary"></i>
-        <span class="h4 text-secondary">There aren't any post right now.</span>
+        <span class="h4 text-secondary text-center">There aren't any post right now.</span>
       </div>
     `;
   },
@@ -499,22 +499,22 @@ const Templates = {
                 <form id="profile-form">
                   <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" placeholder="Username" class="form-control" id="username" autocomplete="off" required>
+                    <input type="text" placeholder="Username" class="form-control" id="username" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.USERNAME}" required>
                   </div>
 
                   <div class="form-group">
                     <label for="display-name">Display name</label>
-                    <input type="text" placeholder="Display name" class="form-control" id="display-name" autocomplete="off" required>
+                    <input type="text" placeholder="Display name" class="form-control" id="display-name" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.DISPLAY_NAME}" required>
                   </div>
 
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" placeholder="Email" class="form-control" id="email" autocomplete="off" required>
+                    <input type="email" placeholder="Email" class="form-control" id="email" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.EMAIL}" required>
                   </div>
 
                   <div class="form-group">
                     <label for="phone-number">Phone number</label>
-                    <input type="text" placeholder="Phone number" class="form-control" id="phone-number" autocomplete="off" required>
+                    <input type="text" placeholder="Ex: 08xxx" class="form-control" id="phone-number" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.PHONE_NUMBER}" required>
                   </div>
 
                   <div class="form-group">
@@ -610,7 +610,7 @@ const Templates = {
                     <label for="new-password">New password</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="New password" class="form-control" id="new-password" required>
+                      <input type="password" placeholder="New password" class="form-control" id="new-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
       
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="new-password-toggler" aria-label="show password"><i class="far fa-eye"></i></button>
@@ -622,7 +622,7 @@ const Templates = {
                     <label for="current-password">Current password</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Current password" class="form-control" id="current-password" required>
+                      <input type="password" placeholder="Current password" class="form-control" id="current-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
       
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="current-password-toggler" aria-label="show password">
@@ -633,6 +633,221 @@ const Templates = {
                   </div>
         
                   <button type="submit" class="btn btn-primary d-block mx-auto">Save</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  postPage() {
+    return `
+      <div class="container" id="post">
+        <div class="loading-container">
+          <div class="spinner-border text-secondary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  postDetail(post) {
+    const { month, date, year } = DateHelper.parse(post.date);
+
+    return `
+      <div class="d-flex align-items-center">
+        <a href="#/profile/${post.username}" class="user-image">
+          <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="${post.username} profile picture">
+        </a>
+
+        <div class="d-flex flex-column ml-2">
+          <span class="font-weight-bold">${post.title}</span>
+
+          <a href="#/profile/${post.username}" class="text-decoration-none hover:text-primary">
+            ${post.username}
+          </a>
+        </div>
+
+        <a href="${CONFIG.IMAGE_PATH.POST}/${post.image}" target="_blank" class="btn btn-outline-primary ml-auto">Full
+          image</a>
+      </div>
+
+      <div class="card shadow mt-4">
+        <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" alt="${post.title} Image" class="card-img-top w-100">
+
+        <div class="bg-dark py-5">
+          <button class="like d-block mx-auto btn btn-primary rounded-circle">
+            <i class="far fa-thumbs-up"></i>
+          </button>
+
+          <h1 class="h2 font-weight-bold text-white text-center mt-2">${post.title}</h1>
+          <span class="text-secondary d-block text-center my-2">${month} ${date}, ${year}</span>
+          <div class="d-flex justify-content-center align-items-center text-secondary">
+            <i class="far fa-thumbs-up"></i>
+            <span class="ml-1">${post.likes.length}<span class="sr-only"> like this design</span></span>
+
+            <i class="far fa-comment ml-2"></i>
+            <span class="ml-1">${post.comments.length}<span class="sr-only"> commented this design</span></span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <span>${post.caption}</span>
+        </div>
+
+        <div class="card-footer">
+          <div class="card">
+            <div class="card-header comment-form-container"></div>
+
+            <div class="card-body">
+              <span class="h2 card-title">Comments</span>
+
+              <div class="comments-container">
+                <div class="loading-container">
+                  <div class="spinner-border text-secondary" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a id="edit" href="./edit-post.html" class="btn btn-info rounded-circle btn-float" aria-label="Edit post"><i class="fas fa-pen"></i></a>
+    `;
+  },
+
+  postCommentForm(user) {
+    return `
+      <form class="w-100 d-flex justify-content-around align-items-center" id="comment-form">
+        <div class="user-image d-none d-lg-block">
+          <img src="${CONFIG.IMAGE_PATH.USER}/${user.image}" alt="${user.username} profile picture">
+        </div>
+
+        <input type="text" placeholder="Type your comment ..." class="form-control rounded-pill lg:w-85" autocomplete="off" required>
+
+        <button type="submit" class="btn btn-primary rounded-circle ml-2 ml-lg-0" aria-label="send"><i
+            class="fas fa-paper-plane"></i></button>
+      </form>
+    `;
+  },
+
+  postCommentLogin() {
+    return `
+      <span class="h5 text-secondary text-center d-block"><a href="#/">Sign in</a> to comment</span>
+    `;
+  },
+
+  postEmptyComment() {
+    return `
+      <div class="p-5 d-flex flex-column align-items-center">
+        <i class="far fa-smile-wink h1 text-secondary"></i>
+        <span class="text-secondary h5 mt-2">There aren't any comment yet.</span>
+        <span class="mt-2 h6 text-secondary">
+          Be the first one to comment.
+        </span>
+      </div>
+    `;
+  },
+
+  postComment(comment) {
+    const { month, date, year } = DateHelper.parse(comment.date);
+
+    return `
+      <div class="d-flex py-4">
+        <div>
+          <a href="#/profile/${comment.username}" class="user-image-sm d-block mr-2 mr-lg-3">
+            <img src="${CONFIG.IMAGE_PATH.USER}/${comment.user_image}" alt="${comment.username} Profile Picture">
+          </a>
+        </div>
+
+        <div class="d-flex flex-column">
+          <div class="d-flex align-items-center">
+            <a href="#/profile/${comment.username}" class="font-weight-bold text-decoration-none hover:text-primary">${comment.username}</a>
+            <span class="text-sm ml-1">| ${month} ${date}, ${year}</span>
+          </div>
+
+          <span>${comment.body}</span>
+        </div>
+      </div>
+    `;
+  },
+
+  postEmpty() {
+    return `
+      <div class="empty-result-container">
+        <img src="./public/images/404.png" alt="404 Illustration" class="empty-img">
+        <h1 class="text-secondary mt-2">Post not found.</h1>
+        <h2 class="mt-2 h6 text-secondary">
+          Find best design <a href="./index.html" class="text-primary">Here</a>.
+        </h2>
+      </div>
+    `;
+  },
+
+  newPost() {
+    return `
+      <div class="container" id="new-post">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 offset-md-3">
+            <div class="card shadow-sm mt-3 mx-auto">
+              <div class="card-body">
+                <span class="card-title d-block font-weight-bold h3 text-center mb-3">New post</span>
+
+                <form id="post-form">
+                  <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" placeholder="Title" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.POST.TITLE}" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="caption">Caption</label>
+                    <textarea class="form-control" id="caption" rows="3" placeholder="Caption"></textarea>
+                  </div>
+
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="post-image" required>
+                    <label class="custom-file-label" for="post-image">Choose file</label>
+                  </div>
+        
+                  <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Post</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  editPost() {
+    return `
+      <div class="container" id="edit-post">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 offset-md-3">
+            <div class="card shadow-sm mt-3 mx-auto">
+              <div class="card-body">
+                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Edit post</span>
+
+                <form id="post-form">
+                  <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" placeholder="Title" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.POST.TITLE} required">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="caption">Caption</label>
+                    <textarea class="form-control" id="caption" rows="4" placeholder="Caption"></textarea>
+                  </div>
+        
+                  <div class="d-flex justify-content-evenly align-items-center">
+                    <button type="button" id="delete-button class="btn btn-danger d-block mx-auto mt-4">Delete</button>
+                    <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Save</button>
+                  </div>
                 </form>
               </div>
             </div>

@@ -44,6 +44,7 @@
         if ($result) {
           $response['status'] = 'success';
           $response['message'] = 'Post added.';
+          $response['id'] = Post::getPostsFromUser((int) $_SESSION['id'])[0]['id'];
 
           echo json_encode($response);
           exit;

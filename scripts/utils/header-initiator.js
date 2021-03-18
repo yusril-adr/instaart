@@ -4,7 +4,7 @@ const HeaderInitiator = {
   async init({ 
     header, user
   }) {
-    header.innerHTML = user ? Templates.loginHeader() : Templates.header();
+    header.innerHTML = user? Templates.loginHeader(user) : Templates.header();
   },
 
   async collapse() {

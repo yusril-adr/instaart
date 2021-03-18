@@ -6,6 +6,7 @@ import profile from '../views/pages/profile.js';
 import editProfile from '../views/pages/edit-profile.js';
 import editProfilePicture from '../views/pages/edit-profile-picture.js';
 import editPassword from '../views/pages/edit-password.js';
+import newPost from '../views/pages/new-post.js';
 
 const routes = {
   '/': home,
@@ -17,6 +18,7 @@ const routes = {
   '/edit-profile': editProfile,
   '/edit-profile-picture': editProfilePicture,
   '/edit-password': editPassword,
+  '/new-post': newPost,
 };
 
 export default routes;

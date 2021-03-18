@@ -36,7 +36,7 @@ const User = {
         display_name,
         biodata,
         email,
-        phone_number,
+        phone_number: parseInt(phone_number),
       }),
     });
     const responseJSON = await response.json();
@@ -107,7 +107,7 @@ const User = {
         display_name,
         biodata,
         email,
-        phone_number,
+        phone_number: parseInt(phone_number),
       }),
     });
     const responseJSON = await response.json();

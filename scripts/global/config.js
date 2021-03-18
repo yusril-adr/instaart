@@ -22,6 +22,9 @@ const CONFIG = {
       EMAIL: 35,
       PHONE_NUMBER: 20,
     },
+    POST: {
+      TITLE: 25,
+    },
   },
   IMAGE_PATH: {
     BASE: './public/images',
