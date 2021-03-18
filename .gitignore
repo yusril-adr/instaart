@@ -121,7 +121,7 @@ firebase.json
 firebase-debug
 .firebaserc
 
-# other
+# Custom
 .vscode
 front-test
 package-lock.json

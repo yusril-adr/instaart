@@ -16,7 +16,7 @@ const HeaderInitiator = {
       event.preventDefault();
 
       const input = header.querySelector('input#navbar-search-input');
-      location.hash = `#/search-user/${input.value? `${input.value}/` : ''}`;
+      location.hash = `#/search-post/${input.value? `${input.value}/` : ''}`;
       input.value = '';
       return;
     });
