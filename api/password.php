@@ -14,7 +14,7 @@
 
   try {
     $user = new User($_SESSION['username']);
-    $user->changePassword($request['old_password'], $request['new_password']);
+    $user->changePassword($request['current_password'], $request['new_password']);
     
     $response['status'] = 'success';
     $response['message'] = 'Password successfully changed.';

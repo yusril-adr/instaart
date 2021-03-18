@@ -21,6 +21,102 @@ const User = {
     return responseJSON;
   },
 
+  async update({
+      username,
+      display_name,
+      biodata,
+      email,
+      phone_number,
+  }) {
+    const response = await fetch(API_ENDPOINT.USER, {
+      method: 'PUT',
+      'Content-Type': 'application/json',
+      body: JSON.stringify({
+        username,
+        display_name,
+        biodata,
+        email,
+        phone_number,
+      }),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async updatePassword({
+      new_password,
+      current_password,
+  }) {
+    const response = await fetch(API_ENDPOINT.PASSWORD, {
+      method: 'PUT',
+      'Content-Type': 'application/json',
+      body: JSON.stringify({
+        new_password,
+        current_password,
+      }),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async updatePicture(formData) {
+    const response = await fetch(API_ENDPOINT.USER_PICTURE, {
+      method: 'POST',
+      body: formData,
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async removePicture() {
+    const response = await fetch(API_ENDPOINT.USER_PICTURE, {
+      method: 'POST',
+      'Content-Type': 'application/json',
+      body: JSON.stringify({ setDefault: true }),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async signUp({
+      username,
+      password,
+      display_name,
+      biodata,
+      email,
+      phone_number,
+  }) {
+    const response = await fetch(API_ENDPOINT.USER, {
+      method: 'POST',
+      'Content-Type': 'application/json',
+      body: JSON.stringify({
+        username,
+        password,
+        display_name,
+        biodata,
+        email,
+        phone_number,
+      }),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
   async signIn(identifier, password) {
     const response = await fetch(API_ENDPOINT.SIGN_IN, {
       method: 'POST',
@@ -39,33 +135,6 @@ const User = {
 
   async signOut() {
     const response = await fetch(API_ENDPOINT.SIGN_OUT);
-    const responseJSON = await response.json();
-
-    if (response.status !== 200) throw new Error(responseJSON.message);
-
-    return responseJSON;
-  },
-
-  async signUp({
-      username,
-      password,
-      display_name,
-      biodata,
-      email,
-      phone_number,
-  }) {
-    const response = await fetch(API_ENDPOINT.SIGN_UP, {
-      method: 'POST',
-      'Content-Type': 'application/json',
-      body: JSON.stringify({
-        username,
-        password,
-        display_name,
-        biodata,
-        email,
-        phone_number,
-      }),
-    });
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);

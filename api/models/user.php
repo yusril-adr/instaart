@@ -398,7 +398,7 @@
       return false; 
     }
 
-    throw new Exception('Old password incorrect.', 401);
+    throw new Exception('Current password incorrect.', 401);
   }
  }
 ?>

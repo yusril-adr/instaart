@@ -10,7 +10,7 @@ const signOut = {
       if(user) {
         await User.signOut();
 
-        const changeEvent = new CustomEvent('signInOrOut');
+        const changeEvent = new CustomEvent('updateUser');
         return window.dispatchEvent(changeEvent);
       } 
       

@@ -4,6 +4,10 @@
   $request = json_decode(file_get_contents('php://input'), true);
   $requestMethod = $_SERVER["REQUEST_METHOD"];
 
+  if ($requestMethod !== "POST") {
+    errorResponse('This request method is not supprted for this endpoint.', 405);
+  }
+
   if(isset($request['setDefault'])) {
     $user = new User($_SESSION['username']);
     $info = $user->getUser();
@@ -21,10 +25,6 @@
     $response['filename'] = $defaultFileName;
     echo json_encode($response);
     exit;
-  }
-
-  if ($requestMethod !== "POST") {
-    errorResponse('This request method is not supprted for this endpoint.', 405);
   }
 
   if(!isset($_SESSION['username'])) {
@@ -53,13 +53,13 @@
     $defaultFileName = 'default_user.png';
 
     if($info['image'] !== $defaultFileName) {
-      unlink("../public/img/users/{$info['image']}");
+      unlink("../public/images/users/{$info['image']}");
     }
 
     $id = $info['id'];
     $newFileName = "{$id}.{$extension}";
     $fileTmp = $imgFile["tmp_name"];
-    move_uploaded_file($fileTmp, "../public/img/users/$newFileName");
+    move_uploaded_file($fileTmp, "../public/images/users/$newFileName");
 
     $user->updateImage($newFileName);
 

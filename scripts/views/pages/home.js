@@ -36,7 +36,7 @@ const home = {
 
         await User.signIn(identifier, password);
 
-        const changeEvent = new CustomEvent('signInOrOut');
+        const changeEvent = new CustomEvent('updateUser');
         window.dispatchEvent(changeEvent);
 
         location.hash = '#/explore/';

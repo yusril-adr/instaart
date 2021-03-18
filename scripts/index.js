@@ -15,6 +15,6 @@ window.addEventListener('hashchange', async (event) => {
   app.renderPage();
 });
 
-window.addEventListener('signInOrOut', async () => {
+window.addEventListener('updateUser', async () => {
   app.initUser();
 });

@@ -51,10 +51,8 @@ const signUp = {
 
         await User.signUp(inputData);
 
-        const changeEvent = new CustomEvent('signInOrOut');
-        window.dispatchEvent(changeEvent);
-
-        location.hash = '#/explore/';
+        const changeEvent = new CustomEvent('updateUser');
+        return window.dispatchEvent(changeEvent);
       } catch (error) {
         await Swal.fire(
           'Oops ...',
