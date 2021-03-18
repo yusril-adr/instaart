@@ -125,3 +125,6 @@ firebase-debug
 .vscode
 front-test
 package-lock.json
+public/images/posts/*
+public/images/users/*
+public/images/users/!default_user.png
