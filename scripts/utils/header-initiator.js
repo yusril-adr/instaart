@@ -5,10 +5,25 @@ const HeaderInitiator = {
     header, user
   }) {
     header.innerHTML = user? Templates.loginHeader(user) : Templates.header();
+
+    return await this._initSearchEvent(header);
+  },
+
+  async _initSearchEvent(header) {
+    const form = header.querySelector('form#navbar-search-form');
+    form.addEventListener('submit', async (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+
+      const input = header.querySelector('input#navbar-search-input');
+      location.hash = `#/search-user/${input.value? `${input.value}/` : ''}`;
+      input.value = '';
+      return;
+    });
   },
 
   async collapse() {
-    $('.navbar-collapse').collapse('hide');
+    return $('.navbar-collapse').collapse('hide');
   },
 };
 

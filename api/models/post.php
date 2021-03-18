@@ -92,7 +92,8 @@
         "SELECT
           id,
           title,
-          image
+          image,
+          date
         FROM posts
         WHERE title LIKE '%{$keyword}%'
         OR caption LIKE '%{$keyword}%';"

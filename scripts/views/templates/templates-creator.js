@@ -15,8 +15,9 @@ const Templates = {
   },
 
   likedIcon( { color = 'primary' } = {} ) {
+    const className = color? `text-${color}`: '';
     return `
-      <i class="fas fa-thumbs-up ${color? `text-${color}`: ''}"></i>
+      <i class="fas fa-thumbs-up ${className}"></i>
     `;
   },
 
@@ -43,7 +44,7 @@ const Templates = {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="form-inline ml-auto my-2 my-lg-0" id="navbar-search-form">
               <div class="input-group">
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search ..." aria-label="Search" autocomplete="off" required>
+                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search ..." aria-label="Search" autocomplete="off">
 
                 <div class="input-group-append">
                   <button class="btn btn-outline-primary" type="submit" aria-label="search"><i class="fas fa-search"></i></button>
@@ -75,7 +76,7 @@ const Templates = {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="form-inline ml-auto my-2 my-lg-0" id="navbar-search-form">
               <div class="input-group">
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search ..." aria-label="Search" autocomplete="off" required>
+                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search ..." aria-label="Search" autocomplete="off">
 
                 <div class="input-group-append">
                   <button class="btn btn-outline-primary" type="submit" id="search" aria-label="search"><i class="fas fa-search"></i></button>
@@ -294,7 +295,7 @@ const Templates = {
               <span class="pb-2px">${post.comments.length}<span class="sr-only"> commented this design</span></span>
             </div>
 
-            <a href="#/post/${post.id}" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
+            <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
           </div>
 
           <div class="card-footer d-flex">
@@ -660,7 +661,7 @@ const Templates = {
         <img src="${CONFIG.IMAGE_PATH.ILLUST}/404.png" alt="404 Illustration" class="empty-img">
         <h1 class="text-secondary mt-2">Post not found.</h1>
         <h2 class="mt-2 h6 text-secondary">
-          Find best design <a href="./index.html" class="text-primary">Here</a>.
+          Find best design <a href="#/" class="text-primary">Here</a>.
         </h2>
       </div>
     `;
@@ -671,14 +672,14 @@ const Templates = {
 
     return `
       <div class="d-flex align-items-center">
-        <a href="#/profile/${post.username}" class="user-image">
+        <a href="#/profile/${post.username}/" class="user-image">
           <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="${post.username} profile picture">
         </a>
 
         <div class="d-flex flex-column ml-2">
           <span class="font-weight-bold">${post.title}</span>
 
-          <a href="#/profile/${post.username}" class="text-decoration-none hover:text-primary">
+          <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">
             ${post.username}
           </a>
         </div>
@@ -860,6 +861,138 @@ const Templates = {
             </div>
           </div>
         </div>
+      </div>
+    `;
+  },
+
+  searchPage() {
+    return `
+      <div class="container" id="search">
+        <div class="row">
+          <div class="col-sm-12 col-md-8 col-lg-10">
+            <form class="form-block" id="search-form">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search ..." id="search-input" aria-label="Search">
+
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary" type="submit" id="search" aria-label="search">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="col-sm-12 col-md-4 col-lg-2 mt-3 mt-md-0">
+            <ul class="nav nav-pills nav-fill" id="search-nav"></ul>
+          </div>
+        </div>
+
+        <div class="row mt-4 post-list" id="result-container">
+          <div class="col-12 loading-container">
+            <div class="spinner-border text-secondary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  searchUserNav(keyword = '') {
+    return `
+      <li class="nav-item">
+        <a href="#/search-post/${keyword}" class="nav-link">Post</a>
+      </li>
+      <li class="nav-item">
+        <a href="#/search-user/${keyword}" class="nav-link active disabled">User</a>
+      </li>
+    `;
+  },
+
+  searchUserResult(user) {
+    return `
+      <div class="col-6 col-md-4 col-lg-3 mb-4">
+        <div class="card shadow">
+          <a href="#/profile/${user.username}/" class="card-body d-flex align-items-center justify-content-around text-decoration-none">
+            <div class="user-image-responsive">
+              <img src="${CONFIG.IMAGE_PATH.USER}/${user.image}" alt="${user.username} Profile Picture">
+            </div>
+
+            <span class="font-weight-bold hover:text-primary">${user.username}</span>
+          </a>
+        </div>
+      </div>
+    `;
+  },
+
+  searchPostNav(keyword = '') {
+    return `
+      <li class="nav-item">
+        <a href="#/search-post/${keyword}" class="nav-link active disabled">Post</a>
+      </li>
+      <li class="nav-item">
+        <a href="#/search-user/${keyword}" class="nav-link">User</a>
+      </li>
+    `;
+  },
+
+  searchPostResult(post, userId = null) {
+    const { month, date, year } = DateHelper.parse(post.date);
+
+    return `
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="card shadow rounded">
+          <a href="#/profile/${post.username}/" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
+            <div class="user-image-sm">
+              <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="${post.username} profile picture">
+            </div>
+
+            <span class="ml-2">${post.username}</span>
+          </a>
+
+          <a href="#/post/${post.id}/" class="post-img-container">
+            <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title}">
+
+            <div class="hover-post">
+              <i class="fas fa-search"></i>
+            </div>
+          </a>
+          
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId)? 'liked': '' }" aria-label="${post.likes.includes(userId)? 'dislike this design' : 'like this design'}">
+                ${post.likes.includes(userId)? 
+                  this.likedIcon() :
+                  this.likeIcon()
+                }
+              </button>
+
+              <span class="pb-2px">${post.likes.length}<span class="sr-only"> like this design</span></span>
+
+              <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="comment this design">
+                <i class="far fa-comment"></i>
+              </a>
+
+              <span class="pb-2px">${post.comments.length}<span class="sr-only"> commented this design</span></span>
+            </div>
+
+            <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
+          </div>
+
+          <div class="card-footer d-flex">
+            <span class="d-block mx-auto">${month} ${date}, ${year}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  searchEmptyResult() {
+    return `
+      <div class="col-12 empty-result-container">
+        <i class="fas fa-search h1 font-weight-bolder text-secondary" aria-label="no result illustration"></i>
+        <span class="h4 text-secondary">No result found.</span>
       </div>
     `;
   },

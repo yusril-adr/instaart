@@ -206,6 +206,15 @@ const User = {
 
     return responseJSON;
   },
+
+  async searchUser(keyword) {
+    const response = await fetch(`${API_ENDPOINT.SEARCH}?keyword=${keyword}`);
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON.user;
+  },
 };
 
 export default User;

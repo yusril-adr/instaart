@@ -73,6 +73,15 @@ const Post = {
 
     return responseJSON;
   },
+
+  async searchPost(keyword) {
+    const response = await fetch(`${API_ENDPOINT.SEARCH}?keyword=${keyword}`);
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON.post;
+  },
 };
 
 export default Post;

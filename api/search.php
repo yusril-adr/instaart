@@ -11,8 +11,18 @@
     $users = User::searchUser($_GET['keyword']);
     $posts = Post::searchPost($_GET['keyword']);
 
-    $response['user'] = $users;
-    $response['post'] = $posts;
+    $response['user'] = [];
+    $response['post'] = [];
+
+    foreach ($users as $user) {
+      $data = (new User($user['username']))->getUser();
+      $response['user'][] = $data;
+    }
+
+    foreach ($posts as $post) {
+      $data = (new Post((int) $post['id']))->getPost();
+      $response['post'][] = $data;
+    }
 
     echo json_encode($response);
     exit;

@@ -1,7 +1,6 @@
 import Templates from '../templates/templates-creator.js';
 import UrlParser from '../../routes/url-parser.js';
 import TitleHelper from '../../utils/title-helper.js';
-import User from '../../data/user.js';
 import Post from '../../data/post.js';
 import CONFIG from '../../global/config.js';
 

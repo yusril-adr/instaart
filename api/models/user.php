@@ -66,6 +66,7 @@
     $result = mysqli_query(
       $conn, 
       "SELECT
+        id,
         username,
         display_name,
         image
