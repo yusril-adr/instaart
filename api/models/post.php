@@ -209,7 +209,7 @@
       global $conn;
 
       $info = $this->getPost();
-      unlink("../public/img/posts/{$info['image']}");
+      unlink("../public/images/posts/{$info['image']}");
 
       $this->deleteLikes();
       $this->deleteComments();

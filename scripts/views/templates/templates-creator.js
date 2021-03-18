@@ -852,7 +852,7 @@ const Templates = {
                   </div>
         
                   <div class="d-flex justify-content-evenly align-items-center">
-                    <button type="button" id="delete-button class="btn btn-danger d-block mx-auto mt-4">Delete</button>
+                    <button type="button" id="delete-button" class="btn btn-danger d-block mx-auto mt-4">Delete</button>
                     <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Save</button>
                   </div>
                 </form>

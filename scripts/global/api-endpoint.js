@@ -12,6 +12,7 @@ const API_ENDPOINT = {
   POST: `${CONFIG.API_BASE_URL}/post.php`,
   POST_IMAGE: `${CONFIG.API_BASE_URL}/post-image.php`,
   COMMENT: `${CONFIG.API_BASE_URL}/comment.php`,
+  SEARCH: `${CONFIG.API_BASE_URL}/search.php`,
 };
 
 export default API_ENDPOINT;

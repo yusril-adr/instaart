@@ -41,7 +41,37 @@ const Post = {
 
     if (responsePost.status !== 200) throw new Error(responsePostJSON.message);
 
-    return responsePost;
+    return responsePostJSON;
+  },
+
+  async updatePost(inputData) {
+    const response = await fetch(`${API_ENDPOINT.POST}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputData),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async deletePost(postId) {
+    const response = await fetch(`${API_ENDPOINT.POST}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ post_id: postId }),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
   },
 };
 

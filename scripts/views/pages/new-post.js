@@ -14,7 +14,9 @@ const newPost = {
       return;
     }
 
+    // Init Bootstrap File Input Init
     bsCustomFileInput.init();
+
     await TitleHelper.setTitle('New Post');
     await this._initSubmitEvent();
   },

@@ -6,7 +6,6 @@ const app = new App({
 });
 
 window.addEventListener('load', async () => {
-  // bsCustomFileInput.init();
   app.initUser();
 });
 

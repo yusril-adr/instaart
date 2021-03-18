@@ -8,6 +8,7 @@ import editProfilePicture from '../views/pages/edit-profile-picture.js';
 import editPassword from '../views/pages/edit-password.js';
 import post from '../views/pages/post.js';
 import newPost from '../views/pages/new-post.js';
+import editPost from '../views/pages/edit-post.js';
 
 const routes = {
   '/': home,
@@ -22,6 +23,8 @@ const routes = {
   '/post': post,
   '/post/verb': post,
   '/new-post': newPost,
+  '/edit-post': editPost,
+  '/edit-post/verb': editPost,
 };
 
 export default routes;
