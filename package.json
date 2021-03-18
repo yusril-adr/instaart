@@ -1,0 +1,26 @@
+{
+  "name": "instaart",
+  "version": "1.0.0",
+  "description": "Portfolio Web Apps for Designer",
+  "main": "./scripts/index.js",
+  "scripts": {
+    "build": "node-sass styles/style.scss -o styles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yusril-adr/instaart.git"
+  },
+  "keywords": [
+    "portfolio",
+    "social-media"
+  ],
+  "author": "Yusril A. P.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yusril-adr/instaart/issues"
+  },
+  "homepage": "https://github.com/yusril-adr/instaart#readme",
+  "devDependencies": {
+    "node-sass": "^5.0.0"
+  }
+}
