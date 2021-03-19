@@ -23,18 +23,15 @@
   }
 
   function checkCookie() {
-    try {
-      if (isset($_COOKIE['key'])) {
-        $user = User::getUserFromId((int) $_COOKIE['key']);
-  
-        if($user) {
-          $_SESSION['username'] = $user['username'];
-          $_SESSION['email'] = $user['email'];
-          return true;
-        }
+    if (isset($_COOKIE['key'])) {
+      $user = User::getUserFromId((int) $_COOKIE['key']);
+
+      if($user) {
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['id'] = $_COOKIE['key'];
+        return true;
       }
-    } catch(Exception $error) {
-      errorResponse($error->getMessage());
     }
   }
 ?>

@@ -7,8 +7,6 @@ Portfolio Web Apps for Designer.
 <!-- ## Website
 https://rutinitaspelajar.duckdns.org -->
 
----
-
 ## Build SCSS File
 ### With Node Js :
 - Be sure your computer is already installed npm.

@@ -15,6 +15,7 @@ const signOut = {
       } 
       
       location.hash = '#/';
+      return;
     } catch (error) {
       await Swal.fire(
         'Oops ...',

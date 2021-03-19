@@ -7,8 +7,6 @@ Aplikasi eeb portofolio untuk designer.
 <!-- ## Website
 https://rutinitaspelajar.duckdns.org -->
 
----
-
 ## Build File SCSS
 ### Dengan Node Js :
 - Pastikan komputer anda sudah terinstall npm.
