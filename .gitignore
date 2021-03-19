@@ -127,5 +127,6 @@ front-test
 package-lock.json
 styles/style.css
 public/images/posts/*
+public/images/posts/*!add-post-image-here
 public/images/users/*
 public/images/users/!default_user.png

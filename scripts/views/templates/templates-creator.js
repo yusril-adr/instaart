@@ -79,7 +79,7 @@ const Templates = {
                 <input type="text" class="form-control" id="navbar-search-input" placeholder="Search ..." aria-label="Search" autocomplete="off">
 
                 <div class="input-group-append">
-                  <button class="btn btn-outline-primary" type="submit" id="search" aria-label="search"><i class="fas fa-search"></i></button>
+                  <button class="btn btn-outline-primary" type="submit" aria-label="search"><i class="fas fa-search"></i></button>
                 </div>
               </div>
             </form>
@@ -492,7 +492,7 @@ const Templates = {
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-8 col-lg-6 offset-lg-1">
+          <div class="col-sm-12 col-md-8 col-lg-6 offset-lg-1 mt-4 mt-md-0">
             <div class="card shadow-sm mx-auto">
               <div class="card-body">
                 <span class="card-title d-block font-weight-bold h3 text-center mb-3">Profile</span>
@@ -553,7 +553,7 @@ const Templates = {
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-8 col-lg-6 offset-lg-1">
+          <div class="col-sm-12 col-md-8 col-lg-6 offset-lg-1 mt-4 mt-md-0">
             <div class="card shadow-sm mx-auto">
               <div class="card-body">
                 <span class="card-title d-block font-weight-bold h3 text-center mb-3">Profile Picture</span>
@@ -601,7 +601,7 @@ const Templates = {
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-8 col-lg-6 offset-lg-1">
+          <div class="col-sm-12 col-md-8 col-lg-6 offset-lg-1 mt-4 mt-md-0">
             <div class="card shadow-sm mx-auto">
               <div class="card-body">
                 <span class="card-title d-block font-weight-bold h3 text-center mb-3">Password</span>
@@ -875,7 +875,7 @@ const Templates = {
                 <input type="text" class="form-control" placeholder="Search ..." id="search-input" aria-label="Search">
 
                 <div class="input-group-append">
-                  <button class="btn btn-outline-primary" type="submit" id="search" aria-label="search">
+                  <button class="btn btn-outline-primary" type="submit" aria-label="search">
                     <i class="fas fa-search"></i>
                   </button>
                 </div>
