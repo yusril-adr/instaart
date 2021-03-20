@@ -3,8 +3,12 @@ import API_ENDPOINT from '../global/api-endpoint.js';
 const Post = {
   async getExplore() {
     const response = await fetch(API_ENDPOINT.EXPLORE);
-    const responseJSON = await response.json();
 
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
+    const responseJSON = await response.json();
     if (response.status !== 200) throw new Error(responseJSON.message);
 
     return responseJSON;
@@ -12,9 +16,15 @@ const Post = {
 
   async getPost(id) {
     const response = await fetch(`${API_ENDPOINT.POST}?id=${id}`);
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status === 404) return null;
+
     if (response.status !== 200) throw new Error(responseJSON.message);
 
     return responseJSON;
@@ -25,6 +35,11 @@ const Post = {
       method: 'POST',
       body: formImage,
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseImgJSON = await responseImg.json();
 
     if (responseImg.status !== 200) throw new Error(responseImgJSON.message);
@@ -37,6 +52,10 @@ const Post = {
       },
       body: JSON.stringify({ ...formData, image: imageName }),
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
     const responsePostJSON = await responsePost.json();
 
     if (responsePost.status !== 200) throw new Error(responsePostJSON.message);
@@ -52,6 +71,11 @@ const Post = {
       },
       body: JSON.stringify(inputData),
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -67,6 +91,11 @@ const Post = {
       },
       body: JSON.stringify({ post_id: postId }),
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -76,6 +105,10 @@ const Post = {
 
   async searchPost(keyword) {
     const response = await fetch(`${API_ENDPOINT.SEARCH}?keyword=${keyword}`);
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);

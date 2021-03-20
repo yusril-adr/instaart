@@ -65,8 +65,11 @@
     public static function newPost($data, int $id) {
       global $conn;
 
-      $title = stripslashes($data['title']);
-      $caption = stripslashes($data['caption']);
+      $title = htmlspecialchars($data['title']);
+      $title = stripslashes($title);
+
+      $caption = htmlspecialchars($data['caption']);
+      $caption = stripslashes($caption);
 
       $result = mysqli_query($conn,
       "INSERT INTO posts (
@@ -189,8 +192,11 @@
     public function updatePost($data) {
       global $conn;
 
-      $title = stripslashes($data['title']);
-      $caption = stripslashes($data['caption']);
+      $title = htmlspecialchars($data['title']);
+      $title = stripslashes($title);
+
+      $caption = htmlspecialchars($data['caption']);
+      $caption = stripslashes($caption);
 
       $result = mysqli_query(
         $conn, 

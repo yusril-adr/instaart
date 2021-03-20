@@ -15,8 +15,19 @@
     global $conn;
 
     $username = htmlspecialchars($data['username']);
-    $username = stripslashes($data['username']);
+    $username = stripslashes($username);
     $username = strtolower($username);
+
+    $display_name = htmlspecialchars($data['display_name']);
+    $display_name = stripslashes($display_name);
+
+    $biodata = htmlspecialchars($data['biodata']);
+    $biodata = stripslashes($biodata);
+
+    $email = htmlspecialchars($data['email']);
+    $email = stripslashes($email);
+    $email = strtolower($email);
+
     $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
 
     $result = mysqli_query($conn,
@@ -30,9 +41,9 @@
     ) values (
       '{$username}', 
       '{$hashedPassword}', 
-      '{$data['display_name']}',  
-      '{$data['biodata']}',
-      '{$data['email']}', 
+      '{$display_name}',  
+      '{$biodata}',
+      '{$email}', 
       '{$data['phone_number']}'
     );");
 
@@ -303,8 +314,8 @@
   public function commentPost(string $comment, int $postId) {
     global $conn;
 
-    $comment =  htmlspecialchars($comment);
-    $comment =  stripslashes($comment);
+    $comment = htmlspecialchars($comment);
+    $comment = stripslashes($comment);
 
     $result = mysqli_query($conn,
     "INSERT INTO comments (
@@ -338,17 +349,28 @@
   public function updateUser($data) {
     global $conn;
 
-    $username = stripslashes($data['username']);
+    $username = htmlspecialchars($data['username']);
+    $username = stripslashes($username);
     $username = strtolower($username);
+
+    $display_name = htmlspecialchars($data['display_name']);
+    $display_name = stripslashes($display_name);
+
+    $biodata = htmlspecialchars($data['biodata']);
+    $biodata = stripslashes($biodata);
+
+    $email = htmlspecialchars($data['email']);
+    $email = stripslashes($email);
+    $email = strtolower($email);
 
     $user = mysqli_query(
       $conn, 
       "UPDATE users 
       SET
         username = '{$username}',
-        display_name = '{$data['display_name']}', 
-        biodata = '{$data['biodata']}',
-        email = '{$data['email']}',
+        display_name = '{$display_name}', 
+        biodata = '{$biodata}',
+        email = '{$email}',
         phone_number = '{$data['phone_number']}'
       WHERE id = {$this->id};"
     );

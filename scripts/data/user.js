@@ -3,9 +3,14 @@ import API_ENDPOINT from '../global/api-endpoint.js';
 const User = {
   async getUser() {
     const response = await fetch(API_ENDPOINT.USER);
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status === 401) return null;
+
     if (response.status !== 200) throw new Error(responseJSON.message);
 
     return responseJSON;
@@ -13,6 +18,11 @@ const User = {
 
   async getUserByUsername(username) {
     const response = await fetch(`${API_ENDPOINT.USER}?username=${username}`);
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status === 404) return null;
@@ -39,6 +49,11 @@ const User = {
         phone_number: parseInt(phone_number),
       }),
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -58,6 +73,11 @@ const User = {
         current_password,
       }),
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -70,6 +90,11 @@ const User = {
       method: 'POST',
       body: formData,
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -83,6 +108,11 @@ const User = {
       'Content-Type': 'application/json',
       body: JSON.stringify({ setDefault: true }),
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -110,6 +140,11 @@ const User = {
         phone_number: parseInt(phone_number),
       }),
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -126,6 +161,11 @@ const User = {
         password,
       }),
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -135,6 +175,11 @@ const User = {
 
   async signOut() {
     const response = await fetch(API_ENDPOINT.SIGN_OUT);
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -148,6 +193,11 @@ const User = {
       'Content-Type': 'application/json',
       body: JSON.stringify({ user_id: userId }),
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -161,6 +211,11 @@ const User = {
       'Content-Type': 'application/json',
       body: JSON.stringify({ user_id: userId }),
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -174,6 +229,11 @@ const User = {
       'Content-Type': 'application/json',
       body: JSON.stringify({ post_id: postId }),
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -187,6 +247,11 @@ const User = {
       'Content-Type': 'application/json',
       body: JSON.stringify({ post_id: postId }),
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -200,6 +265,11 @@ const User = {
       'Content-Type': 'application/json',
       body: JSON.stringify(inputData),
     });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
@@ -209,6 +279,11 @@ const User = {
 
   async searchUser(keyword) {
     const response = await fetch(`${API_ENDPOINT.SEARCH}?keyword=${keyword}`);
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
     const responseJSON = await response.json();
 
     if (response.status !== 200) throw new Error(responseJSON.message);
