@@ -15,7 +15,12 @@ class App {
   }
 
   async initUser() {
-    this._user = await User.getUser();
+    try {
+      this._user = await User.getUser();
+    } catch (error) {
+      this._user = null;
+    }
+
     await this._initialAppShell();
     await this.renderPage();
   }
