@@ -8,6 +8,11 @@ Aplikasi eeb portofolio untuk designer.
 https://rutinitaspelajar.duckdns.org -->
 
 ## Build File SCSS
+### Dengan extension vs code extension Live Sass Compiler (Yang saya rekomendasikan)
+- Pastikan vs code anda sudah terinstall [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass).
+- Klik "Watch Sass" di status bar.
+  ![live sass compiler status bar image](./live-sass-compiler-status-bar.png)
+
 ### Dengan Node Js :
 - Pastikan komputer anda sudah terinstall npm.
 - Install module yang diperlukan : 
@@ -22,12 +27,6 @@ https://rutinitaspelajar.duckdns.org -->
 ```bash 
   npm run build
 ```
-
-### Dengan extension vs code extension Live Sass Compiler (Yang saya rekomendasikan)
-- Pastikan vs code anda sudah terinstall [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass).
-- Klik "Watch Sass" di status bar.
-  ![live sass compiler status bar image](./live-sass-compiler-status-bar.png)
-
 
 ---
 ## LICENSE

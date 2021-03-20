@@ -8,6 +8,11 @@ Portfolio Web Apps for Designer.
 https://rutinitaspelajar.duckdns.org -->
 
 ## Build SCSS File
+### With vs code extension Live Sass Compiler (Which is i recommend)
+- Be sure your vs code is already installed [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass).
+- Click "Watch Sass" in status bar.
+  ![live sass compiler status bar image](./live-sass-compiler-status-bar.png)
+
 ### With Node Js :
 - Be sure your computer is already installed npm.
 - Install the module : 
@@ -22,11 +27,6 @@ https://rutinitaspelajar.duckdns.org -->
 ```bash 
   npm run build
 ```
-
-### With vs code extension Live Sass Compiler (Which is i recommend)
-- Be sure your vs code is already installed [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass).
-- Click "Watch Sass" in status bar.
-  ![live sass compiler status bar image](./live-sass-compiler-status-bar.png)
 
 
 ---
