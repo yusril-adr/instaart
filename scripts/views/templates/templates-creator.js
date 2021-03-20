@@ -872,7 +872,7 @@ const Templates = {
           <div class="col-sm-12 col-md-8 col-lg-10">
             <form class="form-block" id="search-form">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search ..." id="search-input" aria-label="Search">
+                <input type="text" class="form-control" placeholder="Search ..." id="search-input" aria-label="Search" autocomplete="off" required>
 
                 <div class="input-group-append">
                   <button class="btn btn-outline-primary" type="submit" aria-label="search">
