@@ -51,6 +51,9 @@ const searchPost = {
         error.message,
         'error'
       );
+
+      const container = document.querySelector('#result-container');
+      container.innerHTML = Templates.searchEmptyResult();
     }
   },
 
