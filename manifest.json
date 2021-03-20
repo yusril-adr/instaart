@@ -1,0 +1,18 @@
+{
+  "icons": [
+    {
+      "src": "public/images/maskable_logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "name": "InstaArt",
+  "short_name": "InstaArt",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "/",
+  "description": "Portfolio web app for designer",
+  "background_color": "#F8F9FA",
+  "theme_color": "#F8F9FA"
+}
