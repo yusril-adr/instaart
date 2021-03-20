@@ -18,6 +18,7 @@
 
   try {
     $imgFile = $_FILES['image'];
+    $imgSize = $_FILES["image"]["size"];
 
     $allowedImgExtension = ["jpg",  "jpeg", "png"];
     $extension = explode('.', $imgFile['name']);
@@ -25,7 +26,11 @@
     $extension = strtolower($extension);
 
     if (!in_array($extension, $allowedImgExtension)) {
-      throw new Exception('File is not supported');
+      throw new Exception('File is not supported', 415);
+    }
+
+    if ($imgSize > 1000000) {
+      throw new Exception('File is more than 1mb.', 413);
     }
 
     $randomString = uniqid();

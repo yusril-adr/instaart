@@ -37,6 +37,7 @@
 
   try {
     $imgFile = $_FILES['profile_image'];
+    $imgSize = $_FILES["profile_image"]["size"];
 
     $allowedImgExtension = ["jpg",  "jpeg", "png"];
     $extension = explode('.', $imgFile['name']);
@@ -45,6 +46,10 @@
 
     if (!in_array($extension, $allowedImgExtension)) {
       throw new Exception('File is not supported');
+    }
+
+    if ($imgSize > 1000000) {
+      throw new Exception('File is more than 1mb.', 413);
     }
 
     $user = new User($_SESSION['username']);
