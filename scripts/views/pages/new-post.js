@@ -37,8 +37,16 @@ const newPost = {
 
         const formImg = new FormData();
         formImg.append('image', event.target['post-image'].files[0]);
+
+        await Swal.showLoading();
+
         const post = await Post.newPost(inputData, formImg);
 
+        await Swal.fire(
+          'Successfully created.',
+          'Post successfully created.',
+          'success'
+        );
         location.hash = `#/post/${post.id}`;
         return;
       } catch (error) {

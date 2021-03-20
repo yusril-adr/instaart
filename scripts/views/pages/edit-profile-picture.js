@@ -39,6 +39,7 @@ const editProfilePicture = {
         const formData = new FormData();
         formData.append('profile_image', event.target['profile-picture'].files[0]);
 
+        await Swal.showLoading();
         await User.updatePicture(formData);
 
         const changeEvent = new CustomEvent('updateUser');
@@ -49,6 +50,7 @@ const editProfilePicture = {
           'Profile successfully updated.',
           'success'
         );
+        return location.reload();
       } catch (error) {
         await Swal.fire(
           'Oops ...',
