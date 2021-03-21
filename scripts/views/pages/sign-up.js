@@ -78,8 +78,21 @@ const signUp = {
 
     if(input.display_name.length > MAX_LENGTH.USER.DISPLAY_NAME) throw new Error('Display name is too long.');
 
-    if(!parseInt(input.phone_number)) throw new Error('Phone number format is not valid.');
+    if(await this._checkPhoneNumberFormat(input.phone_number)) {
+      throw new Error('Phone number format is not valid.');
+    }
     if(input.phone_number.length > MAX_LENGTH.USER.PHONE_NUMBER) throw new Error('Phone number is too long.');
+  },
+
+  async _checkPhoneNumberFormat(phoneNumberInput) {
+    const tenDigit = /^\(?([0-9]{10})\)?$/;
+    const twelveDigit = /^\(?([0-9]{12})\)?$/;
+
+    if (phoneNumberInput.match(tenDigit) || phoneNumberInput.match(twelveDigit)) {
+      return true;
+    }
+    
+    return false;
   },
 };
 
