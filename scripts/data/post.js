@@ -36,7 +36,7 @@ const Post = {
       body: formImage,
     });
 
-    if (response.status === 500) {
+    if (responseImg.status === 500) {
       throw new Error('There was an error from the server, or server maintenance occured.');
     }
 
@@ -53,7 +53,7 @@ const Post = {
       body: JSON.stringify({ ...formData, image: imageName }),
     });
 
-    if (response.status === 500) {
+    if (responsePost.status === 500) {
       throw new Error('There was an error from the server, or server maintenance occured.');
     }
     const responsePostJSON = await responsePost.json();

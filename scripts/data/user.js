@@ -46,7 +46,7 @@ const User = {
         display_name,
         biodata,
         email,
-        phone_number: parseInt(phone_number),
+        phone_number,
       }),
     });
 
@@ -137,7 +137,7 @@ const User = {
         display_name,
         biodata,
         email,
-        phone_number: parseInt(phone_number),
+        phone_number,
       }),
     });
 

@@ -84,7 +84,7 @@ const editProfile = {
 
     if(input.display_name.length > MAX_LENGTH.USER.DISPLAY_NAME) throw new Error('Display name is too long.');
 
-    if(await this._checkPhoneNumberFormat(input.phone_number)) {
+    if(!(await this._checkPhoneNumberFormat(input.phone_number))) {
       throw new Error('Phone number format is not valid.');
     }
     if(input.phone_number.length > MAX_LENGTH.USER.PHONE_NUMBER) throw new Error('Phone number is too long.');
