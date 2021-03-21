@@ -79,12 +79,13 @@ const editProfilePicture = {
 
         if (!isConfirmed) return;
 
+        await Swal.showLoading();
         await User.removePicture();
 
         const changeEvent = new CustomEvent('updateUser');
         window.dispatchEvent(changeEvent);
 
-        await Swal.fire(
+        return await Swal.fire(
           'Deleted!',
           'Your profile picture has been deleted.',
           'success'

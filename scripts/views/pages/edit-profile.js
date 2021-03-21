@@ -52,6 +52,7 @@ const editProfile = {
           biodata: event.target.bio.value,
         };
   
+        await Swal.showLoading();
         await this._formValidation(inputData);
         await User.update(inputData);
 

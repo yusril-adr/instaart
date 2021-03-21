@@ -11,7 +11,14 @@ const editPost = {
 
   async afterRender(user) {
     const postId = await UrlParser.parseActiveUrlWithoutCombiner().verb;
-    const post = await Post.getPost(postId);
+    let post;
+    
+    try {
+      post = await Post.getPost(postId);
+    } catch (error) {
+      post = null;
+    }
+
     if(!user || !post) {
       location.hash = '#/';
       return;

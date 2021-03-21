@@ -43,6 +43,7 @@ const editPassword = {
           new_password: event.target['new-password'].value,
         };
   
+        await Swal.showLoading();
         await this._formValidation(inputData);
         await User.updatePassword(inputData);
 

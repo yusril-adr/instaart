@@ -21,7 +21,17 @@ const post = {
   },
 
   async _renderPost(postId, user) {
-    const post = await Post.getPost(postId);
+    let post;
+    try {
+      post = await Post.getPost(postId);
+    } catch (error) {
+      await Swal.fire(
+        'Oops ...',
+        error.message,
+        'error'
+      );
+      post = null;
+    }
     if(!post) return await this._renderNotFound();
 
     TitleHelper.setTitle(post.title);

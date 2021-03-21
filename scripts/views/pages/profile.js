@@ -34,7 +34,19 @@ const profile = {
   }, 
 
   async _renderProfile(targetedUsername, currentUser) {
-    const targetedUser = await User.getUserByUsername(targetedUsername);
+    let targetedUser;
+
+    try {
+      targetedUser = await User.getUserByUsername(targetedUsername);
+    } catch (error) {
+      await Swal.fire(
+        'Oops ...',
+        error.message,
+        'error'
+      );
+      targetedUser = null;
+    }
+
     if (!targetedUser) return await this._renderNotFound();
 
     TitleHelper.setTitle(targetedUser.display_name);
