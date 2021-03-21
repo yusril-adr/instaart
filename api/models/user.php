@@ -1,7 +1,7 @@
 <?php 
  class User {
   private $identifier;
-  private int $id;
+  private $id;
 
   public function __construct($identifier) {
     $this->identifier = $identifier;
