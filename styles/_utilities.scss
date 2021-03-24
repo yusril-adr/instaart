@@ -122,6 +122,9 @@
     position: relative;
     min-height: 240px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   
     img {
       position: absolute;
