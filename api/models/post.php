@@ -177,7 +177,8 @@
         FROM comments
         INNER JOIN users
         ON comments.user_id = users.id
-        WHERE post_id = '{$this->id}';"
+        WHERE post_id = '{$this->id}'
+        ORDER BY comments.date DESC;"
       );
   
       $comments = [];
