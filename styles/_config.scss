@@ -48,13 +48,13 @@ $dark: #343a40;
 }
 
  // Hide scrollbar
-body {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-body::-webkit-scrollbar {
-  display: none;
-}
+// body {
+//   -ms-overflow-style: none;
+//   scrollbar-width: none;
+// }
+// body::-webkit-scrollbar {
+//   display: none;
+// }
 
 // End of hide scrollbar
 
