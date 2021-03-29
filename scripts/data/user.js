@@ -38,6 +38,8 @@ const User = {
       email,
       phone_number,
   }) {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+
     const response = await fetch(API_ENDPOINT.USER, {
       method: 'PUT',
       'Content-Type': 'application/json',
@@ -65,6 +67,8 @@ const User = {
       new_password,
       current_password,
   }) {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+
     const response = await fetch(API_ENDPOINT.PASSWORD, {
       method: 'PUT',
       'Content-Type': 'application/json',
@@ -86,6 +90,8 @@ const User = {
   },
 
   async updatePicture(formData) {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+    
     const response = await fetch(API_ENDPOINT.USER_PICTURE, {
       method: 'POST',
       body: formData,
@@ -103,6 +109,8 @@ const User = {
   },
 
   async removePicture() {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+    
     const response = await fetch(API_ENDPOINT.USER_PICTURE, {
       method: 'POST',
       'Content-Type': 'application/json',
@@ -128,6 +136,8 @@ const User = {
       email,
       phone_number,
   }) {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+
     const response = await fetch(API_ENDPOINT.USER, {
       method: 'POST',
       'Content-Type': 'application/json',
@@ -153,6 +163,8 @@ const User = {
   },
 
   async signIn(identifier, password) {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+
     const response = await fetch(API_ENDPOINT.SIGN_IN, {
       method: 'POST',
       'Content-Type': 'application/json',
@@ -174,6 +186,8 @@ const User = {
   },
 
   async signOut() {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+    
     const response = await fetch(API_ENDPOINT.SIGN_OUT);
 
     if (response.status === 500) {
@@ -188,6 +202,8 @@ const User = {
   },
 
   async followUser(userId) {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+    
     const response = await fetch(API_ENDPOINT.FOLLOWING, {
       method: 'POST',
       'Content-Type': 'application/json',
@@ -206,6 +222,8 @@ const User = {
   },
 
   async unFollowUser(userId) {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+    
     const response = await fetch(API_ENDPOINT.FOLLOWING, {
       method: 'DELETE',
       'Content-Type': 'application/json',
@@ -224,6 +242,8 @@ const User = {
   },
 
   async likePost(postId) {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+    
     const response = await fetch(API_ENDPOINT.LIKE_POST, {
       method: 'POST',
       'Content-Type': 'application/json',
@@ -242,6 +262,8 @@ const User = {
   },
 
   async dislikePost(postId) {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+    
     const response = await fetch(API_ENDPOINT.LIKE_POST, {
       method: 'DELETE',
       'Content-Type': 'application/json',
@@ -260,6 +282,8 @@ const User = {
   },
 
   async commentPost(inputData) {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+    
     const response = await fetch(API_ENDPOINT.COMMENT, {
       method: 'POST',
       'Content-Type': 'application/json',

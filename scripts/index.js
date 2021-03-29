@@ -1,4 +1,5 @@
 import App from './views/app.js';
+import swRegister from './utils/sw-register.js';
 
 const app = new App({
   header: document.querySelector('header'),
@@ -7,6 +8,7 @@ const app = new App({
 
 window.addEventListener('load', async () => {
   app.initUser();
+  swRegister();
 });
 
 window.addEventListener('hashchange', async (event) => {

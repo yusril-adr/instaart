@@ -31,6 +31,8 @@ const Post = {
   },
 
   async newPost(formData, formImage) {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+
     const responseImg = await fetch('./api/post-image.php', {
       method: 'POST',
       body: formImage,
@@ -64,6 +66,8 @@ const Post = {
   },
 
   async updatePost(inputData) {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+    
     const response = await fetch(`${API_ENDPOINT.POST}`, {
       method: 'PUT',
       headers: {
@@ -84,6 +88,8 @@ const Post = {
   },
 
   async deletePost(postId) {
+    if(!navigator.onLine) throw new Error('Network connection is needed.');
+
     const response = await fetch(`${API_ENDPOINT.POST}`, {
       method: 'DELETE',
       headers: {
