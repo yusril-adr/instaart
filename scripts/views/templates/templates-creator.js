@@ -711,7 +711,7 @@ const Templates = {
         </div>
 
         <div class="card-body">
-          <span>${post.caption}</span>
+          <span class="post-caption"></span>
         </div>
 
         <div class="card-footer">

@@ -50,6 +50,14 @@ const post = {
   async _renderPostDetail(post, user) {
     const container = document.querySelector('.container#post');
     container.innerHTML = user? Templates.postDetail(post, user.id) : Templates.postDetail(post);
+    await this._renderCaption(post);
+  },
+
+  async _renderCaption({ caption }) {
+    const elems = document.querySelectorAll('.post-caption');
+    elems.forEach(async (elem) => {
+      elem.innerText = caption;
+    });
   },
 
   async _renderPostCommentForm(user) {

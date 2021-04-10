@@ -10,7 +10,7 @@ workbox.core.setCacheNameDetails({
 })
 
 workbox.precaching.precacheAndRoute([
-  {url: "./index.html", revision: 1},
+  {url: "./index.html", revision: 1.1},
   {url: "./manifest.json", revision: 1},
   {url: "./public/fonts/Montserrat-Black.ttf", revision: null},
   {url: "./public/fonts/Montserrat-Regular.ttf", revision: null},
@@ -43,13 +43,13 @@ workbox.precaching.precacheAndRoute([
   {url: "./scripts/views/pages/explore.js", revision: 1},
   {url: "./scripts/views/pages/home.js", revision: 1},
   {url: "./scripts/views/pages/new-post.js", revision: 1},
-  {url: "./scripts/views/pages/post.js", revision: 1},
+  {url: "./scripts/views/pages/post.js", revision: 1.1},
   {url: "./scripts/views/pages/profile.js", revision: 1},
   {url: "./scripts/views/pages/search-post.js", revision: 1},
   {url: "./scripts/views/pages/search-user.js", revision: 1},
   {url: "./scripts/views/pages/sign-out.js", revision: 1},
   {url: "./scripts/views/pages/sign-up.js", revision: 1},
-  {url: "./scripts/views/templates/templates-creator.js", revision: 1},
+  {url: "./scripts/views/templates/templates-creator.js", revision: 1.1},
   {url: "./styles/style.css", revision: 1},
 ]);
 
