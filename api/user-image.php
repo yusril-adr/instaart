@@ -45,7 +45,7 @@
     $extension = strtolower($extension);
 
     if (!in_array($extension, $allowedImgExtension)) {
-      throw new Exception('File is not supported');
+      throw new Exception('File is not supported', 415);
     }
 
     if ($imgSize > 1000000) {
