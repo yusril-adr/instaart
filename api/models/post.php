@@ -11,7 +11,7 @@
 
       $result = mysqli_query(
         $conn, 
-        "SELECT * FROM posts WHERE user_id = {$id} ORDER BY date DESC;"
+        "SELECT * FROM posts WHERE user_id = {$id} ORDER BY date DESC LIMIT 15;"
       );
 
       if (!$result) throw new Exception(mysqli_error($conn));
@@ -48,7 +48,7 @@
         $query .= " OR posts.user_id = {$id}";
       }
 
-      $query .= ' ORDER BY posts.date DESC;';
+      $query .= ' ORDER BY posts.date DESC LIMIT 15;';
 
       $result = mysqli_query($conn, $query);
 
