@@ -11,7 +11,7 @@
         $_SESSION['email'] = $user['email'];
         $_SESSION['id'] = $user['id'];
 
-        setcookie('key', "{$user['id']}", time()+24*60*60, '/');
+        setcookie('key', "{$user['id']}", time()+30*24*60*60, '/');
         return true;
       }
 
