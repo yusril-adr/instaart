@@ -1,11 +1,11 @@
 # InstaArt
-Aplikasi eeb portofolio untuk designer. 
+Aplikasi eweb portofolio untuk designer. 
 
 ## Bahasa lain
 - [English](./README.md)
 
 <!-- ## Website
-https://rutinitaspelajar.duckdns.org -->
+https://instaart.cybertwenty.com -->
 
 ## Build File SCSS
 ### Dengan extension vs code extension Live Sass Compiler (Yang saya rekomendasikan)
