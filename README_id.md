@@ -4,8 +4,8 @@ Aplikasi eweb portofolio untuk designer.
 ## Bahasa lain
 - [English](./README.md)
 
-<!-- ## Website
-https://instaart.cybertwenty.com -->
+## Website
+https://instaart.cybertwenty.com
 
 ## Build File SCSS
 ### Dengan extension vs code extension Live Sass Compiler (Yang saya rekomendasikan)
@@ -32,4 +32,4 @@ https://instaart.cybertwenty.com -->
 ## LICENSE
 [MIT](./LICENSE.md)
 
-<!-- © Dibuat Oleh [Yusril A. P.](https://github.com/yusril-adr) -->
+© Dibuat Oleh [Yusril A. P.](https://github.com/yusril-adr)
