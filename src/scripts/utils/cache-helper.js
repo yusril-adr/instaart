@@ -8,7 +8,7 @@ const CacheHelper = {
   async routeAPI() {
     registerRoute(
       ({ request, url }) => (
-        request.method.toUpperCase() === 'GET' && url.pathname.includes(CONFIG.API_BASE_URL)
+        request.method.toUpperCase() === 'GET' && url.pathname.includes('api') && url.pathname.endsWith('.php')
       ),
       new NetworkFirst({
         networkTimeoutSeconds: 2,
@@ -42,6 +42,15 @@ const CacheHelper = {
         ],
       }),
     );
+  },
+
+  async deleteOldCache() {
+    const cacheNames = await caches.keys();
+    return cacheNames.forEach(async (cacheName) => {
+      if (CONFIG.OLD_CACHE_NAME.includes(cacheName)) {
+        return caches.delete(cacheName);
+      }
+    });
   },
 };
 

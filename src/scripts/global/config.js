@@ -37,6 +37,7 @@ const CONFIG = {
     IMAGE: 'instaart-image',
   },
   CACHE_EXP: 7 * 24 * 60 * 60, // 7 Days
+  OLD_CACHE_NAME: ['instaart-cache-v1'],
 };
 
 export default CONFIG;

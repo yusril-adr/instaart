@@ -11,3 +11,7 @@ precacheAndRoute(self.__WB_MANIFEST);
 
 CacheHelper.routeImage();
 CacheHelper.routeAPI();
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(CacheHelper.deleteOldCache());
+});
