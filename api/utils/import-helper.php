@@ -6,4 +6,5 @@
   require_once "./utils/error-helper.php";
 
   checkCookie();
+  header('Content-Type: application/json');
 ?>
