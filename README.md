@@ -7,27 +7,20 @@ Portfolio Web Apps for Designer.
 ## Website
 https://instaart.cybertwenty.com
 
-## Build SCSS File
-### With vs code extension Live Sass Compiler (Which is i recommend)
-- Be sure your vs code is already installed [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass).
-- Click "Watch Sass" in status bar.
-  ![live sass compiler status bar image](./live-sass-compiler-status-bar.png)
-
-### With Node Js :
-- Be sure your computer is already installed npm.
-- Install the module : 
+## Build and Test
+- Be sure your computer is already installed node.js and npm.
+- Install the module with command : 
 ```bash 
   npm i
 ```
-- Watch the scss file :
+- Run developer mode by command :
 ```bash 
   npm run dev
 ```
-- If you want build for production purpose :
+- Or if you want to build production mode you can run this command :
 ```bash 
   npm run build
 ```
-
 
 ---
 ## LICENSE

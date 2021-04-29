@@ -1,5 +1,5 @@
 # InstaArt
-Aplikasi eweb portofolio untuk designer. 
+Aplikasi web portofolio untuk designer. 
 
 ## Bahasa lain
 - [English](./README.md)
@@ -7,23 +7,17 @@ Aplikasi eweb portofolio untuk designer.
 ## Website
 https://instaart.cybertwenty.com
 
-## Build File SCSS
-### Dengan extension vs code extension Live Sass Compiler (Yang saya rekomendasikan)
-- Pastikan vs code anda sudah terinstall [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass).
-- Klik "Watch Sass" di status bar.
-  ![live sass compiler status bar image](./live-sass-compiler-status-bar.png)
-
-### Dengan Node Js :
-- Pastikan komputer anda sudah terinstall npm.
-- Install module yang diperlukan : 
+## Build dan Test
+- Pastikan node.js dan npm sudah terinstall di perangkat anda.
+- Install module yang dibutuhkan dengan perintah : 
 ```bash 
   npm i
 ```
-- Terus menerus membuild Sass file :
+- Jalankan mode developer dengan perintah :
 ```bash 
   npm run dev
 ```
-- jika anda ingin membuild Sass untuk tujuan production :
+- Atau jika anda ingin membuild mode production, jalankan perintah : 
 ```bash 
   npm run build
 ```
