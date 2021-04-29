@@ -1,7 +1,9 @@
-import Templates from '../templates/templates-creator.js';
-import TitleHelper from '../../utils/title-helper.js';
-import Post from '../../data/post.js';
-import CONFIG from '../../global/config.js';
+import Swal from 'sweetalert2';
+import bsCustomFileInput from 'bs-custom-file-input';
+import Templates from '../templates/templates-creator';
+import TitleHelper from '../../utils/title-helper';
+import Post from '../../data/post';
+import CONFIG from '../../global/config';
 
 const newPost = {
   async render() {
@@ -9,8 +11,8 @@ const newPost = {
   },
 
   async afterRender(user) {
-    if(!user) {
-      location.hash = '#/';
+    if (!user) {
+      window.location.hash = '#/';
       return;
     }
 
@@ -32,28 +34,28 @@ const newPost = {
           title: event.target.title.value,
           caption: event.target.caption.value,
         };
-  
+
         await this._formValidation(inputData);
 
         const formImg = new FormData();
         formImg.append('image', event.target['post-image'].files[0]);
 
-        await Swal.showLoading();
+        Swal.showLoading();
 
         const post = await Post.newPost(inputData, formImg);
 
         await Swal.fire(
           'Successfully created.',
           'Post successfully created.',
-          'success'
+          'success',
         );
-        location.hash = `#/post/${post.id}`;
+        window.location.hash = `#/post/${post.id}`;
         return;
       } catch (error) {
         await Swal.fire(
           'Oops ...',
           error.message,
-          'error'
+          'error',
         );
       }
     });
@@ -61,7 +63,7 @@ const newPost = {
 
   async _formValidation(input) {
     const { MAX_LENGTH } = CONFIG;
-    if(input.title.length > MAX_LENGTH.POST.TITLE) throw new Error('Post Title is too long.');
+    if (input.title.length > MAX_LENGTH.POST.TITLE) throw new Error('Post Title is too long.');
   },
 };
 

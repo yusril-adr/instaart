@@ -1,7 +1,8 @@
-import Templates from '../templates/templates-creator.js';
-import TitleHelper from '../../utils/title-helper.js';
-import UrlParser from '../../routes/url-parser.js';
-import User from '../../data/user.js';
+import Swal from 'sweetalert2';
+import Templates from '../templates/templates-creator';
+import TitleHelper from '../../utils/title-helper';
+import UrlParser from '../../routes/url-parser';
+import User from '../../data/user';
 
 const searchUser = {
   async render() {
@@ -10,7 +11,7 @@ const searchUser = {
 
   async afterRender() {
     let keyword = await UrlParser.parseActiveUrlWithoutCombiner().verb;
-    if(!keyword) keyword = '';
+    if (!keyword) keyword = '';
 
     await TitleHelper.setTitle(`Search ${keyword}`);
     await this._setDefaultValue(keyword);
@@ -34,7 +35,7 @@ const searchUser = {
       const users = await User.searchUser(keyword);
       const container = document.querySelector('#result-container');
 
-      if(users.length < 1 || keyword === '') {
+      if (users.length < 1 || keyword === '') {
         container.innerHTML = Templates.searchEmptyResult();
         return;
       }
@@ -47,7 +48,7 @@ const searchUser = {
       await Swal.fire(
         'Oops ...',
         error.message,
-        'error'
+        'error',
       );
 
       const container = document.querySelector('#result-container');
@@ -61,7 +62,7 @@ const searchUser = {
       event.stopPropagation();
       event.preventDefault();
 
-      location.hash = `#/search-user/${event.target['search-input'].value || ''}`;
+      window.location.hash = `#/search-user/${event.target['search-input'].value || ''}`;
     });
   },
 };

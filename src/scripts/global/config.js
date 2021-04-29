@@ -13,7 +13,7 @@ const CONFIG = {
     'September',
     'October',
     'November',
-    'December'
+    'December',
   ],
   MAX_LENGTH: {
     USER: {
@@ -32,6 +32,11 @@ const CONFIG = {
     USER: './public/images/users',
     POST: './public/images/posts',
   },
+  CACHE_NAME: {
+    API: 'instaart-api',
+    IMAGE: 'instaart-image',
+  },
+  CACHE_EXP: 7 * 24 * 60 * 60, // 7 Days
 };
 
 export default CONFIG;

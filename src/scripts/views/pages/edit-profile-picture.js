@@ -1,7 +1,9 @@
-import Templates from '../templates/templates-creator.js';
-import TitleHelper from '../../utils/title-helper.js';
-import User from '../../data/user.js';
-import CONFIG from '../../global/config.js';
+import Swal from 'sweetalert2';
+import bsCustomFileInput from 'bs-custom-file-input';
+import Templates from '../templates/templates-creator';
+import TitleHelper from '../../utils/title-helper';
+import User from '../../data/user';
+import CONFIG from '../../global/config';
 
 const editProfilePicture = {
   async render() {
@@ -9,8 +11,8 @@ const editProfilePicture = {
   },
 
   async afterRender(user) {
-    if(!user) {
-      location.hash = '#/';
+    if (!user) {
+      window.location.hash = '#/';
       return;
     }
 
@@ -39,7 +41,7 @@ const editProfilePicture = {
         const formData = new FormData();
         formData.append('profile_image', event.target['profile-picture'].files[0]);
 
-        await Swal.showLoading();
+        Swal.showLoading();
         await User.updatePicture(formData);
 
         const changeEvent = new CustomEvent('updateUser');
@@ -48,14 +50,14 @@ const editProfilePicture = {
         await Swal.fire(
           'Successfully updated.',
           'Profile successfully updated.',
-          'success'
+          'success',
         );
-        return location.reload();
+        return window.location.reload();
       } catch (error) {
-        await Swal.fire(
+        return Swal.fire(
           'Oops ...',
           error.message,
-          'error'
+          'error',
         );
       }
     });
@@ -74,7 +76,7 @@ const editProfilePicture = {
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
+          confirmButtonText: 'Yes, delete it!',
         });
 
         if (!isConfirmed) return;
@@ -85,17 +87,19 @@ const editProfilePicture = {
         const changeEvent = new CustomEvent('updateUser');
         window.dispatchEvent(changeEvent);
 
-        return await Swal.fire(
+        await Swal.fire(
           'Deleted!',
           'Your profile picture has been deleted.',
-          'success'
+          'success',
         );
+        return;
       } catch (error) {
         await Swal.fire(
           'Oops ...',
           error.message,
-          'error'
+          'error',
         );
+        return;
       }
     });
   },

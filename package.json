@@ -4,8 +4,8 @@
   "description": "Portfolio Web Apps for Designer",
   "main": "./scripts/index.js",
   "scripts": {
-    "build": "node-sass styles/style.scss -o styles",
-    "dev": "npm run build && node-sass styles/style.scss -wo styles"
+    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
+    "dev": "webpack --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "copy-webpack-plugin": "^8.1.1",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.2.4",
     "eslint": "^7.25.0",
     "eslint-config-airbnb-base": "^14.2.1",

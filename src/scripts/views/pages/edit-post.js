@@ -1,8 +1,9 @@
-import Templates from '../templates/templates-creator.js';
-import UrlParser from '../../routes/url-parser.js';
-import TitleHelper from '../../utils/title-helper.js';
-import Post from '../../data/post.js';
-import CONFIG from '../../global/config.js';
+import Swal from 'sweetalert2';
+import Templates from '../templates/templates-creator';
+import UrlParser from '../../routes/url-parser';
+import TitleHelper from '../../utils/title-helper';
+import Post from '../../data/post';
+import CONFIG from '../../global/config';
 
 const editPost = {
   async render() {
@@ -12,15 +13,15 @@ const editPost = {
   async afterRender(user) {
     const postId = await UrlParser.parseActiveUrlWithoutCombiner().verb;
     let post;
-    
+
     try {
       post = await Post.getPost(postId);
     } catch (error) {
       post = null;
     }
 
-    if(!user || !post) {
-      location.hash = '#/';
+    if (!user || !post) {
+      window.location.hash = '#/';
       return;
     }
 
@@ -50,17 +51,17 @@ const editPost = {
           title: event.target.title.value,
           caption: event.target.caption.value,
         };
-  
+
         await this._formValidation(inputData);
         await Post.updatePost(inputData);
 
-        location.hash = `#/post/${post.id}`;
+        window.location.hash = `#/post/${post.id}`;
         return;
       } catch (error) {
         await Swal.fire(
           'Oops ...',
           error.message,
-          'error'
+          'error',
         );
       }
     });
@@ -69,7 +70,7 @@ const editPost = {
   async _formValidation(input) {
     const { MAX_LENGTH } = CONFIG;
 
-    if(input.title.length > MAX_LENGTH.POST.TITLE) throw new Error('Post title is too long.');
+    if (input.title.length > MAX_LENGTH.POST.TITLE) throw new Error('Post title is too long.');
   },
 
   async _initDeleteEvent(post) {
@@ -85,7 +86,7 @@ const editPost = {
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
+          confirmButtonText: 'Yes, delete it!',
         });
 
         if (!isConfirmed) return;
@@ -95,18 +96,18 @@ const editPost = {
         await Swal.fire(
           'Deleted!',
           'Your post has been deleted.',
-          'success'
+          'success',
         );
 
-        location.hash = '#/';
+        window.location.hash = '#/';
         return;
       } catch (error) {
         await Swal.fire(
           'Oops ...',
           error.message,
-          'error'
+          'error',
         );
-      };
+      }
     });
   },
 };

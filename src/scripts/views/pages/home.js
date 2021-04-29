@@ -1,6 +1,7 @@
-import Templates from '../templates/templates-creator.js';
-import PasswordHelper from '../../utils/password-helper.js';
-import User from '../../data/user.js';
+import Swal from 'sweetalert2';
+import Templates from '../templates/templates-creator';
+import PasswordHelper from '../../utils/password-helper';
+import User from '../../data/user';
 
 const home = {
   async render() {
@@ -9,7 +10,7 @@ const home = {
 
   async afterRender(user) {
     if (user) {
-      location.hash = '#/explore/';
+      window.location.hash = '#/explore/';
       return;
     }
 
@@ -39,12 +40,12 @@ const home = {
         const changeEvent = new CustomEvent('updateUser');
         window.dispatchEvent(changeEvent);
 
-        location.hash = '#/explore/';
+        window.location.hash = '#/explore/';
       } catch (error) {
         await Swal.fire(
           'Oops ...',
           error.message,
-          'error'
+          'error',
         );
       }
     });

@@ -1,12 +1,13 @@
-import Templates from '../views/templates/templates-creator.js';
+import $ from 'jquery';
+import Templates from '../views/templates/templates-creator';
 
 const HeaderInitiator = {
-  async init({ 
-    header, user
+  async init({
+    header, user,
   }) {
-    header.innerHTML = user? Templates.loginHeader(user) : Templates.header();
+    header.innerHTML = user ? Templates.loginHeader(user) : Templates.header();
 
-    return await this._initSearchEvent(header);
+    return this._initSearchEvent(header);
   },
 
   async _initSearchEvent(header) {
@@ -16,9 +17,8 @@ const HeaderInitiator = {
       event.preventDefault();
 
       const input = header.querySelector('input#navbar-search-input');
-      location.hash = `#/search-post/${input.value? `${input.value}/` : ''}`;
+      window.location.hash = `#/search-post/${input.value ? `${input.value}/` : ''}`;
       input.value = '';
-      return;
     });
   },
 

@@ -1,8 +1,9 @@
-import Templates from '../templates/templates-creator.js';
-import TitleHelper from '../../utils/title-helper.js';
-import UrlParser from '../../routes/url-parser.js';
-import Post from '../../data/post.js';
-import User from '../../data/user.js';
+import Swal from 'sweetalert2';
+import Templates from '../templates/templates-creator';
+import TitleHelper from '../../utils/title-helper';
+import UrlParser from '../../routes/url-parser';
+import Post from '../../data/post';
+import User from '../../data/user';
 
 const searchPost = {
   async render() {
@@ -11,7 +12,7 @@ const searchPost = {
 
   async afterRender(user) {
     let keyword = await UrlParser.parseActiveUrlWithoutCombiner().verb;
-    if(!keyword) keyword = '';
+    if (!keyword) keyword = '';
 
     await TitleHelper.setTitle(`Search ${keyword}`);
     await this._setDefaultValue(keyword);
@@ -36,20 +37,21 @@ const searchPost = {
       const posts = await Post.searchPost(keyword);
       const container = document.querySelector('#result-container');
 
-      if(posts.length < 1 || keyword === '') {
+      if (posts.length < 1 || keyword === '') {
         container.innerHTML = Templates.searchEmptyResult();
         return;
       }
 
       container.innerHTML = '';
       posts.forEach(async (post) => {
-        container.innerHTML += user? Templates.searchPostResult(post, user.id) : Templates.searchPostResult(post);
+        container.innerHTML += user
+          ? Templates.searchPostResult(post, user.id) : Templates.searchPostResult(post);
       });
     } catch (error) {
       await Swal.fire(
         'Oops ...',
         error.message,
-        'error'
+        'error',
       );
 
       const container = document.querySelector('#result-container');
@@ -63,30 +65,31 @@ const searchPost = {
       button.addEventListener('click', async (event) => {
         event.stopPropagation();
 
-        if(!user) return await Swal.fire(
-          'Sign in required',
-          'Please sign in or sign up first',
-          'error'
-        );
+        if (!user) {
+          return Swal.fire(
+            'Sign in required',
+            'Please sign in or sign up first',
+            'error',
+          );
+        }
 
         try {
           const postId = button.getAttribute('post-id');
           const isLiked = button.classList.contains('liked');
 
-          if(isLiked) await User.dislikePost(postId);
+          if (isLiked) await User.dislikePost(postId);
           else await User.likePost(postId);
 
-          button.innerHTML = isLiked? Templates.likedIcon() : Templates.likeIcon();
-          button.ariaLabel = isLiked? 'dislike this design': 'like this design';
+          button.innerHTML = isLiked ? Templates.likedIcon() : Templates.likeIcon();
+          button.ariaLabel = isLiked ? 'dislike this design' : 'like this design';
           button.classList.toggle('liked');
 
           return this.afterRender(user);
         } catch (error) {
-          console.log(error);
           await Swal.fire(
             'Oops ...',
             error.message,
-            'error'
+            'error',
           );
         }
       });
@@ -99,7 +102,7 @@ const searchPost = {
       event.stopPropagation();
       event.preventDefault();
 
-      location.hash = `#/search-post/${event.target['search-input'].value || ''}`;
+      window.location.hash = `#/search-post/${event.target['search-input'].value || ''}`;
     });
   },
 };

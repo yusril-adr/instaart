@@ -1,4 +1,5 @@
-import User from '../../data/user.js';
+import Swal from 'sweetalert2';
+import User from '../../data/user';
 
 const signOut = {
   async render() {
@@ -7,21 +8,21 @@ const signOut = {
 
   async afterRender(user) {
     try {
-      if(user) {
+      if (user) {
         await User.signOut();
 
         const changeEvent = new CustomEvent('updateUser');
         return window.dispatchEvent(changeEvent);
-      } 
-      
-      location.hash = '#/';
+      }
+
+      window.location.hash = '#/';
       return;
     } catch (error) {
       await Swal.fire(
         'Oops ...',
         error.message,
-        'error'
-      )
+        'error',
+      );
     }
   },
 };

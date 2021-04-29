@@ -1,14 +1,14 @@
-import Templates from '../views/templates/templates-creator.js';
+import Templates from '../views/templates/templates-creator';
 
 const PasswordHelper = {
   async initTogglerEvent(input, button) {
     button.addEventListener('click', async (event) => {
       event.stopPropagation();
 
-      input.type = input.type === 'password'? 'text' : 'password';
+      input.type = input.type === 'password' ? 'text' : 'password';
 
-      button.ariaLabel = input.type === 'password'? 'Show password' : 'Hide password';
-      button.innerHTML = input.type === 'password'? Templates.showPassswordToggler() : Templates.hidePasswordToggler();
+      button.ariaLabel = input.type === 'password' ? 'Show password' : 'Hide password';
+      button.innerHTML = input.type === 'password' ? Templates.showPassswordToggler() : Templates.hidePasswordToggler();
     });
   },
 

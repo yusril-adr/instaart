@@ -12,6 +12,13 @@
         "sourceType": "module"
     },
     "rules": {
-        "linebreak-style": "off"
+        "camelcase": "off",
+        "class-methods-use-this": "off",
+        "consistent-return": "off",
+        "linebreak-style": "off",
+        "import/no-extraneous-dependencies": "off",
+        "no-underscore-dangle": "off",
+        "no-param-reassign": "off",
+        "no-useless-return": "off"
     }
 }

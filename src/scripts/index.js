@@ -1,5 +1,11 @@
-import App from './views/app.js';
-import swRegister from './utils/sw-register.js';
+import 'regenerator-runtime';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import '../styles/style.scss';
+
+import App from './views/app';
+import swRegister from './utils/sw-register';
 
 const app = new App({
   header: document.querySelector('header'),

@@ -1,12 +1,12 @@
-import HeaderInitiator from '../utils/header-initiator.js';
-import UrlParser from '../routes/url-parser.js';
-import routes from '../routes/routes.js';
-import User from '../data/user.js';
-import TitleHelper from '../utils/title-helper.js';
+import HeaderInitiator from '../utils/header-initiator';
+import UrlParser from '../routes/url-parser';
+import routes from '../routes/routes';
+import User from '../data/user';
+import TitleHelper from '../utils/title-helper';
 
 class App {
   constructor({
-    header, content
+    header, content,
   }) {
     this._header = header;
     this._content = content;
@@ -44,7 +44,7 @@ class App {
   }
 
   async _scrollToTop() {
-    scrollTo({
+    window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });

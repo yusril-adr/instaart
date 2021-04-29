@@ -1,8 +1,9 @@
-import Templates from '../templates/templates-creator.js';
-import TitleHelper from '../../utils/title-helper.js';
-import PasswordHelper from '../../utils/password-helper.js';
-import User from '../../data/user.js';
-import CONFIG from '../../global/config.js';
+import Swal from 'sweetalert2';
+import Templates from '../templates/templates-creator';
+import TitleHelper from '../../utils/title-helper';
+import PasswordHelper from '../../utils/password-helper';
+import User from '../../data/user';
+import CONFIG from '../../global/config';
 
 const signUp = {
   async render() {
@@ -10,8 +11,8 @@ const signUp = {
   },
 
   async afterRender(user) {
-    if(user) {
-      location.hash = '#/explore/';
+    if (user) {
+      window.location.hash = '#/explore/';
       return;
     }
 
@@ -39,10 +40,10 @@ const signUp = {
       try {
         const inputData = {
           username: event.target.username.value,
-          password : event.target.password.value,
+          password: event.target.password.value,
           email: event.target.email.value,
-          display_name: event.target["display-name"].value,
-          phone_number: event.target["phone-number"].value,
+          display_name: event.target['display-name'].value,
+          phone_number: event.target['phone-number'].value,
           biodata: event.target.biodata.value,
         };
 
@@ -57,7 +58,7 @@ const signUp = {
         await Swal.fire(
           'Oops ...',
           error.message,
-          'error'
+          'error',
         );
       }
     });
@@ -66,22 +67,22 @@ const signUp = {
   async _formValidation(input, confirmPassword) {
     const { PASSWORD_MIN_LENGTH, MAX_LENGTH } = CONFIG;
 
-    if(input.username.length > MAX_LENGTH.USER.USERNAME) throw new Error('Username is too long.');
-    if(input.username.includes(' ')) throw new Error('Username should not contains any space.');
+    if (input.username.length > MAX_LENGTH.USER.USERNAME) throw new Error('Username is too long.');
+    if (input.username.includes(' ')) throw new Error('Username should not contains any space.');
 
-    if(input.email.length > MAX_LENGTH.USER.EMAIL) throw new Error('Email is too long.');
+    if (input.email.length > MAX_LENGTH.USER.EMAIL) throw new Error('Email is too long.');
 
-    if(input.password.length < PASSWORD_MIN_LENGTH) throw new Error('Password is too short.');
-    if(!(await PasswordHelper.confirmPassword(input.password, confirmPassword))) {
+    if (input.password.length < PASSWORD_MIN_LENGTH) throw new Error('Password is too short.');
+    if (!(await PasswordHelper.confirmPassword(input.password, confirmPassword))) {
       throw new Error('Password didn\'t match.');
     }
 
-    if(input.display_name.length > MAX_LENGTH.USER.DISPLAY_NAME) throw new Error('Display name is too long.');
+    if (input.display_name.length > MAX_LENGTH.USER.DISPLAY_NAME) throw new Error('Display name is too long.');
 
-    if(!(await this._checkPhoneNumberFormat(input.phone_number))) {
+    if (!(await this._checkPhoneNumberFormat(input.phone_number))) {
       throw new Error('Phone number format is not valid.');
     }
-    if(input.phone_number.length > MAX_LENGTH.USER.PHONE_NUMBER) throw new Error('Phone number is too long.');
+    if (input.phone_number.length > MAX_LENGTH.USER.PHONE_NUMBER) throw new Error('Phone number is too long.');
   },
 
   async _checkPhoneNumberFormat(phoneNumberInput) {
@@ -91,7 +92,7 @@ const signUp = {
     if (phoneNumberInput.match(tenDigit) || phoneNumberInput.match(twelveDigit)) {
       return true;
     }
-    
+
     return false;
   },
 };

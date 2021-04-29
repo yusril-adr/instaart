@@ -1,4 +1,5 @@
-const swRegister = async (swFile) => {
+/* eslint-disable no-console */
+const swRegister = async () => {
   if ('serviceWorker' in navigator) {
     try {
       await navigator.serviceWorker.register('./service-worker.js');

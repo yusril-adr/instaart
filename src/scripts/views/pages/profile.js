@@ -1,8 +1,9 @@
-import Templates from '../templates/templates-creator.js';
-import UrlParser from '../../routes/url-parser.js';
-import User from '../../data/user.js';
-import TitleHelper from '../../utils/title-helper.js';
-import CONFIG from '../../global/config.js';
+import Swal from 'sweetalert2';
+import Templates from '../templates/templates-creator';
+import UrlParser from '../../routes/url-parser';
+import User from '../../data/user';
+import TitleHelper from '../../utils/title-helper';
+import CONFIG from '../../global/config';
 
 const profile = {
   async render() {
@@ -12,26 +13,26 @@ const profile = {
   async afterRender(user) {
     const targetedUsername = await UrlParser.parseActiveUrlWithoutCombiner().verb;
 
-    if(!targetedUsername && user) {
-      location.hash = `#/profile/${user.username}/`;
+    if (!targetedUsername && user) {
+      window.location.hash = `#/profile/${user.username}/`;
       return;
     }
 
-    if(!targetedUsername && !user) {
-      location.hash = '#/';
+    if (!targetedUsername && !user) {
+      window.location.hash = '#/';
       return;
     }
 
-    if(user) await this._newPostBtn(targetedUsername, user.username);
+    if (user) await this._newPostBtn(targetedUsername, user.username);
     await this._renderProfile(targetedUsername, user);
   },
 
   async _newPostBtn(targetUsername, currentUsername) {
-    if(targetUsername !== currentUsername) return;
+    if (targetUsername !== currentUsername) return;
 
     const container = document.querySelector('.container#profile');
     container.innerHTML += Templates.profileNewPost();
-  }, 
+  },
 
   async _renderProfile(targetedUsername, currentUser) {
     let targetedUser;
@@ -42,12 +43,12 @@ const profile = {
       await Swal.fire(
         'Oops ...',
         error.message,
-        'error'
+        'error',
       );
       targetedUser = null;
     }
 
-    if (!targetedUser) return await this._renderNotFound();
+    if (!targetedUser) return this._renderNotFound();
 
     TitleHelper.setTitle(targetedUser.display_name);
 
@@ -90,11 +91,11 @@ const profile = {
   },
 
   async _renderUserBtn(targetedUser, currentUser) {
-    if(!currentUser) return this._renderFollowBtnWithAlert();
+    if (!currentUser) return this._renderFollowBtnWithAlert();
 
-    if(currentUser.id === targetedUser.id) return await this._renderEditBtn();
+    if (currentUser.id === targetedUser.id) return this._renderEditBtn();
 
-    if(targetedUser.followers.includes(currentUser.id)) {
+    if (targetedUser.followers.includes(currentUser.id)) {
       return this._renderUnfollowBtn(targetedUser, currentUser);
     }
 
@@ -116,7 +117,7 @@ const profile = {
       await Swal.fire(
         'Sign in required',
         'Please sign in or sign up first',
-        'error'
+        'error',
       );
     });
   },
@@ -145,7 +146,7 @@ const profile = {
         await Swal.fire(
           'Oops ...',
           error.message,
-          'error'
+          'error',
         );
       }
     });
@@ -170,7 +171,7 @@ const profile = {
         await Swal.fire(
           'Oops ...',
           error.message,
-          'error'
+          'error',
         );
       }
     });
@@ -213,14 +214,14 @@ const profile = {
 
   async _renderPostList({ posts }, currentUser) {
     const lists = document.querySelector('.post-list');
-    if(posts.length < 1) {
+    if (posts.length < 1) {
       lists.innerHTML = Templates.profileEmptyPostsList();
       return;
     }
 
     lists.innerHTML = '';
     posts.forEach(async (post) => {
-      if(currentUser) {
+      if (currentUser) {
         lists.innerHTML += Templates.profilePost(post, currentUser.id);
       } else {
         lists.innerHTML += Templates.profilePost(post);
@@ -236,21 +237,23 @@ const profile = {
       button.addEventListener('click', async (event) => {
         event.stopPropagation();
 
-        if(!user) return await Swal.fire(
-          'Sign in required',
-          'Please sign in or sign up first',
-          'error'
-        );
+        if (!user) {
+          return Swal.fire(
+            'Sign in required',
+            'Please sign in or sign up first',
+            'error',
+          );
+        }
 
         try {
           const postId = button.getAttribute('post-id');
           const isLiked = button.classList.contains('liked');
 
-          if(isLiked) await User.dislikePost(postId);
+          if (isLiked) await User.dislikePost(postId);
           else await User.likePost(postId);
 
-          button.innerHTML = isLiked? Templates.likedIcon() : Templates.likeIcon();
-          button.ariaLabel = isLiked? 'dislike this design': 'like this design';
+          button.innerHTML = isLiked ? Templates.likedIcon() : Templates.likeIcon();
+          button.ariaLabel = isLiked ? 'dislike this design' : 'like this design';
           button.classList.toggle('liked');
 
           return this.afterRender(user);
@@ -258,7 +261,7 @@ const profile = {
           await Swal.fire(
             'Oops ...',
             error.message,
-            'error'
+            'error',
           );
         }
       });

@@ -1,7 +1,8 @@
-import Templates from '../templates/templates-creator.js';
-import TitleHelper from '../../utils/title-helper.js';
-import User from '../../data/user.js';
-import CONFIG from '../../global/config.js';
+import Swal from 'sweetalert2';
+import Templates from '../templates/templates-creator';
+import TitleHelper from '../../utils/title-helper';
+import User from '../../data/user';
+import CONFIG from '../../global/config';
 
 const editProfile = {
   async render() {
@@ -9,8 +10,8 @@ const editProfile = {
   },
 
   async afterRender(user) {
-    if(!user) {
-      location.hash = '#/';
+    if (!user) {
+      window.location.hash = '#/';
       return;
     }
 
@@ -47,11 +48,11 @@ const editProfile = {
         const inputData = {
           username: event.target.username.value,
           email: event.target.email.value,
-          display_name: event.target["display-name"].value,
-          phone_number: event.target["phone-number"].value,
+          display_name: event.target['display-name'].value,
+          phone_number: event.target['phone-number'].value,
           biodata: event.target.bio.value,
         };
-  
+
         await Swal.showLoading();
         await this._formValidation(inputData);
         await User.update(inputData);
@@ -59,17 +60,19 @@ const editProfile = {
         const changeEvent = new CustomEvent('updateUser');
         window.dispatchEvent(changeEvent);
 
-        return await Swal.fire(
+        await Swal.fire(
           'Successfully updated.',
           'Profile successfully updated.',
-          'success'
+          'success',
         );
+        return;
       } catch (error) {
         await Swal.fire(
           'Oops ...',
           error.message,
-          'error'
+          'error',
         );
+        return;
       }
     });
   },
@@ -77,17 +80,17 @@ const editProfile = {
   async _formValidation(input) {
     const { MAX_LENGTH } = CONFIG;
 
-    if(input.username.length > MAX_LENGTH.USER.USERNAME) throw new Error('Username is too long.');
-    if(input.username.includes(' ')) throw new Error('Username should not contains any space.');
+    if (input.username.length > MAX_LENGTH.USER.USERNAME) throw new Error('Username is too long.');
+    if (input.username.includes(' ')) throw new Error('Username should not contains any space.');
 
-    if(input.email.length > MAX_LENGTH.USER.EMAIL) throw new Error('Email is too long.');
+    if (input.email.length > MAX_LENGTH.USER.EMAIL) throw new Error('Email is too long.');
 
-    if(input.display_name.length > MAX_LENGTH.USER.DISPLAY_NAME) throw new Error('Display name is too long.');
+    if (input.display_name.length > MAX_LENGTH.USER.DISPLAY_NAME) throw new Error('Display name is too long.');
 
-    if(!(await this._checkPhoneNumberFormat(input.phone_number))) {
+    if (!(await this._checkPhoneNumberFormat(input.phone_number))) {
       throw new Error('Phone number format is not valid.');
     }
-    if(input.phone_number.length > MAX_LENGTH.USER.PHONE_NUMBER) throw new Error('Phone number is too long.');
+    if (input.phone_number.length > MAX_LENGTH.USER.PHONE_NUMBER) throw new Error('Phone number is too long.');
   },
 
   async _checkPhoneNumberFormat(phoneNumberInput) {
@@ -97,7 +100,7 @@ const editProfile = {
     if (phoneNumberInput.match(tenDigit) || phoneNumberInput.match(twelveDigit)) {
       return true;
     }
-    
+
     return false;
   },
 };

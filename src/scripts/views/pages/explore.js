@@ -1,15 +1,16 @@
-import Templates from '../templates/templates-creator.js';
-import Post from '../../data/post.js';
-import User from '../../data/user.js';
+import Swal from 'sweetalert2';
+import Templates from '../templates/templates-creator';
+import Post from '../../data/post';
+import User from '../../data/user';
 
 const explore = {
   async render() {
     return Templates.explorePage();
   },
-  
+
   async afterRender(user) {
-    if(!user) {
-      location.hash = '#/';
+    if (!user) {
+      window.location.hash = '#/';
       return;
     }
 
@@ -19,8 +20,8 @@ const explore = {
   async _renderList(user) {
     try {
       const postList = await Post.getExplore();
-    
-      if(postList.length < 1) {
+
+      if (postList.length < 1) {
         const container = document.querySelector('.container#explore');
         container.innerHTML = Templates.exploreEmptyList();
         return;
@@ -37,7 +38,7 @@ const explore = {
       await Swal.fire(
         'Oops ...',
         error.message,
-        'error'
+        'error',
       );
     }
   },
@@ -48,30 +49,35 @@ const explore = {
       button.addEventListener('click', async (event) => {
         event.stopPropagation();
 
-        if(!user) return await Swal.fire(
-          'Sign in required',
-          'Please sign in or sign up first',
-          'error'
-        );
+        if (!user) {
+          await Swal.fire(
+            'Sign in required',
+            'Please sign in or sign up first',
+            'error',
+          );
+          return;
+        }
 
         try {
           const postId = button.getAttribute('post-id');
           const isLiked = button.classList.contains('liked');
 
-          if(isLiked) await User.dislikePost(postId);
+          if (isLiked) await User.dislikePost(postId);
           else await User.likePost(postId);
 
-          button.innerHTML = isLiked? Templates.likedIcon() : Templates.likeIcon();
-          button.ariaLabel = isLiked? 'dislike this design': 'like this design';
+          button.innerHTML = isLiked ? Templates.likedIcon() : Templates.likeIcon();
+          button.ariaLabel = isLiked ? 'dislike this design' : 'like this design';
           button.classList.toggle('liked');
 
-          return this.afterRender(user);
+          this.afterRender(user);
+          return;
         } catch (error) {
           await Swal.fire(
             'Oops ...',
             error.message,
-            'error'
+            'error',
           );
+          return;
         }
       });
     });

@@ -1,5 +1,5 @@
-import CONFIG from '../../global/config.js';
-import DateHelper from '../../utils/date-helper.js';
+import CONFIG from '../../global/config';
+import DateHelper from '../../utils/date-helper';
 
 const Templates = {
   hidePasswordToggler() {
@@ -14,8 +14,8 @@ const Templates = {
     `;
   },
 
-  likedIcon( { color = 'primary' } = {} ) {
-    const className = color? `text-${color}`: '';
+  likedIcon({ color = 'primary' } = {}) {
+    const className = color ? `text-${color}` : '';
     return `
       <i class="fas fa-thumbs-up ${className}"></i>
     `;
@@ -279,11 +279,11 @@ const Templates = {
           
           <div class="card-body">
             <div class="d-flex align-items-center mb-2">
-              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId)? 'liked': '' }" aria-label="${post.likes.includes(userId)? 'dislike this design' : 'like this design'}">
-                ${post.likes.includes(userId)? 
-                  this.likedIcon() :
-                  this.likeIcon()
-                }
+              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'dislike this design' : 'like this design'}">
+                ${post.likes.includes(userId)
+    ? this.likedIcon()
+    : this.likeIcon()
+}
               </button>
 
               <span class="pb-2px">${post.likes.length}<span class="sr-only"> like this design</span></span>
@@ -421,7 +421,7 @@ const Templates = {
 
   profilePost(post, userId = null) {
     const { month, date, year } = DateHelper.parse(post.date);
-    
+
     return `
       <div class="card shadow rounded mt-4">
         <a href="#/profile/${post.username}/" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
@@ -444,13 +444,13 @@ const Templates = {
           <div class="d-flex align-items-center mb-2">
           <button 
             post-id="${post.id}" 
-            class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId)? 'liked': '' }" 
-            aria-label="${post.likes.includes(userId)? 'dislike this design' : 'like this design'}"
+            class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" 
+            aria-label="${post.likes.includes(userId) ? 'dislike this design' : 'like this design'}"
           >
-              ${post.likes.includes(userId)? 
-                this.likedIcon() :
-                this.likeIcon()
-              }
+              ${post.likes.includes(userId)
+    ? this.likedIcon()
+    : this.likeIcon()
+}
           </button>
 
             <span class="pb-2px">${post.likes.length}<span class="sr-only"> like this design</span></span>
@@ -693,10 +693,10 @@ const Templates = {
 
         <div class="bg-dark py-5">
           <button 
-            class="like d-block mx-auto btn btn-primary rounded-circle ${post.likes.includes(userId)? 'liked': '' }" 
-            aria-label="${post.likes.includes(userId)? 'dislike this design' : 'like this design'}"
+            class="like d-block mx-auto btn btn-primary rounded-circle ${post.likes.includes(userId) ? 'liked' : ''}" 
+            aria-label="${post.likes.includes(userId) ? 'dislike this design' : 'like this design'}"
           >
-            ${post.likes.includes(userId)? this.likedIcon({ color: false }) : this.likeIcon()}
+            ${post.likes.includes(userId) ? this.likedIcon({ color: false }) : this.likeIcon()}
           </button>
 
           <h1 class="h2 font-weight-bold text-white text-center mt-2">${post.title}</h1>
@@ -961,11 +961,11 @@ const Templates = {
           
           <div class="card-body">
             <div class="d-flex align-items-center mb-2">
-              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId)? 'liked': '' }" aria-label="${post.likes.includes(userId)? 'dislike this design' : 'like this design'}">
-                ${post.likes.includes(userId)? 
-                  this.likedIcon() :
-                  this.likeIcon()
-                }
+              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'dislike this design' : 'like this design'}">
+                ${post.likes.includes(userId)
+    ? this.likedIcon()
+    : this.likeIcon()
+}
               </button>
 
               <span class="pb-2px">${post.likes.length}<span class="sr-only"> like this design</span></span>

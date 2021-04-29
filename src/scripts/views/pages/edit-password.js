@@ -1,8 +1,9 @@
-import Templates from '../templates/templates-creator.js';
-import TitleHelper from '../../utils/title-helper.js';
-import PasswordHelper from '../../utils/password-helper.js';
-import User from '../../data/user.js';
-import CONFIG from '../../global/config.js';
+import Swal from 'sweetalert2';
+import Templates from '../templates/templates-creator';
+import TitleHelper from '../../utils/title-helper';
+import PasswordHelper from '../../utils/password-helper';
+import User from '../../data/user';
+import CONFIG from '../../global/config';
 
 const editPassword = {
   async render() {
@@ -10,8 +11,8 @@ const editPassword = {
   },
 
   async afterRender(user) {
-    if(!user) {
-      location.hash = '#/';
+    if (!user) {
+      window.location.hash = '#/';
       return;
     }
 
@@ -42,7 +43,7 @@ const editPassword = {
           current_password: event.target['current-password'].value,
           new_password: event.target['new-password'].value,
         };
-  
+
         await Swal.showLoading();
         await this._formValidation(inputData);
         await User.updatePassword(inputData);
@@ -53,13 +54,13 @@ const editPassword = {
         return await Swal.fire(
           'Successfully updated.',
           'Profile successfully updated.',
-          'success'
+          'success',
         );
       } catch (error) {
-        await Swal.fire(
+        return Swal.fire(
           'Oops ...',
           error.message,
-          'error'
+          'error',
         );
       }
     });
@@ -68,7 +69,7 @@ const editPassword = {
   async _formValidation(input) {
     const { PASSWORD_MIN_LENGTH } = CONFIG;
 
-    if(input.new_password.length < PASSWORD_MIN_LENGTH) throw new Error('Your new password is too short.');
+    if (input.new_password.length < PASSWORD_MIN_LENGTH) throw new Error('Your new password is too short.');
   },
 };
 

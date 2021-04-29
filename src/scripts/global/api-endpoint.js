@@ -1,4 +1,4 @@
-import CONFIG from './config.js';
+import CONFIG from './config';
 
 const API_ENDPOINT = {
   USER: `${CONFIG.API_BASE_URL}/user.php`,
