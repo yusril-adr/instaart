@@ -5,7 +5,8 @@
   "main": "./scripts/index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
-    "dev": "webpack --config webpack.dev.js"
+    "dev": "webpack --config webpack.dev.js",
+    "graph": "git log --all --oneline --text --decorate --graph"
   },
   "repository": {
     "type": "git",
