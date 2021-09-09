@@ -817,9 +817,18 @@ const Templates = {
                     <textarea class="form-control" id="caption" rows="3" placeholder="Caption"></textarea>
                   </div>
 
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="post-image" required>
-                    <label class="custom-file-label" for="post-image">Choose file</label>
+                  <div class="form-group mb-4">
+                    <label for="user-collaborator">Collaborator</label>
+                    <select class="form-control custom-select w-100" id="user-collaborator" multiple="multiple">
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="post-image">File Upload</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="post-image" required>
+                      <label class="custom-file-label" for="post-image">Choose file</label>
+                    </div>
                   </div>
         
                   <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Post</button>

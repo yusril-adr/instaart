@@ -3,39 +3,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const { InjectManifest } = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
     index: path.resolve(__dirname, 'src/scripts/index.js'),
   },
   output: {
-    publicPath: './',
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-  },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-      minSize: 20000,
-      maxSize: 90000,
-      minChunks: 1,
-      maxAsyncRequests: 30,
-      maxInitialRequests: 30,
-      automaticNameDelimiter: '~',
-      enforceSizeThreshold: 50000,
-      cacheGroups: {
-        defaultVendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
-    },
   },
   module: {
     rules: [
@@ -71,6 +46,7 @@ module.exports = {
       theme_color: '#F8F9FA',
       inject: true,
       fingerprints: true,
+      publicPath: '/',
       ios: true,
       icons: [
         {
@@ -98,12 +74,7 @@ module.exports = {
           from: path.resolve(__dirname, 'public/images'),
           to: path.resolve(__dirname, 'dist/public/images'),
         },
-        {
-          from: path.resolve(__dirname, 'api'),
-          to: path.resolve(__dirname, 'dist/api'),
-        },
       ],
     }),
-    new CleanWebpackPlugin(),
   ],
 };

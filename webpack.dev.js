@@ -1,12 +1,19 @@
 const { merge } = require('webpack-merge');
-const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
   mode: 'development',
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
+    proxy: {
+      '/api': 'http://127.0.0.1/instaart',
+    },
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
   },
   module: {
     rules: [

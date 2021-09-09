@@ -117,6 +117,12 @@
   align-items: center;
 }
 
+.select2-search__field{
+  border: 1px solid #ced4da;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+}
+
 .post-list {
   .post-img-container {
     position: relative;
