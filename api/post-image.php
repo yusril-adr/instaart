@@ -3,12 +3,19 @@
 
   $request = json_decode(file_get_contents('php://input'), true);
   $requestMethod = $_SERVER["REQUEST_METHOD"];
+  if (isset($_SERVER['HTTP_X_AUTH_ID'])) {
+    $authId = $_SERVER['HTTP_X_AUTH_ID'];
+  }
+
+  if (isset($_SERVER['HTTP_X_AUTH_TOKEN'])) {
+    $authToken = $_SERVER['HTTP_X_AUTH_TOKEN'];
+  }
 
   if ($requestMethod !== "POST") {
     errorResponse('This request method is not supprted for this endpoint.', 405);
   }
 
-  if(!isset($_SESSION['username'])) {
+  if(!isset($authId) || !checkToken($authToken, $authId)) {
     unauthorizedResponse();
   }
 

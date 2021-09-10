@@ -37,14 +37,18 @@
       display_name, 
       biodata, 
       email, 
-      phone_number
+      phone_number,
+      province_id,
+      city_id
     ) values (
       '{$username}', 
       '{$hashedPassword}', 
       '{$display_name}',  
       '{$biodata}',
       '{$email}', 
-      '{$data['phone_number']}'
+      '{$data['phone_number']}',
+      '{$data['province_id']}',
+      '{$data['city_id']}'
     );");
 
     return $result;
@@ -66,6 +70,26 @@
 
     if ($user) {
       return $user;
+    }
+
+    return false;
+  }
+
+  public static function getUserTokenFromId(int $id) {
+    global $conn;
+
+    $result = mysqli_query(
+      $conn, 
+      "SELECT
+        token
+      FROM users 
+      WHERE id = '{$id}';"
+    );
+
+    $user = mysqli_fetch_assoc($result);
+
+    if ($user) {
+      return $user['token'];
     }
 
     return false;
@@ -152,7 +176,9 @@
         biodata, 
         image, 
         email, 
-        phone_number 
+        phone_number,
+        province_id,
+        city_id
       FROM users 
       WHERE username = '{$this->identifier}' 
       OR email = '{$this->identifier}';"
@@ -377,6 +403,25 @@
 
     if ($user) {
       $this->identifier = $username;
+      return $this->getUser();
+    }
+
+    return false;
+  }
+
+  public function setToken() {
+    global $conn;
+    $newToken = uniqid();
+
+    $user = mysqli_query(
+      $conn, 
+      "UPDATE users 
+      SET
+        token = '{$newToken}'
+      WHERE id = {$this->id};"
+    );
+
+    if ($user) {
       return $this->getUser();
     }
 

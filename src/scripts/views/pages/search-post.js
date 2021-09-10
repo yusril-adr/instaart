@@ -13,6 +13,7 @@ const searchPost = {
   async afterRender(user) {
     let keyword = await UrlParser.parseActiveUrlWithoutCombiner().verb;
     if (!keyword) keyword = '';
+    else keyword = keyword.split('%20').join(' ');
 
     await TitleHelper.setTitle(`Search ${keyword}`);
     await this._setDefaultValue(keyword);

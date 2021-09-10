@@ -44,15 +44,15 @@ const Templates = {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="form-inline ml-auto my-2 my-lg-0" id="navbar-search-form">
               <div class="input-group">
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search ..." aria-label="Search" autocomplete="off">
+                <input type="text" class="form-control" id="navbar-search-input" placeholder="Cari ..." aria-label="Cari" autocomplete="off">
 
                 <div class="input-group-append">
-                  <button class="btn btn-outline-primary" type="submit" aria-label="search"><i class="fas fa-search"></i></button>
+                  <button class="btn btn-outline-primary" type="submit" aria-label="cari"><i class="fas fa-search"></i></button>
                 </div>
               </div>
             </form>
 
-            <a href="#/sign-up/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-primary">Join us</a>
+            <a href="#/sign-up/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-primary">Daftar</a>
           </div>
         </nav>
       </div>
@@ -76,27 +76,26 @@ const Templates = {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="form-inline ml-auto my-2 my-lg-0" id="navbar-search-form">
               <div class="input-group">
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search ..." aria-label="Search" autocomplete="off">
+                <input type="text" class="form-control" id="navbar-search-input" placeholder="Cari ..." aria-label="Cari" autocomplete="off">
 
                 <div class="input-group-append">
-                  <button class="btn btn-outline-primary" type="submit" aria-label="search"><i class="fas fa-search"></i></button>
+                  <button class="btn btn-outline-primary" type="submit" aria-label="Cari"><i class="fas fa-search"></i></button>
                 </div>
               </div>
             </form>
 
             <ul class="navbar-nav mx-lg-4">
               <li class="nav-item home">
-                <a class="nav-link" href="#/explore/"><i class="fas fa-home"></i> <span class="d-lg-none">Home</span></a>
+                <a class="nav-link" href="#/explore/"><i class="fas fa-home"></i> <span class="d-lg-none">Beranda</span></a>
               </li>
               <li class="nav-item new-post">
-                <a class="nav-link" href="#/new-post/"><i class="fas fa-plus-circle"></i> <span class="d-lg-none">New Post</span></a>
+                <a class="nav-link" href="#/new-post/"><i class="fas fa-plus-circle"></i> <span class="d-lg-none">Portofolio Baru</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#/jobs/"><i class="fas fa-briefcase"></i> <span class="d-lg-none">Pekerjaan</span></a>
               </li>
               <li class="nav-item profile">
-                <a class="nav-link" href="#/profile/${username}"><i class="fas fa-user-circle"></i> <span class="d-lg-none">Profile</span></a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="#/sign-out/"><i class="fas fa-sign-out-alt"></i> <span class="d-lg-none">Sign out</span></a>
+                <a class="nav-link" href="#/profile/${username}"><i class="fas fa-user-circle"></i> <span class="d-lg-none">Profil</span></a>
               </li>
             </ul>
           </div>
@@ -121,7 +120,7 @@ const Templates = {
                 <form id="signin-form">
                   <div class="form-group">
                     <label for="identifier">Username/Email</label>
-                    <input type="text" placeholder="Username or Email" class="form-control" id="identifier" autocomplete="off" required>
+                    <input type="text" placeholder="Username atau Email" class="form-control" id="identifier" autocomplete="off" required>
                   </div>
 
                   <div class="form-group">
@@ -131,22 +130,22 @@ const Templates = {
                       <input type="password" placeholder="Password" class="form-control" id="password" autocomplete="off" required>
       
                       <div class="input-group-append">
-                        <button type="button" class="btn btn-light" id="password-toggler" aria-label="show password">
+                        <button type="button" class="btn btn-light" id="password-toggler" aria-label="perlihatkan password">
                           <i class="far fa-eye"></i>
                         </button>
                       </div>
                     </div>
                   </div>
         
-                  <button type="submit" class="btn btn-primary d-block mx-auto">Sign in</button>
+                  <button type="submit" class="btn btn-primary d-block mx-auto">Masuk</button>
                 </form>
               </div>
             </div>
 
             <div style="width: 320px;" class="card shadow-sm mt-3 mx-auto">
               <div class="card-body d-flex justify-content-center">
-                Don't have account?
-                <a href="#/sign-up/" class="ml-2 font-weight-bold text-primary">Sign up</a>
+                Belum punya akun?
+                <a href="#/sign-up/" class="ml-2 font-weight-bold text-primary">Daftar</a>
               </div>
             </div>
           </div>
@@ -188,10 +187,10 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="confirm-password">Confirm Password</label>
+                    <label for="confirm-password">Konfirmasi Password</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Confirm Password" class="form-control" id="confirm-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+                      <input type="password" placeholder="Konfirmasi Password" class="form-control" id="confirm-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
 
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="confirm-password-toggler" aria-label="show password"><i class="far fa-eye"></i></button>
@@ -200,29 +199,43 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="display-name">Display name</label>
-                    <input type="text" placeholder="Display name" class="form-control" id="display-name" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.DISPLAY_NAME}" required>
+                    <label for="display-name">Nama Lengkap</label>
+                    <input type="text" placeholder="Nama Lengkap" class="form-control" id="display-name" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.DISPLAY_NAME}" required>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label for="province">Provinsi</label>
+                    <select class="custom-select" id="province" required>
+                      <option selected value="" disabled>Provinsi</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label for="city">Kota</label>
+                    <select class="custom-select" id="city" required>
+                      <option selected value="" disabled>Silakan pilih provinsi</option>
+                    </select>
                   </div>
 
                   <div class="form-group">
-                    <label for="phone-number">Phone number</label>
-                    <input type="text" placeholder="Ex: 08xxx" class="form-control" id="phone-number" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.PHONE_NUMBER}" required>
+                    <label for="phone-number">Nomor Telepon</label>
+                    <input type="text" placeholder="Contoh: 08xxx" class="form-control" id="phone-number" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.PHONE_NUMBER}" required>
                   </div>
 
                   <div class="form-group">
                     <label for="biodata">Bio</label>
-                    <textarea class="form-control" id="biodata" rows="4" placeholder="Tell something about yourself"></textarea>
+                    <textarea class="form-control" id="biodata" rows="4" placeholder="Ceritakan sesuatu tentang dirimu"></textarea>
                   </div>
         
-                  <button type="submit" class="btn btn-primary d-block mx-auto">Sign up</button>
+                  <button type="submit" class="btn btn-primary d-block mx-auto">Daftar</button>
                 </form>
               </div>
             </div>
 
             <div class="card shadow-sm mt-3 mx-auto">
               <div class="card-body d-flex justify-content-center">
-                Have an account?
-                <a href="#/" class="ml-2 font-weight-bold text-primary">Sign in</a>
+                Sudah memiliki akun?
+                <a href="#/" class="ml-2 font-weight-bold text-primary">Masuk</a>
               </div>
             </div>
           </div>

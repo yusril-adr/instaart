@@ -1,5 +1,6 @@
 const CONFIG = {
   API_BASE_URL: './api',
+  LOCATION_API_BASE_URL: 'https://dev.farizdotid.com/api/daerahindonesia',
   PASSWORD_MIN_LENGTH: 8,
   MONTH: [
     'January',

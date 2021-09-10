@@ -3,6 +3,13 @@
 
   $request = json_decode(file_get_contents('php://input'), true);
   $requestMethod = $_SERVER["REQUEST_METHOD"];
+  if (isset($_SERVER['HTTP_X_AUTH_ID'])) {
+    $authId = $_SERVER['HTTP_X_AUTH_ID'];
+  }
+
+  if (isset($_SERVER['HTTP_X_AUTH_TOKEN'])) {
+    $authToken = $_SERVER['HTTP_X_AUTH_TOKEN'];
+  }
 
   switch ($requestMethod) {
     case 'GET':
@@ -33,9 +40,10 @@
           exit;
         }
       
-        if(isset($_SESSION['username'])) {
-          $user = new User($_SESSION['username']);
-      
+        if(isset($authId) && checkToken($authToken, $authId)) {
+          $username = User::getUserFromId($authId)['username'];
+          $user = new User($username);
+
           echo json_encode($user->getUser());
           exit;
         }
@@ -51,7 +59,9 @@
 
     case 'POST':
       try {
-        if(isset($_SESSION['username'])) errorResponse('You need to logout first');
+        if(isset($authId) && checkToken($authToken, $authId)) {
+          errorResponse('You need to logout first');
+        }
       
         if(isset($request['username'])) {
           $oldUserWithUsername = new User($request['username']);
@@ -67,10 +77,12 @@
       
           $user = User::registerUser($request);
           if ($user) {
-            $user = new User($request['username']);
-            login($request['username'], $request['password']);
-    
-            echo json_encode($user->getUser());
+            $loginResult = login($request['username'], $request['password']);
+
+            $response['user'] = $loginResult;
+            $response['token'] = User::getUserTokenFromId($response['user']['id']);
+
+            echo json_encode($response);
             exit;
           }
         }
@@ -84,29 +96,30 @@
 
     case 'PUT':
       try {
-        if(isset($_SESSION['username'])) {
+        if(isset($authId) && checkToken($authToken, $authId)) {
           $oldUserWithUsername = new User($request['username']);
           $oldUserWithEmail = new User($request['email']);
+
+          $currentUsername = User::getUserFromId($authId)['username'];
+          $currentEmail = User::getUserFromId($authId)['email'];
     
-          if($oldUserWithUsername->getUser() && $request['username'] !== $_SESSION['username']) {
+          if($oldUserWithUsername->getUser() && $request['username'] !== $currentUsername) {
             errorResponse('Username already exist.', 428);
           }
 
-          if($oldUserWithEmail->getUser() && $request['email'] !== $_SESSION['email']) {
+          if($oldUserWithEmail->getUser() && $request['email'] !== $currentEmail) {
             errorResponse('Email already exist.', 428);
           }
 
-          $user = new User($_SESSION['username']);
+          $user = new User($currentUsername);
           $result = $user->updateUser($request);
 
           if ($result) {
-            $_SESSION['username'] = $request['username'];
-            $_SESSION['email'] = $request['email'];
             echo json_encode($result);
             exit;
           }
   
-          errorResponse('Register failed with unknown error.');
+          errorResponse('Update failed with unknown error.');
           exit;
         }
 

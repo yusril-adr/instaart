@@ -9,11 +9,13 @@
   }
 
   try {
-    $loginstatus = login($request['identifier'], $request['password']);
+    $loginResult = login($request['identifier'], $request['password']);
 
-    if($loginstatus) {
+    if($loginResult) {
       $response['status'] = 'success';
       $response['message'] = 'Login successfully.';
+      $response['user'] = $loginResult;
+      $response['token'] = User::getUserTokenFromId($response['user']['id']);
 
       echo json_encode($response);
       exit;

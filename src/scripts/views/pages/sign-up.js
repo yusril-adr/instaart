@@ -4,6 +4,7 @@ import TitleHelper from '../../utils/title-helper';
 import PasswordHelper from '../../utils/password-helper';
 import User from '../../data/user';
 import CONFIG from '../../global/config';
+import InputLocationHelper from '../../utils/input-location-helper';
 
 const signUp = {
   async render() {
@@ -16,8 +17,9 @@ const signUp = {
       return;
     }
 
-    await TitleHelper.setTitle('Sign up');
+    await TitleHelper.setTitle('Daftar');
     await this._initPasswordToggler();
+    await this._initInputLocation();
     await this._formSubmitEvent();
   },
 
@@ -29,6 +31,13 @@ const signUp = {
     const inputConfirmPassword = document.querySelector('#confirm-password');
     const buttonConfirmPassword = document.querySelector('#confirm-password-toggler');
     await PasswordHelper.initTogglerEvent(inputConfirmPassword, buttonConfirmPassword);
+  },
+
+  async _initInputLocation() {
+    const provinceElem = document.querySelector('#province');
+    const cityElem = document.querySelector('#city');
+
+    await InputLocationHelper.init(provinceElem, cityElem);
   },
 
   async _formSubmitEvent() {

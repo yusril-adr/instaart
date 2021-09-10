@@ -63,11 +63,11 @@ module.exports = {
         },
       ],
     }),
-    new InjectManifest({
-      exclude: [/api/, /php/],
-      swSrc: './src/scripts/service-worker.js',
-      swDest: 'service-worker.js',
-    }),
+    // new InjectManifest({
+    //   exclude: [/api/, /php/],
+    //   swSrc: './src/scripts/service-worker.js',
+    //   swDest: 'service-worker.js',
+    // }),
     new CopyWebpackPlugin({
       patterns: [
         {

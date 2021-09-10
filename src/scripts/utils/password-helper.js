@@ -7,7 +7,7 @@ const PasswordHelper = {
 
       input.type = input.type === 'password' ? 'text' : 'password';
 
-      button.ariaLabel = input.type === 'password' ? 'Show password' : 'Hide password';
+      button.ariaLabel = input.type === 'password' ? 'Perlihatkan password' : 'Sembunyikan password';
       button.innerHTML = input.type === 'password' ? Templates.showPassswordToggler() : Templates.hidePasswordToggler();
     });
   },

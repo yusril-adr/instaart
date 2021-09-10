@@ -4,6 +4,13 @@
   $request = json_decode(file_get_contents('php://input'), true);
   $requestMethod = $_SERVER["REQUEST_METHOD"];
 
+  if (isset($_SERVER['HTTP_X_AUTH_ID'])) {
+    $authId = $_SERVER['HTTP_X_AUTH_ID'];
+  }
+  if (isset($_SERVER['HTTP_X_AUTH_TOKEN'])) {
+    $authToken = $_SERVER['HTTP_X_AUTH_TOKEN'];
+  }
+
   switch ($requestMethod) {
     case 'GET':
       if(isset($_GET['username'])) {
@@ -36,12 +43,13 @@
         }
       }
 
-      if (!isset($_SESSION['username'])) {
+      if (!isset($authId) || !checkToken($authToken, $authId)) {
         unauthorizedResponse();
       }
 
       try {
-        $user = new User($_SESSION['username']);
+        $username = User::getUserFromId($authId)['username'];
+        $user = new User($username);
         
         $following = $user->getFollowingUser();
 
@@ -56,12 +64,13 @@
       break;
     
     case 'POST':
-      if (!isset($_SESSION['username'])) {
+      if (!isset($authId) || !checkToken($authToken, $authId)) {
         unauthorizedResponse();
       }
 
       try {
-        $user = new User($_SESSION['username']);
+        $username = User::getUserFromId($authId)['username'];
+        $user = new User($username);
         
         $user->followUser($request['user_id']);
 
@@ -79,12 +88,13 @@
       break;
 
     case 'DELETE':
-      if (!isset($_SESSION['username'])) {
+      if (!isset($authId) || !checkToken($authToken, $authId)) {
         unauthorizedResponse();
       }
 
       try {
-        $user = new User($_SESSION['username']);
+        $username = User::getUserFromId($authId)['username'];
+        $user = new User($username);
         
         $user->unFollowUser($request['user_id']);
 

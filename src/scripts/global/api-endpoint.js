@@ -13,6 +13,8 @@ const API_ENDPOINT = {
   POST_IMAGE: `${CONFIG.API_BASE_URL}/post-image.php`,
   COMMENT: `${CONFIG.API_BASE_URL}/comment.php`,
   SEARCH: `${CONFIG.API_BASE_URL}/search.php`,
+  PROVINCE: `${CONFIG.LOCATION_API_BASE_URL}/provinsi`,
+  CITY: (provinceId) => `${CONFIG.LOCATION_API_BASE_URL}/kota?id_provinsi=${provinceId}`,
 };
 
 export default API_ENDPOINT;

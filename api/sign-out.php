@@ -1,15 +1,16 @@
 <?php 
   require_once './utils/import-helper.php';
-
-  if(!isset($_SESSION["username"])) {
-    unauthorizedResponse();
+  if (isset($_SERVER['HTTP_X_AUTH_ID'])) {
+    $authId = $_SERVER['HTTP_X_AUTH_ID'];
   }
 
-  setcookie('key', '', time()-60*60, '/');
+  if (isset($_SERVER['HTTP_X_AUTH_TOKEN'])) {
+    $authToken = $_SERVER['HTTP_X_AUTH_TOKEN'];
+  }
 
-  $_SESSION = [];
-  session_unset();
-  session_destroy();
+  if(!isset($authId) || !checkToken($authToken, $authId)) {
+    unauthorizedResponse();
+  }
 
   $response['status'] = 'success';
   $response['message'] = 'Logout succesfully.';

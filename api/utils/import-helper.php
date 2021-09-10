@@ -5,6 +5,6 @@
   require_once "./utils/login.php";
   require_once "./utils/error-helper.php";
 
-  checkCookie();
+  cors();
   header('Content-Type: application/json');
 ?>

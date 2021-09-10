@@ -1,18 +1,25 @@
 <?php 
   require_once './utils/import-helper.php';
+  if (isset($_SERVER['HTTP_X_AUTH_ID'])) {
+    $authId = $_SERVER['HTTP_X_AUTH_ID'];
+  }
+  if (isset($_SERVER['HTTP_X_AUTH_TOKEN'])) {
+    $authToken = $_SERVER['HTTP_X_AUTH_TOKEN'];
+  }
 
   if($_SERVER["REQUEST_METHOD"] !== 'GET') {
     errorResponse('This request method is not supprted for this endpoint.', 405);
   }
 
-  if(!isset($_SESSION['id'])) unauthorizedResponse();
+  if(!isset($authId) || !checkToken($authToken, $authId)) unauthorizedResponse();
 
   try {
-    $user = new User($_SESSION['username']);
+    $username = User::getUserFromId($authId)['username'];
+    $user = new User($username);
     $followingData = $user->getFollowing();
 
     $response = [];
-    $following = [ (int) $_SESSION['id'] ];
+    $following = [ (int) $authId ];
 
     foreach($followingData as $id) {
       $following[] = $id;
