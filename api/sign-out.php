@@ -12,6 +12,8 @@
     unauthorizedResponse();
   }
 
+  Token::deleteToken($authToken);
+
   $response['status'] = 'success';
   $response['message'] = 'Logout succesfully.';
 

@@ -54,6 +54,8 @@ const signUp = {
           display_name: event.target['display-name'].value,
           phone_number: event.target['phone-number'].value,
           biodata: event.target.biodata.value,
+          province_id: event.target.province.value,
+          city_id: event.target.city.value,
         };
 
         const confirmPassword = event.target['confirm-password'].value;

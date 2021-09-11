@@ -79,8 +79,8 @@
           if ($user) {
             $loginResult = login($request['username'], $request['password']);
 
-            $response['user'] = $loginResult;
-            $response['token'] = User::getUserTokenFromId($response['user']['id']);
+            $response['user'] = $loginResult['user'];
+            $response['token'] = $loginResult['token'];
 
             echo json_encode($response);
             exit;

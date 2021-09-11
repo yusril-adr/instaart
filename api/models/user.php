@@ -75,26 +75,6 @@
     return false;
   }
 
-  public static function getUserTokenFromId(int $id) {
-    global $conn;
-
-    $result = mysqli_query(
-      $conn, 
-      "SELECT
-        token
-      FROM users 
-      WHERE id = '{$id}';"
-    );
-
-    $user = mysqli_fetch_assoc($result);
-
-    if ($user) {
-      return $user['token'];
-    }
-
-    return false;
-  }
-
   public static function searchUser(string $keyword) {
     global $conn;
 
@@ -403,25 +383,6 @@
 
     if ($user) {
       $this->identifier = $username;
-      return $this->getUser();
-    }
-
-    return false;
-  }
-
-  public function setToken() {
-    global $conn;
-    $newToken = uniqid();
-
-    $user = mysqli_query(
-      $conn, 
-      "UPDATE users 
-      SET
-        token = '{$newToken}'
-      WHERE id = {$this->id};"
-    );
-
-    if ($user) {
       return $this->getUser();
     }
 

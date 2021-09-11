@@ -4,9 +4,10 @@
       $user = new User($identifier);
 
       if ($user->verifyPassword($password)) {
-        $user->setToken();
         $user = $user->getUser();
-        return $user;
+        $result['user'] = $user; 
+        $result['token'] = Token::createToken($user['id']); 
+        return $result;
       }
 
       return false;
@@ -16,10 +17,8 @@
 
   }
 
-  function checkToken($token, $id) {
-    $userToken = User::getUserTokenFromId($id);
-    
-    return $token == $userToken;
+  function checkToken($token, $userId) {
+    return Token::checkToken($token, $userId);
   }
 
   function cors() {

@@ -14,8 +14,8 @@
     if($loginResult) {
       $response['status'] = 'success';
       $response['message'] = 'Login successfully.';
-      $response['user'] = $loginResult;
-      $response['token'] = User::getUserTokenFromId($response['user']['id']);
+      $response['user'] = $loginResult['user'];
+      $response['token'] = $loginResult['token'];
 
       echo json_encode($response);
       exit;

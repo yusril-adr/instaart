@@ -1,8 +1,16 @@
 import API_ENDPOINT from '../global/api-endpoint';
+import Auth from './auth';
 
 const User = {
   async getUser() {
-    const response = await fetch(API_ENDPOINT.USER);
+    const { authId, authToken } = await Auth.getAuth();
+
+    const response = await fetch(API_ENDPOINT.USER, {
+      headers: {
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
+    });
     if (response.status === 500) {
       throw new Error('There was an error from the server, or server maintenance occured.');
     }
@@ -40,9 +48,15 @@ const User = {
   }) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
+    const { authId, authToken } = await Auth.getAuth();
+
     const response = await fetch(API_ENDPOINT.USER, {
       method: 'PUT',
-      'Content-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
       body: JSON.stringify({
         username,
         display_name,
@@ -69,9 +83,15 @@ const User = {
   }) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
+    const { authId, authToken } = await Auth.getAuth();
+
     const response = await fetch(API_ENDPOINT.PASSWORD, {
       method: 'PUT',
-      'Content-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
       body: JSON.stringify({
         new_password,
         current_password,
@@ -92,8 +112,14 @@ const User = {
   async updatePicture(formData) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
+    const { authId, authToken } = await Auth.getAuth();
+
     const response = await fetch(API_ENDPOINT.USER_PICTURE, {
       method: 'POST',
+      headers: {
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
       body: formData,
     });
 
@@ -111,9 +137,15 @@ const User = {
   async removePicture() {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
+    const { authId, authToken } = await Auth.getAuth();
+
     const response = await fetch(API_ENDPOINT.USER_PICTURE, {
       method: 'POST',
-      'Content-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
       body: JSON.stringify({ setDefault: true }),
     });
 
@@ -135,12 +167,16 @@ const User = {
     biodata,
     email,
     phone_number,
+    province_id,
+    city_id,
   }) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
     const response = await fetch(API_ENDPOINT.USER, {
       method: 'POST',
-      'Content-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         username,
         password,
@@ -148,6 +184,8 @@ const User = {
         biodata,
         email,
         phone_number,
+        province_id,
+        city_id,
       }),
     });
 
@@ -159,7 +197,9 @@ const User = {
 
     if (response.status !== 200) throw new Error(responseJSON.message);
 
-    return responseJSON;
+    await Auth.setAuth(responseJSON.user.id, responseJSON.token);
+
+    return responseJSON.user;
   },
 
   async signIn(identifier, password) {
@@ -167,7 +207,9 @@ const User = {
 
     const response = await fetch(API_ENDPOINT.SIGN_IN, {
       method: 'POST',
-      'Content-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         identifier,
         password,
@@ -182,13 +224,23 @@ const User = {
 
     if (response.status !== 200) throw new Error(responseJSON.message);
 
-    return responseJSON;
+    await Auth.setAuth(responseJSON.user.id, responseJSON.token);
+
+    return responseJSON.user;
   },
 
   async signOut() {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
-    const response = await fetch(API_ENDPOINT.SIGN_OUT);
+    const { authId, authToken } = await Auth.getAuth();
+
+    const response = await fetch(API_ENDPOINT.SIGN_OUT, {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
+    });
 
     if (response.status === 500) {
       throw new Error('There was an error from the server, or server maintenance occured.');
@@ -198,15 +250,23 @@ const User = {
 
     if (response.status !== 200) throw new Error(responseJSON.message);
 
+    await Auth.clear();
+
     return responseJSON;
   },
 
   async followUser(userId) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
+    const { authId, authToken } = await Auth.getAuth();
+
     const response = await fetch(API_ENDPOINT.FOLLOWING, {
       method: 'POST',
-      'Content-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
       body: JSON.stringify({ user_id: userId }),
     });
 
@@ -224,9 +284,15 @@ const User = {
   async unFollowUser(userId) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
+    const { authId, authToken } = await Auth.getAuth();
+
     const response = await fetch(API_ENDPOINT.FOLLOWING, {
       method: 'DELETE',
-      'Content-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
       body: JSON.stringify({ user_id: userId }),
     });
 
@@ -244,9 +310,15 @@ const User = {
   async likePost(postId) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
+    const { authId, authToken } = await Auth.getAuth();
+
     const response = await fetch(API_ENDPOINT.LIKE_POST, {
       method: 'POST',
-      'Content-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
       body: JSON.stringify({ post_id: postId }),
     });
 
@@ -264,9 +336,15 @@ const User = {
   async dislikePost(postId) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
+    const { authId, authToken } = await Auth.getAuth();
+
     const response = await fetch(API_ENDPOINT.LIKE_POST, {
       method: 'DELETE',
-      'Content-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
       body: JSON.stringify({ post_id: postId }),
     });
 
@@ -284,9 +362,15 @@ const User = {
   async commentPost(inputData) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
+    const { authId, authToken } = await Auth.getAuth();
+
     const response = await fetch(API_ENDPOINT.COMMENT, {
       method: 'POST',
-      'Content-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
       body: JSON.stringify(inputData),
     });
 
