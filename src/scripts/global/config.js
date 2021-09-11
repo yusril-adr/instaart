@@ -3,6 +3,7 @@ const CONFIG = {
   LOCATION_API_BASE_URL: 'https://dev.farizdotid.com/api/daerahindonesia',
   AUTH_ID_KEY: 'auth_id',
   AUTH_TOKEN_KEY: 'auth_token',
+  ENC_KEY: 'instaart123',
   PASSWORD_MIN_LENGTH: 8,
   MONTH: [
     'January',

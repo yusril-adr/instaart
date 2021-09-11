@@ -6,7 +6,7 @@
       if ($user->verifyPassword($password)) {
         $user = $user->getUser();
         $result['user'] = $user; 
-        $result['token'] = Token::createToken($user['id']); 
+        $result['token'] = Token::createToken((int) $user['id']); 
         return $result;
       }
 
@@ -18,7 +18,7 @@
   }
 
   function checkToken($token, $userId) {
-    return Token::checkToken($token, $userId);
+    return Token::checkToken($token, (int) $userId);
   }
 
   function cors() {

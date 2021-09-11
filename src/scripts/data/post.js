@@ -1,8 +1,16 @@
 import API_ENDPOINT from '../global/api-endpoint';
+import Auth from './auth';
 
 const Post = {
   async getExplore() {
-    const response = await fetch(API_ENDPOINT.EXPLORE);
+    const { authId, authToken } = await Auth.getAuth();
+
+    const response = await fetch(API_ENDPOINT.EXPLORE, {
+      headers: {
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
+    });
 
     if (response.status === 500) {
       throw new Error('There was an error from the server, or server maintenance occured.');
@@ -15,7 +23,14 @@ const Post = {
   },
 
   async getPost(id) {
-    const response = await fetch(`${API_ENDPOINT.POST}?id=${id}`);
+    const { authId, authToken } = await Auth.getAuth();
+
+    const response = await fetch(`${API_ENDPOINT.POST}?id=${id}`, {
+      headers: {
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
+    });
 
     if (response.status === 500) {
       throw new Error('There was an error from the server, or server maintenance occured.');
@@ -33,8 +48,14 @@ const Post = {
   async newPost(formData, formImage) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
+    const { authId, authToken } = await Auth.getAuth();
+
     const responseImg = await fetch('./api/post-image.php', {
       method: 'POST',
+      headers: {
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
       body: formImage,
     });
 
@@ -68,10 +89,14 @@ const Post = {
   async updatePost(inputData) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
+    const { authId, authToken } = await Auth.getAuth();
+
     const response = await fetch(`${API_ENDPOINT.POST}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
       },
       body: JSON.stringify(inputData),
     });
@@ -90,10 +115,14 @@ const Post = {
   async deletePost(postId) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
+    const { authId, authToken } = await Auth.getAuth();
+
     const response = await fetch(`${API_ENDPOINT.POST}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
       },
       body: JSON.stringify({ post_id: postId }),
     });
