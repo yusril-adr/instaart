@@ -102,16 +102,27 @@ const Templates = {
 
             <ul class="navbar-nav mx-lg-4">
               <li class="nav-item home">
-                <a class="nav-link" href="#/explore/"><i class="fas fa-home"></i> <span class="d-lg-none">Beranda</span></a>
+                <a class="nav-link d-flex align-items-center" href="#/explore/"><i class="fas fa-home"></i> <span class="d-lg-none ml-2">Beranda</span></a>
               </li>
+              
               <li class="nav-item new-post">
-                <a class="nav-link" href="#/new-post/"><i class="fas fa-plus-circle"></i> <span class="d-lg-none">Portofolio Baru</span></a>
+                <a class="nav-link d-flex align-items-center" href="#/new-post/"><i class="fas fa-plus-circle"></i> <span class="d-lg-none ml-2">Portofolio Baru</span></a>
               </li>
+
               <li class="nav-item">
-                <a class="nav-link" href="#/jobs/"><i class="fas fa-briefcase"></i> <span class="d-lg-none">Pekerjaan</span></a>
+                <a class="nav-link d-flex align-items-center" href="#/bookmarks/"><i class="fas fa-bookmark"></i> <span class="d-lg-none ml-2">Disimpan</span></a>
               </li>
+
+              <li class="nav-item">
+                <a class="nav-link d-flex align-items-center" href="#/favorite/"><i class="fas fa-heart"></i> <span class="d-lg-none ml-2">Disukai</span></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link d-flex align-items-center" href="#/jobs/"><i class="fas fa-briefcase"></i> <span class="d-lg-none ml-2">Pekerjaan</span></a>
+              </li>
+
               <li class="nav-item profile">
-                <a class="nav-link" href="#/profile/${username}"><i class="fas fa-user-circle"></i> <span class="d-lg-none">Profil</span></a>
+                <a class="nav-link d-flex align-items-center" href="#/profile/${username}"><i class="fas fa-user-circle"></i> <span class="d-lg-none ml-2">Profil</span></a>
               </li>
             </ul>
           </div>
@@ -263,6 +274,7 @@ const Templates = {
   explorePage() {
     return `
       <div class="container" id="explore">
+        <h1 class="text-center">Beranda</h1>
         <div class="row post-list">
           <div class="loading-container col-12">
             <div class="spinner-border text-secondary" role="status">
