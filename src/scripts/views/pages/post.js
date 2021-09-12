@@ -71,7 +71,7 @@ const post = {
     ));
 
     if (isBookmarked) button.classList.add('bookmarked');
-    else if(button.classList.contains('bookmarked')) button.classList.remove('bookmarked');
+    else if (button.classList.contains('bookmarked')) button.classList.remove('bookmarked');
 
     button.innerHTML = isBookmarked ? Templates.bookmarkedIcon() : Templates.bookmarkIcon();
   },

@@ -278,8 +278,8 @@ const Templates = {
     return `
       <div class="empty-result-container">
         <i class="far fa-smile-wink h1 text-secondary"></i>
-        <span class="h4 text-secondary">There are no post right now.</span>
-        <span class="mt-4 h6 text-secondary">Submit your first design <a href="#/new-post/" class="text-primary">Here</a>.</span>
+        <span class="h4 text-secondary">Belum ada desain untuk saat ini.</span>
+        <span class="mt-4 h6 text-secondary">Kirim desain pertamamu <a href="#/new-post/" class="text-primary">Disini</a>.</span>
       </div>
     `;
   },
@@ -406,9 +406,9 @@ const Templates = {
     return `
       <div class="empty-result-container">
         <img src="${CONFIG.IMAGE_PATH.ILLUST}/404.png" alt="404 Illustration" class="empty-img">
-        <span class="text-secondary mt-2 h1">User not found.</span>
+        <span class="text-secondary mt-2 h1 text-center">Pengguna tidak ditemukan.</span>
         <span class="mt-2 h6 text-secondary">
-          Find best design <a href="#/" class="text-primary">Here</a>.
+          Temukan desain terbaik <a href="#/" class="text-primary">Disini</a>.
         </span>
       </div>
     `;
@@ -695,9 +695,9 @@ const Templates = {
     return `
       <div class="empty-result-container">
         <img src="${CONFIG.IMAGE_PATH.ILLUST}/404.png" alt="404 Illustration" class="empty-img">
-        <h1 class="text-secondary mt-2">Post not found.</h1>
+        <h1 class="text-secondary mt-2 text-center">Desain tidak ditemukan.</h1>
         <h2 class="mt-2 h6 text-secondary">
-          Find best design <a href="#/" class="text-primary">Here</a>.
+          Temukan desain terbaik <a href="#/" class="text-primary">Disini</a>.
         </h2>
       </div>
     `;
