@@ -275,10 +275,12 @@ const Templates = {
     return `
       <div class="container" id="explore">
         <h1 class="text-center">Beranda</h1>
-        <div class="row post-list">
-          <div class="loading-container col-12">
-            <div class="spinner-border text-secondary" role="status">
-              <span class="sr-only">Loading...</span>
+        <div class="explore-content">
+          <div class="row post-list">
+            <div class="loading-container col-12">
+              <div class="spinner-border text-secondary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
             </div>
           </div>
         </div>

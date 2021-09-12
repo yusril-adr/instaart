@@ -22,7 +22,7 @@ const explore = {
       const postList = await Post.getExplore();
 
       if (postList.length < 1) {
-        const container = document.querySelector('.container#explore');
+        const container = document.querySelector('.container#explore .explore-content');
         container.innerHTML = Templates.exploreEmptyList();
         return;
       }

@@ -250,6 +250,7 @@
       $info = $this->getPost();
       unlink("../public/images/posts/{$info['image']}");
 
+      $this->deleteBookmarks();
       $this->deleteLikes();
       $this->deleteComments();
 
@@ -261,6 +262,18 @@
 
       if (!$result) throw new Exception(mysqli_error($conn));
 
+      return $result;
+    }
+
+    private function deleteBookmarks() {
+      global $conn;
+  
+      $result = mysqli_query(
+        $conn, 
+        "DELETE FROM bookmark_posts
+        WHERE post_id = {$this->id};"
+      );
+  
       return $result;
     }
 
