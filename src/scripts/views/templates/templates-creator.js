@@ -2,6 +2,14 @@ import CONFIG from '../../global/config';
 import DateHelper from '../../utils/date-helper';
 
 const Templates = {
+  optionWithValue(text, value) {
+    return `<option value=${value}>${text}</option>`;
+  },
+
+  optionWithoutValue(text) {
+    return `<option selected value="" disabled>${text}</option>`;
+  },
+
   hidePasswordToggler() {
     return `
       <i class="far fa-eye-slash"></i>
@@ -292,27 +300,32 @@ const Templates = {
           
           <div class="card-body">
             <div class="d-flex align-items-center mb-2">
-              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'dislike this design' : 'like this design'}">
+              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
                 ${post.likes.includes(userId)
     ? this.likedIcon()
     : this.likeIcon()
 }
               </button>
 
-              <span class="pb-2px">${post.likes.length}<span class="sr-only"> like this design</span></span>
+              <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
 
-              <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="comment this design">
+              <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
                 <i class="far fa-comment"></i>
               </a>
 
-              <span class="pb-2px">${post.comments.length}<span class="sr-only"> commented this design</span></span>
+              <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
+              
+              
+              <i class="far fa-eye ml-2 mr-1"></i>
+              
+              <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
             </div>
 
             <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
           </div>
 
           <div class="card-footer d-flex">
-            <span class="d-block mx-auto">${month} ${date}, ${year}</span>
+            <span class="d-block mx-auto">${date} ${month} ${year}</span>
           </div>
         </div>
       </div>
@@ -325,10 +338,8 @@ const Templates = {
         <div class="row">
           <div class="col-sm-12 col-lg-10 offset-lg-1">
             <div class="card shadow-sm">
-              <div class="bg-primary bg-cubes min-h-200px"></div>
-
-              <div class="card-body position-relative d-flex flex-column align-items-center">
-                <div class="user-image-lg position-absolute -top-3 bg-grey user-image-border">
+              <div class="card-body d-flex flex-column align-items-center">
+                <div class="user-image-lg bg-grey user-image-border">
                   <img src="${CONFIG.IMAGE_PATH.USER}/default_user.png" alt="Profile image" class="user-image-element">
                 </div>
 
@@ -458,7 +469,7 @@ const Templates = {
           <button 
             post-id="${post.id}" 
             class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" 
-            aria-label="${post.likes.includes(userId) ? 'dislike this design' : 'like this design'}"
+            aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}"
           >
               ${post.likes.includes(userId)
     ? this.likedIcon()
@@ -466,20 +477,24 @@ const Templates = {
 }
           </button>
 
-            <span class="pb-2px">${post.likes.length}<span class="sr-only"> like this design</span></span>
+            <span class="pb-2px">${post.likes.length}<span class="sr-only"> menyukai desain ini</span></span>
 
-            <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="comment this design">
+            <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
               <i class="far fa-comment"></i>
             </a>
 
-            <span class="pb-2px">${post.comments.length}<span class="sr-only"> commented this design</span></span>
+            <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari desain ini</span></span>
+
+            <i class="far fa-eye ml-2 mr-1"></i>
+              
+            <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
           </div>
 
           <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
         </div>
 
         <div class="card-footer d-flex">
-          <span class="d-block mx-auto">${month} ${date}, ${year}</span>
+          <span class="d-block mx-auto">${date} ${month} ${year}</span>
         </div>
       </div>
     `;
@@ -713,14 +728,21 @@ const Templates = {
           </button>
 
           <h1 class="h2 font-weight-bold text-white text-center mt-2">${post.title}</h1>
-          <span class="text-secondary d-block text-center my-2">${month} ${date}, ${year}</span>
+          <span class="text-secondary d-block text-center my-2">${date} ${month} ${year}</span>
           <div class="d-flex justify-content-center align-items-center text-secondary">
             <i class="far fa-thumbs-up"></i>
             <span class="ml-1">${post.likes.length}<span class="sr-only"> like this design</span></span>
 
             <i class="far fa-comment ml-2"></i>
             <span class="ml-1">${post.comments.length}<span class="sr-only"> commented this design</span></span>
+
+            <i class="far fa-eye ml-2"></i>
+            <span class="ml-1">${post.insight}<span class="sr-only"> commented this design</span></span>
           </div>
+
+          <button type="button" class="btn btn-primary d-block mx-auto mt-4" id="share-btn">
+          <i class="fas fa-share-alt mr-1"></i> Bagikan
+          </button>
         </div>
 
         <div class="card-body">
@@ -795,7 +817,7 @@ const Templates = {
         <div class="d-flex flex-column">
           <div class="d-flex align-items-center">
             <a href="#/profile/${comment.username}" class="font-weight-bold text-decoration-none hover:text-primary">${comment.username}</a>
-            <span class="text-sm ml-1">| ${month} ${date}, ${year}</span>
+            <span class="text-sm ml-1">| ${date} ${month} ${year}</span>
           </div>
 
           <span>${comment.body}</span>
@@ -817,12 +839,12 @@ const Templates = {
           <div class="col-sm-12 col-md-6 offset-md-3">
             <div class="card shadow-sm mt-3 mx-auto">
               <div class="card-body">
-                <span class="card-title d-block font-weight-bold h3 text-center mb-3">New post</span>
+                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Portofolio Baru</span>
 
                 <form id="post-form">
                   <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" placeholder="Title" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.POST.TITLE}" required>
+                    <label for="title">Judul</label>
+                    <input type="text" placeholder="Judul" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.POST.TITLE}" required>
                   </div>
 
                   <div class="form-group">
@@ -830,21 +852,27 @@ const Templates = {
                     <textarea class="form-control" id="caption" rows="3" placeholder="Caption"></textarea>
                   </div>
 
-                  <div class="form-group mb-4">
-                    <label for="user-collaborator">Collaborator</label>
-                    <select class="form-control custom-select w-100" id="user-collaborator" multiple="multiple">
+                  <div class="form-group mb-3">
+                    <label for="colors">Warna</label>
+                    <select class="custom-select" id="colors" required>
+                    </select>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label for="categories">Kategori</label>
+                    <select class="custom-select" id="categories" required>
                     </select>
                   </div>
 
                   <div class="form-group">
-                    <label for="post-image">File Upload</label>
+                    <label for="post-image">Upload File</label>
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="post-image" required>
-                      <label class="custom-file-label" for="post-image">Choose file</label>
+                      <label class="custom-file-label" for="post-image">Pilih File</label>
                     </div>
                   </div>
         
-                  <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Post</button>
+                  <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Buat</button>
                 </form>
               </div>
             </div>
@@ -861,22 +889,34 @@ const Templates = {
           <div class="col-sm-12 col-md-6 offset-md-3">
             <div class="card shadow-sm mt-3 mx-auto">
               <div class="card-body">
-                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Edit post</span>
+                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Edit portofolio</span>
 
                 <form id="post-form">
                   <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" placeholder="Title" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.POST.TITLE} required">
+                    <label for="title">Judul</label>
+                    <input type="text" placeholder="Judul" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.POST.TITLE} required">
                   </div>
 
                   <div class="form-group">
                     <label for="caption">Caption</label>
                     <textarea class="form-control" id="caption" rows="4" placeholder="Caption"></textarea>
                   </div>
+
+                  <div class="form-group mb-3">
+                    <label for="colors">Warna</label>
+                    <select class="custom-select" id="colors" required>
+                    </select>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label for="categories">Kategori</label>
+                    <select class="custom-select" id="categories" required>
+                    </select>
+                  </div>
         
                   <div class="d-flex justify-content-evenly align-items-center">
                     <button type="button" id="delete-button" class="btn btn-danger d-block mx-auto mt-4">Delete</button>
-                    <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Save</button>
+                    <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Simpan</button>
                   </div>
                 </form>
               </div>

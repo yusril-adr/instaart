@@ -5,8 +5,6 @@ const User = {
   async getUser() {
     const { authId, authToken } = await Auth.getAuth();
 
-    console.log(authId, authToken);
-
     const response = await fetch(API_ENDPOINT.USER, {
       headers: {
         'X-Auth-Id': authId,

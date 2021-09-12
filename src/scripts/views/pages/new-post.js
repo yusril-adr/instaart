@@ -1,11 +1,11 @@
 import Swal from 'sweetalert2';
-import $ from 'jquery';
 import bsCustomFileInput from 'bs-custom-file-input';
 import Templates from '../templates/templates-creator';
 import TitleHelper from '../../utils/title-helper';
 import Post from '../../data/post';
 import CONFIG from '../../global/config';
-import API_ENDPOINT from '../../global/api-endpoint';
+import Colors from '../../data/colors';
+import Categories from '../../data/categories';
 
 const newPost = {
   async render() {
@@ -23,61 +23,48 @@ const newPost = {
 
     await TitleHelper.setTitle('New Post');
 
-    await this._initCollaborator();
+    await this._initColors();
+    await this._initCategories();
 
     await this._initSubmitEvent();
   },
 
-  async _initCollaborator() {
-    const formatRepo = (user) => {
-      if (user.loading) {
-        return user.username;
-      }
+  async _initColors() {
+    try {
+      const colorsElem = document.querySelector('#colors');
 
-      const $container = $(`
-      <div class="w-100">
-        <img class="w-100" src="/images/users/${user.image}">
-        <span>${user.username}</span>
-      </div>
-    `);
+      const colors = await Colors.getColors();
 
-      return $container;
-    };
+      colorsElem.innerHTML = colors.map(({ id, name }) => Templates.optionWithValue(name, id));
+    } catch (error) {
+      const warn = await Swal.fire(
+        'Oops ...',
+        error.message,
+        'error',
+      );
 
-    const formatRepoSelection = (user) => user.username || user.display_name;
+      if (warn.isConfirmed) window.location.href = '#/';
+    }
+  },
 
-    $('#user-collaborator').select2({
-      ajax: {
-        url: API_ENDPOINT.SEARCH,
-        dataType: 'json',
-        delay: 250,
-        multiple: true,
-        data(params) {
-          return {
-            keyword: params.term, // search term
-            page: params.page,
-          };
-        },
-        processResults(data, params) {
-          // parse the results into the format expected by Select2
-          // since we are using custom formatting functions we do not need to
-          // alter the remote JSON data, except to indicate that infinite
-          // scrolling can be used
-          params.page = params.page || 1;
-          return {
-            results: data.user,
-            pagination: {
-              more: (params.page * 30) < data.total_count,
-            },
-          };
-        },
-        cache: true,
-      },
-      minimumInputLength: 1,
-      placeholder: 'Collaborator username',
-      templateResult: formatRepo,
-      templateSelection: formatRepoSelection,
-    });
+  async _initCategories() {
+    try {
+      const categoriesElem = document.querySelector('#categories');
+
+      const categories = await Categories.getCategories();
+
+      categoriesElem.innerHTML = categories.map(({ id, name }) => (
+        Templates.optionWithValue(name, id)
+      ));
+    } catch (error) {
+      const warn = await Swal.fire(
+        'Oops ...',
+        error.message,
+        'error',
+      );
+
+      if (warn.isConfirmed) window.location.href = '#/';
+    }
   },
 
   async _initSubmitEvent() {
@@ -86,12 +73,12 @@ const newPost = {
       event.stopPropagation();
       event.preventDefault();
 
-      // const collaborators = $('#user-collaborator').select2('data');
-
       try {
         const inputData = {
           title: event.target.title.value,
           caption: event.target.caption.value,
+          color_id: event.target.colors.value,
+          category_id: event.target.categories.value,
         };
 
         await this._formValidation(inputData);

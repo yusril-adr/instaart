@@ -33,9 +33,12 @@
 
       $query = "SELECT 
        posts.id,
+       posts.color_id,
+       posts.category_id,
        posts.image,
        posts.title,
        posts.date,
+       posts.insight,
        users.image as user_image,
        users.username
        FROM posts 
@@ -62,7 +65,7 @@
       return $posts;
     }
 
-    public static function newPost($data, int $id) {
+    public static function newPost($data, int $userId) {
       global $conn;
 
       $title = htmlspecialchars($data['title']);
@@ -74,11 +77,15 @@
       $result = mysqli_query($conn,
       "INSERT INTO posts (
         user_id,
-        title, 
-        caption, 
+        category_id,
+        color_id,
+        title,
+        caption,
         image
       ) values (
-        {$id}, 
+        '{$userId}',
+        '{$data['category_id']}',
+        '{$data['color_id']}',
         '{$title}', 
         '{$caption}',  
         '{$data['image']}'
@@ -118,11 +125,14 @@
         $conn, 
         "SELECT 
         posts.id,
+        posts.color_id,
+        posts.category_id,
         posts.title,
         posts.caption,
         posts.image,
         posts.date,
         posts.user_id,
+        posts.insight,
         users.image as user_image,
         users.username
       FROM `posts`
@@ -190,6 +200,25 @@
       return $comments;
     }
 
+    public function increaseInsight() {
+      global $conn;
+
+      $currentInsight = (int) $this->getPost()['insight'];
+      $currentInsight++;
+
+      $result = mysqli_query(
+        $conn, 
+        "UPDATE posts
+        SET
+          insight = '{$currentInsight}'
+        WHERE id = {$this->id};"
+      );
+
+      if (!$result) throw new Exception('Post not found.', 404);
+
+      return $result;
+    }
+
     public function updatePost($data) {
       global $conn;
 
@@ -204,7 +233,9 @@
         "UPDATE posts
         SET
           title = '$title',
-          caption = '{$caption}'
+          caption = '{$caption}',
+          color_id = '{$data['color_id']}',
+          category_id = '{$data['category_id']}'
         WHERE id = {$this->id};"
       );
 

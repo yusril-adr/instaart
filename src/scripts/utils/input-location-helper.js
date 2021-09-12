@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import Location from '../data/location';
+import Templates from '../views/templates/templates-creator';
 
 const InputLocationHelper = {
   async init(provinceElem, cityElem) {
@@ -15,9 +16,9 @@ const InputLocationHelper = {
     try {
       const provinces = await Location.getProvinces();
 
-      provinceElem.innerHTML = '<option selected value="" disabled>Provinsi</option>';
+      provinceElem.innerHTML = Templates.optionWithoutValue('Provinsi');
       provinces.forEach(({ id, nama }) => {
-        provinceElem.innerHTML += `<option value=${id}>${nama}</option>`;
+        provinceElem.innerHTML += Templates.optionWithValue(nama, id);
       });
     } catch (error) {
       await Swal.fire(

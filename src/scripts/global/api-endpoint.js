@@ -9,6 +9,8 @@ const API_ENDPOINT = {
   EXPLORE: `${CONFIG.API_BASE_URL}/explore.php`,
   FOLLOWING: `${CONFIG.API_BASE_URL}/following.php`,
   LIKE_POST: `${CONFIG.API_BASE_URL}/like.php`,
+  CATEGORIES: `${CONFIG.API_BASE_URL}/categories.php`,
+  COLORS: `${CONFIG.API_BASE_URL}/colors.php`,
   POST: `${CONFIG.API_BASE_URL}/post.php`,
   POST_IMAGE: `${CONFIG.API_BASE_URL}/post-image.php`,
   COMMENT: `${CONFIG.API_BASE_URL}/comment.php`,

@@ -4,6 +4,8 @@ import UrlParser from '../../routes/url-parser';
 import TitleHelper from '../../utils/title-helper';
 import Post from '../../data/post';
 import CONFIG from '../../global/config';
+import Colors from '../../data/colors';
+import Categories from '../../data/categories';
 
 const editPost = {
   async render() {
@@ -26,9 +28,49 @@ const editPost = {
     }
 
     await TitleHelper.setTitle(`Edit ${post.title}`);
+    await this._initColors();
+    await this._initCategories();
     await this._setDefaultValue(post);
     await this._submitEvent(post);
     await this._initDeleteEvent(post);
+  },
+
+  async _initColors() {
+    try {
+      const colorsElem = document.querySelector('#colors');
+
+      const colors = await Colors.getColors();
+
+      colorsElem.innerHTML = colors.map(({ id, name }) => Templates.optionWithValue(name, id));
+    } catch (error) {
+      const warn = await Swal.fire(
+        'Oops ...',
+        error.message,
+        'error',
+      );
+
+      if (warn.isConfirmed) window.location.href = '#/';
+    }
+  },
+
+  async _initCategories() {
+    try {
+      const categoriesElem = document.querySelector('#categories');
+
+      const categories = await Categories.getCategories();
+
+      categoriesElem.innerHTML = categories.map(({ id, name }) => (
+        Templates.optionWithValue(name, id)
+      ));
+    } catch (error) {
+      const warn = await Swal.fire(
+        'Oops ...',
+        error.message,
+        'error',
+      );
+
+      if (warn.isConfirmed) window.location.href = '#/';
+    }
   },
 
   async _setDefaultValue(post) {
@@ -37,6 +79,12 @@ const editPost = {
 
     const caption = document.querySelector('textarea#caption');
     caption.value = post.caption;
+
+    const color = document.querySelector(`#colors option[value="${post.color_id}"]`);
+    color.setAttribute('selected', '');
+
+    const category = document.querySelector(`#categories option[value="${post.category_id}"]`);
+    category.setAttribute('selected', '');
   },
 
   async _submitEvent(post) {
@@ -50,6 +98,8 @@ const editPost = {
           post_id: post.id,
           title: event.target.title.value,
           caption: event.target.caption.value,
+          color_id: event.target.colors.value,
+          category_id: event.target.categories.value,
         };
 
         await this._formValidation(inputData);

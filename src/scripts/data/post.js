@@ -22,10 +22,10 @@ const Post = {
     return responseJSON;
   },
 
-  async getPost(id) {
+  async getPost(id, { insight = false } = {}) {
     const { authId, authToken } = await Auth.getAuth();
 
-    const response = await fetch(`${API_ENDPOINT.POST}?id=${id}`, {
+    const response = await fetch(`${API_ENDPOINT.POST}?id=${id}&insight=${insight ? 1 : ''}`, {
       headers: {
         'X-Auth-Id': authId,
         'X-Auth-Token': authToken,
@@ -72,6 +72,8 @@ const Post = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
       },
       body: JSON.stringify({ ...formData, image: imageName }),
     });

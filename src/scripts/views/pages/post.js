@@ -10,7 +10,7 @@ const post = {
     return Templates.postPage();
   },
 
-  async afterRender(user) {
+  async afterRender(user, { withInsight = true } = {}) {
     const postId = await UrlParser.parseActiveUrlWithoutCombiner().verb;
 
     if (!postId) {
@@ -18,13 +18,13 @@ const post = {
       return;
     }
 
-    await this._renderPost(postId, user);
+    await this._renderPost(postId, user, withInsight);
   },
 
-  async _renderPost(postId, user) {
+  async _renderPost(postId, user, withInsight) {
     let postData;
     try {
-      postData = await Post.getPost(postId);
+      postData = await Post.getPost(postId, { insight: withInsight });
     } catch (error) {
       await Swal.fire(
         'Oops ...',
@@ -94,6 +94,7 @@ const post = {
 
   async _initEvent(user, postData) {
     await this._initLikeEvent(user, postData);
+    await this._initShareEvent(postData);
     await this._initCommentFormEvent(user, postData);
   },
 
@@ -121,7 +122,7 @@ const post = {
         button.ariaLabel = isLiked ? 'dislike this design' : 'like this design';
         button.classList.toggle('liked');
 
-        return this.afterRender(user);
+        return this.afterRender(user, { withInsight: false });
       } catch (error) {
         return Swal.fire(
           'Oops ...',
@@ -129,6 +130,21 @@ const post = {
           'error',
         );
       }
+    });
+  },
+
+  async _initShareEvent() {
+    const button = document.querySelector('#share-btn');
+
+    button.addEventListener('click', async (event) => {
+      event.stopPropagation();
+
+      navigator.clipboard.writeText(window.location.href);
+
+      await Swal.fire({
+        icon: 'success',
+        title: 'Tautan berhasil disalin dan siap untuk dibagikan',
+      });
     });
   },
 
@@ -145,7 +161,7 @@ const post = {
         };
 
         await User.commentPost(inputData);
-        await this.afterRender(user);
+        await this.afterRender(user, { withInsight: false });
       } catch (error) {
         await Swal.fire(
           'Oops ...',

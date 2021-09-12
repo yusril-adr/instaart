@@ -17,6 +17,10 @@
         if(isset($_GET['id'])) {
           $post = new Post((int) $_GET['id']);
 
+          if(isset($_GET['insight']) && $_GET['insight'] !== '') {
+            $post->increaseInsight();
+          }
+
           $result = $post->getPost();
 
           echo json_encode($result);
