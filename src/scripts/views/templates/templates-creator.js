@@ -35,6 +35,14 @@ const Templates = {
     `;
   },
 
+  bookmarkIcon() {
+    return '<i class="far fa-bookmark text-lg"></i>';
+  },
+
+  bookmarkedIcon() {
+    return '<i class="fas fa-bookmark text-lg"></i>';
+  },
+
   header() {
     return `
       <div class="container">
@@ -712,8 +720,8 @@ const Templates = {
           </a>
         </div>
 
-        <a href="${CONFIG.IMAGE_PATH.POST}/${post.image}" target="_blank" class="btn btn-outline-primary ml-auto">Full
-          image</a>
+        <button class="bg-transparent border-0 ml-auto text-primary" id="bookmark">
+        </button>
       </div>
 
       <div class="card shadow mt-4">

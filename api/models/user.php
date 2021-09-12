@@ -169,6 +169,7 @@
     if ($user) {
       $user['followers'] = $this->getFollowers();
       $user['following'] = $this->getFollowing();
+      $user['bookmark_posts'] = $this->getBookmarkedPosts();
       return $user;
     }
 
@@ -261,6 +262,38 @@
     return $followers;
   }
 
+  public function getBookmarkedPosts() {
+    global $conn;
+
+    $result = mysqli_query(
+      $conn, 
+      "SELECT
+        posts.id,
+        posts.color_id,
+        posts.category_id,
+        posts.image,
+        posts.title,
+        posts.date,
+        posts.insight,
+        users.image as user_image,
+        users.username
+       FROM posts 
+       INNER JOIN users
+       ON posts.user_id = users.id
+       INNER JOIN bookmark_posts
+       ON bookmark_posts.post_id = posts.id 
+       WHERE posts.user_id = '{$this->id}';"
+    );
+
+    $bookmarkeds = [];
+
+    if($result->num_rows > 0) {
+      while($bookmarked = mysqli_fetch_assoc($result)) $bookmarkeds[] = $bookmarked;
+    }
+
+    return $bookmarkeds;
+  }
+
   public function followUser(int $id) {
     global $conn;
 
@@ -311,6 +344,32 @@
 
     $result = mysqli_query($conn, 
     "DELETE FROM likes 
+    WHERE post_id = {$postId}
+    AND user_id = {$this->id};");
+
+    return $result;
+  }
+
+  public function bookmarkPost(int $postId) {
+    global $conn;
+
+    $result = mysqli_query($conn,
+    "INSERT INTO bookmark_posts (
+      post_id,
+      user_id
+    ) values (
+      {$postId}, 
+      {$this->id}
+    );");
+
+    return $result;
+  }
+
+  public function unbookmarkPost(int $postId) {
+    global $conn;
+
+    $result = mysqli_query($conn, 
+    "DELETE FROM bookmark_posts 
     WHERE post_id = {$postId}
     AND user_id = {$this->id};");
 

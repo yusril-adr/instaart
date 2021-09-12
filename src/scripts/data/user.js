@@ -307,6 +307,58 @@ const User = {
     return responseJSON;
   },
 
+  async bookmarkPost(postId) {
+    if (!navigator.onLine) throw new Error('Network connection is needed.');
+
+    const { authId, authToken } = await Auth.getAuth();
+
+    const response = await fetch(API_ENDPOINT.BOOKMARK, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
+      body: JSON.stringify({ post_id: postId }),
+    });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async unBookmarkPost(postId) {
+    if (!navigator.onLine) throw new Error('Network connection is needed.');
+
+    const { authId, authToken } = await Auth.getAuth();
+
+    const response = await fetch(API_ENDPOINT.BOOKMARK, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
+      body: JSON.stringify({ post_id: postId }),
+    });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
   async likePost(postId) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 

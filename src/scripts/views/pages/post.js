@@ -37,6 +37,7 @@ const post = {
 
     TitleHelper.setTitle(postData.title);
     await this._renderPostDetail(postData, user);
+    await this._renderBookmarkButton(postData, user);
     await this._renderPostCommentForm(user);
     await this._renderCommentList(postData);
     if (user) await this._initEditBtn(postData, user);
@@ -60,6 +61,19 @@ const post = {
     elems.forEach(async (elem) => {
       elem.innerText = caption;
     });
+  },
+
+  async _renderBookmarkButton(postData, user) {
+    const button = document.querySelector('button#bookmark');
+
+    const isBookmarked = user.bookmark_posts.find((boomarkPost) => (
+      boomarkPost.id === postData.id
+    ));
+
+    if (isBookmarked) button.classList.add('bookmarked');
+    else if(button.classList.contains('bookmarked')) button.classList.remove('bookmarked');
+
+    button.innerHTML = isBookmarked ? Templates.bookmarkedIcon() : Templates.bookmarkIcon();
   },
 
   async _renderPostCommentForm(user) {
@@ -93,9 +107,54 @@ const post = {
   },
 
   async _initEvent(user, postData) {
+    await this._initBookmarkEvent(user, postData);
     await this._initLikeEvent(user, postData);
     await this._initShareEvent(postData);
     await this._initCommentFormEvent(user, postData);
+  },
+
+  async _initBookmarkEvent(user, postData) {
+    const button = document.querySelector('button#bookmark');
+    button.addEventListener('click', async (event) => {
+      event.stopPropagation();
+
+      if (!user) {
+        return Swal.fire(
+          'Sign in required',
+          'Please sign in or sign up first',
+          'error',
+        );
+      }
+
+      try {
+        const postId = postData.id;
+        const isBookmarked = button.classList.contains('bookmarked');
+
+        Swal.showLoading();
+
+        if (isBookmarked) await User.unBookmarkPost(postId);
+        else await User.bookmarkPost(postId);
+
+        button.innerHTML = isBookmarked ? Templates.bookmarkedIcon() : Templates.bookmarkIcon();
+        button.ariaLabel = isBookmarked ? 'hapus desain ini dari penyimpanan' : 'simpan desain ini';
+        button.classList.toggle('bookmarked');
+
+        Swal.fire(
+          'Berhasil',
+          isBookmarked ? 'Desain dihapus dari daftar penyimpanan' : 'Desain berhasil disimpan.',
+          'success',
+        );
+
+        const changeEvent = new CustomEvent('updateUser');
+        return window.dispatchEvent(changeEvent);
+      } catch (error) {
+        return Swal.fire(
+          'Oops ...',
+          error.message,
+          'error',
+        );
+      }
+    });
   },
 
   async _initLikeEvent(user, postData) {
@@ -119,7 +178,7 @@ const post = {
         else await User.likePost(postId);
 
         button.innerHTML = isLiked ? Templates.likedIcon() : Templates.likeIcon();
-        button.ariaLabel = isLiked ? 'dislike this design' : 'like this design';
+        button.ariaLabel = isLiked ? 'batal sukai desain ini' : 'sukai desain ini';
         button.classList.toggle('liked');
 
         return this.afterRender(user, { withInsight: false });

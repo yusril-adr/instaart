@@ -13,6 +13,7 @@ const API_ENDPOINT = {
   COLORS: `${CONFIG.API_BASE_URL}/colors.php`,
   POST: `${CONFIG.API_BASE_URL}/post.php`,
   POST_IMAGE: `${CONFIG.API_BASE_URL}/post-image.php`,
+  BOOKMARK: `${CONFIG.API_BASE_URL}/bookmark.php`,
   COMMENT: `${CONFIG.API_BASE_URL}/comment.php`,
   SEARCH: `${CONFIG.API_BASE_URL}/search.php`,
   PROVINCE: `${CONFIG.LOCATION_API_BASE_URL}/provinsi`,
