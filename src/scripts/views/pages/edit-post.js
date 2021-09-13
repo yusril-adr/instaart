@@ -130,13 +130,14 @@ const editPost = {
 
       try {
         const { isConfirmed } = await Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
+          title: 'Apakah kamu yakin?',
+          text: 'Desain yang dihapus tidak akan bisa dikembalikan.',
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!',
+          confirmButtonText: 'Ya, hapus!',
+          cancelButtonText: 'batalkan',
         });
 
         if (!isConfirmed) return;
@@ -144,8 +145,8 @@ const editPost = {
         await Post.deletePost(post.id);
 
         await Swal.fire(
-          'Deleted!',
-          'Your post has been deleted.',
+          'Terhapus!',
+          'Desain kamu berhasil dihapus.',
           'success',
         );
 

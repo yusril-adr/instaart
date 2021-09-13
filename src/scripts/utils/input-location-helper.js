@@ -45,10 +45,6 @@ const InputLocationHelper = {
       );
     }
   },
-
-  async confirmPassword(password, confirmPassword) {
-    return password === confirmPassword;
-  },
 };
 
 export default InputLocationHelper;

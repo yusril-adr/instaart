@@ -22,7 +22,7 @@ const bookmark = {
       const postList = await Post.getBookmarkPosts();
 
       if (postList.length < 1) {
-        const container = document.querySelector('.container#explore .explore-content');
+        const container = document.querySelector('.container#bookmark .bookmark-content');
         container.innerHTML = Templates.emptyBookmarkPage();
         return;
       }

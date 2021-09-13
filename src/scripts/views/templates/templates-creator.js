@@ -60,7 +60,7 @@ const Templates = {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="form-inline ml-auto my-2 my-lg-0" id="navbar-search-form">
               <div class="input-group">
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Cari ..." aria-label="Cari" autocomplete="off">
+                <input type="text" class="form-control" id="navbar-search-input" placeholder="Cari ..." aria-label="Cari">
 
                 <div class="input-group-append">
                   <button class="btn btn-outline-primary" type="submit" aria-label="cari"><i class="fas fa-search"></i></button>
@@ -69,6 +69,7 @@ const Templates = {
             </form>
 
             <a href="#/sign-up/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-primary">Daftar</a>
+            <a href="#/sign-up/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-secondary">Pekerjaan</a>
           </div>
         </nav>
       </div>
@@ -92,7 +93,7 @@ const Templates = {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="form-inline ml-auto my-2 my-lg-0" id="navbar-search-form">
               <div class="input-group">
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Cari ..." aria-label="Cari" autocomplete="off">
+                <input type="text" class="form-control" id="navbar-search-input" placeholder="Cari ..." aria-label="Cari">
 
                 <div class="input-group-append">
                   <button class="btn btn-outline-primary" type="submit" aria-label="Cari"><i class="fas fa-search"></i></button>
@@ -118,7 +119,7 @@ const Templates = {
               </li>
 
               <li class="nav-item">
-                <a class="nav-link d-flex align-items-center" href="#/jobs/"><i class="fas fa-briefcase"></i> <span class="d-lg-none ml-2">Pekerjaan</span></a>
+                <a class="nav-link d-flex align-items-center" href="#/job/"><i class="fas fa-briefcase"></i> <span class="d-lg-none ml-2">Pekerjaan</span></a>
               </li>
 
               <li class="nav-item profile">
@@ -273,8 +274,7 @@ const Templates = {
 
   explorePage() {
     return `
-      <div class="container" id="explore">
-        <h1 class="text-center mb-4">Beranda</h1>
+      <div class="container mt-4" id="explore">
         <div class="explore-content">
           <div class="row post-list">
             <div class="loading-container col-12">
@@ -292,7 +292,7 @@ const Templates = {
     return `
       <div class="empty-result-container">
         <i class="far fa-smile-wink h1 text-secondary"></i>
-        <span class="h4 text-secondary">Belum ada desain untuk saat ini.</span>
+        <span class="h4 text-secondary text-center">Belum ada desain untuk saat ini.</span>
         <span class="mt-4 h6 text-secondary">Kirim desain pertamamu <a href="#/new-post/" class="text-primary">Disini</a>.</span>
       </div>
     `;
@@ -356,9 +356,9 @@ const Templates = {
 
   bookmarkPage() {
     return `
-      <div class="container" id="explore">
+      <div class="container mt-4" id="bookmark">
         <h1 class="text-center mb-4">Disimpan</h1>
-        <div class="explore-content">
+        <div class="bookmark-content">
           <div class="row post-list">
             <div class="loading-container col-12">
               <div class="spinner-border text-secondary" role="status">
@@ -375,7 +375,7 @@ const Templates = {
     return `
       <div class="empty-result-container">
         <i class="far fa-smile-wink h1 text-secondary"></i>
-        <span class="h4 text-secondary">Belum ada desain untuk saat ini.</span>
+        <span class="h4 text-secondary text-center">Belum ada desain untuk saat ini.</span>
         <span class="mt-4 h6 text-secondary">Kirim desain pertamamu <a href="#/new-post/" class="text-primary">Disini</a>.</span>
       </div>
     `;
@@ -439,9 +439,9 @@ const Templates = {
 
   favoritePage() {
     return `
-      <div class="container" id="explore">
+      <div class="container mt-4" id="favorite">
         <h1 class="text-center mb-4">Disukai</h1>
-        <div class="explore-content">
+        <div class="favorite-content">
           <div class="row post-list">
             <div class="loading-container col-12">
               <div class="spinner-border text-secondary" role="status">
@@ -458,7 +458,7 @@ const Templates = {
     return `
       <div class="empty-result-container">
         <i class="far fa-smile-wink h1 text-secondary"></i>
-        <span class="h4 text-secondary">Belum ada desain untuk saat ini.</span>
+        <span class="h4 text-secondary text-center">Belum ada desain untuk saat ini.</span>
         <span class="mt-4 h6 text-secondary">Kirim desain pertamamu <a href="#/new-post/" class="text-primary">Disini</a>.</span>
       </div>
     `;
@@ -520,9 +520,211 @@ const Templates = {
     `;
   },
 
+  jobPage() {
+    return `
+      <div id="job">
+        <div class="d-flex flex-column justify-content-center align-items-center w-100 p-5 bg-secondary bg-cubes">
+          <h1 class="text-center text-light h2 font-weight-normal mb-5">
+            Temukan pekerjaan yang sesuai denganmu.
+          </h1>
+
+          <a href="#/new-job/" class="btn btn-primary btn-lg rounded-pill">Pekerjaan Baru</a>
+        </div>
+
+        <div class="container">
+          <div class="card my-4 p-4 shadow" style="border-radius: 1rem;">
+            <form class="form-block" id="job-search-form">
+              <div class="input-group">
+                <input type="text" class="form-control" id="navbar-search-input" placeholder="Cari Pekerjaan ..." aria-label="Cari">
+
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary" type="submit" aria-label="Cari"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="job-content">
+            <div class="row job-list">
+              <div class="loading-container col-12">
+                <div class="spinner-border text-secondary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  jobEmptyList() {
+    return `
+      <div class="empty-result-container">
+        <i class="far fa-smile-wink h1 text-secondary"></i>
+        <span class="h4 text-secondary text-center">Belum ada pekerjaan untuk saat ini.</span>
+        <span class="mt-4 h6 text-secondary">Buat lowongan pekerjaanmu sekarang!</span>
+      </div>
+    `;
+  },
+
+  jobItem(job) {
+    return `
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="card shadow rounded">          
+          <div class="card-body">
+            <a href="#/profile/${job.username}/" class="d-flex align-items-center text-decoration-none hover:text-primary">
+              <div class="user-image-sm">
+                <img src="${CONFIG.IMAGE_PATH.USER}/${job.user_image}" alt="user-image">
+              </div>
+
+              <span class="ml-2">${job.username}</span>
+            </a>
+
+            <p class="card-title text-ellipsis d-block my-2 h4">${job.title}</p>
+
+            <p class="mt-3"><i class="fas fa-map-marker-alt ml-1 mr-2"></i> ${job.city_name}, ${job.province_name}</p>
+
+            <p class="mt-2"><i class="fas fa-briefcase mr-2"></i> ${job.work_time}</p>
+          </div>
+
+          <div class="card-footer">
+            <div class="w-100 d-flex justify-content-center align-items-center">
+              <a href="#/job/${job.id}" class="btn btn-primary">Detail</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  newJob() {
+    return `
+      <div class="container mt-4" id="new-job">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 offset-md-3">
+            <div class="card shadow-sm mt-3 mx-auto">
+              <div class="card-body">
+                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Pekerjaan Baru</span>
+
+                <form id="job-form">
+                  <div class="form-group">
+                    <label for="title">Judul</label>
+                    <input type="text" placeholder="Judul" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.JOB.TITLE}" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="description">Deskripsi</label>
+                    <textarea class="form-control" id="description" rows="3" placeholder="Deskripsi pekerjaan ..." style="resize: vertical;"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="work-time">Waktu Kerja</label>
+                    <select class="custom-select" id="work-time" required>
+                      <option value="Full Time">Full Time</option>
+                      <option value="Part Time">Part Time</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="province">Provinsi</label>
+                    <select class="custom-select" id="province" required>
+                      <option selected value="" disabled>Provinsi</option>
+                    </select>
+                  </div>                  
+
+                  <div class="form-group">
+                    <label for="city">Kota</label>
+                    <select class="custom-select" id="city" required>
+                      <option selected value="" disabled>Silakan pilih provinsi</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="form_link">Link Formulir</label>
+                    <input type="text" class="form-control" id="form-link" placeholder="https://www.yourcompany.com/job" required>
+                  </div>
+        
+                  <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Buat</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  jobDetailPage() {
+    return `
+      <div class="container mt-4" id="job">
+        <div class="row">
+          <div class="col-sm-12 col-lg-10 offset-lg-1">
+            <div class="card shadow-sm">
+              <div class="card-body d-flex flex-column align-items-center">
+                <div class="user-image-lg bg-grey user-image-border">
+                  <img src="${CONFIG.IMAGE_PATH.USER}/default_user.png" alt="Profile image" class="user-image-element">
+                </div>
+
+                <div class="d-flex flex-column mt-3 w-100 px-3">
+                  <span class="h4 text-center job-title"></span>
+                  <span class="h6 text-secondary text-center user-display-name"></span>
+
+                  <div id="edit-button-container" class="d-flex justify-content-center"></div>
+
+                  <div class="d-flex flex-column-reverse flex-md-row mt-3">
+                    <span class="job-desc"></span>
+
+                    <div class="d-flex flex-column ml-md-auto mt-3 mt-md-0">
+                      <p class="mb-1">
+                        <i class="fas fa-map-marker-alt ml-1 mr-2"></i> 
+                        <span class="job-location"></span>
+                      </p>
+
+                      <p class="mt-1">
+                        <i class="fas fa-briefcase mr-2"></i> 
+                        <span class="job-work-time"></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <div class="w-100 d-flex justify-content-center align-items-center">
+                  <button class="btn btn-primary" id="apply-button">Lamar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  jobNotFound() {
+    return `
+      <div class="empty-result-container mt-4">
+        <img src="${CONFIG.IMAGE_PATH.ILLUST}/404.png" alt="404 Illustration" class="empty-img">
+        <span class="text-secondary mt-2 h1 text-center">Pekerjaan tidak ditemukan.</span>
+        <span class="mt-2 h6 text-secondary">
+          Temukan pekerjaan yang sesuai <a href="#/job/" class="text-primary">Disini</a>.
+        </span>
+      </div>
+    `;
+  },
+
+  jobEditBtn(id) {
+    return `
+      <a href="#/edit-job/${id}" class="btn btn-outline-primary mt-2">
+        <i class="far fa-edit"></i> Edit pekerjaan
+      </a>
+    `;
+  },
+
   profilePage() {
     return `
-      <div class="container" id="profile">
+      <div class="container mt-4" id="profile">
         <div class="row">
           <div class="col-sm-12 col-lg-10 offset-lg-1">
             <div class="card shadow-sm">
@@ -584,7 +786,7 @@ const Templates = {
 
   profileNotFound() {
     return `
-      <div class="empty-result-container">
+      <div class="empty-result-container mt-4">
         <img src="${CONFIG.IMAGE_PATH.ILLUST}/404.png" alt="404 Illustration" class="empty-img">
         <span class="text-secondary mt-2 h1 text-center">Pengguna tidak ditemukan.</span>
         <span class="mt-2 h6 text-secondary">
@@ -690,7 +892,7 @@ const Templates = {
 
   editProfile() {
     return `
-      <div class="container" id="edit-profile">
+      <div class="container mt-4" id="edit-profile">
         <div class="row">
           <div class="col-sm-12 col-md-4">
             <div class="card sahdow">
@@ -751,7 +953,7 @@ const Templates = {
 
   editProfilePicture() {
     return `
-      <div class="container" id="edit-profile-picture">
+      <div class="container mt-4" id="edit-profile-picture">
         <div class="row">
           <div class="col-sm-12 col-md-4">
             <div class="card sahdow">
@@ -799,7 +1001,7 @@ const Templates = {
 
   editPassword() {
     return `
-      <div class="container" id="edit-password">
+      <div class="container mt-4" id="edit-password">
         <div class="row">
           <div class="col-sm-12 col-md-4">
             <div class="card sahdow">
@@ -861,7 +1063,7 @@ const Templates = {
 
   postPage() {
     return `
-      <div class="container" id="post">
+      <div class="container mt-4" id="post">
         <div class="loading-container">
           <div class="spinner-border text-secondary" role="status">
             <span class="sr-only">Loading...</span>
@@ -873,7 +1075,7 @@ const Templates = {
 
   postNotFound() {
     return `
-      <div class="empty-result-container">
+      <div class="empty-result-container mt-4">
         <img src="${CONFIG.IMAGE_PATH.ILLUST}/404.png" alt="404 Illustration" class="empty-img">
         <h1 class="text-secondary mt-2 text-center">Desain tidak ditemukan.</h1>
         <h2 class="mt-2 h6 text-secondary">
@@ -1022,7 +1224,7 @@ const Templates = {
 
   newPost() {
     return `
-      <div class="container" id="new-post">
+      <div class="container mt-4" id="new-post">
         <div class="row">
           <div class="col-sm-12 col-md-6 offset-md-3">
             <div class="card shadow-sm mt-3 mx-auto">
@@ -1072,7 +1274,7 @@ const Templates = {
 
   editPost() {
     return `
-      <div class="container" id="edit-post">
+      <div class="container mt-4" id="edit-post">
         <div class="row">
           <div class="col-sm-12 col-md-6 offset-md-3">
             <div class="card shadow-sm mt-3 mx-auto">
@@ -1117,7 +1319,7 @@ const Templates = {
 
   searchPage() {
     return `
-      <div class="container" id="search">
+      <div class="container mt-4" id="search">
         <div class="row">
           <div class="col-sm-12 col-md-8 col-lg-10">
             <form class="form-block" id="search-form">

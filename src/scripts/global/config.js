@@ -29,6 +29,9 @@ const CONFIG = {
     POST: {
       TITLE: 25,
     },
+    JOB: {
+      TITLE: 100,
+    },
   },
   IMAGE_PATH: {
     BASE: './public/images',

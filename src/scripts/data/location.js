@@ -17,7 +17,7 @@ const Location = {
   },
 
   async getCitiesByProvinceId(provinceId) {
-    const response = await fetch(API_ENDPOINT.CITY(provinceId));
+    const response = await fetch(API_ENDPOINT.CITIES(provinceId));
 
     if (response.status === 500) {
       throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');

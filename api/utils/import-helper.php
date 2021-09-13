@@ -5,6 +5,7 @@
   require_once "./models/categories.php";
   require_once "./models/colors.php";
   require_once "./models/post.php";
+  require_once "./models/job.php";
   require_once "./utils/login.php";
   require_once "./utils/error-helper.php";
 

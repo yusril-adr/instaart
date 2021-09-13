@@ -22,7 +22,7 @@ const favorite = {
       const postList = await Post.getFavorites();
 
       if (postList.length < 1) {
-        const container = document.querySelector('.container#explore .explore-content');
+        const container = document.querySelector('.container#favorite .favorite-content');
         container.innerHTML = Templates.emptyFavoritePage();
         return;
       }

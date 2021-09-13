@@ -3,14 +3,24 @@ import CONFIG from '../global/config';
 
 const Auth = {
   async getAuth() {
-    const authId = (CryptoJS.AES.decrypt(
-      window.localStorage.getItem(CONFIG.AUTH_ID_KEY),
-      CONFIG.ENC_KEY,
-    ).toString(CryptoJS.enc.Utf8)) || '';
-    const authToken = (CryptoJS.AES.decrypt(
-      window.localStorage.getItem(CONFIG.AUTH_TOKEN_KEY),
-      CONFIG.ENC_KEY,
-    ).toString(CryptoJS.enc.Utf8)) || '';
+    let authId;
+    let authToken;
+
+    if (!window.localStorage.getItem(CONFIG.AUTH_ID_KEY)) authId = '';
+    else {
+      authId = (CryptoJS.AES.decrypt(
+        window.localStorage.getItem(CONFIG.AUTH_ID_KEY),
+        CONFIG.ENC_KEY,
+      ).toString(CryptoJS.enc.Utf8));
+    }
+
+    if (!window.localStorage.getItem(CONFIG.AUTH_TOKEN_KEY)) authToken = '';
+    else {
+      authToken = (CryptoJS.AES.decrypt(
+        window.localStorage.getItem(CONFIG.AUTH_TOKEN_KEY),
+        CONFIG.ENC_KEY,
+      ).toString(CryptoJS.enc.Utf8));
+    }
 
     return { authId, authToken };
   },

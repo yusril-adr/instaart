@@ -2,6 +2,12 @@
   font-family: 'Redressed', 'serif';
 }
 
+.text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .text-sm {
   font-size: .75rem;
 }
