@@ -22,7 +22,7 @@
         $posts = $user->getBookmarkedPosts();
 
         $response['status'] = 'success';
-        $response['bookmarked_posts'] = $posts;
+        $response['bookmark_posts'] = $posts;
         echo json_encode($response);
         exit;
       } catch (Exception $error) {

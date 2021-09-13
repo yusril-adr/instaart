@@ -63,10 +63,12 @@ const post = {
     });
   },
 
-  async _renderBookmarkButton(postData, user) {
+  async _renderBookmarkButton(postData) {
     const button = document.querySelector('button#bookmark');
 
-    const isBookmarked = user.bookmark_posts.find((boomarkPost) => (
+    const bookmarkPosts = await User.getBookmarkPosts();
+
+    const isBookmarked = bookmarkPosts.find((boomarkPost) => (
       boomarkPost.id === postData.id
     ));
 
@@ -145,8 +147,7 @@ const post = {
           'success',
         );
 
-        const changeEvent = new CustomEvent('updateUser');
-        return window.dispatchEvent(changeEvent);
+        return this.afterRender(user, { withInsight: false });
       } catch (error) {
         return Swal.fire(
           'Oops ...',
