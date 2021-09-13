@@ -110,7 +110,7 @@ const Templates = {
               </li>
 
               <li class="nav-item">
-                <a class="nav-link d-flex align-items-center" href="#/bookmarks/"><i class="fas fa-bookmark"></i> <span class="d-lg-none ml-2">Disimpan</span></a>
+                <a class="nav-link d-flex align-items-center" href="#/bookmark/"><i class="fas fa-bookmark"></i> <span class="d-lg-none ml-2">Disimpan</span></a>
               </li>
 
               <li class="nav-item">
@@ -274,7 +274,7 @@ const Templates = {
   explorePage() {
     return `
       <div class="container" id="explore">
-        <h1 class="text-center">Beranda</h1>
+        <h1 class="text-center mb-4">Beranda</h1>
         <div class="explore-content">
           <div class="row post-list">
             <div class="loading-container col-12">
@@ -299,6 +299,172 @@ const Templates = {
   },
 
   explorePost(post, userId = null) {
+    const { month, date, year } = DateHelper.parse(post.date);
+
+    return `
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="card shadow rounded">
+          <a href="#/profile/${post.username}/" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
+            <div class="user-image-sm">
+              <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
+            </div>
+
+            <span class="ml-2">${post.username}</span>
+          </a>
+
+          <a href="#/post/${post.id}/" class="post-img-container">
+            <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title} image">
+
+            <div class="hover-post">
+              <i class="fas fa-search" aria-label="visit ${post.title}"></i>
+            </div>
+          </a>
+          
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
+                ${post.likes.includes(userId)
+    ? this.likedIcon()
+    : this.likeIcon()
+}
+              </button>
+
+              <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+
+              <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
+                <i class="far fa-comment"></i>
+              </a>
+
+              <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
+              
+              
+              <i class="far fa-eye ml-2 mr-1"></i>
+              
+              <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+            </div>
+
+            <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
+          </div>
+
+          <div class="card-footer d-flex">
+            <span class="d-block mx-auto">${date} ${month} ${year}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  bookmarkPage() {
+    return `
+      <div class="container" id="explore">
+        <h1 class="text-center mb-4">Disimpan</h1>
+        <div class="explore-content">
+          <div class="row post-list">
+            <div class="loading-container col-12">
+              <div class="spinner-border text-secondary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  emptyBookmarkPage() {
+    return `
+      <div class="empty-result-container">
+        <i class="far fa-smile-wink h1 text-secondary"></i>
+        <span class="h4 text-secondary">Belum ada desain untuk saat ini.</span>
+        <span class="mt-4 h6 text-secondary">Kirim desain pertamamu <a href="#/new-post/" class="text-primary">Disini</a>.</span>
+      </div>
+    `;
+  },
+
+  bookmarkPost(post, userId = null) {
+    const { month, date, year } = DateHelper.parse(post.date);
+
+    return `
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="card shadow rounded">
+          <a href="#/profile/${post.username}/" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
+            <div class="user-image-sm">
+              <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
+            </div>
+
+            <span class="ml-2">${post.username}</span>
+          </a>
+
+          <a href="#/post/${post.id}/" class="post-img-container">
+            <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title} image">
+
+            <div class="hover-post">
+              <i class="fas fa-search" aria-label="visit ${post.title}"></i>
+            </div>
+          </a>
+          
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
+                ${post.likes.includes(userId)
+    ? this.likedIcon()
+    : this.likeIcon()
+}
+              </button>
+
+              <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+
+              <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
+                <i class="far fa-comment"></i>
+              </a>
+
+              <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
+              
+              
+              <i class="far fa-eye ml-2 mr-1"></i>
+              
+              <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+            </div>
+
+            <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
+          </div>
+
+          <div class="card-footer d-flex">
+            <span class="d-block mx-auto">${date} ${month} ${year}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  favoritePage() {
+    return `
+      <div class="container" id="explore">
+        <h1 class="text-center mb-4">Disukai</h1>
+        <div class="explore-content">
+          <div class="row post-list">
+            <div class="loading-container col-12">
+              <div class="spinner-border text-secondary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  emptyFavoritePage() {
+    return `
+      <div class="empty-result-container">
+        <i class="far fa-smile-wink h1 text-secondary"></i>
+        <span class="h4 text-secondary">Belum ada desain untuk saat ini.</span>
+        <span class="mt-4 h6 text-secondary">Kirim desain pertamamu <a href="#/new-post/" class="text-primary">Disini</a>.</span>
+      </div>
+    `;
+  },
+
+  favoritePost(post, userId = null) {
     const { month, date, year } = DateHelper.parse(post.date);
 
     return `
@@ -809,7 +975,7 @@ const Templates = {
 
   postCommentLogin() {
     return `
-      <span class="h5 text-secondary text-center d-block"><a href="#/">Sign in</a> to comment</span>
+      <span class="h5 text-secondary text-center d-block"><a href="#/">Masuk</a> untuk memberi komentar</span>
     `;
   },
 

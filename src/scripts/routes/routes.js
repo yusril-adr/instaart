@@ -2,6 +2,8 @@ import home from '../views/pages/home';
 import signUp from '../views/pages/sign-up';
 import signOut from '../views/pages/sign-out';
 import explore from '../views/pages/explore';
+import bookmark from '../views/pages/bookmark';
+import favorite from '../views/pages/favorite';
 import profile from '../views/pages/profile';
 import editProfile from '../views/pages/edit-profile';
 import editProfilePicture from '../views/pages/edit-profile-picture';
@@ -17,6 +19,8 @@ const routes = {
   '/sign-up': signUp,
   '/sign-out': signOut,
   '/explore': explore,
+  '/bookmark': bookmark,
+  '/favorite': favorite,
   '/profile/verb': profile,
   '/edit-profile': editProfile,
   '/edit-profile-picture': editProfilePicture,

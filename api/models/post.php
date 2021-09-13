@@ -65,6 +65,72 @@
       return $posts;
     }
 
+    public static function getFavoritePosts(int $userId) {
+      global $conn;
+
+      $query = "SELECT 
+       posts.id,
+       posts.color_id,
+       posts.category_id,
+       posts.image,
+       posts.title,
+       posts.date,
+       posts.insight,
+       users.image as user_image,
+       users.username
+       FROM posts 
+       INNER JOIN users
+       ON posts.user_id = users.id
+       INNER JOIN likes
+       ON likes.post_id = posts.id
+       WHERE likes.user_id = '{$userId}'
+       ORDER BY likes.id DESC;";
+
+      $result = mysqli_query($conn, $query);
+
+      if (!$result) throw new Exception(mysqli_error($conn));
+
+      $posts = [];
+      if($result->num_rows > 0) {
+        while($post = mysqli_fetch_assoc($result)) $posts[] = $post;
+      }
+
+      return $posts;
+    }
+
+    public static function getBookmarkedPosts(int $userId) {
+      global $conn;
+
+      $query = "SELECT 
+       posts.id,
+       posts.color_id,
+       posts.category_id,
+       posts.image,
+       posts.title,
+       posts.date,
+       posts.insight,
+       users.image as user_image,
+       users.username
+       FROM posts 
+       INNER JOIN users
+       ON posts.user_id = users.id
+       INNER JOIN bookmark_posts
+       ON bookmark_posts.post_id = posts.id
+       WHERE bookmark_posts.user_id = '{$userId}'
+       ORDER BY bookmark_posts.id DESC;";
+
+      $result = mysqli_query($conn, $query);
+
+      if (!$result) throw new Exception(mysqli_error($conn));
+
+      $posts = [];
+      if($result->num_rows > 0) {
+        while($post = mysqli_fetch_assoc($result)) $posts[] = $post;
+      }
+
+      return $posts;
+    }
+
     public static function newPost($data, int $userId) {
       global $conn;
 

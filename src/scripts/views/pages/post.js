@@ -66,7 +66,7 @@ const post = {
   async _renderBookmarkButton(postData) {
     const button = document.querySelector('button#bookmark');
 
-    const bookmarkPosts = await User.getBookmarkPosts();
+    const bookmarkPosts = await Post.getBookmarkPosts();
 
     const isBookmarked = bookmarkPosts.find((boomarkPost) => (
       boomarkPost.id === postData.id
@@ -122,8 +122,8 @@ const post = {
 
       if (!user) {
         return Swal.fire(
-          'Sign in required',
-          'Please sign in or sign up first',
+          'Akun diperlukan',
+          'Silakan masuk atau daftar sebagai akun baru',
           'error',
         );
       }
@@ -165,8 +165,8 @@ const post = {
 
       if (!user) {
         return Swal.fire(
-          'Sign in required',
-          'Please sign in or sign up first',
+          'Akun diperlukan',
+          'Silakan masuk atau daftar sebagai akun baru',
           'error',
         );
       }

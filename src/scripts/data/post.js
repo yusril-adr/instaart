@@ -22,6 +22,48 @@ const Post = {
     return responseJSON;
   },
 
+  async getBookmarkPosts() {
+    const { authId, authToken } = await Auth.getAuth();
+
+    const response = await fetch(API_ENDPOINT.BOOKMARK, {
+      headers: {
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
+    });
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
+    const responseJSON = await response.json();
+
+    if (response.status === 401) return null;
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async getFavorites() {
+    const { authId, authToken } = await Auth.getAuth();
+
+    const response = await fetch(API_ENDPOINT.FAVORITES, {
+      headers: {
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
+    });
+
+    if (response.status === 500) {
+      throw new Error('There was an error from the server, or server maintenance occured.');
+    }
+
+    const responseJSON = await response.json();
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
   async getPost(id, { insight = false } = {}) {
     const { authId, authToken } = await Auth.getAuth();
 

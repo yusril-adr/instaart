@@ -16,13 +16,16 @@
       if(!isset($authId) || !checkToken($authToken, $authId)) unauthorizedResponse();
 
       try {
-        $username = User::getUserFromId($authId)['username'];
-        $user = new User($username);
+        $response = [];
+        $posts = Post::getBookmarkedPosts($authId);
 
-        $posts = $user->getBookmarkedPosts();
+        foreach ($posts as $post) {
+          $data = new Post($post['id']);
+          $post['likes'] = $data->getLikes();
+          $post['comments'] = $data->getComments();
+          $response[] = $post;
+        }
 
-        $response['status'] = 'success';
-        $response['bookmark_posts'] = $posts;
         echo json_encode($response);
         exit;
       } catch (Exception $error) {
