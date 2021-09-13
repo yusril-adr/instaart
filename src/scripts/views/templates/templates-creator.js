@@ -776,7 +776,7 @@ const Templates = {
             <div class="card-header" id="comment-form-container"></div>
 
             <div class="card-body">
-              <span class="h2 card-title">Comments</span>
+              <span class="h2 card-title">Komentar</span>
 
               <div id="comments-container">
                 <div class="loading-container">
@@ -799,7 +799,7 @@ const Templates = {
           <img src="${CONFIG.IMAGE_PATH.USER}/${user.image}" alt="${user.username} profile picture">
         </div>
 
-        <input type="text" placeholder="Type your comment ..." id="comment-text" class="form-control rounded-pill lg:w-85" autocomplete="off" required>
+        <input type="text" placeholder="Berikan komentar ..." id="comment-text" class="form-control rounded-pill lg:w-85" autocomplete="off" required>
 
         <button type="submit" class="btn btn-primary rounded-circle ml-2 ml-lg-0" aria-label="send"><i
             class="fas fa-paper-plane"></i></button>
@@ -817,9 +817,9 @@ const Templates = {
     return `
       <div class="p-5 d-flex flex-column align-items-center">
         <i class="far fa-smile-wink h1 text-secondary"></i>
-        <span class="text-secondary h5 mt-2">There aren't any comment yet.</span>
+        <span class="text-secondary h5 mt-2">Belum ada komentar untuk saat ini.</span>
         <span class="mt-2 h6 text-secondary">
-          Be the first one to comment.
+          Jadilah yang pertama mengomentari desain ini.
         </span>
       </div>
     `;
