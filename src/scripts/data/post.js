@@ -13,7 +13,7 @@ const Post = {
     });
 
     if (response.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
 
     const responseJSON = await response.json();
@@ -32,7 +32,7 @@ const Post = {
       },
     });
     if (response.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
 
     const responseJSON = await response.json();
@@ -55,7 +55,7 @@ const Post = {
     });
 
     if (response.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
 
     const responseJSON = await response.json();
@@ -75,7 +75,7 @@ const Post = {
     });
 
     if (response.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
 
     const responseJSON = await response.json();
@@ -88,7 +88,7 @@ const Post = {
   },
 
   async newPost(formData, formImage) {
-    if (!navigator.onLine) throw new Error('Network connection is needed.');
+    if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
 
     const { authId, authToken } = await Auth.getAuth();
 
@@ -102,7 +102,7 @@ const Post = {
     });
 
     if (responseImg.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
 
     const responseImgJSON = await responseImg.json();
@@ -121,7 +121,7 @@ const Post = {
     });
 
     if (responsePost.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
     const responsePostJSON = await responsePost.json();
 
@@ -131,7 +131,7 @@ const Post = {
   },
 
   async updatePost(inputData) {
-    if (!navigator.onLine) throw new Error('Network connection is needed.');
+    if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
 
     const { authId, authToken } = await Auth.getAuth();
 
@@ -146,7 +146,7 @@ const Post = {
     });
 
     if (response.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
 
     const responseJSON = await response.json();
@@ -157,7 +157,7 @@ const Post = {
   },
 
   async deletePost(postId) {
-    if (!navigator.onLine) throw new Error('Network connection is needed.');
+    if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
 
     const { authId, authToken } = await Auth.getAuth();
 
@@ -172,7 +172,7 @@ const Post = {
     });
 
     if (response.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
 
     const responseJSON = await response.json();
@@ -185,7 +185,7 @@ const Post = {
   async searchPost(keyword) {
     const response = await fetch(`${API_ENDPOINT.SEARCH}?keyword=${keyword}`);
     if (response.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
 
     const responseJSON = await response.json();

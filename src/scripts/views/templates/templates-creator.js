@@ -1029,7 +1029,11 @@ const Templates = {
                     <textarea class="form-control" id="bio" rows="4" placeholder="Tell something about yourself"></textarea>
                   </div>
         
-                  <button type="submit" class="btn btn-primary d-block mx-auto">Simpan</button>
+                  <div class="d-flex justify-content-evenly">
+                    <button type="button" class="btn btn-danger d-block mx-auto" id="sign-out-btn">Keluar</button>
+
+                    <button type="submit" class="btn btn-primary d-block mx-auto">Simpan</button>
+                  </div>
                 </form>
               </div>
             </div>

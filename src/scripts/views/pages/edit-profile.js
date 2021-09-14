@@ -20,6 +20,7 @@ const editProfile = {
 
     await this._setDefaultValue(user);
     await this._submitEvent();
+    await this._initSignOutBtn();
   },
 
   async _setDefaultValue(user) {
@@ -122,6 +123,38 @@ const editProfile = {
     }
 
     return false;
+  },
+
+  async _initSignOutBtn() {
+    const button = document.querySelector('#sign-out-btn');
+    button.addEventListener('click', async (event) => {
+      event.stopPropagation();
+
+      try {
+        const { isConfirmed } = await Swal.fire({
+          title: 'Apakah anda yakin?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya!',
+          cancelButtonText: 'Tidak',
+        });
+
+        if (!isConfirmed) return;
+
+        await User.signOut();
+
+        const changeEvent = new CustomEvent('updateUser');
+        window.dispatchEvent(changeEvent);
+      } catch (error) {
+        await Swal.fire(
+          'Oops ...',
+          error.message,
+          'error',
+        );
+      }
+    });
   },
 };
 

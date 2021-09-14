@@ -91,8 +91,8 @@ const newPost = {
         const post = await Post.newPost(inputData, formImg);
 
         await Swal.fire(
-          'Successfully created.',
-          'Post successfully created.',
+          'Berhasil !',
+          'Desain berhasil diunggah.',
           'success',
         );
         window.location.hash = `#/post/${post.id}`;

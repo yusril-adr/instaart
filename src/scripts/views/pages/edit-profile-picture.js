@@ -48,8 +48,8 @@ const editProfilePicture = {
         window.dispatchEvent(changeEvent);
 
         await Swal.fire(
-          'Successfully updated.',
-          'Profile successfully updated.',
+          'Berhasil Dirubah.',
+          'Profil kamu telah dirubah.',
           'success',
         );
         return window.location.reload();
@@ -70,8 +70,8 @@ const editProfilePicture = {
 
       try {
         const { isConfirmed } = await Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
+          title: 'Apakah anda yakin?',
+          text: 'Foto profil anda tidak akan dapat dikembalikan lagi.',
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -88,8 +88,8 @@ const editProfilePicture = {
         window.dispatchEvent(changeEvent);
 
         await Swal.fire(
-          'Deleted!',
-          'Your profile picture has been deleted.',
+          'Terhapus!',
+          'Foto profil anda telah dihapus.',
           'success',
         );
         return;

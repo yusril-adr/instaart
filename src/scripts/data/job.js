@@ -13,7 +13,7 @@ const Job = {
     });
 
     if (response.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
 
     const responseJSON = await response.json();
@@ -33,7 +33,7 @@ const Job = {
     });
 
     if (response.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
 
     const responseJSON = await response.json();
@@ -46,7 +46,7 @@ const Job = {
   },
 
   async newJob(inputData) {
-    if (!navigator.onLine) throw new Error('Network connection is needed.');
+    if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
 
     const { authId, authToken } = await Auth.getAuth();
 
@@ -61,7 +61,7 @@ const Job = {
     });
 
     if (responsePost.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
     const responsePostJSON = await responsePost.json();
 
@@ -71,7 +71,7 @@ const Job = {
   },
 
   async updateJob(inputData) {
-    if (!navigator.onLine) throw new Error('Network connection is needed.');
+    if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
 
     const { authId, authToken } = await Auth.getAuth();
 
@@ -86,7 +86,7 @@ const Job = {
     });
 
     if (response.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
 
     const responseJSON = await response.json();
@@ -97,7 +97,7 @@ const Job = {
   },
 
   async deleteJob(jobId) {
-    if (!navigator.onLine) throw new Error('Network connection is needed.');
+    if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
 
     const { authId, authToken } = await Auth.getAuth();
 
@@ -112,7 +112,7 @@ const Job = {
     });
 
     if (response.status === 500) {
-      throw new Error('There was an error from the server, or server maintenance occured.');
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
 
     const responseJSON = await response.json();

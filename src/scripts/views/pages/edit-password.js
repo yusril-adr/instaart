@@ -52,8 +52,8 @@ const editPassword = {
         window.dispatchEvent(changeEvent);
 
         return await Swal.fire(
-          'Successfully updated.',
-          'Profile successfully updated.',
+          'Berhasil Dirubah.',
+          'Profil kamu telah dirubah.',
           'success',
         );
       } catch (error) {
