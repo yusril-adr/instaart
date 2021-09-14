@@ -806,9 +806,9 @@ const Templates = {
           </div>
 
           <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-1 mt-4">
-            <div class="card shadow max-h-250px">
+            <div class="card shadow">
               <div class="card-header text-center">
-                Profile
+                Profil
               </div>
 
               <ul class="list-group list-group-flush text-sm md:text-md">
@@ -816,19 +816,31 @@ const Templates = {
                   <span>Followers</span>
                   <span class="user-followers"></span>
                 </li>
+
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                   <span>Following</span>
                   <span class="user-following"></span>
                 </li>
+
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <span>Email</span>
-                  <span class="user-email"></span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <span>Phone Number</span>
+                  <span>Nomor Telepon</span>
                   <span class="user-phone-number"></span>
                 </li>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <span>Provinsi</span>
+                  <span class="user-province"></span>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <span>Kota</span>
+                  <span class="user-city"></span>
+                </li>
               </ul>
+
+              <div class="card-footer d-flex justify-content-center">
+                <button class="btn btn-primary" id="mail-btn">Ajak Kerjasama</button>
+              </div>
             </div>
           </div>
 

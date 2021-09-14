@@ -39,7 +39,9 @@
       email, 
       phone_number,
       province_id,
-      city_id
+      province_name,
+      city_id,
+      city_name
     ) values (
       '{$username}', 
       '{$hashedPassword}', 
@@ -48,7 +50,9 @@
       '{$email}', 
       '{$data['phone_number']}',
       '{$data['province_id']}',
-      '{$data['city_id']}'
+      '{$data['province_name']}',
+      '{$data['city_id']}',
+      '{$data['city_name']}'
     );");
 
     return $result;
@@ -84,7 +88,11 @@
         id,
         username,
         display_name,
-        image
+        image,
+        province_id,
+        province_name,
+        city_id,
+        city_name
       FROM users
       WHERE username LIKE '%{$keyword}%'
       OR display_name LIKE '%{$keyword}%'
@@ -158,7 +166,9 @@
         email, 
         phone_number,
         province_id,
-        city_id
+        province_name,
+        city_id,
+        city_name
       FROM users 
       WHERE username = '{$this->identifier}' 
       OR email = '{$this->identifier}';"
@@ -223,7 +233,11 @@
       $conn, 
       "SELECT
         users.username,
-        users.image
+        users.image,
+        province_id,
+        province_name,
+        city_id,
+        city_name
       FROM follows
       INNER JOIN users
       ON follows.following_id = users.id
@@ -246,7 +260,11 @@
       $conn, 
       "SELECT
         users.username,
-        users.image
+        users.image,
+        province_id,
+        province_name,
+        city_id,
+        city_name
       FROM follows
       INNER JOIN users
       ON follows.follower_id = users.id
@@ -436,7 +454,11 @@
         display_name = '{$display_name}', 
         biodata = '{$biodata}',
         email = '{$email}',
-        phone_number = '{$data['phone_number']}'
+        phone_number = '{$data['phone_number']}',
+        province_id = '{$data['province_id']}',
+        province_name = '{$data['province_name']}',
+        city_id = '{$data['city_id']}',
+        city_name = '{$data['city_name']}'
       WHERE id = {$this->id};"
     );
 

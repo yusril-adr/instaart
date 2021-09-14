@@ -160,16 +160,7 @@ const User = {
     return responseJSON;
   },
 
-  async signUp({
-    username,
-    password,
-    display_name,
-    biodata,
-    email,
-    phone_number,
-    province_id,
-    city_id,
-  }) {
+  async signUp(inputData) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
     const response = await fetch(API_ENDPOINT.USER, {
@@ -177,16 +168,7 @@ const User = {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        username,
-        password,
-        display_name,
-        biodata,
-        email,
-        phone_number,
-        province_id,
-        city_id,
-      }),
+      body: JSON.stringify(inputData),
     });
 
     if (response.status === 500) {

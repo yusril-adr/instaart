@@ -59,8 +59,10 @@ const profile = {
     await this._renderBio(targetedUser);
     await this._renderFollowers(targetedUser);
     await this._renderFollowing(targetedUser);
-    await this._renderEmail(targetedUser);
     await this._renderPhoneNumber(targetedUser);
+    await this._renderProvince(targetedUser);
+    await this._renderCity(targetedUser);
+    await this._initMailBtn(targetedUser);
     await this._renderPostList(targetedUser, currentUser);
   },
 
@@ -115,8 +117,8 @@ const profile = {
       event.stopPropagation();
 
       await Swal.fire(
-        'Sign in required',
-        'Please sign in or sign up first',
+        'Akun diperlukan',
+        'Silakan masuk atau daftar sebagai akun baru',
         'error',
       );
     });
@@ -209,6 +211,29 @@ const profile = {
     const elems = document.querySelectorAll('.user-phone-number');
     elems.forEach(async (elem) => {
       elem.innerText = phone_number;
+    });
+  },
+
+  async _renderProvince({ province_name }) {
+    const elems = document.querySelectorAll('.user-province');
+    elems.forEach(async (elem) => {
+      elem.innerText = province_name;
+    });
+  },
+
+  async _renderCity({ city_name }) {
+    const elems = document.querySelectorAll('.user-city');
+    elems.forEach(async (elem) => {
+      elem.innerText = city_name.split(' ').splice('1').join(' ');
+    });
+  },
+
+  async _initMailBtn({ email }) {
+    const button = document.querySelector('#mail-btn');
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+
+      window.open(`mailto:${email}`);
     });
   },
 

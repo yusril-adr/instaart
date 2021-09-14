@@ -46,6 +46,9 @@ const signUp = {
       event.stopPropagation();
       event.preventDefault();
 
+      const province_id = event.target.province.value;
+      const city_id = event.target.city.value;
+
       try {
         const inputData = {
           username: event.target.username.value,
@@ -54,8 +57,10 @@ const signUp = {
           display_name: event.target['display-name'].value,
           phone_number: event.target['phone-number'].value,
           biodata: event.target.biodata.value,
-          province_id: event.target.province.value,
-          city_id: event.target.city.value,
+          province_id,
+          city_id,
+          province_name: document.querySelector(`#province option[value="${province_id}"]`).innerHTML,
+          city_name: document.querySelector(`#city option[value="${city_id}"]`).innerHTML,
         };
 
         const confirmPassword = event.target['confirm-password'].value;
