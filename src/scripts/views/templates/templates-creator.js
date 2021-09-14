@@ -900,7 +900,7 @@ const Templates = {
     return `
       <div class="empty-result-container mt-4">
         <i class="far fa-smile-wink h1 text-secondary"></i>
-        <span class="h4 text-secondary text-center">There aren't any post right now.</span>
+        <span class="h4 text-secondary text-center">Belum ada desain yang diunggah untuk saat ini.</span>
       </div>
     `;
   },
