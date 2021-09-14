@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2';
 import Templates from '../templates/templates-creator';
 import TitleHelper from '../../utils/title-helper';
+import InputLocationHelper from '../../utils/input-location-helper';
 import User from '../../data/user';
 import CONFIG from '../../global/config';
 
@@ -15,7 +16,7 @@ const editProfile = {
       return;
     }
 
-    await TitleHelper.setTitle('Edit Profile');
+    await TitleHelper.setTitle('Edit Profil');
 
     await this._setDefaultValue(user);
     await this._submitEvent();
@@ -36,6 +37,18 @@ const editProfile = {
 
     const bio = document.querySelector('textarea#bio');
     bio.value = user.biodata;
+
+    await this._initInputLocation(user);
+  },
+
+  async _initInputLocation(user) {
+    const provinceElem = document.querySelector('#province');
+    const cityElem = document.querySelector('#city');
+
+    await InputLocationHelper.init(provinceElem, cityElem, {
+      defaultProvince: user.province_id,
+      defaultCity: user.city_id,
+    });
   },
 
   async _submitEvent() {
@@ -44,12 +57,19 @@ const editProfile = {
       event.stopPropagation();
       event.preventDefault();
 
+      const province_id = event.target.province.value;
+      const city_id = event.target.city.value;
+
       try {
         const inputData = {
           username: event.target.username.value,
           email: event.target.email.value,
           display_name: event.target['display-name'].value,
           phone_number: event.target['phone-number'].value,
+          province_id,
+          city_id,
+          province_name: document.querySelector(`#province option[value="${province_id}"]`).innerHTML,
+          city_name: document.querySelector(`#city option[value="${city_id}"]`).innerHTML,
           biodata: event.target.bio.value,
         };
 
@@ -61,8 +81,8 @@ const editProfile = {
         window.dispatchEvent(changeEvent);
 
         await Swal.fire(
-          'Successfully updated.',
-          'Profile successfully updated.',
+          'Berhasil Dirubah.',
+          'Profil kamu telah dirubah.',
           'success',
         );
         return;

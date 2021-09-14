@@ -39,13 +39,7 @@ const User = {
     return responseJSON;
   },
 
-  async update({
-    username,
-    display_name,
-    biodata,
-    email,
-    phone_number,
-  }) {
+  async update(inputData) {
     if (!navigator.onLine) throw new Error('Network connection is needed.');
 
     const { authId, authToken } = await Auth.getAuth();
@@ -57,13 +51,7 @@ const User = {
         'X-Auth-Id': authId,
         'X-Auth-Token': authToken,
       },
-      body: JSON.stringify({
-        username,
-        display_name,
-        biodata,
-        email,
-        phone_number,
-      }),
+      body: JSON.stringify(inputData),
     });
 
     if (response.status === 500) {

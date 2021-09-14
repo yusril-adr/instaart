@@ -19,7 +19,7 @@ const editProfilePicture = {
     // Init Bootstrap File Input Init
     bsCustomFileInput.init();
 
-    await TitleHelper.setTitle('Edit Profile Picture');
+    await TitleHelper.setTitle('Edit Foto Profil');
 
     await this._setDefaultValue(user);
     await this._submitEvent();

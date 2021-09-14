@@ -969,14 +969,16 @@ const Templates = {
           <div class="col-sm-12 col-md-4">
             <div class="card sahdow">
               <div class="card-header font-weight-bold">
-                Account settings
+                Pengaturan Akun
               </div>
 
               <div class="list-group">
                 <a href="#/edit-profile/" class="list-group-item list-group-item-action hover:bg-secondary disabled">
-                  Profile
+                  Profil
                 </a>
-                <a href="#/edit-profile-picture/" class="list-group-item list-group-item-action hover:bg-secondary">Profile picture</a>
+
+                <a href="#/edit-profile-picture/" class="list-group-item list-group-item-action hover:bg-secondary">Foto profil</a>
+
                 <a href="#/edit-password/" class="list-group-item list-group-item-action hover:bg-secondary">Password</a>
               </div>
             </div>
@@ -985,7 +987,7 @@ const Templates = {
           <div class="col-sm-12 col-md-8 col-lg-6 offset-lg-1 mt-4 mt-md-0">
             <div class="card shadow-sm mx-auto">
               <div class="card-body">
-                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Profile</span>
+                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Profil</span>
 
                 <form id="profile-form">
                   <div class="form-group">
@@ -994,7 +996,7 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="display-name">Display name</label>
+                    <label for="display-name">Nama Lengkap</label>
                     <input type="text" placeholder="Display name" class="form-control" id="display-name" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.DISPLAY_NAME}" required>
                   </div>
 
@@ -1004,8 +1006,22 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="phone-number">Phone number</label>
+                    <label for="phone-number">Nomor Telepon</label>
                     <input type="text" placeholder="Ex: 08xxx" class="form-control" id="phone-number" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.PHONE_NUMBER}" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="province">Provinsi</label>
+                    <select class="custom-select" id="province" required>
+                      <option selected value="" disabled>Provinsi</option>
+                    </select>
+                  </div>                  
+
+                  <div class="form-group">
+                    <label for="city">Kota</label>
+                    <select class="custom-select" id="city" required>
+                      <option selected value="" disabled>Silakan pilih provinsi</option>
+                    </select>
                   </div>
 
                   <div class="form-group">
@@ -1013,7 +1029,7 @@ const Templates = {
                     <textarea class="form-control" id="bio" rows="4" placeholder="Tell something about yourself"></textarea>
                   </div>
         
-                  <button type="submit" class="btn btn-primary d-block mx-auto">Save</button>
+                  <button type="submit" class="btn btn-primary d-block mx-auto">Simpan</button>
                 </form>
               </div>
             </div>
@@ -1030,14 +1046,15 @@ const Templates = {
           <div class="col-sm-12 col-md-4">
             <div class="card sahdow">
               <div class="card-header font-weight-bold">
-                Account settings
+                Pengaturan Akun
               </div>
 
               <div class="list-group">
                 <a href="#/edit-profile/" class="list-group-item list-group-item-action hover:bg-secondary">
-                  Profile
+                  Profil
                 </a>
-                <a href="#/edit-profile-picture" class="list-group-item list-group-item-action hover:bg-secondary disabled">Profile picture</a>
+                <a href="#/edit-profile-picture" class="list-group-item list-group-item-action hover:bg-secondary disabled">Foto Profil</a>
+
                 <a href="#/edit-password" class="list-group-item list-group-item-action hover:bg-secondary">Password</a>
               </div>
             </div>
@@ -1046,7 +1063,7 @@ const Templates = {
           <div class="col-sm-12 col-md-8 col-lg-6 offset-lg-1 mt-4 mt-md-0">
             <div class="card shadow-sm mx-auto">
               <div class="card-body">
-                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Profile Picture</span>
+                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Foto Profil</span>
 
                 <div class="user-image-lg d-block mx-auto my-3">
                   <img src="${CONFIG.IMAGE_PATH.USER}/default_user.png" alt="profile picture" class="user-image-element">
@@ -1055,12 +1072,12 @@ const Templates = {
                 <form id="profile-picture-form" class="d-block mx-auto">
                   <div class="custom-file mb-3">
                     <input type="file" class="custom-file-input" id="profile-picture">
-                    <label class="custom-file-label" for="profile-picture">Choose file</label>
+                    <label class="custom-file-label" for="profile-picture">Pilih file</label>
                   </div>
         
                   <div class="d-flex justify-content-center align-items-center">
-                    <button type="button" class="btn btn-danger mr-4" id="remove-button">Delete</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-danger mr-4" id="remove-button">Hapus</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                   </div>
                 </form>
               </div>
@@ -1078,14 +1095,16 @@ const Templates = {
           <div class="col-sm-12 col-md-4">
             <div class="card sahdow">
               <div class="card-header font-weight-bold">
-                Account settings
+                Pengaturan Akun
               </div>
 
               <div class="list-group">
                 <a href="#/edit-profile/" class="list-group-item list-group-item-action hover:bg-secondary">
-                  Profile
+                  Profil
                 </a>
-                <a href="#/edit-profile-picture/" class="list-group-item list-group-item-action hover:bg-secondary">Profile picture</a>
+
+                <a href="#/edit-profile-picture/" class="list-group-item list-group-item-action hover:bg-secondary">Foto Profil</a>
+
                 <a href="#/edit-password/" class="list-group-item list-group-item-action hover:bg-secondary disabled">Password</a>
               </div>
             </div>
@@ -1098,10 +1117,10 @@ const Templates = {
 
                 <form id="password-form">
                   <div class="form-group">
-                    <label for="new-password">New password</label>
+                    <label for="new-password">Password Baru</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="New password" class="form-control" id="new-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+                      <input type="password" placeholder="Password baru" class="form-control" id="new-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
       
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="new-password-toggler" aria-label="show password"><i class="far fa-eye"></i></button>
@@ -1110,10 +1129,10 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="current-password">Current password</label>
+                    <label for="current-password">Password lama</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Current password" class="form-control" id="current-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+                      <input type="password" placeholder="Password lama" class="form-control" id="current-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
       
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="current-password-toggler" aria-label="show password">
@@ -1123,7 +1142,7 @@ const Templates = {
                     </div>
                   </div>
         
-                  <button type="submit" class="btn btn-primary d-block mx-auto">Save</button>
+                  <button type="submit" class="btn btn-primary d-block mx-auto">Simpan</button>
                 </form>
               </div>
             </div>
