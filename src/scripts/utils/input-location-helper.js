@@ -3,13 +3,19 @@ import Location from '../data/location';
 import Templates from '../views/templates/templates-creator';
 
 const InputLocationHelper = {
-  async init(provinceElem, cityElem) {
-    this._initProvinceOption(provinceElem);
+  async init(provinceElem, cityElem, { defaultProvince = null, defaultCity = null } = {}) {
+    await this._initProvinceOption(provinceElem);
 
     provinceElem.addEventListener('change', (event) => {
       event.stopPropagation();
       this._initCityOptionByProvince(cityElem, provinceElem);
     });
+
+    if (defaultProvince && defaultCity) {
+      const defaultOption = provinceElem.querySelector(`option[value="${defaultProvince}"]`);
+      defaultOption.setAttribute('selected', '');
+      this._initCityOptionByProvince(cityElem, provinceElem, { defaultCity });
+    }
   },
 
   async _initProvinceOption(provinceElem) {
@@ -29,7 +35,7 @@ const InputLocationHelper = {
     }
   },
 
-  async _initCityOptionByProvince(cityElem, provinceElem) {
+  async _initCityOptionByProvince(cityElem, provinceElem, { defaultCity = null } = {}) {
     try {
       const cities = await Location.getCitiesByProvinceId(provinceElem.value);
 
@@ -37,6 +43,11 @@ const InputLocationHelper = {
       cities.forEach(({ id, nama }) => {
         cityElem.innerHTML += `<option value=${id}>${nama}</option>`;
       });
+
+      if (defaultCity) {
+        const defaultOption = cityElem.querySelector(`option[value="${defaultCity}"]`);
+        defaultOption.setAttribute('selected', '');
+      }
     } catch (error) {
       await Swal.fire(
         'Oops ...',

@@ -41,7 +41,7 @@ const jobDetail = {
     await this._renderDescription(job);
     await this._renderLocation(job);
     await this._renderWorkTime(job);
-    await this._initApplyButton(job);
+    await this._initApplyButton(job, currentUser);
   },
 
   async _renderNotFound() {
@@ -98,12 +98,21 @@ const jobDetail = {
     });
   },
 
-  async _initApplyButton(job) {
+  async _initApplyButton(job, user) {
     const button = document.querySelector('#apply-button');
     button.addEventListener('click', async (event) => {
       event.stopPropagation();
 
       try {
+        if (!user) {
+          await Swal.fire(
+            'Akun diperlukan',
+            'Silakan masuk atau daftar sebagai akun baru',
+            'error',
+          );
+          return;
+        }
+
         const { isConfirmed } = await Swal.fire({
           title: 'Peringatan !',
           text: 'Kami menghimbau untuk berhati-hati dalam memilih pekerjaan.',

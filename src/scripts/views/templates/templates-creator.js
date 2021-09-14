@@ -69,7 +69,7 @@ const Templates = {
             </form>
 
             <a href="#/sign-up/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-primary">Daftar</a>
-            <a href="#/sign-up/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-secondary">Pekerjaan</a>
+            <a href="#/job/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-secondary">Pekerjaan</a>
           </div>
         </nav>
       </div>
@@ -655,9 +655,69 @@ const Templates = {
     `;
   },
 
+  editJob() {
+    return `
+      <div class="container mt-4" id="edit-job">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 offset-md-3">
+            <div class="card shadow-sm mt-3 mx-auto">
+              <div class="card-body">
+                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Edit Pekerjaan</span>
+
+                <form id="job-form">
+                  <div class="form-group">
+                    <label for="title">Judul</label>
+                    <input type="text" placeholder="Judul" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.JOB.TITLE}" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="description">Deskripsi</label>
+                    <textarea class="form-control" id="description" rows="3" placeholder="Deskripsi pekerjaan ..." style="resize: vertical;"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="work-time">Waktu Kerja</label>
+                    <select class="custom-select" id="work-time" required>
+                      <option value="Full Time">Full Time</option>
+                      <option value="Part Time">Part Time</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="province">Provinsi</label>
+                    <select class="custom-select" id="province" required>
+                      <option selected value="" disabled>Provinsi</option>
+                    </select>
+                  </div>                  
+
+                  <div class="form-group">
+                    <label for="city">Kota</label>
+                    <select class="custom-select" id="city" required>
+                      <option selected value="" disabled>Silakan pilih provinsi</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="form_link">Link Formulir</label>
+                    <input type="text" class="form-control" id="form-link" placeholder="https://www.yourcompany.com/job" required>
+                  </div>
+
+                  <div class="d-flex justify-content-evenly align-items-center mt-4">
+                    <button type="button" class="btn btn-danger d-block" id="delete-button">Hapus</button>
+                    <button type="submit" class="btn btn-primary d-block">Simpan</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
   jobDetailPage() {
     return `
-      <div class="container mt-4" id="job">
+      <div class="container mt-4" id="job-detail">
         <div class="row">
           <div class="col-sm-12 col-lg-10 offset-lg-1">
             <div class="card shadow-sm">
@@ -1305,7 +1365,7 @@ const Templates = {
                   </div>
         
                   <div class="d-flex justify-content-evenly align-items-center">
-                    <button type="button" id="delete-button" class="btn btn-danger d-block mx-auto mt-4">Delete</button>
+                    <button type="button" id="delete-button" class="btn btn-danger d-block mx-auto mt-4">Hapus</button>
                     <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Simpan</button>
                   </div>
                 </form>

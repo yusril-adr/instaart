@@ -7,6 +7,7 @@ import favorite from '../views/pages/favorite';
 import job from '../views/pages/job';
 import jobDetail from '../views/pages/job-detail';
 import newJob from '../views/pages/new-job';
+import editJob from '../views/pages/edit-job';
 import profile from '../views/pages/profile';
 import editProfile from '../views/pages/edit-profile';
 import editProfilePicture from '../views/pages/edit-profile-picture';
@@ -27,6 +28,7 @@ const routes = {
   '/job': job,
   '/job/verb': jobDetail,
   '/new-job': newJob,
+  '/edit-job/verb': editJob,
   '/profile/verb': profile,
   '/edit-profile': editProfile,
   '/edit-profile-picture': editProfilePicture,

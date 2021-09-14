@@ -8,32 +8,47 @@ const job = {
   },
 
   async afterRender() {
-    await this._renderList();
-  },
-
-  async _renderList() {
     try {
-      const jobLists = await Job.getJobs();
+      const jobList = await Job.getJobs();
 
-      if (jobLists.length < 1) {
+      if (jobList.length < 1) {
         const container = document.querySelector('#job .job-content');
         container.innerHTML = Templates.jobEmptyList();
         return;
       }
 
-      const listElem = document.querySelector('.job-list');
-      listElem.innerHTML = '';
-      jobLists.forEach((jobItem) => {
-        listElem.innerHTML += Templates.jobItem(jobItem);
-      });
+      await this._renderList(jobList);
+      await this._initSearchEvent(jobList);
     } catch (error) {
-      console.log(error);
       await Swal.fire(
         'Oops ...',
         error.message,
         'error',
       );
     }
+  },
+
+  async _renderList(jobList) {
+    const listElem = document.querySelector('.job-list');
+    listElem.innerHTML = '';
+    jobList.forEach((jobItem) => {
+      listElem.innerHTML += Templates.jobItem(jobItem);
+    });
+  },
+
+  async _initSearchEvent(jobList) {
+    const searchForm = document.querySelector('#job-search-form');
+    searchForm.addEventListener('submit', async (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+
+      const keyword = event.target['navbar-search-input'].value;
+      const filterJobs = jobList.filter((jobItem) => (
+        jobItem.title.toLowerCase().includes(keyword.toLowerCase())
+      ));
+
+      await this._renderList(filterJobs);
+    });
   },
 };
 
