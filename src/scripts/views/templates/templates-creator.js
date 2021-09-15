@@ -1474,7 +1474,7 @@ const Templates = {
       </li>
       <li class="nav-item">
         <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#filter">
-          Filter
+          <i class="fas fa-filter"></i> Filter
         </button>
       </li>
     `;
@@ -1506,8 +1506,11 @@ const Templates = {
             </div>
 
             <span class="font-weight-bold hover:text-primary">${user.username}</span>
-            <span class="font-weight-bold">${user.city_name.split(' ').splice(1).join(' ')}, ${user.province_name}</span>
           </a>
+
+          <div class="card-footer">
+            <span class="font-weight-bold text-sm">${user.city_name.split(' ').splice(1).join(' ')}, ${user.province_name}</span>
+          </div>
         </div>
       </div>
     `;
@@ -1523,7 +1526,7 @@ const Templates = {
       </li>
       <li class="nav-item">
         <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#filter">
-          <i class="fas fa-filter"></i> <span>Filter</span>
+          <i class="fas fa-filter"></i> Filter
         </button>
       </li>
     `;

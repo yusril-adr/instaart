@@ -14,7 +14,7 @@
   if(!isset($_GET['city'])) $_GET['city'] = '';
 
   try {
-    $users = User::searchUser($_GET['keyword']);
+    $users = User::searchUser($_GET['keyword'], $_GET['province'], $_GET['city']);
     $posts = Post::searchPost($_GET['keyword'], $_GET['category'], $_GET['color']);
 
     $response['user'] = [];

@@ -15,8 +15,9 @@
     errorResponse('This request method is not supprted for this endpoint.', 405);
   }
 
+  $currentUsername = User::getUserFromId($authId)['username'];
+
   if(isset($request['setDefault'])) {
-    $currentUsername = User::getUserFromId($authId)['username'];
     $user = new User($currentUsername);
     $info = $user->getUser();
 

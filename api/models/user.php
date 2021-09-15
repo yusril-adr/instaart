@@ -79,12 +79,11 @@
     return false;
   }
 
-  public static function searchUser(string $keyword) {
+  public static function searchUser(string $keyword, string $province_id, string $city_id) {
     global $conn;
 
-    $result = mysqli_query(
-      $conn, 
-      "SELECT
+    $query = "
+      SELECT
         id,
         username,
         display_name,
@@ -94,10 +93,21 @@
         city_id,
         city_name
       FROM users
-      WHERE username LIKE '%{$keyword}%'
+      WHERE (username LIKE '%{$keyword}%'
       OR display_name LIKE '%{$keyword}%'
-      OR email LIKE '%{$keyword}%';"
-    );
+      OR email LIKE '%{$keyword}%')";
+
+    if ($province_id !== '') {
+      $query .= " AND province_id = '{$province_id}'";
+    }
+
+    if ($city_id !== '') {
+      $query .= " AND city_id = '{$city_id}'";
+    }
+
+    $query .= ";";
+
+    $result = mysqli_query($conn, $query);
 
     $userFounds = [];
 
