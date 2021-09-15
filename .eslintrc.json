@@ -19,6 +19,7 @@
         "import/no-extraneous-dependencies": "off",
         "no-underscore-dangle": "off",
         "no-param-reassign": "off",
-        "no-useless-return": "off"
+        "no-useless-return": "off",
+        "radix": "off"
     }
 }

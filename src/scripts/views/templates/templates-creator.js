@@ -568,6 +568,17 @@ const Templates = {
     `;
   },
 
+  jobSearchNotFound() {
+    return `
+     <div class="col-12">
+      <div class="empty-result-container">
+        <i class="fas fa-briefcase h1 font-weight-bold text-secondary"></i>
+        <span class="h4 text-secondary text-center mt-2">Pekerjaan tidak ditemukan.</span>
+      </div>
+     </div>
+    `;
+  },
+
   jobItem(job) {
     return `
       <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
@@ -879,7 +890,7 @@ const Templates = {
   profileEditBtn() {
     return `
       <a href="#/edit-profile/" class="btn btn-outline-primary mt-2">
-        <i class="far fa-edit"></i> Edit profile
+        <i class="far fa-edit"></i> Edit profil
       </a>
     `;
   },
@@ -1338,7 +1349,7 @@ const Templates = {
                   </div>
 
                   <div class="form-group mb-3">
-                    <label for="colors">Warna</label>
+                    <label for="colors">Warna Dasar</label>
                     <select class="custom-select" id="colors" required>
                     </select>
                   </div>
@@ -1388,7 +1399,7 @@ const Templates = {
                   </div>
 
                   <div class="form-group mb-3">
-                    <label for="colors">Warna</label>
+                    <label for="colors">Warna Dasar</label>
                     <select class="custom-select" id="colors" required>
                     </select>
                   </div>
@@ -1416,10 +1427,10 @@ const Templates = {
     return `
       <div class="container mt-4" id="search">
         <div class="row">
-          <div class="col-sm-12 col-md-8 col-lg-10">
+          <div class="col-sm-12 col-md-6 col-lg-8">
             <form class="form-block" id="search-form">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search ..." id="search-input" aria-label="Search" autocomplete="off" required>
+                <input type="text" class="form-control" placeholder="Cari ..." id="search-input" aria-label="Search" autocomplete="off" required>
 
                 <div class="input-group-append">
                   <button class="btn btn-outline-primary" type="submit" aria-label="search">
@@ -1430,10 +1441,17 @@ const Templates = {
             </form>
           </div>
 
-          <div class="col-sm-12 col-md-4 col-lg-2 mt-3 mt-md-0">
+          <div class="col-sm-12 col-md-6 col-lg-4 mt-3 mt-md-0">
             <ul class="nav nav-pills nav-fill" id="search-nav"></ul>
           </div>
+
+          <div class="col-sm-12 col-md-6">
+            <div class="collapse" id="filter">
+              <div class="mt-3 d-flex" id="filter-input"></div>
+            </div>  
+          </div>
         </div>
+
 
         <div class="row mt-4 post-list" id="result-container">
           <div class="col-12 loading-container">
@@ -1449,11 +1467,32 @@ const Templates = {
   searchUserNav(keyword = '') {
     return `
       <li class="nav-item">
-        <a href="#/search-post/${keyword}" class="nav-link">Post</a>
+        <a href="#/search-post/${keyword}" class="nav-link">Desain</a>
       </li>
       <li class="nav-item">
-        <a href="#/search-user/${keyword}" class="nav-link active disabled">User</a>
+        <a href="#/search-user/${keyword}" class="nav-link active disabled">Pengguna</a>
       </li>
+      <li class="nav-item">
+        <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#filter">
+          Filter
+        </button>
+      </li>
+    `;
+  },
+
+  searchUserFilter() {
+    return `
+      <div class="w-50 mr-1">
+        <label for="province">Provinsi</label>
+        <select class="custom-select" id="province" required>
+        </select>
+      </div>
+
+      <div class="w-50 ml-1">
+        <label for="city">Kota</label>
+        <select class="custom-select" id="city" required>
+        </select>
+      </div>
     `;
   },
 
@@ -1467,6 +1506,7 @@ const Templates = {
             </div>
 
             <span class="font-weight-bold hover:text-primary">${user.username}</span>
+            <span class="font-weight-bold">${user.city_name.split(' ').splice(1).join(' ')}, ${user.province_name}</span>
           </a>
         </div>
       </div>
@@ -1476,11 +1516,32 @@ const Templates = {
   searchPostNav(keyword = '') {
     return `
       <li class="nav-item">
-        <a href="#/search-post/${keyword}" class="nav-link active disabled">Post</a>
+        <a href="#/search-post/${keyword}" class="nav-link active disabled">Desain</a>
       </li>
       <li class="nav-item">
-        <a href="#/search-user/${keyword}" class="nav-link">User</a>
+        <a href="#/search-user/${keyword}" class="nav-link">Pengguna</a>
       </li>
+      <li class="nav-item">
+        <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#filter">
+          <i class="fas fa-filter"></i> <span>Filter</span>
+        </button>
+      </li>
+    `;
+  },
+
+  searchPostFilter() {
+    return `
+      <div class="w-50 mr-1">
+        <label for="categories">Kategori</label>
+        <select class="custom-select" id="categories" required>
+        </select>
+      </div>
+
+      <div class="w-50 ml-1">
+        <label for="colors">Warna</label>
+        <select class="custom-select" id="colors" required>
+        </select>
+      </div>
     `;
   },
 
@@ -1539,7 +1600,7 @@ const Templates = {
     return `
       <div class="col-12 empty-result-container">
         <i class="fas fa-search h1 font-weight-bolder text-secondary" aria-label="no result illustration"></i>
-        <span class="h4 text-secondary">No result found.</span>
+        <span class="h4 text-secondary text-center">Hasil pencarian tidak ditemukan.</span>
       </div>
     `;
   },

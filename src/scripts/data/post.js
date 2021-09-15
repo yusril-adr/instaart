@@ -182,8 +182,10 @@ const Post = {
     return responseJSON;
   },
 
-  async searchPost(keyword) {
-    const response = await fetch(`${API_ENDPOINT.SEARCH}?keyword=${keyword}`);
+  async searchPost(keyword, { color = null, category = null } = {}) {
+    const response = await fetch(
+      `${API_ENDPOINT.SEARCH}?type=post&keyword=${keyword}&color=${color || ''}&category=${category || ''}`,
+    );
     if (response.status === 500) {
       throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
     }
@@ -192,7 +194,7 @@ const Post = {
 
     if (response.status !== 200) throw new Error(responseJSON.message);
 
-    return responseJSON.post;
+    return responseJSON;
   },
 };
 

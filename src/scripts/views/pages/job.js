@@ -31,6 +31,12 @@ const job = {
   async _renderList(jobList) {
     const listElem = document.querySelector('.job-list');
     listElem.innerHTML = '';
+
+    if (jobList.length < 1) {
+      listElem.innerHTML = Templates.jobSearchNotFound();
+      return;
+    }
+
     jobList.forEach((jobItem) => {
       listElem.innerHTML += Templates.jobItem(jobItem);
     });

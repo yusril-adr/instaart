@@ -7,21 +7,36 @@
 
   if(!isset($_GET['keyword'])) errorResponse('Keyword Needed', 428);
 
+  if(!isset($_GET['category'])) $_GET['category'] = '';
+  if(!isset($_GET['color'])) $_GET['color'] = '';
+
+  if(!isset($_GET['province'])) $_GET['province'] = '';
+  if(!isset($_GET['city'])) $_GET['city'] = '';
+
   try {
     $users = User::searchUser($_GET['keyword']);
-    $posts = Post::searchPost($_GET['keyword']);
+    $posts = Post::searchPost($_GET['keyword'], $_GET['category'], $_GET['color']);
 
     $response['user'] = [];
-    $response['post'] = [];
-
     foreach ($users as $user) {
       $data = (new User($user['username']))->getUser();
       $response['user'][] = $data;
     }
 
+    $response['post'] = [];
     foreach ($posts as $post) {
       $data = (new Post((int) $post['id']))->getPost();
       $response['post'][] = $data;
+    }
+
+    if (isset($_GET['type']) && $_GET['type'] === 'post') {
+      echo json_encode($response['post']);
+      exit;
+    }
+
+    if (isset($_GET['type']) && $_GET['type'] === 'user') {
+      echo json_encode($response['user']);
+      exit;
     }
 
     echo json_encode($response);

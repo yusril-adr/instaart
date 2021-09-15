@@ -4,6 +4,8 @@ import TitleHelper from '../../utils/title-helper';
 import UrlParser from '../../routes/url-parser';
 import Post from '../../data/post';
 import User from '../../data/user';
+import Categories from '../../data/categories';
+import Colors from '../../data/colors';
 
 const searchPost = {
   async render() {
@@ -15,9 +17,10 @@ const searchPost = {
     if (!keyword) keyword = '';
     else keyword = keyword.split('%20').join(' ');
 
-    await TitleHelper.setTitle(`Search ${keyword}`);
+    await TitleHelper.setTitle(`Cari ${keyword}`);
     await this._setDefaultValue(keyword);
     await this._initNav(keyword);
+    await this._initFilter(user);
     await this._renderResult(keyword, user);
     await this._initLikeBtn(user);
     await this._initSearchForm(keyword);
@@ -31,11 +34,60 @@ const searchPost = {
   async _initNav(keyword) {
     const navSearch = document.querySelector('#search-nav');
     navSearch.innerHTML = Templates.searchPostNav(keyword);
+
+    const filterElem = document.querySelector('#filter-input');
+    filterElem.innerHTML = Templates.searchPostFilter();
+
+    const categories = await Categories.getCategories();
+    const colors = await Colors.getColors();
+
+    const categoriesElem = document.querySelector('#categories');
+    categoriesElem.innerHTML = Templates.optionWithValue('Semua', 0);
+    categories.forEach((category) => {
+      categoriesElem.innerHTML += Templates.optionWithValue(category.name, category.id);
+    });
+
+    const colorsElem = document.querySelector('#colors');
+    colorsElem.innerHTML = Templates.optionWithValue('Semua', 0);
+    colors.forEach((color) => {
+      colorsElem.innerHTML += Templates.optionWithValue(color.name, color.id);
+    });
   },
 
-  async _renderResult(keyword, user) {
+  async _initFilter(user) {
+    const categoriesElem = document.querySelector('#categories');
+    categoriesElem.addEventListener('change', await this._filterEvent(user));
+
+    const colorsElem = document.querySelector('#colors');
+    colorsElem.addEventListener('change', await this._filterEvent(user));
+  },
+
+  async _filterEvent(user) {
+    return async (event) => {
+      event.stopPropagation();
+
+      const inputSearch = document.querySelector('#search-input');
+      const categoriesElem = document.querySelector('#categories');
+      const colorsElem = document.querySelector('#colors');
+
+      const keyword = inputSearch.value;
+      const category_id = parseInt(categoriesElem.value);
+      const color_id = parseInt(colorsElem.value);
+
+      const filteredPost = await Post.searchPost(keyword, {
+        category: category_id === 0 ? null : category_id,
+        color: color_id === 0 ? null : color_id,
+      });
+
+      await this._renderResult(keyword, user, filteredPost);
+    };
+  },
+
+  async _renderResult(keyword, user, filteredPost = null) {
     try {
-      const posts = await Post.searchPost(keyword);
+      let posts;
+      if (filteredPost) posts = filteredPost;
+      else posts = await Post.searchPost(keyword);
       const container = document.querySelector('#result-container');
 
       if (posts.length < 1 || keyword === '') {

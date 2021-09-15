@@ -407,8 +407,10 @@ const User = {
     return responseJSON;
   },
 
-  async searchUser(keyword) {
-    const response = await fetch(`${API_ENDPOINT.SEARCH}?keyword=${keyword}`);
+  async searchUser(keyword, { province = null, city = null } = {}) {
+    const response = await fetch(
+      `${API_ENDPOINT.SEARCH}?type=user&keyword=${keyword}&province=${province || ''}&city=${city || ''}`,
+    );
 
     if (response.status === 500) {
       throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
@@ -418,7 +420,7 @@ const User = {
 
     if (response.status !== 200) throw new Error(responseJSON.message);
 
-    return responseJSON.user;
+    return responseJSON;
   },
 };
 

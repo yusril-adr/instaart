@@ -160,20 +160,30 @@
       return $result;
     }
 
-    public static function searchPost(string $keyword) {
+    public static function searchPost(string $keyword, string $category_id, string $color_id) {
       global $conn;
-  
-      $result = mysqli_query(
-        $conn, 
-        "SELECT
+
+      $query = "
+        SELECT
           id,
           title,
           image,
           date
         FROM posts
         WHERE title LIKE '%{$keyword}%'
-        OR caption LIKE '%{$keyword}%';"
-      );
+      ";
+
+      if ($category_id !== '') {
+        $query .= " AND category_id = '{$category_id}'";
+      }
+
+      if ($color_id !== '') {
+        $query .= " AND color_id = '{$color_id}'";
+      }
+
+      $query .= ";";
+  
+      $result = mysqli_query($conn, $query);
   
       $postFounds = [];
   
