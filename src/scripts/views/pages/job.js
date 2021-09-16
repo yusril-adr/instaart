@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2';
 import Templates from '../templates/templates-creator';
 import Job from '../../data/job';
+import TitleHelper from '../../utils/title-helper';
 
 const job = {
   async render() {
@@ -9,6 +10,7 @@ const job = {
 
   async afterRender() {
     try {
+      await TitleHelper.setTitle('Pekerjaan');
       const jobList = await Job.getJobs();
 
       if (jobList.length < 1) {

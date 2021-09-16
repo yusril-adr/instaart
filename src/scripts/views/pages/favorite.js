@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import Templates from '../templates/templates-creator';
 import Post from '../../data/post';
 import User from '../../data/user';
+import TitleHelper from '../../utils/title-helper';
 
 const favorite = {
   async render() {
@@ -14,6 +15,7 @@ const favorite = {
       return;
     }
 
+    await TitleHelper.setTitle('Disukai');
     await this._renderList(user);
   },
 
