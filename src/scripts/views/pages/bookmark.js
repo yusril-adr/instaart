@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import Templates from '../templates/templates-creator';
 import Post from '../../data/post';
 import User from '../../data/user';
+import TitleHelper from '../../utils/title-helper';
 
 const bookmark = {
   async render() {
@@ -14,6 +15,7 @@ const bookmark = {
       return;
     }
 
+    await TitleHelper.setTitle('Disimpan');
     await this._renderList(user);
   },
 
