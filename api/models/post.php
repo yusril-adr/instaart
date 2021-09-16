@@ -28,6 +28,36 @@
       return $posts;
     }
 
+    public static function getPopularPosts() {
+      global $conn;
+
+      $result = mysqli_query(
+        $conn, 
+        "SELECT 
+          posts.id,
+          count(likes.id) as likes
+        FROM posts 
+        INNER JOIN likes
+        ON likes.post_id = posts.id
+        GROUP BY posts.id
+        ORDER BY likes DESC
+        LIMIT 10;"
+      );
+
+      if (!$result) throw new Exception(mysqli_error($conn));
+
+      $posts = [];
+      if($result->num_rows > 0) {
+        while($post = mysqli_fetch_assoc($result)) {
+          $post = new Post((int) $post['id']);
+          $post = $post->getPost();
+          $posts[] = $post;
+        }
+      }
+
+      return $posts;
+    }
+
     public static function getExplore(array $usersId) {
       global $conn;
 

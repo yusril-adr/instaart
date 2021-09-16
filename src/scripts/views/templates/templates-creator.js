@@ -1548,6 +1548,78 @@ const Templates = {
     `;
   },
 
+  mostLikesPostsTitle() {
+    return `
+      <div class="col-12">
+        <h1 class="my-4">Paling disukai</h1>
+      </div>
+    `;
+  },
+
+  mostLikesPosts(post, userId = null) {
+    const { month, date, year } = DateHelper.parse(post.date);
+
+    return `
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="card shadow rounded">
+          <a href="#/profile/${post.username}/" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
+            <div class="user-image-sm">
+              <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
+            </div>
+
+            <span class="ml-2">${post.username}</span>
+          </a>
+
+          <a href="#/post/${post.id}/" class="post-img-container">
+            <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title} image">
+
+            <div class="hover-post">
+              <i class="fas fa-search" aria-label="visit ${post.title}"></i>
+            </div>
+          </a>
+          
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
+                ${post.likes.includes(userId)
+    ? this.likedIcon()
+    : this.likeIcon()
+}
+              </button>
+
+              <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+
+              <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
+                <i class="far fa-comment"></i>
+              </a>
+
+              <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
+              
+              
+              <i class="far fa-eye ml-2 mr-1"></i>
+              
+              <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+            </div>
+
+            <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
+          </div>
+
+          <div class="card-footer d-flex">
+            <span class="d-block mx-auto">${date} ${month} ${year}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  mostLikesPostsEmpty() {
+    return `
+      <div class="col-12 empty-result-container">
+        <span class="h4 text-secondary text-center">Belum ada postingan yang disukai untuk saat ini.</span>
+      </div>
+    `;
+  },
+
   searchPostResult(post, userId = null) {
     const { month, date, year } = DateHelper.parse(post.date);
 

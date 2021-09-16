@@ -90,7 +90,25 @@ const searchPost = {
       else posts = await Post.searchPost(keyword);
       const container = document.querySelector('#result-container');
 
-      if (posts.length < 1 || keyword === '') {
+      if (keyword === '') {
+        container.innerHTML = '';
+        container.innerHTML += Templates.mostLikesPostsTitle();
+
+        const mostLikesPosts = await Post.getMostLikes();
+
+        if (mostLikesPosts.length < 1) {
+          container.innerHTML += Templates.mostLikesPostsEmpty();
+          return;
+        }
+
+        mostLikesPosts.forEach((post) => {
+          container.innerHTML += user
+            ? Templates.mostLikesPosts(post, user.id) : Templates.mostLikesPosts(post);
+        });
+        return;
+      }
+
+      if (posts.length < 1) {
         container.innerHTML = Templates.searchEmptyResult();
         return;
       }

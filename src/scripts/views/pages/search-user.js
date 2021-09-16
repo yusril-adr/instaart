@@ -14,7 +14,7 @@ const searchUser = {
     let keyword = await UrlParser.parseActiveUrlWithoutCombiner().verb;
     if (!keyword) keyword = '';
 
-    await TitleHelper.setTitle(`Search ${keyword}`);
+    await TitleHelper.setTitle(`Cari ${keyword}`);
     await this._setDefaultValue(keyword);
     await this._initNav(keyword);
     await this._initFilter();

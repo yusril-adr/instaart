@@ -7,6 +7,7 @@ const API_ENDPOINT = {
   SIGN_IN: `${CONFIG.API_BASE_URL}/sign-in.php`,
   SIGN_OUT: `${CONFIG.API_BASE_URL}/sign-out.php`,
   EXPLORE: `${CONFIG.API_BASE_URL}/explore.php`,
+  MOST_LIKES_POST: `${CONFIG.API_BASE_URL}/most-likes-post.php`,
   FAVORITES: `${CONFIG.API_BASE_URL}/favorites.php`,
   BOOKMARK: `${CONFIG.API_BASE_URL}/bookmark.php`,
   FOLLOWING: `${CONFIG.API_BASE_URL}/following.php`,
