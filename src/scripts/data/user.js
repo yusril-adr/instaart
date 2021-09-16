@@ -39,6 +39,29 @@ const User = {
     return responseJSON;
   },
 
+  async getActivities() {
+    if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
+
+    const { authId, authToken } = await Auth.getAuth();
+
+    const response = await fetch(API_ENDPOINT.ACTIVITIES, {
+      headers: {
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
+    });
+
+    if (response.status === 500) {
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
+    }
+
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
   async getFollowers(username) {
     if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
 

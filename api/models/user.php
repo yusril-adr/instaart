@@ -196,6 +196,61 @@
     return false;
   }
 
+  public function getActivites() {
+    global $conn;
+
+    $result = mysqli_query(
+      $conn, 
+      " SELECT 
+          posts.id AS post_id,
+          posts.title AS post_title,
+          posts.user_id AS owner_id,
+          users.image AS other_image,
+          users.username AS other_username,
+          comments.user_id AS other_id,
+          comments.type AS relation,
+          comments.date AS date
+        FROM posts
+        INNER JOIN comments
+        ON comments.post_id = posts.id
+        INNER JOIN users
+        ON users.id = comments.user_id
+        WHERE posts.user_id = {$this->id}
+        
+        UNION
+        
+        SELECT 
+          users.id AS post_id,
+          users.username AS post_title,
+          follows.following_id AS owner_id,
+          users.image AS other_image,
+          users.username AS other_username,
+          follows.follower_id AS other_id,
+          follows.type AS relation,
+          follows.date AS date
+        FROM follows
+        INNER JOIN users
+        ON users.id = follows.follower_id
+        WHERE follows.following_id = {$this->id}
+
+        ORDER BY date DESC;"
+    );
+
+    $activities = [];
+
+    if($result->num_rows > 0) {
+      while($activity = mysqli_fetch_assoc($result)) {
+        if ($activity['relation'] == 'follow') {
+          $activity['post_id'] = null;
+          $activity['post_title'] = null;
+        }
+        $activities[] = $activity;
+      }
+    }
+
+    return $activities;
+  }
+
   public function getFollowers() {
     global $conn;
 
