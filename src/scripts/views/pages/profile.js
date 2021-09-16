@@ -186,18 +186,24 @@ const profile = {
     });
   },
 
-  async _renderFollowers({ followers }) {
+  async _renderFollowers({ followers, username }) {
     const elems = document.querySelectorAll('.user-followers');
     elems.forEach(async (elem) => {
       elem.innerText = followers.length;
     });
+
+    const anchor = document.querySelector('#followers-anchor');
+    anchor.setAttribute('href', `#/followers/${username}`);
   },
 
-  async _renderFollowing({ following }) {
+  async _renderFollowing({ following, username }) {
     const elems = document.querySelectorAll('.user-following');
     elems.forEach(async (elem) => {
       elem.innerText = following.length;
     });
+
+    const anchor = document.querySelector('#following-anchor');
+    anchor.setAttribute('href', `#/following/${username}`);
   },
 
   async _renderEmail({ email }) {

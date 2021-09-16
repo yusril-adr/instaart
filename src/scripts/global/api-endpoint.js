@@ -10,6 +10,7 @@ const API_ENDPOINT = {
   MOST_LIKES_POST: `${CONFIG.API_BASE_URL}/most-likes-post.php`,
   FAVORITES: `${CONFIG.API_BASE_URL}/favorites.php`,
   BOOKMARK: `${CONFIG.API_BASE_URL}/bookmark.php`,
+  FOLLOWERS: `${CONFIG.API_BASE_URL}/followers.php`,
   FOLLOWING: `${CONFIG.API_BASE_URL}/following.php`,
   LIKE_POST: `${CONFIG.API_BASE_URL}/like.php`,
   CATEGORIES: `${CONFIG.API_BASE_URL}/categories.php`,

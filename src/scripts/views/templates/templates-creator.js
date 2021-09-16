@@ -823,14 +823,18 @@ const Templates = {
               </div>
 
               <ul class="list-group list-group-flush text-sm md:text-md">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <span>Followers</span>
-                  <span class="user-followers"></span>
+                <li class="list-group-item">
+                  <a href="#/followers" id="followers-anchor" class="text-decoration-none hover:text-primary d-flex justify-content-between align-items-center">
+                    <span>Followers</span>
+                    <span class="user-followers"></span>
+                  </a>
                 </li>
 
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <span>Following</span>
-                  <span class="user-following"></span>
+                <li class="list-group-item">
+                  <a href="#/following" id="following-anchor" class="text-decoration-none hover:text-primary d-flex justify-content-between align-items-center">
+                    <span>Following</span>
+                    <span class="user-following"></span>
+                  </a>
                 </li>
 
                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -1163,6 +1167,64 @@ const Templates = {
             </div>
           </div>
         </div>
+      </div>
+    `;
+  },
+
+  followersPage() {
+    return `
+      <div class="container mt-4" id="followers">
+        <h1 class="text-center mb-5 h3">Pengikut <span class="user-username"></span></h1>
+          <div class="row user-list">
+            <div class="loading-container col-12">
+              <div class="spinner-border text-secondary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+      </div>
+    `;
+  },
+
+  followingPage() {
+    return `
+      <div class="container mt-4" id="following">
+        <h1 class="text-center mb-5 h3">Diikuti <span class="user-username"></span></h1>
+          <div class="row user-list">
+            <div class="loading-container col-12">
+              <div class="spinner-border text-secondary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+      </div>
+    `;
+  },
+
+  followUserResult(user) {
+    return `
+      <div class="col-12 col-md-6 col-lg-4 mb-3">
+        <div class="card shadow">
+          <a href="#/profile/${user.username}/" class="card-body d-flex align-items-center text-decoration-none">
+            <div class="user-image-lg mr-4">
+              <img src="${CONFIG.IMAGE_PATH.USER}/${user.image}" alt="${user.username} Profile Picture">
+            </div>
+
+            <div class="d-flex flex-column hover:text-primary">
+              <span class="font-weight-bold">${user.username}</span>
+              <span class="font-weight-bold text-sm">${user.city_name.split(' ').splice(1).join(' ')}</span>
+              <span class="font-weight-bold text-sm">${user.province_name}</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    `;
+  },
+
+  followUserEmptyResult() {
+    return `
+      <div class="col-12 empty-result-container">
+        <span class="h4 text-secondary text-center">Masih belum ada daftar untuk saat ini.</span>
       </div>
     `;
   },

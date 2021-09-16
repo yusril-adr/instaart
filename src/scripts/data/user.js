@@ -39,6 +39,38 @@ const User = {
     return responseJSON;
   },
 
+  async getFollowers(username) {
+    if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
+
+    const response = await fetch(`${API_ENDPOINT.FOLLOWERS}?username=${username}`);
+
+    if (response.status === 500) {
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
+    }
+
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async getFollowing(username) {
+    if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
+
+    const response = await fetch(`${API_ENDPOINT.FOLLOWING}?username=${username}`);
+
+    if (response.status === 500) {
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
+    }
+
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
   async update(inputData) {
     if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
 

@@ -13,38 +13,20 @@
 
   switch ($requestMethod) {
     case 'GET':
+
       if(isset($_GET['username'])) {
         $user = new User($_GET['username']);
-        
-        if($user->getUser()) {
-          $result = $user->getFollowingUser();
-
-          if($result) {
-            echo json_encode($result);
-            exit;
-          }
-        } else {
-          errorResponse('User didn\'t exist.', 404);
-        }
-      }
-    
-      if(isset($_GET['email'])) {
+      } else if(isset($_GET['email'])) {
         $user = new User($_GET['email']);
-        
-        if($user->getUser()) {
-          $result = $user->getFollowingUser();
-
-          if($result) {
-            echo json_encode($result);
-            exit;
-          }
-        } else {
-          errorResponse('User didn\'t exist.', 404);
-        }
       }
 
-      if (!isset($authId) || !checkToken($authToken, $authId)) {
-        unauthorizedResponse();
+      if(isset($user) && $user->getUser()) {
+        $result = $user->getFollowingUser();
+        
+        echo json_encode($result);
+        exit;
+      } else if (!$user->getUser()) {
+        errorResponse('User didn\'t exist.', 404);
       }
 
       try {

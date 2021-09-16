@@ -13,32 +13,19 @@
 
   if(isset($_GET['username'])) {
     $user = new User($_GET['username']);
-        
-    if($user->getUser()) {
-      $result = $user->getFollowersUser();
-
-      if($result) {
-        echo json_encode($result);
-        exit;
-      }
-    } else {
-      errorResponse('User didn\'t exist.', 404);
-    }
+  } else if(isset($_GET['email'])) {
+    $user = new User($_GET['email']);
   }
 
-  if(isset($_GET['email'])) {
-    $user = new User($_GET['email']);
-        
-    if($user->getUser()) {
-      $result = $user->getFollowersUser();
+  if(isset($user) && $user->getUser()) {
+    $result = $user->getFollowersUser();
 
-      if($result) {
-        echo json_encode($result);
-        exit;
-      }
-    } else {
-      errorResponse('User didn\'t exist.', 404);
+    if($result) {
+      echo json_encode($result);
+      exit;
     }
+  } else if (!$user->getUser()) {
+    errorResponse('User didn\'t exist.', 404);
   }
 
   try {
