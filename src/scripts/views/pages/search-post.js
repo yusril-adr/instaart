@@ -17,6 +17,8 @@ const searchPost = {
     if (!keyword) keyword = '';
     else keyword = keyword.split('%20').join(' ');
 
+    keyword = keyword.trim();
+
     await TitleHelper.setTitle(`Cari ${keyword}`);
     await this._setDefaultValue(keyword);
     await this._initNav(keyword);
@@ -173,7 +175,7 @@ const searchPost = {
       event.stopPropagation();
       event.preventDefault();
 
-      window.location.hash = `#/search-post/${event.target['search-input'].value || ''}`;
+      window.location.hash = `#/search-post/${event.target['search-input'].value.trim() || ''}`;
     });
   },
 };

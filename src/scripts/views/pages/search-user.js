@@ -14,6 +14,8 @@ const searchUser = {
     let keyword = await UrlParser.parseActiveUrlWithoutCombiner().verb;
     if (!keyword) keyword = '';
 
+    keyword = keyword.trim();
+
     await TitleHelper.setTitle(`Cari ${keyword}`);
     await this._setDefaultValue(keyword);
     await this._initNav(keyword);
@@ -126,7 +128,7 @@ const searchUser = {
       event.stopPropagation();
       event.preventDefault();
 
-      window.location.hash = `#/search-user/${event.target['search-input'].value || ''}`;
+      window.location.hash = `#/search-user/${event.target['search-input'].value.trim() || ''}`;
     });
   },
 };
