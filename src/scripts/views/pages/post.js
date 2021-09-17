@@ -40,8 +40,10 @@ const post = {
     await this._renderBookmarkButton(postData, user);
     await this._renderPostCommentForm(user);
     await this._renderCommentList(postData);
-    if (user) await this._initEditBtn(postData, user);
-    return this._initEvent(user, postData);
+    if (user) {
+      await this._initEditBtn(postData, user);
+      await this._initEvent(user, postData);
+    }
   },
 
   async _renderNotFound() {
@@ -68,9 +70,9 @@ const post = {
 
     const bookmarkPosts = await Post.getBookmarkPosts();
 
-    const isBookmarked = bookmarkPosts.find((boomarkPost) => (
+    const isBookmarked = bookmarkPosts ? bookmarkPosts.find((boomarkPost) => (
       boomarkPost.id === postData.id
-    ));
+    )) : null;
 
     if (isBookmarked) button.classList.add('bookmarked');
     else if (button.classList.contains('bookmarked')) button.classList.remove('bookmarked');
