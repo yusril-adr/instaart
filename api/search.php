@@ -1,5 +1,6 @@
 <?php 
-  require_once './utils/import-helper.php';
+  require_once "../helpers/utils/import-helper.php";
+  header('Content-Type: application/json');
 
   if($_SERVER["REQUEST_METHOD"] !== 'GET') {
     errorResponse('This request method is not supprted for this endpoint.', 405);

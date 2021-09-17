@@ -1,5 +1,6 @@
 <?php   
-  require_once "./utils/import-helper.php";
+  require_once "../helpers/utils/import-helper.php";
+  header('Content-Type: application/json');
 
   $request = json_decode(file_get_contents('php://input'), true);
   $requestMethod = $_SERVER["REQUEST_METHOD"];

@@ -113,6 +113,10 @@ module.exports = merge(common, {
           from: path.resolve(__dirname, 'api'),
           to: path.resolve(__dirname, 'dist/api'),
         },
+        {
+          from: path.resolve(__dirname, 'helpers'),
+          to: path.resolve(__dirname, 'dist/helpers'),
+        },
       ],
     }),
   ],

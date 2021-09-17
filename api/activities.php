@@ -1,5 +1,7 @@
 <?php 
-  require_once './utils/import-helper.php';
+  require_once "../helpers/utils/import-helper.php";
+  header('Content-Type: application/json');
+
   if (isset($_SERVER['HTTP_X_AUTH_ID'])) {
     $authId = $_SERVER['HTTP_X_AUTH_ID'];
   }
