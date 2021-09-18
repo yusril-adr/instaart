@@ -215,7 +215,7 @@
         ON comments.post_id = posts.id
         INNER JOIN users
         ON users.id = comments.user_id
-        WHERE posts.user_id = {$this->id}
+        WHERE posts.user_id = {$this->id} AND NOT users.id = {$this->id}
         
         UNION
         
@@ -231,7 +231,7 @@
         FROM follows
         INNER JOIN users
         ON users.id = follows.follower_id
-        WHERE follows.following_id = {$this->id}
+        WHERE follows.following_id = {$this->id} AND NOT users.id = {$this->id}
 
         ORDER BY date DESC;"
     );

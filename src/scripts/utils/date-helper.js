@@ -5,9 +5,12 @@ const DateHelper = {
     const parseDate = new Date(date);
 
     const result = {
+      year: parseDate.getFullYear(),
       month: CONFIG.MONTH[parseDate.getMonth()],
       date: parseDate.getDate(),
-      year: parseDate.getFullYear(),
+      hour: parseDate.getHours(),
+      minute: parseDate.getMinutes(),
+      second: parseDate.getSeconds(),
     };
 
     return result;

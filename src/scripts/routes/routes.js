@@ -2,6 +2,7 @@ import home from '../views/pages/home';
 import signUp from '../views/pages/sign-up';
 import signOut from '../views/pages/sign-out';
 import explore from '../views/pages/explore';
+import activity from '../views/pages/activity';
 import bookmark from '../views/pages/bookmark';
 import favorite from '../views/pages/favorite';
 import job from '../views/pages/job';
@@ -25,6 +26,7 @@ const routes = {
   '/sign-up': signUp,
   '/sign-out': signOut,
   '/explore': explore,
+  '/activity': activity,
   '/bookmark': bookmark,
   '/favorite': favorite,
   '/job': job,

@@ -105,6 +105,10 @@ const Templates = {
               <li class="nav-item home">
                 <a class="nav-link d-flex align-items-center" href="#/explore/"><i class="fas fa-home"></i> <span class="d-lg-none ml-2">Beranda</span></a>
               </li>
+
+              <li class="nav-item">
+                <a class="nav-link d-flex align-items-center" href="#/activity/"><i class="fas fa-compass"></i> <span class="d-lg-none ml-2">Aktivitas</span></a>
+              </li>
               
               <li class="nav-item new-post">
                 <a class="nav-link d-flex align-items-center" href="#/new-post/"><i class="fas fa-plus-circle"></i> <span class="d-lg-none ml-2">Portofolio Baru</span></a>
@@ -351,6 +355,74 @@ const Templates = {
           </div>
         </div>
       </div>
+    `;
+  },
+
+  activityPage() {
+    return `
+      <div class="container mt-4" id="activity">
+        <div class="row">
+          <div class="col-sm-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3">
+            <div class="card shadow-sm mt-3 mx-auto">
+              <div class="card-body">
+                <span class="card-title d-block font-weight-bold h3 mb-4 ml-2">Aktivitas</span>
+
+                <ul class="list-style-none p-0" id="activity-content"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  activityFollow(activity) {
+    const {
+      year, month, date, hour, minute,
+    } = DateHelper.parse(activity.date);
+
+    return `
+      <li class="d-flex align-items-center mb-3 pb-3">
+        <a href="#/profile/${activity.other_username}/" class="d-flex align-items-center text-decoration-none">
+          <div class="user-image mr-4">
+            <img src="./public/images/users/${activity.other_image}" alt="${activity.other_username} Profile Picture">
+          </div>
+        </a>
+
+        <div class="d-flex flex-column">
+          <p class="mb-0"><a href="#/profile/${activity.other_username}/" class="text-decoration-none">${activity.other_username}</a> mulai mengikuti anda.</p>
+
+          <p class="mb-0 text-sm">${date} ${month} ${year}, ${hour}:${minute}</p>
+        </div>
+      </li>
+    `;
+  },
+
+  activityComment(activity) {
+    const {
+      year, month, date, hour, minute,
+    } = DateHelper.parse(activity.date);
+
+    return `
+      <li class="d-flex align-items-center mb-3 pb-3">
+        <a href="#/profile/${activity.other_username}/" class="d-flex align-items-center text-decoration-none">
+          <div class="user-image mr-4">
+            <img src="./public/images/users/${activity.other_image}" alt="${activity.other_username} Profile Picture">
+          </div>
+        </a>
+
+        <div class="d-flex flex-column">
+          <p class="mb-0"><a href="#/profile/${activity.other_username}/" class="text-decoration-none">${activity.other_username}</a> memberikan komentar pada <a href="#/post/${activity.post_id}">${activity.post_title}</a>.</p>
+
+          <p class="mb-0 text-sm">${date} ${month} ${year}, ${hour}:${minute}</p>
+        </div>
+      </li>
+    `;
+  },
+
+  activityEmpty() {
+    return `
+
     `;
   },
 
