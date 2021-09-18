@@ -21,7 +21,7 @@ const newPost = {
     // Init Bootstrap File Input Init
     bsCustomFileInput.init();
 
-    await TitleHelper.setTitle('New Post');
+    await TitleHelper.setTitle('Portofolio Baru');
 
     await this._initColors();
     await this._initCategories();

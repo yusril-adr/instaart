@@ -902,14 +902,14 @@ const Templates = {
               <ul class="list-group list-group-flush text-sm md:text-md">
                 <li class="list-group-item">
                   <a href="#/followers" id="followers-anchor" class="text-decoration-none hover:text-primary d-flex justify-content-between align-items-center">
-                    <span>Followers</span>
+                    <span>Pengikut</span>
                     <span class="user-followers"></span>
                   </a>
                 </li>
 
                 <li class="list-group-item">
                   <a href="#/following" id="following-anchor" class="text-decoration-none hover:text-primary d-flex justify-content-between align-items-center">
-                    <span>Following</span>
+                    <span>Mengikuti</span>
                     <span class="user-following"></span>
                   </a>
                 </li>
