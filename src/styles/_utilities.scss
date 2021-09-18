@@ -45,7 +45,11 @@
 }
 
 .min-h-200px {
-  min-height: 200px;
+  min-height: 200px !important;
+}
+
+.min-h-300px {
+  min-height: 300px !important;
 }
 
 .max-h-250px {

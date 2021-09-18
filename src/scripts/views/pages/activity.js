@@ -20,15 +20,17 @@ const activity = {
   },
 
   async _renderActivities() {
+    const contentElem = document.querySelector('#activity-content');
+
     try {
       const activities = await User.getActivities();
 
-      // if (activities.length < 1) {
-
-      // }
-
-      const contentElem = document.querySelector('#activity-content');
       contentElem.innerHTML = '';
+
+      if (activities.length < 1) {
+        contentElem.innerHTML = Templates.activityEmpty();
+        return;
+      }
 
       activities.forEach((activityItem) => {
         contentElem.innerHTML += activityItem.relation === 'follow'
@@ -40,6 +42,9 @@ const activity = {
         error.message,
         'error',
       );
+
+      contentElem.innerHTML = '';
+      contentElem.innerHTML = Templates.activityEmpty();
     }
   },
 };

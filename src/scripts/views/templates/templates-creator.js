@@ -384,7 +384,7 @@ const Templates = {
     return `
       <li class="d-flex align-items-center mb-3 pb-3">
         <a href="#/profile/${activity.other_username}/" class="d-flex align-items-center text-decoration-none">
-          <div class="user-image mr-4">
+          <div class="user-image mr-3">
             <img src="./public/images/users/${activity.other_image}" alt="${activity.other_username} Profile Picture">
           </div>
         </a>
@@ -406,7 +406,7 @@ const Templates = {
     return `
       <li class="d-flex align-items-center mb-3 pb-3">
         <a href="#/profile/${activity.other_username}/" class="d-flex align-items-center text-decoration-none">
-          <div class="user-image mr-4">
+          <div class="user-image mr-3">
             <img src="./public/images/users/${activity.other_image}" alt="${activity.other_username} Profile Picture">
           </div>
         </a>
@@ -422,7 +422,12 @@ const Templates = {
 
   activityEmpty() {
     return `
-
+      <li class="d-flex align-items-center">
+        <div class="empty-result-container w-100 min-h-300px">
+          <i class="far fa-smile-wink h1 text-secondary"></i>
+          <span class="h4 text-secondary text-center">Belum ada aktivitas untuk saat ini.</span>
+        </div>
+      </li>
     `;
   },
 
