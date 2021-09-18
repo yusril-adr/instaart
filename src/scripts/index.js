@@ -16,7 +16,7 @@ const app = new App({
 
 window.addEventListener('load', async () => {
   app.initUser();
-  swRegister();
+  // swRegister();
 });
 
 window.addEventListener('hashchange', async (event) => {
