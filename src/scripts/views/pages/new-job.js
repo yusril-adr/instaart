@@ -80,6 +80,8 @@ const newJob = {
   async _formValidation(input) {
     const { MAX_LENGTH } = CONFIG;
     if (input.title.length > MAX_LENGTH.JOB.TITLE) throw new Error('Judul terlalu panjang.');
+
+    if (!(input.form_link.toLowerCase().startsWith('https://'))) throw new Error('Link tidak valid, link harus diawali dengan "https://"');
   },
 };
 

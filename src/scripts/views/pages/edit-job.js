@@ -98,6 +98,8 @@ const editJob = {
     const { MAX_LENGTH } = CONFIG;
 
     if (input.title.length > MAX_LENGTH.JOB.TITLE) throw new Error('Job title is too long.');
+
+    if (!(input.form_link.toLowerCase().startsWith('https://'))) throw new Error('Link tidak valid, link harus diawali dengan "https://"');
   },
 
   async _initDeleteEvent(job) {
