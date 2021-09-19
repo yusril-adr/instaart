@@ -8,6 +8,4 @@
   require_once "../helpers/models/job.php";
   require_once "../helpers/utils/login.php";
   require_once "../helpers/utils/error-helper.php";
-
-  cors();
 ?>

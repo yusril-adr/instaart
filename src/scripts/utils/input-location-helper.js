@@ -39,7 +39,7 @@ const InputLocationHelper = {
     try {
       const cities = await Location.getCitiesByProvinceId(provinceElem.value);
 
-      cityElem.innerHTML = '<option selected value="" disabled>Silahkan pilih provinsi</option>';
+      cityElem.innerHTML = '<option selected value="" disabled>Silahkan pilih kota</option>';
       cities.forEach(({ id, nama }) => {
         cityElem.innerHTML += `<option value=${id}>${nama}</option>`;
       });
