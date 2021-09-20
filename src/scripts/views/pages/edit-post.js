@@ -81,10 +81,10 @@ const editPost = {
     caption.value = post.caption;
 
     const color = document.querySelector(`#colors option[value="${post.color_id}"]`);
-    color.setAttribute('selected', '');
+    if (color) color.setAttribute('selected', '');
 
     const category = document.querySelector(`#categories option[value="${post.category_id}"]`);
-    category.setAttribute('selected', '');
+    if (category) category.setAttribute('selected', '');
   },
 
   async _submitEvent(post) {

@@ -33,6 +33,58 @@
 
       $color = mysqli_fetch_assoc($result);
 
-      return $color['name'];
+      if (isset($color['name'])) return $color['name'];
+      else return null;
+    }
+
+    public static function newColor($name) {
+      global $conn;
+
+      $name = htmlspecialchars($name);
+      $name = stripslashes($name);
+  
+      $result = mysqli_query($conn,
+      "INSERT INTO colors (
+        name
+      ) values (
+        '{$name}'
+      );");
+
+      if(!$result) throw new Exception(mysqli_error($conn));
+  
+      return $result;
+    }
+
+    public static function updateColor(int $colorId, $name) {
+      global $conn;
+
+      $name = htmlspecialchars($name);
+      $name = stripslashes($name);
+
+      $result = mysqli_query(
+        $conn, 
+        "UPDATE colors
+        SET
+          name = '{$name}'
+        WHERE id = '{$colorId}';"
+      );
+
+      if (!$result) throw new Exception(mysqli_error($conn));
+
+      return $result;
+    }
+
+    public static function deleteColor(int $colorId) {
+      global $conn;
+
+      $result = mysqli_query(
+        $conn, 
+        "DELETE FROM colors
+        WHERE id = {$colorId};"
+      );
+
+      if (!$result) throw new Exception(mysqli_error($conn));
+
+      return $result;
     }
   }
