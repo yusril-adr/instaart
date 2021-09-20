@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2021 at 04:04 AM
+-- Generation Time: Sep 20, 2021 at 04:07 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -32,6 +32,13 @@ CREATE TABLE `admins` (
   `username` varchar(15) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `username`, `password`) VALUES
+(1, 'admin', '$2y$10$Mjk5FJFAdW6sIiVCj.cciO0Ttpc69yv34iVlfPPsKlwKC1OnG1FqC');
 
 -- --------------------------------------------------------
 
@@ -69,10 +76,10 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name`) VALUES
 (1, 'Arsitektur'),
-(2, 'Fashion'),
 (3, 'Desain Grafis'),
-(4, 'Ilustrasi'),
-(5, 'Desain Web');
+(5, 'Desain Web'),
+(2, 'Fashion'),
+(4, 'Ilustrasi');
 
 -- --------------------------------------------------------
 
@@ -90,13 +97,13 @@ CREATE TABLE `colors` (
 --
 
 INSERT INTO `colors` (`id`, `name`) VALUES
-(1, 'Merah'),
+(8, 'Biru'),
+(7, 'Hijau'),
+(4, 'Hitam'),
 (2, 'Jingga'),
 (3, 'Kuning'),
-(4, 'Hitam'),
-(5, 'Biru'),
-(6, 'Putih'),
-(7, 'Hijau');
+(1, 'Merah'),
+(6, 'Putih');
 
 -- --------------------------------------------------------
 
@@ -118,8 +125,6 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `post_id`, `user_id`, `body`, `date`, `type`) VALUES
-(2, 7, 5, 'Mantap mas', '2021-09-16 18:35:00', 'comment'),
-(3, 9, 5, 'boleh boleh', '2021-09-16 18:47:06', 'comment'),
 (4, 7, 1, 'hehe', '2021-09-16 18:48:24', 'comment');
 
 -- --------------------------------------------------------
@@ -135,13 +140,6 @@ CREATE TABLE `follows` (
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   `type` varchar(10) NOT NULL DEFAULT 'follow'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `follows`
---
-
-INSERT INTO `follows` (`id`, `following_id`, `follower_id`, `date`, `type`) VALUES
-(2, 1, 5, '2021-09-16 18:35:36', 'follow');
 
 -- --------------------------------------------------------
 
@@ -167,7 +165,7 @@ CREATE TABLE `jobs` (
 --
 
 INSERT INTO `jobs` (`id`, `user_id`, `province_id`, `province_name`, `city_id`, `city_name`, `title`, `description`, `work_time`, `form_link`) VALUES
-(2, 1, 35, 'Jawa Timur', 3578, 'Kota Surabaya', 'Front End Web Dev', 'Menguasai :\n- HTML\n- CSS\n- JS', 'Full Time', 'https://google.com');
+(6, 1, 35, 'Jawa Timur', 3578, 'Kota Surabaya', 'Front End Web Dev', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste nesciunt in qui adipisci. Impedit, consectetur distinctio? Excepturi accusantium repudiandae alias voluptatum, sunt impedit eveniet asperiores, fuga officiis iste quibusdam quis dicta totam laudantium rem fugit numquam facere similique quia molestiae assumenda consequatur! Consequatur voluptates quae voluptatem labore fugiat, deserunt autem!\n\n\n\n\nasasdasdas', 'Full Time', 'https://google.com');
 
 -- --------------------------------------------------------
 
@@ -180,14 +178,6 @@ CREATE TABLE `likes` (
   `post_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `likes`
---
-
-INSERT INTO `likes` (`id`, `post_id`, `user_id`) VALUES
-(23, 9, 1),
-(24, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -212,8 +202,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `category_id`, `color_id`, `title`, `caption`, `image`, `date`, `insight`) VALUES
-(7, 1, 4, 4, 'Logo', 'a', '613eac27e030e.png', '2021-09-13 08:40:55', 16),
-(9, 1, 1, 5, 'Desain 2', 'a', '61431638465ae.png', '2021-09-16 17:02:32', 8);
+(7, 1, 4, 4, 'Logo', 'a', '613eac27e030e.png', '2021-09-13 08:40:55', 23);
 
 -- --------------------------------------------------------
 
@@ -253,8 +242,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `display_name`, `biodata`, `image`, `email`, `phone_number`, `province_id`, `province_name`, `city_id`, `city_name`) VALUES
-(1, 'yusril-adr', '$2y$10$xv7h17anyHctC8H5Uu/wEOPfeP67hspahIPCsPJE3HiNhLHOU18mm', 'Yusril A. P.', 'a', '1.jpg', 'a@a', '087854029394', 35, 'Jawa Timur', 3578, 'Kota Surabaya'),
-(5, 'yusril_adr', '$2y$10$TAZ/gd/4rw/.nYktUIFT5ORyeKLzRqjpYkNMK6Rs5ui9breXxP4hm', 'Yusril', '', 'default_user.png', 'b@b', '087854029394', 19, 'Kepulauan Bangka Belitung', 1905, 'Kabupaten Bangka Selatan');
+(1, 'yusril-adr', '$2y$10$xv7h17anyHctC8H5Uu/wEOPfeP67hspahIPCsPJE3HiNhLHOU18mm', 'Yusril A. P.', 'a', '1.jpg', 'a@a', '087854029394', 35, 'Jawa Timur', 3578, 'Kota Surabaya');
 
 --
 -- Indexes for dumped tables
@@ -278,13 +266,15 @@ ALTER TABLE `bookmark_posts`
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indexes for table `colors`
 --
 ALTER TABLE `colors`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indexes for table `comments`
@@ -323,8 +313,8 @@ ALTER TABLE `likes`
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `category_id` (`category_id`),
-  ADD KEY `color_id` (`color_id`);
+  ADD KEY `color_id` (`color_id`),
+  ADD KEY `posts_ibfk_2` (`category_id`);
 
 --
 -- Indexes for table `tokens`
@@ -349,61 +339,61 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bookmark_posts`
 --
 ALTER TABLE `bookmark_posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `colors`
 --
 ALTER TABLE `colors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `follows`
 --
 ALTER TABLE `follows`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tokens`
 --
 ALTER TABLE `tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -453,9 +443,7 @@ ALTER TABLE `likes`
 -- Constraints for table `posts`
 --
 ALTER TABLE `posts`
-  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `posts_ibfk_3` FOREIGN KEY (`color_id`) REFERENCES `colors` (`id`);
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `tokens`

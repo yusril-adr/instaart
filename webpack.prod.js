@@ -117,6 +117,10 @@ module.exports = merge(common, {
           from: path.resolve(__dirname, 'helpers'),
           to: path.resolve(__dirname, 'dist/helpers'),
         },
+        {
+          from: path.resolve(__dirname, 'admin'),
+          to: path.resolve(__dirname, 'dist/admin'),
+        },
       ],
     }),
   ],
