@@ -123,8 +123,6 @@ firebase-debug
 
 # Custom
 .vscode
-front-test
-package-lock.json
 public/images/posts/*
 public/images/posts/!add-post-image-here
 public/images/users/*

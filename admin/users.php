@@ -107,11 +107,12 @@
                                                     <td><?= $user['username'] ?></td>
                                                     <td><?= $user['display_name'] ?></td>
                                                     <td>
-                                                        <img 
-                                                            src="../public/images/users/<?= $user['image'] ?>" 
-                                                            alt="<?= $user['username'] ?> profile"
-                                                            width="200px"
-                                                        >
+                                                        <div class="user-profile-container">
+                                                            <img 
+                                                                src="../public/images/users/<?= $user['image'] ?>" 
+                                                                alt="<?= $user['username'] ?> profile"
+                                                            >
+                                                        </div>
                                                     </td>
                                                     <td><?= $user['province_name'] ?></td>
                                                     <td><?= $user['city_name'] ?></td>

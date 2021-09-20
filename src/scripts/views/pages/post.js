@@ -111,7 +111,6 @@ const post = {
   },
 
   async _initEvent(user, postData) {
-    console.log(user);
     await this._initBookmarkEvent(user, postData);
     await this._initLikeEvent(user, postData);
     await this._initShareEvent(postData);

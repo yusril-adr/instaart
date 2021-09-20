@@ -7,3 +7,18 @@
 .font-redressed {
   font-family: 'Redressed', 'serif';
 }
+
+.user-profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.user-profile-container img {
+  position: absolute;
+  width: 100%;
+}
