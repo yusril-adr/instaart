@@ -110,7 +110,7 @@
                                                     </td>
                                                     <td>
                                                         <form method="POST" class="form-delete d-flex">
-                                                            <a href="../#/job/<?= $job['id'] ?>" class="btn btn-success mr-3" target="_blank">Detail</a>
+                                                            <a href="../#/job/<?= $job['id'] ?>" class="btn btn-info mr-3" target="_blank">Detail</a>
 
                                                             <input type="hidden" name="job-id" value="<?= $job['id'] ?>">
 

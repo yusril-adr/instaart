@@ -109,7 +109,7 @@
                                                     <td><?= $post['insight'] ?></td>
                                                     <td>
                                                         <form method="POST" class="form-delete d-flex">
-                                                            <a href="../#/post/<?= $post['id'] ?>" class="btn btn-success mr-3" target="_blank">Detail</a>
+                                                            <a href="../#/post/<?= $post['id'] ?>" class="btn btn-info mr-3" target="_blank">Detail</a>
 
                                                             <input type="hidden" name="post-id" value="<?= $post['id'] ?>">
 

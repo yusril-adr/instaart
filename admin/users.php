@@ -69,12 +69,6 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-center text-gray-800"><?= $pageTitle ?></h1>
 
-                    <!-- <div class="d-flex justify-content-center mt-4 mb-4">
-                        <a href="./new-admin" class="btn btn-primary d-flex align-items-center">
-                           <i class="fas fa-plus mr-2"></i> Tambah
-                        </a>
-                    </div> -->
-
                     <!-- DataTales Example -->
                     <div class="card shadow mt-3 mb-4">
                         <div class="card-body">
@@ -118,7 +112,7 @@
                                                     <td><?= $user['city_name'] ?></td>
                                                     <td>
                                                         <form method="POST" class="form-delete d-flex">
-                                                            <a href="../#/profile/<?= $user['username'] ?>" class="btn btn-success mr-3" target="_blank">Detail</a>
+                                                            <a href="../#/profile/<?= $user['username'] ?>" class="btn btn-info mr-3" target="_blank">Detail</a>
 
                                                             <input type="hidden" name="username" value="<?= $user['username'] ?>">
 
