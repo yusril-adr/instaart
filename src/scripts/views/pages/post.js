@@ -42,8 +42,8 @@ const post = {
     await this._renderCommentList(postData);
     if (user) {
       await this._initEditBtn(postData, user);
-      await this._initEvent(user, postData);
     }
+    await this._initEvent(user, postData);
   },
 
   async _renderNotFound() {
@@ -65,10 +65,10 @@ const post = {
     });
   },
 
-  async _renderBookmarkButton(postData) {
+  async _renderBookmarkButton(postData, user) {
     const button = document.querySelector('button#bookmark');
 
-    const bookmarkPosts = await Post.getBookmarkPosts();
+    const bookmarkPosts = user ? await Post.getBookmarkPosts() : [];
 
     const isBookmarked = bookmarkPosts ? bookmarkPosts.find((boomarkPost) => (
       boomarkPost.id === postData.id
@@ -111,6 +111,7 @@ const post = {
   },
 
   async _initEvent(user, postData) {
+    console.log(user);
     await this._initBookmarkEvent(user, postData);
     await this._initLikeEvent(user, postData);
     await this._initShareEvent(postData);

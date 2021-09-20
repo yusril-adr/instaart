@@ -102,6 +102,19 @@
       return $result;
     }
 
+    public static function deleteJobFromUser($userId) {
+      global $conn;
+  
+      $result = mysqli_query($conn, 
+        "DELETE FROM jobs 
+        WHERE user_id = '{$userId}';"
+      );
+      
+      if (!$result) throw new Exception(mysqli_error($conn));
+  
+      return $result;
+    }
+
     public function getJob() {
       global $conn;
 

@@ -19,5 +19,21 @@
 
       return $categories;
     }
+
+    public static function getCategory(int $id) {
+      global $conn;
+
+      $result = mysqli_query(
+        $conn, 
+        "SELECT
+          *
+        FROM categories
+        WHERE id = '{$id}';"
+      );
+
+      $category = mysqli_fetch_assoc($result);
+
+      return $category['name'];
+    }
   }
 ?>

@@ -224,6 +224,16 @@
       return $postFounds;
     }
 
+    public static function deletePostFromUser($userId) {
+      $posts = Post::getPostsFromUser($userId);
+
+      foreach ($posts as $postData) {
+        $post =  new Post($postData['id']);
+        $post->deleteBookmarks();
+        $post->deletePost();
+      }
+    }
+
     public function getPost() {
       global $conn;
 

@@ -14,9 +14,25 @@
       $colors = [];
 
       if ($result->num_rows > 0) {
-        while($category = mysqli_fetch_assoc($result)) $colors[] = $category;
+        while($color = mysqli_fetch_assoc($result)) $colors[] = $color;
       }
 
       return $colors;
+    }
+
+    public static function getColor(int $id) {
+      global $conn;
+
+      $result = mysqli_query(
+        $conn, 
+        "SELECT
+          *
+        FROM colors
+        WHERE id = '{$id}';"
+      );
+
+      $color = mysqli_fetch_assoc($result);
+
+      return $color['name'];
     }
   }

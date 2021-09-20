@@ -433,6 +433,16 @@
     return $result;
   }
 
+  public function dislikeAllPost() {
+    global $conn;
+
+    $result = mysqli_query($conn, 
+    "DELETE FROM likes 
+    WHERE user_id = {$this->id};");
+
+    return $result;
+  }
+
   public function bookmarkPost(int $postId) {
     global $conn;
 
@@ -459,6 +469,16 @@
     return $result;
   }
 
+  public function unbookmarkAllPost() {
+    global $conn;
+
+    $result = mysqli_query($conn, 
+    "DELETE FROM bookmark_posts 
+    WHERE user_id = {$this->id};");
+
+    return $result;
+  }
+
   public function commentPost(string $comment, int $postId) {
     global $conn;
 
@@ -476,6 +496,19 @@
       '{$comment}'
     );");
 
+    if (!$result) throw new Exception(mysqli_error($conn));
+
+    return $result;
+  }
+
+  public function deleteAllComment() {
+    global $conn;
+
+    $result = mysqli_query($conn, 
+      "DELETE FROM comments 
+      WHERE user_id = '{$this->getId()}';"
+    );
+    
     if (!$result) throw new Exception(mysqli_error($conn));
 
     return $result;

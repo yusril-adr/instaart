@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Redressed';
+  font-weight: 400;
+  src: url('../../public/fonts/Redressed-Regular.ttf') format('truetype');
+}
+
+.font-redressed {
+  font-family: 'Redressed', 'serif';
+}

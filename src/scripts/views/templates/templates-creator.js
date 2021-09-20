@@ -823,7 +823,7 @@ const Templates = {
                   <div class="d-flex flex-column-reverse flex-md-row mt-3">
                     <span class="job-desc"></span>
 
-                    <div class="d-flex flex-column ml-md-auto mt-3 mt-md-0">
+                    <div class="d-flex flex-column ml-md-3 ml-lg-5 mt-3 mt-md-0">
                       <p class="mb-1">
                         <i class="fas fa-map-marker-alt ml-1 mr-2"></i> 
                         <span class="job-location"></span>

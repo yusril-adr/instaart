@@ -50,6 +50,19 @@
     return $result;
    }
 
+   public static function deleteTokenFromUser(string $userId) {
+    global $conn;
+
+    $result = mysqli_query($conn, 
+      "DELETE FROM tokens 
+      WHERE user_id = '{$userId}';"
+    );
+    
+    if (!$result) throw new Exception(mysqli_error($conn));
+
+    return $result;
+   }
+
    public static function checkToken(string $token, int $userId) {
     global $conn;
 
