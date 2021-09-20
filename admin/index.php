@@ -71,7 +71,6 @@
                                         <button type="submit" name="login" class="btn btn-primary btn-user btn-block">
                                             Masuk
                                         </button>
-                                        
                                     </form>
                                 </div>
                             </div>
@@ -91,9 +90,14 @@
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <?php if(isset($error)) :?>
+        <script> Swal.fire('Oopss ...', "<?= $error->getMessage() ?>", 'error'); </script>
+    <?php endif; ?>
 
 </body>
 

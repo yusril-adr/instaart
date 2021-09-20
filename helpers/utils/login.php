@@ -24,11 +24,9 @@
   function loginAsAdmin($username, $password) {
     $admin = new Admin($username);
 
-    // if(!$admin->verifyPassword($password)) throw new Exception('Username atau password salah.', 404);
+    if(!$admin->verifyPassword($password)) throw new Exception('Username atau password salah.', 404);
 
     $admin = $admin->getAdmin();
-
-    // if(empty($user['username'])) throw new Exception('Username atau password salah.', 404);
 
     $_SESSION['username'] = $admin['username'];
     $_SESSION['id'] = $admin['id'];
