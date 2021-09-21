@@ -1,4 +1,3 @@
-
 <?php
   require_once '../helpers/utils/import-helper.php';
   session_start();
