@@ -609,18 +609,6 @@ const Templates = {
         </div>
 
         <div class="container">
-          <div class="card mt-4 p-4 shadow" style="border-radius: 1rem;">
-            <form class="form-block" id="job-search-form">
-              <div class="input-group">
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Cari Pekerjaan ..." aria-label="Cari">
-
-                <div class="input-group-append">
-                  <button class="btn btn-outline-primary" type="submit" aria-label="Cari"><i class="fas fa-search"></i></button>
-                </div>
-              </div>
-            </form>
-          </div>
-
           <div class="job-content mt-5">
             <div class="row job-list">
               <div class="loading-container col-12">
@@ -631,6 +619,22 @@ const Templates = {
             </div>
           </div>
         </div>
+      </div>
+    `;
+  },
+
+  jobSearchForm() {
+    return `
+      <div class="card mt-4 p-4 shadow" style="border-radius: 1rem;">
+        <form class="form-block" id="job-search-form">
+          <div class="input-group">
+            <input type="text" class="form-control" id="navbar-search-input" placeholder="Cari Pekerjaan ..." aria-label="Cari">
+
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="submit" aria-label="Cari"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+        </form>
       </div>
     `;
   },

@@ -20,7 +20,7 @@ const job = {
       }
 
       await this._renderList(jobList);
-      await this._initSearchEvent(jobList);
+      // await this._renderSearch(jobList);
     } catch (error) {
       await Swal.fire(
         'Oops ...',
@@ -42,6 +42,20 @@ const job = {
     jobList.forEach((jobItem) => {
       listElem.innerHTML += Templates.jobItem(jobItem);
     });
+  },
+
+  async _renderSearch(jobList) {
+    const container = document.querySelector('#job .container');
+    const jobContent = container.querySelector('.job-content');
+
+    const searchElement = document.createElement('div');
+    searchElement.className = 'card mt-4 p-4 shadow';
+    searchElement.style.borderRadius = '1rem';
+    searchElement.innerHTML = Templates.jobSearchForm();
+
+    container.insertBefore(searchElement, jobContent);
+
+    await this._initSearchEvent(jobList);
   },
 
   async _initSearchEvent(jobList) {
