@@ -11,25 +11,25 @@
   if (isset($_SERVER['HTTP_X_AUTH_TOKEN'])) {
     $authToken = $_SERVER['HTTP_X_AUTH_TOKEN'];
   }
+  
 
-  if(isset($_GET['username'])) {
-    $user = new User($_GET['username']);
-  } else if(isset($_GET['email'])) {
-    $user = new User($_GET['email']);
-  }
-
-  if(isset($user) && $user->getUser()) {
-    $result = $user->getFollowersUser();
-
-    if($result) {
+  try {
+    if(isset($_GET['username'])) {
+      $user = new User($_GET['username']);
+  
+      $result = $user->getFollowersUser();
       echo json_encode($result);
       exit;
     }
-  } else if (!$user->getUser()) {
-    errorResponse('User didn\'t exist.', 404);
-  }
 
-  try {
+    if(isset($_GET['email'])) {
+      $user = new User($_GET['email']);
+  
+      $result = $user->getFollowersUser();
+      echo json_encode($result);
+      exit;
+    }
+
     $username = User::getUserFromId($authId)['username'];
     $user = new User($username);
     
