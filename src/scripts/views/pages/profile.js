@@ -62,7 +62,7 @@ const profile = {
     await this._renderPhoneNumber(targetedUser);
     await this._renderProvince(targetedUser);
     await this._renderCity(targetedUser);
-    await this._initMailBtn(targetedUser);
+    await this._initMailBtn(targetedUser, currentUser);
     await this._renderPostList(targetedUser, currentUser);
   },
 
@@ -234,10 +234,18 @@ const profile = {
     });
   },
 
-  async _initMailBtn({ email }) {
+  async _initMailBtn({ email }, currentUser) {
     const button = document.querySelector('#mail-btn');
     button.addEventListener('click', (event) => {
       event.stopPropagation();
+
+      if (!currentUser) {
+        return Swal.fire(
+          'Akun diperlukan',
+          'Silakan masuk atau daftar sebagai akun baru',
+          'error',
+        );
+      }
 
       window.open(`mailto:${email}`);
     });
