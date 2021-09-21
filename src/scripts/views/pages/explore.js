@@ -51,8 +51,8 @@ const explore = {
 
         if (!user) {
           await Swal.fire(
-            'Sign in required',
-            'Please sign in or sign up first',
+            'Akun diperlukan',
+            'Silakan masuk atau daftar sebagai akun baru',
             'error',
           );
           return;
