@@ -1093,7 +1093,7 @@ const Templates = {
 
                   <div class="form-group">
                     <label for="display-name">Nama Lengkap</label>
-                    <input type="text" placeholder="Display name" class="form-control" id="display-name" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.DISPLAY_NAME}" required>
+                    <input type="text" placeholder="Nama Lengkap" class="form-control" id="display-name" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.DISPLAY_NAME}" required>
                   </div>
 
                   <div class="form-group">
