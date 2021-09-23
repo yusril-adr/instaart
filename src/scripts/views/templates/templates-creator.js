@@ -1446,7 +1446,7 @@ const Templates = {
     const { month, date, year } = DateHelper.parse(comment.date);
 
     return `
-      <div class="d-flex py-4">
+      <div class="d-flex pt-4">
         <div>
           <a href="#/profile/${comment.username}" class="user-image-sm d-block mr-2 mr-lg-3">
             <img src="${CONFIG.IMAGE_PATH.USER}/${comment.user_image}" alt="${comment.username} Profile Picture">
