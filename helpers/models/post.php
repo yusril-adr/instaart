@@ -295,6 +295,7 @@
       $result = mysqli_query(
         $conn, 
         "SELECT 
+	  users.id AS user_id,
           users.username,
           users.image AS user_image,
           comments.id,
