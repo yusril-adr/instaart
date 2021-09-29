@@ -1,0 +1,209 @@
+.font-redressed {
+  font-family: 'Redressed', 'serif';
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.text-sm {
+  font-size: .75rem;
+}
+
+.text-lg {
+  font-size: 1.5rem;
+}
+
+.hover\:text-primary {
+  color: $dark;
+
+  &:hover {
+    color: $primary !important;
+  }
+}
+
+.pb-2px {
+  padding-bottom: 2px !important;
+}
+
+.mt-2rem {
+  margin-top: 2rem;
+}
+
+.\-top-3 {
+  top: -3rem;
+}
+
+.w-300px {
+  width: 300px;
+}
+
+.min-h-0 {
+  min-height: 0 !important;
+}
+
+.min-h-200px {
+  min-height: 200px !important;
+}
+
+.min-h-300px {
+  min-height: 300px !important;
+}
+
+.max-h-250px {
+  max-height: 250px !important;
+}
+
+.hover\:bg-secondary:hover {
+  background-color: $secondary;
+}
+
+.bg-cubes {
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+}
+
+.bg-grey {
+  background-color: #e0e0e0;
+}
+
+.list-style-none {
+  list-style: none;
+}
+
+.justify-content-evenly {
+  justify-content: space-evenly;
+}
+
+.loading-container {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-result-container {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .empty-img {
+    height: 20rem;
+  }
+}
+
+.user-image-sm,
+.user-image,
+.user-image-lg,
+.user-image-responsive {
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+  }
+}
+
+.user-image-sm,
+.user-image-responsive {
+  width: 2rem;
+  height: 2rem;
+}
+
+.user-image {
+  width: 3rem;
+  height: 3rem;
+}
+
+.user-image-lg {
+  width: 6rem;
+  height: 6rem;
+}
+
+.btn-float {
+  width: 3rem;
+  height: 3rem;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.select2-search__field{
+  border: 1px solid #ced4da;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+}
+
+.post-list {
+  .post-img-container {
+    position: relative;
+    min-height: 240px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    img {
+      position: absolute;
+      width: 100%;
+    }
+  
+    .hover-post {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      display: flex;
+      background-color: rgba(0, 0, 0, 0);
+      transition: background-color .3s ease;
+  
+      i {
+        margin: auto;
+        font-size: 3rem;
+        transform: scale(0);
+        transition: transform .3s ease;
+      }
+    }
+  
+    &:hover .hover-post {
+      background-color: rgba(0, 0, 0, .5);
+  
+      i {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 576px) {
+}
+
+@media screen and (min-width: 768px) {
+  .user-image-responsive {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .lg\:w-85 {
+    width: 85%;
+  }
+
+  .lg\:text-md {
+    font-size: 1rem;
+  }
+
+  .user-image-responsive {
+    width: 5rem;
+    height: 5rem;
+  }
+}

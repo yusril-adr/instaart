@@ -1,0 +1,34 @@
+@import 'config';
+
+@import 'utilities';
+
+// Profile Page
+.container#profile {
+  .user-image-border{
+    border: 3px double #fff;
+  }
+}
+
+// Post detail page
+.container#post {
+  button.like,
+  button.dislike {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+// Search Page
+.container#search {
+  min-height: 300px;
+}
+
+.container#job-detail .job-desc {
+  text-align: justify;
+}
+
+@media screen and (min-width: 768px) {
+  .container#job-detail .job-desc {
+    max-width: 75%;
+  }
+}

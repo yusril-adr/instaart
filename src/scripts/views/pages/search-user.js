@@ -13,6 +13,7 @@ const searchUser = {
   async afterRender() {
     let keyword = await UrlParser.parseActiveUrlWithoutCombiner().verb;
     if (!keyword) keyword = '';
+    else keyword = keyword.split('%20').join(' ');
 
     keyword = keyword.trim();
 

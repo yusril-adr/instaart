@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio apps for designer">
+  <link rel="shortcut icon" href="./public/images/logo.png">
+  <title>InstaArt | Daftar</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css"  crossorigin="anonymous"/>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./public/styles/style.css">
+</head>
+
+<body>
+  <!-- TopBar -->
+  <header class="sticky-top shadow-sm bg-white">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#/">
+          <img src="./public/images/logo.png" width="32" height="32" alt="Logo" class="d-inline-block align-top">
+          <span class="font-redressed font-weight-bold ml-2">InstaArt</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="form-inline ml-auto my-2 my-lg-0" id="navbar-search-form">
+            <div class="input-group">
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Cari ..." aria-label="Cari">
+
+              <div class="input-group-append">
+                <a href="./search-post.html" class="btn btn-outline-primary" type="submit" aria-label="cari"><i class="fas fa-search"></i></a>
+              </div>
+            </div>
+          </form>
+
+          <a href="./sign-up.html" class="mt-2 mt-lg-0 ml-lg-4 btn btn-primary">Daftar</a>
+          <a href="./job.html" class="mt-2 mt-lg-0 ml-lg-4 btn btn-secondary">Pekerjaan</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- ./TopBar -->
+
+  <main>
+    <div class="container" id="sign-up">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 offset-md-3">
+          <div class="card shadow-sm mt-3 mx-auto">
+            <div class="card-body">
+              <span class="card-title d-block font-redressed font-weight-bold h1 text-center mb-3">InstaArt</span>
+
+              <form id="signup-form">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" placeholder="Username" class="form-control" id="username" autocomplete="off" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" placeholder="Email" class="form-control" id="email" autocomplete="off" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="password">Password</label>
+
+                  <div class="input-group">
+                    <input type="password" placeholder="Password" class="form-control" id="password" autocomplete="off" required>
+
+                    <div class="input-group-append">
+                      <button type="button" class="btn btn-light" aria-label="show password" id="password-toggler"><i class="far fa-eye"></i></button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="confirm-password">Konfirmasi Password</label>
+
+                  <div class="input-group">
+                    <input type="password" placeholder="Konfirmasi Password" class="form-control" id="confirm-password" autocomplete="off" required>
+
+                    <div class="input-group-append">
+                      <button type="button" class="btn btn-light" id="confirm-password-toggler" aria-label="show password"><i class="far fa-eye"></i></button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="display-name">Nama Lengkap</label>
+                  <input type="text" placeholder="Nama Lengkap" class="form-control" id="display-name" autocomplete="off" required>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="province">Provinsi</label>
+                  <select class="custom-select" id="province" required>
+                    <option selected value="" disabled>Provinsi</option>
+                  </select>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="city">Kota</label>
+                  <select class="custom-select" id="city" required>
+                    <option selected value="" disabled>Silakan pilih provinsi</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone-number">Nomor Telepon</label>
+                  <input type="text" placeholder="Contoh: 08xxx" class="form-control" id="phone-number" autocomplete="off" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="biodata">Bio</label>
+                  <textarea class="form-control" id="biodata" rows="4" placeholder="Ceritakan sesuatu tentang dirimu"></textarea>
+                </div>
+      
+                <a href="./explore.html" class="btn btn-primary d-block mx-auto">Daftar</a>
+              </form>
+            </div>
+          </div>
+
+          <div class="card shadow-sm mt-3 mx-auto">
+            <div class="card-body d-flex justify-content-center">
+              Sudah memiliki akun?
+              <a href="./" class="ml-2 font-weight-bold text-primary">Masuk</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="container d-flex flex-column align-items-center text-black-50 text-center mt-5 mb-4">
+    <span class="h5 font-redressed">InstaArt</span>
+
+    <span class="h6 mt-4">© DraftCode 2021 All rights reserved.</span>
+  </footer>
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <!-- Popper.JS -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+  <!-- Sweet Alert 2 -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>
