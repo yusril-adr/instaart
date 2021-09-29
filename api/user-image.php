@@ -58,8 +58,8 @@
       throw new Exception('File is not supported', 415);
     }
 
-    if ($imgSize > 1000000) {
-      throw new Exception('File is more than 1mb.', 413);
+    if ($imgFile['error'] == 1) {
+      throw new Exception('File is exceeds maximum capacity.', 413);
     }
 
     $user = new User($currentUsername);
