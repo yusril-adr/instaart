@@ -62,7 +62,7 @@ const profile = {
     await this._renderPhoneNumber(targetedUser);
     await this._renderProvince(targetedUser);
     await this._renderCity(targetedUser);
-    await this._initMailBtn(targetedUser, currentUser);
+    await this._renderMailOrSignOutBtn(targetedUser, currentUser);
     await this._renderPostList(targetedUser, currentUser);
   },
 
@@ -234,6 +234,19 @@ const profile = {
     });
   },
 
+  async _renderMailOrSignOutBtn(targetUser, currentUser) {
+    const container = document.querySelector('#mail-or-signout-btn');
+
+    if (targetUser.id !== currentUser?.id) {
+      container.innerHTML = Templates.profileMailBtn();
+      await this._initMailBtn(targetUser, currentUser);
+      return;
+    }
+
+    container.innerHTML = Templates.profileSignOutBtn();
+    await this._initSignOutBtn();
+  },
+
   async _initMailBtn({ email }, currentUser) {
     const button = document.querySelector('#mail-btn');
     button.addEventListener('click', (event) => {
@@ -248,6 +261,36 @@ const profile = {
       }
 
       window.open(`mailto:${email}`);
+    });
+  },
+
+  async _initSignOutBtn() {
+    const btn = document.querySelector('#signout-btn');
+    btn.addEventListener('click', async () => {
+      try {
+        const { isConfirmed } = await Swal.fire({
+          title: 'Apakah anda yakin?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya!',
+          cancelButtonText: 'Tidak',
+        });
+
+        if (!isConfirmed) return;
+
+        await User.signOut();
+
+        const changeEvent = new CustomEvent('updateUser');
+        window.dispatchEvent(changeEvent);
+      } catch (error) {
+        await Swal.fire(
+          'Oops ...',
+          error.message,
+          'error',
+        );
+      }
     });
   },
 

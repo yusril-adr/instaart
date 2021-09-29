@@ -934,8 +934,7 @@ const Templates = {
                 </li>
               </ul>
 
-              <div class="card-footer d-flex justify-content-center">
-                <button class="btn btn-primary" id="mail-btn">Ajak Kerjasama</button>
+              <div class="card-footer d-flex justify-content-center" id="mail-or-signout-btn">
               </div>
             </div>
           </div>
@@ -949,6 +948,18 @@ const Templates = {
           </div>
         </div>
       </div>
+    `;
+  },
+
+  profileMailBtn() {
+    return `
+      <button class="btn btn-primary" id="mail-btn">Ajak Kerjasama</button>
+    `;
+  },
+
+  profileSignOutBtn() {
+    return `
+      <button class="btn btn-danger" id="signout-btn">Keluar</button>
     `;
   },
 
