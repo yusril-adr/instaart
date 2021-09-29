@@ -27,7 +27,8 @@
           users.image as user_image
         FROM jobs 
         INNER JOIN users
-        ON jobs.user_id = users.id;"
+        ON jobs.user_id = users.id
+        ORDER BY id DESC;"
       );
 
       $jobs = [];
