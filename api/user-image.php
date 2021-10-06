@@ -71,8 +71,8 @@
       unlink("../public/images/users/{$info['image']}");
     }
 
-    $id = $info['id'];
-    $newFileName = "{$id}.{$extension}";
+    $randomString = uniqid();
+    $newFileName = "{$randomString}.{$extension}";
     $fileTmp = $imgFile["tmp_name"];
     move_uploaded_file($fileTmp, "../public/images/users/$newFileName");
 
