@@ -20,9 +20,12 @@
         $username = User::getUserFromId($authId)['username'];
         $user = new User($username);
 
-        $result = $user->likePost((int) $request['post_id']);
-
         $post = new Post((int) $request['post_id']);
+        $likes = $post->getLikes();
+
+        if (!in_array($user->getId(), $likes)) {
+          $result = $user->likePost((int) $request['post_id']);
+        }
 
         $response['status'] = 'success';
         $response['likes'] = $post->getLikes();
@@ -43,9 +46,12 @@
         $username = User::getUserFromId($authId)['username'];
         $user = new User($username);
 
-        $result = $user->dislikePost((int) $request['post_id']);
-
         $post = new Post((int) $request['post_id']);
+        $likes = $post->getLikes();
+
+        if (in_array($user->getId(), $likes)) {
+          $result = $user->dislikePost((int) $request['post_id']);
+        }
 
         $response['status'] = 'success';
         $response['likes'] = $post->getLikes();
