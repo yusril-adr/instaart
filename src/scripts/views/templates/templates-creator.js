@@ -1546,7 +1546,7 @@ const Templates = {
 
   postCommentLogin() {
     return `
-      <span class="h5 text-secondary text-center d-block"><a href="#/">Masuk</a> untuk memberi komentar</span>
+      <span class="h5 text-secondary text-center d-block"><a href="#/sign-in/">Masuk</a> untuk memberi komentar</span>
     `;
   },
 
