@@ -1046,9 +1046,11 @@ const Templates = {
 
           <div class="col-sm-12 col-md-6 col-lg-8 mt-4 mt-md-0">
             <div class="row post-list ">
-              <div class="loading-container">
-                <div class="spinner-border text-secondary" role="status">
-                  <span class="sr-only">Loading...</span>
+              <div class="col-12">
+                <div class="loading-container">
+                  <div class="spinner-border text-secondary" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
                 </div>
               </div>
             </div>
