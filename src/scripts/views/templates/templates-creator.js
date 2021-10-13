@@ -158,7 +158,7 @@ const Templates = {
                 <h2 class="font-poppins h6">Unggah portofolio dan berkreasilah di InstaArt</h2>
                 
                 <div>
-                  <a href="#/sign-up/" class="btn btn-primary">Masuk</a>
+                  <a href="#/sign-up/" class="btn btn-primary">Daftar</a>
                 </div>
               </div>
             </div>
