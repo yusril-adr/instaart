@@ -10,17 +10,25 @@
     $admin = new Admin($_SESSION['username']);
 
     if (isset($_POST['save'])) {
+        if ($_POST['new-password'] !== $_POST['new-password-confirm']) {
+            throw new Exception('Password baru tidak cocok.');
+        }
+
+        // if ($_POST['old-password'] !== $_POST['old-password-confirm']) {
+        //     throw new Exception('Password lama tidak cocok.');
+        // }
+
         if (!password_verify($_POST['current-password'], $admin->getAdmin()['password'])) {
             throw new Exception('Password lama salah.');
         }
 
-        $data['username'] = $_POST['username'];
+        // $data['username'] = $_POST['username'];
         $data['password'] = $_POST['new-password'];
         $admin->updateAdmin($data);
 
-        $admin = new Admin($_POST['username']);
+        $admin = new Admin($_SESSION['username']);
 
-        $_SESSION['username'] = $admin->getAdmin()['username'];
+        // $_SESSION['username'] = $admin->getAdmin()['username'];
         $_SESSION['id'] = $admin->getAdmin()['id'];
 
         $alertMessage = 'Akun berhasil diperbarui';
@@ -91,19 +99,27 @@
                         <div class="card shadow col-12 col-md-6 offset-md-3">
                             <div class="card-body">
                                 <form method="post">
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label for="username">Username</label>
 
                                         <div class="input-group">
                                             <input type="text" placeholder="Username" class="form-control" id="username" name="username"  autocomplete="off" required value="<?= $admin->getAdmin()['username'] ?>">
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="form-group">
                                         <label for="new-password">Password Baru</label>
 
                                         <div class="input-group">
-                                            <input type="password" placeholder="Password baru" class="form-control" id="new-password" name="new-password"  autocomplete="off" minlength="8" required>
+                                            <input type="password" placeholder="Password Baru" class="form-control" id="new-password" name="new-password"  autocomplete="off" minlength="8" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="new-password-confirm">Konfirmasi Password Baru</label>
+
+                                        <div class="input-group">
+                                            <input type="password" placeholder="Konfirmasi Password Baru" class="form-control" id="new-password-confirm" name="new-password-confirm"  autocomplete="off" minlength="8" required>
                                         </div>
                                     </div>
 
@@ -111,9 +127,17 @@
                                         <label for="current-password">Password Lama</label>
 
                                         <div class="input-group">
-                                            <input type="password" placeholder="Password lama" class="form-control" id="current-password" name="current-password" autocomplete="off" minlength="8" required>
+                                            <input type="password" placeholder="Password Lama" class="form-control" id="current-password" name="current-password" autocomplete="off" minlength="8" required>
                                         </div>
                                     </div>
+
+                                    <!-- <div class="form-group">
+                                        <label for="old-password-confirm">Konfirmasi Password Lama</label>
+
+                                        <div class="input-group">
+                                            <input type="password" placeholder="Konfirmasi Password Lama" class="form-control" id="old-password-confirm" name="old-password-confirm"  autocomplete="off" minlength="8" required>
+                                        </div>
+                                    </div> -->
         
                                     <button type="submit" class="btn btn-primary d-block mx-auto" name="save">Simpan</button>
                                 </form>

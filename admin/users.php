@@ -76,7 +76,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Username</th>
+                                            <th>Id</th>                                            <th>Username</th>
                                             <th>Nama Lengkap</th>
                                             <th>Foto profil</th>
                                             <th>Provinsi</th>
@@ -86,7 +86,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Username</th>
+                                            <th>Id</th>                                            <th>Username</th>
                                             <th>Nama Lengkap</th>
                                             <th>Foto profil</th>
                                             <th>Provinsi</th>
@@ -98,6 +98,7 @@
                                         <?php if(isset($users) && count($users) > 0) :?>
                                             <?php foreach ($users as $user) : ?>
                                                 <tr>
+                                                    <td><?= $user['id'] ?></td>
                                                     <td><?= $user['username'] ?></td>
                                                     <td><?= $user['display_name'] ?></td>
                                                     <td>
@@ -112,11 +113,30 @@
                                                     <td><?= $user['city_name'] ?></td>
                                                     <td>
                                                         <form method="POST" class="form-delete d-flex">
-                                                            <a href="../#/profile/<?= $user['username'] ?>" class="btn btn-info mr-3" target="_blank">Detail</a>
+                                                            <a 
+                                                                href="../#/profile/<?= $user['username'] ?>" 
+                                                                class="btn btn-info mr-3" 
+                                                                target="_blank"
+                                                                class="btn btn-info mr-3" 
+                                                                target="_blank"
+                                                                data-toggle="tooltip"
+                                                                data-placement="bottom" 
+                                                                title="Detail"
+                                                            >
+                                                                <i class="fas fa-info-circle"></i>
+                                                            </a>
 
                                                             <input type="hidden" name="username" value="<?= $user['username'] ?>">
 
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            <button 
+                                                                type="submit" 
+                                                                class="btn btn-danger"
+                                                                data-toggle="tooltip"
+                                                                data-placement="bottom" 
+                                                                title="Hapus"
+                                                            >
+                                                                <i class="fas fa-trash-alt"></i>
+                                                            </button>
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -172,6 +192,10 @@
     <?php endif; ?>
 
     <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+
         const forms = document.querySelectorAll('form.form-delete');
         forms.forEach(function(form) {
             form.addEventListener('submit', function(event) {

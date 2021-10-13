@@ -41,6 +41,30 @@ $dark: #343a40;
   font-weight: normal;
   src: url('../../public/fonts/Segoe UI Bold Italic.woff') format('woff');
 }
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../public/fonts/Poppins-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Poppins Italic';
+  font-style: normal;
+  font-weight: normal;
+  src:  url('../../public/fonts/Poppins-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Poppins Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../public/fonts/Poppins-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Poppins Bold Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../public/fonts/Poppins-BoldItalic.ttf') format('truetype');
+}
 
 * {
   font-family: 'Segoe UI', 'serif';
@@ -60,4 +84,8 @@ $dark: #343a40;
 
 textarea { 
   resize: none; 
+}
+
+main {
+  min-height: 60vh;
 }

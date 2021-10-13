@@ -186,9 +186,10 @@
     }
   
     public function updateAdmin($data) {
-      $username = htmlspecialchars($data['username']);
-      $username = stripslashes($username);
-      $username = strtolower($username);
+      // $username = htmlspecialchars($data['username']);
+      // $username = stripslashes($username);
+      // $username = strtolower($username);
+      $username = 'admin';
   
       if(isset($data['password']) && $data['password']) {
         $password = password_hash($data['password'], PASSWORD_DEFAULT);

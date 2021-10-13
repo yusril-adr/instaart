@@ -77,7 +77,7 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-center text-gray-800"><?= $pageTitle ?></h1>
 
-                    <div class="d-flex justify-content-center mt-4 mb-4">
+                    <div class="d-flex justify-content-end my-4">
                         <button class="btn btn-primary d-flex align-items-center" data-toggle="modal" data-target="#new-category-modal">
                            <i class="fas fa-plus mr-2"></i> Tambah
                         </button>
@@ -90,12 +90,14 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>Id</th>
                                             <th>Nama</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                            <th>Id</th>
                                             <th>Nama</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -104,6 +106,7 @@
                                         <?php if(isset($categories) && count($categories) > 0) :?>
                                             <?php foreach ($categories as $category) : ?>
                                                 <tr>
+                                                    <td><?= $category['id'] ?></td>
                                                     <td><?= $category['name'] ?></td>
                                                     <td>
                                                         <form method="POST" class="form-delete d-flex">
@@ -113,12 +116,16 @@
                                                                 data-toggle="modal" 
                                                                 data-target="#edit-category-<?= $category['id'] ?>"
                                                             >
+                                                                <i class="fas fa-edit"></i>
                                                                 Edit
                                                             </button>
 
                                                             <input type="hidden" name="category-id" value="<?= $category['id'] ?>">
 
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="fas fa-trash-alt"></i>
+                                                                Hapus
+                                                            </button>
                                                         </form>
 
                                                         <!-- Edit Category Modal -->

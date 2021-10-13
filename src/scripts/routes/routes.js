@@ -1,4 +1,5 @@
 import home from '../views/pages/home';
+import signIn from '../views/pages/signIn';
 import signUp from '../views/pages/sign-up';
 import signOut from '../views/pages/sign-out';
 import explore from '../views/pages/explore';
@@ -23,6 +24,7 @@ import searchPost from '../views/pages/search-post';
 
 const routes = {
   '/': home,
+  '/sign-in': signIn,
   '/sign-up': signUp,
   '/sign-out': signOut,
   '/explore': explore,

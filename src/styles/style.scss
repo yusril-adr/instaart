@@ -2,15 +2,23 @@
 
 @import 'utilities';
 
+
+#home {
+  .jumbotron {
+    background-image: linear-gradient(to top right, #CEE1FF, #DBE9FF, #E7F0FF);
+    min-height: 450px;
+  }
+}
+
 // Profile Page
-.container#profile {
+main #profile {
   .user-image-border{
     border: 3px double #fff;
   }
 }
 
 // Post detail page
-.container#post {
+main #post {
   button.like,
   button.dislike {
     width: 3rem;
@@ -19,16 +27,10 @@
 }
 
 // Search Page
-.container#search {
+main #search {
   min-height: 300px;
 }
 
-.container#job-detail .job-desc {
+main #job-detail .job-desc {
   text-align: justify;
-}
-
-@media screen and (min-width: 768px) {
-  .container#job-detail .job-desc {
-    max-width: 75%;
-  }
 }

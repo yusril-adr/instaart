@@ -37,11 +37,15 @@ const jobDetail = {
     await this._renderProfileImage(job);
     await this._renderTitle(job);
     await this._renderDisplayName(job);
-    await this._renderEditBtn(job, currentUser);
     await this._renderDescription(job);
     await this._renderLocation(job);
     await this._renderWorkTime(job);
-    await this._initApplyButton(job, currentUser);
+
+    if (job.user_id === currentUser?.id) {
+      await this._renderEditBtn(job, currentUser);
+    } else {
+      await this._initApplyButton(job, currentUser);
+    }
   },
 
   async _renderNotFound() {
@@ -73,7 +77,7 @@ const jobDetail = {
   async _renderEditBtn(job, currentUser) {
     if (job.user_id !== currentUser?.id) return;
 
-    const container = document.querySelector('#edit-button-container');
+    const container = document.querySelector('#button-container');
     container.innerHTML = Templates.jobEditBtn(job.id);
   },
 

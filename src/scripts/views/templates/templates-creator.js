@@ -46,11 +46,20 @@ const Templates = {
   header() {
     return `
       <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light px-0">
           <a class="navbar-brand" href="#/">
             <img src="${CONFIG.IMAGE_PATH.BASE}/logo.png" width="32" height="32" alt="Logo" class="d-inline-block align-top">
             <span class="font-redressed font-weight-bold ml-2">InstaArt</span>
           </a>
+
+          <ul class="navbar-nav d-none d-lg-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#/">Beranda <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#/job/">Pekerjaan</a>
+            </li>
+          </ul>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,8 +77,8 @@ const Templates = {
               </div>
             </form>
 
+            <a href="#/sign-in/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-link text-decoration-none">Masuk</a>
             <a href="#/sign-up/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-primary">Daftar</a>
-            <a href="#/job/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-secondary">Pekerjaan</a>
           </div>
         </nav>
       </div>
@@ -79,7 +88,7 @@ const Templates = {
   loginHeader({ username }) {
     return `
       <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light px-0">
           <a class="navbar-brand" href="#/">
             <img src="${CONFIG.IMAGE_PATH.BASE}/logo.png" width="32" height="32" alt="Logo" class="d-inline-block align-top">
             <span class="font-redressed font-weight-bold ml-2">InstaArt</span>
@@ -101,33 +110,33 @@ const Templates = {
               </div>
             </form>
 
-            <ul class="navbar-nav mx-lg-4">
+            <ul class="navbar-nav ml-lg-2">
               <li class="nav-item home">
-                <a class="nav-link d-flex align-items-center" href="#/explore/"><i class="fas fa-home"></i> <span class="d-lg-none ml-2">Beranda</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/explore/"><i class="fas fa-home"></i> <span class="d-lg-none ml-2">Beranda</span></a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link d-flex align-items-center" href="#/activity/"><i class="fas fa-compass"></i> <span class="d-lg-none ml-2">Aktivitas</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/activity/"><i class="fas fa-compass"></i> <span class="d-lg-none ml-2">Aktivitas</span></a>
               </li>
               
               <li class="nav-item new-post">
-                <a class="nav-link d-flex align-items-center" href="#/new-post/"><i class="fas fa-plus-circle"></i> <span class="d-lg-none ml-2">Portofolio Baru</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/new-post/"><i class="fas fa-plus-circle"></i> <span class="d-lg-none ml-2">Portofolio Baru</span></a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link d-flex align-items-center" href="#/bookmark/"><i class="fas fa-bookmark"></i> <span class="d-lg-none ml-2">Disimpan</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/bookmark/"><i class="fas fa-bookmark"></i> <span class="d-lg-none ml-2">Disimpan</span></a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link d-flex align-items-center" href="#/favorite/"><i class="fas fa-heart"></i> <span class="d-lg-none ml-2">Disukai</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/favorite/"><i class="fas fa-heart"></i> <span class="d-lg-none ml-2">Disukai</span></a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link d-flex align-items-center" href="#/job/"><i class="fas fa-briefcase"></i> <span class="d-lg-none ml-2">Pekerjaan</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/job/"><i class="fas fa-briefcase"></i> <span class="d-lg-none ml-2">Pekerjaan</span></a>
               </li>
 
               <li class="nav-item profile">
-                <a class="nav-link d-flex align-items-center" href="#/profile/${username}"><i class="fas fa-user-circle"></i> <span class="d-lg-none ml-2">Profil</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/profile/${username}"><i class="fas fa-user-circle"></i> <span class="d-lg-none ml-2">Profil</span></a>
               </li>
             </ul>
           </div>
@@ -136,7 +145,106 @@ const Templates = {
     `;
   },
 
-  homepage() {
+  homePage() {
+    return `
+      <div id="home">
+        <div class="jumbotron">
+          <div class="container">
+            <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between">
+              <img src="${CONFIG.IMAGE_PATH.ILLUST}/work.svg" alt="Illustration" class="max-w-lg-50 max-w-lg-50">
+
+              <div class="d-flex flex-column align-items-center align-items-lg-end justify-content-lg-end">
+                <h1 class="font-poppins font-weight-bold h2">Temukan sesuatu yang baru</h1>
+                <h2 class="font-poppins h6">Unggah portofolio dan berkreasilah di InstaArt</h2>
+                
+                <div>
+                  <a href="#/sign-up/" class="btn btn-primary">Masuk</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row post-list">
+            <div class="loading-container col-12">
+              <div class="spinner-border text-secondary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-column align-items-center">
+            <h3 class="h5 text-center">Daftar atau masuk untuk melanjutkan</h3>
+
+            <div class="d-flex align-items-center justify-content-center mt-2">
+              <a href="#/sign-up/" class="btn btn-primary">Daftar</a>
+              <a href="#/sign-in/" class="btn btn-outline-primary ml-3">Masuk</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  homePost(post, userId = null) {
+    const { month, date, year } = DateHelper.parse(post.date);
+
+    return `
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="card border-0 border-radius-5px overflow-hidden">
+          <a href="#/post/${post.id}/" class="post-img-container border-radius-5px">
+            <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title} image">
+
+            <!-- <div class="hover-post">
+              <i class="fas fa-search" aria-label="visit ${post.title}"></i>
+            </div> -->
+          </a>
+          
+          <div class="card-body px-0 pt-2">
+            <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center">
+                <a href="#/profile/${post.username}/" class="user-image">
+                  <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
+                </a>
+
+                <div class="d-flex flex-column ml-2">
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
+
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center ml-auto">
+                <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
+                  ${post.likes.includes(userId) ? this.likedIcon() : this.likeIcon()}
+                </button>
+
+                <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+
+                <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
+                  <i class="far fa-comment"></i>
+                </a>
+
+                <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
+                
+                
+                <i class="far fa-eye ml-2 mr-1"></i>
+                
+                <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="card-footer d-flex">
+            <span class="d-block mx-auto">${date} ${month} ${year}</span>
+          </div> -->
+        </div>
+      </div>
+    `;
+  },
+
+  signInpage() {
     return `
       <div class="container" id="home">
         <div class="row">
@@ -267,7 +375,7 @@ const Templates = {
             <div class="card shadow-sm mt-3 mx-auto">
               <div class="card-body d-flex justify-content-center">
                 Sudah memiliki akun?
-                <a href="#/" class="ml-2 font-weight-bold text-primary">Masuk</a>
+                <a href="#/sign-in" class="ml-2 font-weight-bold text-primary">Masuk</a>
               </div>
             </div>
           </div>
@@ -287,6 +395,10 @@ const Templates = {
               </div>
             </div>
           </div>
+
+          <div class="d-flex">
+            <button class="btn btn-outline-primary mx-auto">Muat lebih banyak</button>
+          </div>
         </div>
       </div>
     `;
@@ -305,54 +417,55 @@ const Templates = {
   explorePost(post, userId = null) {
     const { month, date, year } = DateHelper.parse(post.date);
 
-    return `
+    return /* html */ `
       <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-        <div class="card shadow rounded">
-          <a href="#/profile/${post.username}/" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
-            <div class="user-image-sm">
-              <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
-            </div>
-
-            <span class="ml-2">${post.username}</span>
-          </a>
-
-          <a href="#/post/${post.id}/" class="post-img-container">
+        <div class="card border-0 border-radius-5px overflow-hidden">
+          <a href="#/post/${post.id}/" class="post-img-container border-radius-5px">
             <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title} image">
 
-            <div class="hover-post">
+            <!-- <div class="hover-post">
               <i class="fas fa-search" aria-label="visit ${post.title}"></i>
-            </div>
+            </div> -->
           </a>
           
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-2">
-              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
-                ${post.likes.includes(userId)
-    ? this.likedIcon()
-    : this.likeIcon()
-}
-              </button>
+          <div class="card-body px-0 pt-2">
+            <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center">
+                <a href="#/profile/${post.username}/" class="user-image">
+                  <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
+                </a>
 
-              <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+                <div class="d-flex flex-column ml-2">
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
 
-              <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
-                <i class="far fa-comment"></i>
-              </a>
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                </div>
+              </div>
 
-              <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
-              
-              
-              <i class="far fa-eye ml-2 mr-1"></i>
-              
-              <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+              <div class="d-flex align-items-center ml-auto">
+                <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
+                  ${post.likes.includes(userId) ? this.likedIcon() : this.likeIcon()}
+                </button>
+
+                <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+
+                <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
+                  <i class="far fa-comment"></i>
+                </a>
+
+                <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
+                
+                
+                <i class="far fa-eye ml-2 mr-1"></i>
+                
+                <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+              </div>
             </div>
-
-            <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
           </div>
 
-          <div class="card-footer d-flex">
+          <!-- <div class="card-footer d-flex">
             <span class="d-block mx-auto">${date} ${month} ${year}</span>
-          </div>
+          </div> -->
         </div>
       </div>
     `;
@@ -463,52 +576,53 @@ const Templates = {
 
     return `
       <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-        <div class="card shadow rounded">
-          <a href="#/profile/${post.username}/" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
-            <div class="user-image-sm">
-              <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
-            </div>
-
-            <span class="ml-2">${post.username}</span>
-          </a>
-
-          <a href="#/post/${post.id}/" class="post-img-container">
+        <div class="card border-0 border-radius-5px overflow-hidden">
+          <a href="#/post/${post.id}/" class="post-img-container border-radius-5px">
             <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title} image">
 
-            <div class="hover-post">
+            <!-- <div class="hover-post">
               <i class="fas fa-search" aria-label="visit ${post.title}"></i>
-            </div>
+            </div> -->
           </a>
           
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-2">
-              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
-                ${post.likes.includes(userId)
-    ? this.likedIcon()
-    : this.likeIcon()
-}
-              </button>
+          <div class="card-body px-0 pt-2">
+            <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center">
+                <a href="#/profile/${post.username}/" class="user-image">
+                  <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
+                </a>
 
-              <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+                <div class="d-flex flex-column ml-2">
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
 
-              <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
-                <i class="far fa-comment"></i>
-              </a>
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                </div>
+              </div>
 
-              <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
-              
-              
-              <i class="far fa-eye ml-2 mr-1"></i>
-              
-              <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+              <div class="d-flex align-items-center ml-auto">
+                <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
+                  ${post.likes.includes(userId) ? this.likedIcon() : this.likeIcon()}
+                </button>
+
+                <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+
+                <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
+                  <i class="far fa-comment"></i>
+                </a>
+
+                <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
+                
+                
+                <i class="far fa-eye ml-2 mr-1"></i>
+                
+                <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+              </div>
             </div>
-
-            <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
           </div>
 
-          <div class="card-footer d-flex">
+          <!-- <div class="card-footer d-flex">
             <span class="d-block mx-auto">${date} ${month} ${year}</span>
-          </div>
+          </div> -->
         </div>
       </div>
     `;
@@ -546,52 +660,53 @@ const Templates = {
 
     return `
       <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-        <div class="card shadow rounded">
-          <a href="#/profile/${post.username}/" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
-            <div class="user-image-sm">
-              <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
-            </div>
-
-            <span class="ml-2">${post.username}</span>
-          </a>
-
-          <a href="#/post/${post.id}/" class="post-img-container">
+        <div class="card border-0 border-radius-5px overflow-hidden">
+          <a href="#/post/${post.id}/" class="post-img-container border-radius-5px">
             <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title} image">
 
-            <div class="hover-post">
+            <!-- <div class="hover-post">
               <i class="fas fa-search" aria-label="visit ${post.title}"></i>
-            </div>
+            </div> -->
           </a>
           
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-2">
-              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
-                ${post.likes.includes(userId)
-    ? this.likedIcon()
-    : this.likeIcon()
-}
-              </button>
+          <div class="card-body px-0 pt-2">
+            <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center">
+                <a href="#/profile/${post.username}/" class="user-image">
+                  <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
+                </a>
 
-              <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+                <div class="d-flex flex-column ml-2">
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
 
-              <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
-                <i class="far fa-comment"></i>
-              </a>
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                </div>
+              </div>
 
-              <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
-              
-              
-              <i class="far fa-eye ml-2 mr-1"></i>
-              
-              <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+              <div class="d-flex align-items-center ml-auto">
+                <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
+                  ${post.likes.includes(userId) ? this.likedIcon() : this.likeIcon()}
+                </button>
+
+                <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+
+                <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
+                  <i class="far fa-comment"></i>
+                </a>
+
+                <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
+                
+                
+                <i class="far fa-eye ml-2 mr-1"></i>
+                
+                <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+              </div>
             </div>
-
-            <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
           </div>
 
-          <div class="card-footer d-flex">
+          <!-- <div class="card-footer d-flex">
             <span class="d-block mx-auto">${date} ${month} ${year}</span>
-          </div>
+          </div> -->
         </div>
       </div>
     `;
@@ -822,28 +937,26 @@ const Templates = {
                   <span class="h4 text-center job-title"></span>
                   <span class="h6 text-secondary text-center user-display-name"></span>
 
-                  <div id="edit-button-container" class="d-flex justify-content-center"></div>
+                  <div class="d-flex flex-column justifiy-content-center align-items-center pt-0 px-3 pb-3">
+                    <p class="mb-1">
+                      <i class="fas fa-map-marker-alt ml-1 mr-2"></i> 
+                      <span class="job-location"></span>
+                    </p>
+
+                    <p class="mt-1 mb-1">
+                      <i class="fas fa-briefcase mr-2"></i> 
+                      <span class="job-work-time"></span>
+                    </p>
+                  </div>
 
                   <div class="d-flex flex-column-reverse flex-md-row mt-3">
                     <span class="job-desc"></span>
-
-                    <div class="d-flex flex-column ml-md-3 ml-lg-5 mt-3 mt-md-0">
-                      <p class="mb-1">
-                        <i class="fas fa-map-marker-alt ml-1 mr-2"></i> 
-                        <span class="job-location"></span>
-                      </p>
-
-                      <p class="mt-1">
-                        <i class="fas fa-briefcase mr-2"></i> 
-                        <span class="job-work-time"></span>
-                      </p>
-                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="card-footer">
-                <div class="w-100 d-flex justify-content-center align-items-center">
+                <div id="button-container" class="w-100 d-flex justify-content-center align-items-center">
                   <button class="btn btn-primary" id="apply-button">Lamar</button>
                 </div>
               </div>
@@ -868,8 +981,8 @@ const Templates = {
 
   jobEditBtn(id) {
     return `
-      <a href="#/edit-job/${id}" class="btn btn-outline-primary mt-2">
-        <i class="far fa-edit"></i> Edit pekerjaan
+      <a href="#/edit-job/${id}" class="btn btn-outline-primary">
+        <i class="far fa-edit"></i> Edit
       </a>
     `;
   },
@@ -878,7 +991,7 @@ const Templates = {
     return `
       <div class="container mt-4" id="profile">
         <div class="row">
-          <div class="col-sm-12 col-lg-10 offset-lg-1">
+          <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card shadow-sm">
               <div class="card-body d-flex flex-column align-items-center">
                 <div class="user-image-lg bg-grey user-image-border">
@@ -893,56 +1006,50 @@ const Templates = {
 
                   <span class="mt-3 user-bio"></span>
                 </div>
+
+                <ul class="list-group list-group-flush text-sm md:text-md w-100">
+                  <li class="list-group-item border-0 px-0">
+                    <a href="#/followers" id="followers-anchor" class="text-decoration-none hover:text-primary d-flex justify-content-between align-items-center">
+                      <span>Pengikut</span>
+                      <span class="user-followers"></span>
+                    </a>
+                  </li>
+
+                  <li class="list-group-item border-0 px-0">
+                    <a href="#/following" id="following-anchor" class="text-decoration-none hover:text-primary d-flex justify-content-between align-items-center">
+                      <span>Mengikuti</span>
+                      <span class="user-following"></span>
+                    </a>
+                  </li>
+
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span>Nomor Telepon</span>
+                    <span class="user-phone-number"></span>
+                  </li>
+
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span>Provinsi</span>
+                    <span class="user-province"></span>
+                  </li>
+
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span>Kota</span>
+                    <span class="user-city"></span>
+                  </li>
+                </ul>
               </div>
-            </div>
-          </div>
-
-          <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-1 mt-4">
-            <div class="card shadow">
-              <div class="card-header text-center">
-                Profil
-              </div>
-
-              <ul class="list-group list-group-flush text-sm md:text-md">
-                <li class="list-group-item">
-                  <a href="#/followers" id="followers-anchor" class="text-decoration-none hover:text-primary d-flex justify-content-between align-items-center">
-                    <span>Pengikut</span>
-                    <span class="user-followers"></span>
-                  </a>
-                </li>
-
-                <li class="list-group-item">
-                  <a href="#/following" id="following-anchor" class="text-decoration-none hover:text-primary d-flex justify-content-between align-items-center">
-                    <span>Mengikuti</span>
-                    <span class="user-following"></span>
-                  </a>
-                </li>
-
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <span>Nomor Telepon</span>
-                  <span class="user-phone-number"></span>
-                </li>
-
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <span>Provinsi</span>
-                  <span class="user-province"></span>
-                </li>
-
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <span>Kota</span>
-                  <span class="user-city"></span>
-                </li>
-              </ul>
 
               <div class="card-footer d-flex justify-content-center" id="mail-or-signout-btn">
               </div>
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 post-list">
-            <div class="loading-container">
-              <div class="spinner-border text-secondary" role="status">
-                <span class="sr-only">Loading...</span>
+          <div class="col-sm-12 col-md-6 col-lg-8 mt-4 mt-md-0">
+            <div class="row post-list ">
+              <div class="loading-container">
+                <div class="spinner-border text-secondary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
               </div>
             </div>
           </div>
@@ -986,7 +1093,7 @@ const Templates = {
   profileEditBtn() {
     return `
       <a href="#/edit-profile/" class="btn btn-outline-primary mt-2">
-        <i class="far fa-edit"></i> Edit profil
+        <i class="far fa-edit"></i> Edit Profil
       </a>
     `;
   },
@@ -1016,54 +1123,54 @@ const Templates = {
     const { month, date, year } = DateHelper.parse(post.date);
 
     return `
-      <div class="card shadow rounded mt-4">
-        <a href="#/profile/${post.username}/" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
-          <div class="user-image-sm">
-            <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="${post.username} profile picture">
+      <div class="col-12 col-lg-6">
+        <div class="card border-0 border-radius-5px overflow-hidden">
+          <a href="#/post/${post.id}/" class="post-img-container border-radius-5px">
+            <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title} image">
+
+            <!-- <div class="hover-post">
+              <i class="fas fa-search" aria-label="visit ${post.title}"></i>
+            </div> -->
+          </a>
+          
+          <div class="card-body px-0 pt-2">
+            <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center">
+                <a href="#/profile/${post.username}/" class="user-image">
+                  <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
+                </a>
+
+                <div class="d-flex flex-column ml-2">
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
+
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center ml-auto">
+                <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
+                  ${post.likes.includes(userId) ? this.likedIcon() : this.likeIcon()}
+                </button>
+
+                <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+
+                <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
+                  <i class="far fa-comment"></i>
+                </a>
+
+                <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
+                
+                
+                <i class="far fa-eye ml-2 mr-1"></i>
+                
+                <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+              </div>
+            </div>
           </div>
 
-          <span class="ml-2">${post.username}</span>
-        </a>
-
-        <a href="#/post/${post.id}/" class="post-img-container">
-          <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title}">
-
-          <div class="hover-post">
-            <i class="fas fa-search" aria-label="visit ${post.title}"></i>
-          </div>
-        </a>
-        
-        <div class="card-body">
-          <div class="d-flex align-items-center mb-2">
-          <button 
-            post-id="${post.id}" 
-            class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" 
-            aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}"
-          >
-              ${post.likes.includes(userId)
-    ? this.likedIcon()
-    : this.likeIcon()
-}
-          </button>
-
-            <span class="pb-2px">${post.likes.length}<span class="sr-only"> menyukai desain ini</span></span>
-
-            <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
-              <i class="far fa-comment"></i>
-            </a>
-
-            <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari desain ini</span></span>
-
-            <i class="far fa-eye ml-2 mr-1"></i>
-              
-            <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
-          </div>
-
-          <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
-        </div>
-
-        <div class="card-footer d-flex">
-          <span class="d-block mx-auto">${date} ${month} ${year}</span>
+          <!-- <div class="card-footer d-flex">
+            <span class="d-block mx-auto">${date} ${month} ${year}</span>
+          </div> -->
         </div>
       </div>
     `;
@@ -1231,7 +1338,7 @@ const Templates = {
                     <label for="new-password">Password Baru</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Password baru" class="form-control" id="new-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+                      <input type="password" placeholder="Password Baru" class="form-control" id="new-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
       
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="new-password-toggler" aria-label="show password"><i class="far fa-eye"></i></button>
@@ -1240,10 +1347,10 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="current-password">Password lama</label>
+                    <label for="current-password">Password Lama</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Password lama" class="form-control" id="current-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+                      <input type="password" placeholder="Password Lama" class="form-control" id="current-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
       
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="current-password-toggler" aria-label="show password">
@@ -1715,52 +1822,53 @@ const Templates = {
 
     return `
       <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-        <div class="card shadow rounded">
-          <a href="#/profile/${post.username}/" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
-            <div class="user-image-sm">
-              <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
-            </div>
-
-            <span class="ml-2">${post.username}</span>
-          </a>
-
-          <a href="#/post/${post.id}/" class="post-img-container">
+        <div class="card border-0 border-radius-5px overflow-hidden">
+          <a href="#/post/${post.id}/" class="post-img-container border-radius-5px">
             <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title} image">
 
-            <div class="hover-post">
+            <!-- <div class="hover-post">
               <i class="fas fa-search" aria-label="visit ${post.title}"></i>
-            </div>
+            </div> -->
           </a>
           
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-2">
-              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
-                ${post.likes.includes(userId)
-    ? this.likedIcon()
-    : this.likeIcon()
-}
-              </button>
+          <div class="card-body px-0 pt-2">
+            <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center">
+                <a href="#/profile/${post.username}/" class="user-image">
+                  <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
+                </a>
 
-              <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+                <div class="d-flex flex-column ml-2">
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
 
-              <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
-                <i class="far fa-comment"></i>
-              </a>
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                </div>
+              </div>
 
-              <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
-              
-              
-              <i class="far fa-eye ml-2 mr-1"></i>
-              
-              <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+              <div class="d-flex align-items-center ml-auto">
+                <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
+                  ${post.likes.includes(userId) ? this.likedIcon() : this.likeIcon()}
+                </button>
+
+                <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+
+                <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
+                  <i class="far fa-comment"></i>
+                </a>
+
+                <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
+                
+                
+                <i class="far fa-eye ml-2 mr-1"></i>
+                
+                <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+              </div>
             </div>
-
-            <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
           </div>
 
-          <div class="card-footer d-flex">
+          <!-- <div class="card-footer d-flex">
             <span class="d-block mx-auto">${date} ${month} ${year}</span>
-          </div>
+          </div> -->
         </div>
       </div>
     `;
@@ -1779,52 +1887,53 @@ const Templates = {
 
     return `
       <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-        <div class="card shadow rounded">
-          <a href="#/profile/${post.username}/" class="card-header d-flex align-items-center text-decoration-none hover:text-primary">
-            <div class="user-image-sm">
-              <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
-            </div>
-
-            <span class="ml-2">${post.username}</span>
-          </a>
-
-          <a href="#/post/${post.id}/" class="post-img-container">
+        <div class="card border-0 border-radius-5px overflow-hidden">
+          <a href="#/post/${post.id}/" class="post-img-container border-radius-5px">
             <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" class="post-img" alt="${post.title} image">
 
-            <div class="hover-post">
+            <!-- <div class="hover-post">
               <i class="fas fa-search" aria-label="visit ${post.title}"></i>
-            </div>
+            </div> -->
           </a>
           
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-2">
-              <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
-                ${post.likes.includes(userId)
-    ? this.likedIcon()
-    : this.likeIcon()
-}
-              </button>
+          <div class="card-body px-0 pt-2">
+            <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center">
+                <a href="#/profile/${post.username}/" class="user-image">
+                  <img src="${CONFIG.IMAGE_PATH.USER}/${post.user_image}" alt="user-image">
+                </a>
 
-              <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+                <div class="d-flex flex-column ml-2">
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
 
-              <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
-                <i class="far fa-comment"></i>
-              </a>
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                </div>
+              </div>
 
-              <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
-              
-              
-              <i class="far fa-eye ml-2 mr-1"></i>
-              
-              <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+              <div class="d-flex align-items-center ml-auto">
+                <button post-id="${post.id}" class="like border-0 p-0 mr-1 bg-transparent hover:text-primary ${post.likes.includes(userId) ? 'liked' : ''}" aria-label="${post.likes.includes(userId) ? 'batal sukai' : 'sukai'}">
+                  ${post.likes.includes(userId) ? this.likedIcon() : this.likeIcon()}
+                </button>
+
+                <span class="pb-2px">${post.likes.length}<span class="sr-only"> meyukai desain ini</span></span>
+
+                <a href="#/post/${post.id}/" class="hover:text-primary pb-2px ml-2 mr-1" aria-label="komentari desain ini">
+                  <i class="far fa-comment"></i>
+                </a>
+
+                <span class="pb-2px">${post.comments.length}<span class="sr-only"> mengomentari</span></span>
+                
+                
+                <i class="far fa-eye ml-2 mr-1"></i>
+                
+                <span class="pb-2px">${post.insight}<span class="sr-only"> melihat desain ini</span></span>
+              </div>
             </div>
-
-            <a href="#/post/${post.id}/" class="card-title text-decoration-none hover:text-primary h5">${post.title}</a>
           </div>
 
-          <div class="card-footer d-flex">
+          <!-- <div class="card-footer d-flex">
             <span class="d-block mx-auto">${date} ${month} ${year}</span>
-          </div>
+          </div> -->
         </div>
       </div>
     `;

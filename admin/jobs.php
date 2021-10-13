@@ -76,7 +76,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Pengunggah</th>
+                                            <th>Id</th>                                            <th>Pengunggah</th>
                                             <th>Judul Pekerjaan</th>
                                             <th>Provinsi</th>
                                             <th>Kota</th>                                            <th>Jam Kerja</th>                                            <th>Link Form</th>
@@ -85,7 +85,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Pengunggah</th>
+                                            <th>Id</th>                                            <th>Pengunggah</th>
                                             <th>Judul Pekerjaan</th>
                                             <th>Provinsi</th>
                                             <th>Kota</th>                                            <th>Jam Kerja</th>                                            <th>Link Form</th>
@@ -96,6 +96,7 @@
                                         <?php if(isset($jobs) && count($jobs) > 0) :?>
                                             <?php foreach ($jobs as $job) : ?>
                                                 <tr>
+                                                    <td><?= $job['id'] ?></td>
                                                     <td><?= $job['username'] ?></td>
                                                     <td><?= $job['title'] ?></td>
                                                     <td>
@@ -110,11 +111,28 @@
                                                     </td>
                                                     <td>
                                                         <form method="POST" class="form-delete d-flex">
-                                                            <a href="../#/job/<?= $job['id'] ?>" class="btn btn-info mr-3" target="_blank">Detail</a>
+                                                            <a 
+                                                                href="../#/job/<?= $job['id'] ?>" 
+                                                                class="btn btn-info" 
+                                                                target="_blank"
+                                                                data-toggle="tooltip"
+                                                                data-placement="bottom" 
+                                                                title="Detail"
+                                                            >
+                                                                <i class="fas fa-info-circle"></i>
+                                                            </a>
 
                                                             <input type="hidden" name="job-id" value="<?= $job['id'] ?>">
 
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            <button 
+                                                                type="submit" 
+                                                                class="btn btn-danger ml-3"
+                                                                data-toggle="tooltip"
+                                                                data-placement="bottom" 
+                                                                title="Hapus"
+                                                            >
+                                                                <i class="fas fa-trash-alt"></i>
+                                                            </button>
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -170,6 +188,10 @@
     <?php endif; ?>
 
     <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+        
         const forms = document.querySelectorAll('form.form-delete');
         forms.forEach(function(form) {
             form.addEventListener('submit', function(event) {

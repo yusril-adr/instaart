@@ -1,11 +1,12 @@
 import Swal from 'sweetalert2';
 import Templates from '../templates/templates-creator';
-import PasswordHelper from '../../utils/password-helper';
+import TitleHelper from '../../utils/title-helper';
 import User from '../../data/user';
+import Post from '../../data/post';
 
 const home = {
   async render() {
-    return Templates.homepage();
+    return Templates.homePage();
   },
 
   async afterRender(user) {
@@ -14,40 +15,67 @@ const home = {
       return;
     }
 
-    await this._initPasswordToggler();
-    await this._initSignInEvent();
+    await TitleHelper.setDefaultTitle();
+    await this._renderList(user);
   },
 
-  async _initPasswordToggler() {
-    const input = document.querySelector('#password');
-    const button = document.querySelector('#password-toggler');
+  async _renderList(user) {
+    try {
+      const postList = await Post.getMostLikes();
 
-    await PasswordHelper.initTogglerEvent(input, button);
+      const listElem = document.querySelector('.post-list');
+      listElem.innerHTML = '';
+      postList.forEach(async (post) => {
+        listElem.innerHTML += Templates.homePost(post, user?.id);
+      });
+
+      await this._initLikeBtn(user);
+    } catch (error) {
+      await Swal.fire(
+        'Oops ...',
+        error.message,
+        'error',
+      );
+    }
   },
 
-  async _initSignInEvent() {
-    const signInForm = document.querySelector('#signin-form');
-    signInForm.addEventListener('submit', async (event) => {
-      event.stopPropagation();
-      event.preventDefault();
+  async _initLikeBtn(user) {
+    const buttons = document.querySelectorAll('button.like');
+    buttons.forEach(async (button) => {
+      button.addEventListener('click', async (event) => {
+        event.stopPropagation();
 
-      try {
-        const identifier = event.target.identifier.value;
-        const password = event.target.password.value;
+        if (!user) {
+          await Swal.fire(
+            'Akun diperlukan',
+            'Silakan masuk atau daftar sebagai akun baru',
+            'error',
+          );
+          return;
+        }
 
-        await User.signIn(identifier, password);
+        try {
+          const postId = button.getAttribute('post-id');
+          const isLiked = button.classList.contains('liked');
 
-        const changeEvent = new CustomEvent('updateUser');
-        window.dispatchEvent(changeEvent);
+          if (isLiked) await User.dislikePost(postId);
+          else await User.likePost(postId);
 
-        window.location.hash = '#/explore/';
-      } catch (error) {
-        await Swal.fire(
-          'Oops ...',
-          error.message,
-          'error',
-        );
-      }
+          button.innerHTML = isLiked ? Templates.likedIcon() : Templates.likeIcon();
+          button.ariaLabel = isLiked ? 'dislike this design' : 'like this design';
+          button.classList.toggle('liked');
+
+          this.afterRender(user);
+          return;
+        } catch (error) {
+          await Swal.fire(
+            'Oops ...',
+            error.message,
+            'error',
+          );
+          return;
+        }
+      });
     });
   },
 };

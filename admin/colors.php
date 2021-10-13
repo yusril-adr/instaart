@@ -77,7 +77,7 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-center text-gray-800"><?= $pageTitle ?></h1>
 
-                    <div class="d-flex justify-content-center mt-4 mb-4">
+                    <div class="d-flex justify-content-end my-4">
                         <button class="btn btn-primary d-flex align-items-center" data-toggle="modal" data-target="#new-color-modal">
                            <i class="fas fa-plus mr-2"></i> Tambah
                         </button>
@@ -90,13 +90,13 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Nama</th>
+                                            <th>Id</th>                                            <th>Nama</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Nama</th>
+                                            <th>Id</th>                                            <th>Nama</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
@@ -104,6 +104,7 @@
                                         <?php if(isset($colors) && count($colors) > 0) :?>
                                             <?php foreach ($colors as $color) : ?>
                                                 <tr>
+                                                    <td><?= $color['id'] ?></td>
                                                     <td><?= $color['name'] ?></td>
                                                     <td>
                                                         <form method="POST" class="form-delete d-flex">
@@ -113,12 +114,16 @@
                                                                 data-toggle="modal" 
                                                                 data-target="#edit-color-<?= $color['id'] ?>"
                                                             >
+                                                                <i class="fas fa-edit"></i>
                                                                 Edit
                                                             </button>
 
                                                             <input type="hidden" name="color-id" value="<?= $color['id'] ?>">
 
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="fas fa-trash-alt"></i>
+                                                                Hapus
+                                                            </button>
                                                         </form>
 
                                                         <!-- Edit Color Modal -->
