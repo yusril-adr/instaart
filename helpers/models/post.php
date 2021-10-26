@@ -81,7 +81,7 @@
         $query .= " OR posts.user_id = {$id}";
       }
 
-      $query .= ' ORDER BY posts.date DESC LIMIT 15;';
+      $query .= ' ORDER BY posts.date DESC;';
 
       $result = mysqli_query($conn, $query);
 
@@ -211,7 +211,7 @@
         $query .= " AND color_id = '{$color_id}'";
       }
 
-      $query .= ";";
+      $query .= "ORDER BY date DESC;";
   
       $result = mysqli_query($conn, $query);
   

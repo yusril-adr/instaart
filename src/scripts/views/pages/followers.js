@@ -3,13 +3,14 @@ import Templates from '../templates/templates-creator';
 import UrlParser from '../../routes/url-parser';
 import User from '../../data/user';
 import TitleHelper from '../../utils/title-helper';
+import CONFIG from '../../global/config';
 
 const followers = {
   async render() {
     return Templates.followersPage();
   },
 
-  async afterRender(user) {
+  async afterRender(user, currentTotalUser = null) {
     const targetedUsername = await UrlParser.parseActiveUrlWithoutCombiner().verb;
 
     if (!targetedUsername && user) {
@@ -22,10 +23,10 @@ const followers = {
       return;
     }
 
-    await this._renderContent(targetedUsername, user);
+    await this._renderContent(targetedUsername, user, currentTotalUser);
   },
 
-  async _renderContent(targetedUsername) {
+  async _renderContent(targetedUsername, currentUser, currentTotalUser) {
     let targetedUser;
 
     try {
@@ -45,7 +46,7 @@ const followers = {
 
     await this._renderUsername(targetedUser);
 
-    await this._renderList(targetedUser);
+    await this._renderList(targetedUser, currentUser, currentTotalUser);
   },
 
   async _renderUsername({ username }) {
@@ -55,12 +56,13 @@ const followers = {
     });
   },
 
-  async _renderList({ username }, customList = null) {
+  async _renderList({ username }, currentUser, currentTotalUser = null) {
     try {
-      let userList;
+      const userList = await User.getFollowers(username);
 
-      if (customList) userList = customList;
-      else userList = await User.getFollowers(username);
+      const currentTotalUserFormated = currentTotalUser || userList.length;
+      const currentTotalRenderUser = currentTotalUserFormated > CONFIG.USER_LIST_DEFAULT_LENGTH
+        && currentTotalUser === null ? CONFIG.USER_LIST_DEFAULT_LENGTH : currentTotalUserFormated;
 
       const container = document.querySelector('.user-list');
       if (userList.length < 1) {
@@ -69,8 +71,16 @@ const followers = {
       }
 
       container.innerHTML = '';
-      userList.forEach(async (user) => {
+      userList.forEach(async (user, userIndex) => {
+        if (userIndex + 1 > currentTotalRenderUser) return;
+
         container.innerHTML += Templates.followUserResult(user);
+      });
+
+      await this._initLoadMoreBtn({
+        currentUser,
+        currentTotalRenderUser,
+        userList,
       });
     } catch (error) {
       await Swal.fire(
@@ -82,6 +92,32 @@ const followers = {
       const container = document.querySelector('.user-list');
       container.innerHTML = Templates.followUserEmptyResult();
     }
+  },
+
+  async _initLoadMoreBtn({
+    currentUser,
+    currentTotalRenderUser,
+    userList,
+  }) {
+    const btnContainer = document.querySelector('#load-btn');
+
+    if (currentTotalRenderUser === userList.length || userList.length === 0) {
+      btnContainer.innerHTML = '';
+      return;
+    }
+
+    btnContainer.innerHTML = Templates.loadMoreBtn();
+
+    const loadBtn = document.querySelector('#load-btn button');
+    loadBtn.addEventListener('click', async (event) => {
+      event.stopPropagation();
+
+      const userDifference = userList.length - currentTotalRenderUser;
+      const afterTotalRenderUser = userDifference < CONFIG.USER_LIST_DEFAULT_LENGTH
+        ? currentTotalRenderUser + userDifference
+        : currentTotalRenderUser + CONFIG.USER_LIST_DEFAULT_LENGTH;
+      await this.afterRender(currentUser, afterTotalRenderUser);
+    });
   },
 };
 

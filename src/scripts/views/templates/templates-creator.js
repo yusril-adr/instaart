@@ -43,6 +43,10 @@ const Templates = {
     return '<i class="fas fa-bookmark text-lg"></i>';
   },
 
+  loadMoreBtn() {
+    return '<button class="btn btn-outline-primary mx-auto">Muat lebih banyak</button>';
+  },
+
   header() {
     return `
       <div class="container">
@@ -396,9 +400,7 @@ const Templates = {
             </div>
           </div>
 
-          <div class="d-flex">
-            <button class="btn btn-outline-primary mx-auto">Muat lebih banyak</button>
-          </div>
+          <div class="d-flex" id="load-btn"></div>
         </div>
       </div>
     `;
@@ -556,6 +558,8 @@ const Templates = {
               </div>
             </div>
           </div>
+
+          <div class="d-flex" id="load-btn"></div>
         </div>
       </div>
     `;
@@ -640,6 +644,8 @@ const Templates = {
               </div>
             </div>
           </div>
+
+          <div class="d-flex" id="load-btn"></div>
         </div>
       </div>
     `;
@@ -732,6 +738,8 @@ const Templates = {
                 </div>
               </div>
             </div>
+
+            <div class="d-flex" id="load-btn"></div>
           </div>
         </div>
       </div>
@@ -1054,6 +1062,8 @@ const Templates = {
                 </div>
               </div>
             </div>
+
+            <div class="d-flex" id="load-btn"></div>
           </div>
         </div>
       </div>
@@ -1114,7 +1124,7 @@ const Templates = {
 
   profileEmptyPostsList() {
     return `
-      <div class="empty-result-container mt-4">
+      <div class="empty-result-container col-12 mt-4">
         <i class="far fa-smile-wink h1 text-secondary"></i>
         <span class="h4 text-secondary text-center">Belum ada desain yang diunggah untuk saat ini.</span>
       </div>
@@ -1383,6 +1393,8 @@ const Templates = {
               </div>
             </div>
           </div>
+
+          <div class="d-flex" id="load-btn"></div>
       </div>
     `;
   },
@@ -1398,6 +1410,8 @@ const Templates = {
               </div>
             </div>
           </div>
+
+          <div class="d-flex" id="load-btn"></div>
       </div>
     `;
   },
@@ -1716,13 +1730,15 @@ const Templates = {
         </div>
 
 
-        <div class="row mt-4 post-list" id="result-container">
+        <div class="row my-4 post-list" id="result-container">
           <div class="col-12 loading-container">
             <div class="spinner-border text-secondary" role="status">
               <span class="sr-only">Loading...</span>
             </div>
           </div>
         </div>
+
+        <div class="d-flex" id="load-btn"></div>
       </div>
     `;
   },

@@ -6,13 +6,14 @@ import Post from '../../data/post';
 import User from '../../data/user';
 import Categories from '../../data/categories';
 import Colors from '../../data/colors';
+import CONFIG from '../../global/config';
 
 const searchPost = {
   async render() {
     return Templates.searchPage();
   },
 
-  async afterRender(user) {
+  async afterRender(user, filteredPost = null, currentTotalPost = null) {
     let keyword = await UrlParser.parseActiveUrlWithoutCombiner().verb;
     if (!keyword) keyword = '';
     else keyword = keyword.split('%20').join(' ');
@@ -23,7 +24,9 @@ const searchPost = {
     await this._setDefaultValue(keyword);
     await this._initNav(keyword);
     await this._initFilter(user);
-    await this._renderResult(keyword, user);
+    await this._renderResult({
+      keyword, user, filteredPost, currentTotalPost,
+    });
     await this._initLikeBtn(user);
     await this._initSearchForm(keyword);
   },
@@ -81,44 +84,61 @@ const searchPost = {
         color: color_id === 0 ? null : color_id,
       });
 
-      await this._renderResult(keyword, user, filteredPost);
+      await this._renderResult({ keyword, user, filteredPost });
     };
   },
 
-  async _renderResult(keyword, user, filteredPost = null) {
+  async _renderResult({
+    keyword, user, filteredPost, currentTotalPost = null,
+  }) {
     try {
       let posts;
       if (filteredPost) posts = filteredPost;
       else posts = await Post.searchPost(keyword);
+
+      const currentTotalPostFormated = currentTotalPost || posts.length;
+      const currentTotalRenderPost = currentTotalPostFormated > CONFIG.POST_LIST_DEFAULT_LENGTH
+        && currentTotalPost === null ? CONFIG.POST_LIST_DEFAULT_LENGTH : currentTotalPostFormated;
+
       const container = document.querySelector('#result-container');
 
-      if (keyword === '') {
-        container.innerHTML = '';
-        container.innerHTML += Templates.mostLikesPostsTitle();
+      // Render Most Likes Post List
+      // if (keyword === '') {
+      //   container.innerHTML = '';
+      //   container.innerHTML += Templates.mostLikesPostsTitle();
 
-        const mostLikesPosts = await Post.getMostLikes();
+      //   const mostLikesPosts = await Post.getMostLikes();
 
-        if (mostLikesPosts.length < 1) {
-          container.innerHTML += Templates.mostLikesPostsEmpty();
-          return;
-        }
+      //   if (mostLikesPosts.length < 1) {
+      //     container.innerHTML += Templates.mostLikesPostsEmpty();
+      //     return;
+      //   }
 
-        mostLikesPosts.forEach((post) => {
-          container.innerHTML += user
-            ? Templates.mostLikesPosts(post, user.id) : Templates.mostLikesPosts(post);
-        });
-        return;
-      }
+      //   mostLikesPosts.forEach((post) => {
+      //     container.innerHTML += user
+      //       ? Templates.mostLikesPosts(post, user.id) : Templates.mostLikesPosts(post);
+      //   });
+      //   return;
+      // }
 
-      if (posts.length < 1) {
+      if (posts.length < 1 || keyword === '') {
         container.innerHTML = Templates.searchEmptyResult();
         return;
       }
 
       container.innerHTML = '';
-      posts.forEach(async (post) => {
+      posts.forEach(async (post, postIndex) => {
+        if (postIndex + 1 > currentTotalRenderPost) return;
+
         container.innerHTML += user
           ? Templates.searchPostResult(post, user.id) : Templates.searchPostResult(post);
+      });
+
+      await this._initLoadMoreBtn({
+        user,
+        currentTotalRenderPost,
+        filteredPost,
+        posts,
       });
     } catch (error) {
       await Swal.fire(
@@ -130,6 +150,33 @@ const searchPost = {
       const container = document.querySelector('#result-container');
       container.innerHTML = Templates.searchEmptyResult();
     }
+  },
+
+  async _initLoadMoreBtn({
+    user,
+    currentTotalRenderPost,
+    filteredPost,
+    posts,
+  }) {
+    const btnContainer = document.querySelector('#load-btn');
+
+    if (currentTotalRenderPost === posts.length || posts.length === 0) {
+      btnContainer.innerHTML = '';
+      return;
+    }
+
+    btnContainer.innerHTML = Templates.loadMoreBtn();
+
+    const loadBtn = document.querySelector('#load-btn button');
+    loadBtn.addEventListener('click', async (event) => {
+      event.stopPropagation();
+
+      const postDifference = posts.length - currentTotalRenderPost;
+      const afterTotalRenderPost = postDifference < CONFIG.POST_LIST_DEFAULT_LENGTH
+        ? currentTotalRenderPost + postDifference
+        : currentTotalRenderPost + CONFIG.POST_LIST_DEFAULT_LENGTH;
+      await this.afterRender(user, filteredPost, afterTotalRenderPost);
+    });
   },
 
   async _initLikeBtn(user) {

@@ -10,7 +10,7 @@ const profile = {
     return Templates.profilePage();
   },
 
-  async afterRender(user) {
+  async afterRender(user, currentTotalPost = null) {
     const targetedUsername = await UrlParser.parseActiveUrlWithoutCombiner().verb;
 
     if (!targetedUsername && user) {
@@ -24,7 +24,7 @@ const profile = {
     }
 
     if (user) await this._newPostBtn(targetedUsername, user.username);
-    await this._renderProfile(targetedUsername, user);
+    await this._renderProfile(targetedUsername, user, currentTotalPost);
   },
 
   async _newPostBtn(targetUsername, currentUsername) {
@@ -34,7 +34,7 @@ const profile = {
     container.innerHTML += Templates.profileNewPost();
   },
 
-  async _renderProfile(targetedUsername, currentUser) {
+  async _renderProfile(targetedUsername, currentUser, currentTotalPost) {
     let targetedUser;
 
     try {
@@ -63,7 +63,7 @@ const profile = {
     await this._renderProvince(targetedUser);
     await this._renderCity(targetedUser);
     await this._renderMailOrSignOutBtn(targetedUser, currentUser);
-    await this._renderPostList(targetedUser, currentUser);
+    await this._renderPostList(targetedUser, currentUser, currentTotalPost);
   },
 
   async _renderNotFound() {
@@ -294,7 +294,11 @@ const profile = {
     });
   },
 
-  async _renderPostList({ posts }, currentUser) {
+  async _renderPostList({ posts }, currentUser, currentTotalPost) {
+    const currentTotalPostFormated = currentTotalPost || posts.length;
+    const currentTotalRenderPost = currentTotalPostFormated > CONFIG.POST_LIST_DEFAULT_LENGTH
+        && currentTotalPost === null ? CONFIG.POST_LIST_DEFAULT_LENGTH : currentTotalPostFormated;
+
     const lists = document.querySelector('.post-list');
     if (posts.length < 1) {
       lists.innerHTML = Templates.profileEmptyPostsList();
@@ -302,8 +306,10 @@ const profile = {
     }
 
     lists.innerHTML = '';
-    posts.forEach(async (post) => {
+    posts.forEach(async (post, postIndex) => {
       if (currentUser) {
+        if (postIndex + 1 > currentTotalRenderPost) return;
+
         lists.innerHTML += Templates.profilePost(post, currentUser.id);
       } else {
         lists.innerHTML += Templates.profilePost(post);
@@ -311,6 +317,38 @@ const profile = {
     });
 
     await this._initLikeBtn(currentUser);
+
+    await this._initLoadMoreBtn({
+      user: currentUser,
+      currentTotalRenderPost,
+      posts,
+    });
+  },
+
+  async _initLoadMoreBtn({
+    user,
+    currentTotalRenderPost,
+    posts,
+  }) {
+    const btnContainer = document.querySelector('#load-btn');
+
+    if (currentTotalRenderPost === posts.length || posts.length === 0) {
+      btnContainer.innerHTML = '';
+      return;
+    }
+
+    btnContainer.innerHTML = Templates.loadMoreBtn();
+
+    const loadBtn = document.querySelector('#load-btn button');
+    loadBtn.addEventListener('click', async (event) => {
+      event.stopPropagation();
+
+      const postDifference = posts.length - currentTotalRenderPost;
+      const afterTotalRenderPost = postDifference < CONFIG.POST_LIST_DEFAULT_LENGTH
+        ? currentTotalRenderPost + postDifference
+        : currentTotalRenderPost + CONFIG.POST_LIST_DEFAULT_LENGTH;
+      await this.afterRender(user, afterTotalRenderPost);
+    });
   },
 
   async _initLikeBtn(user) {
