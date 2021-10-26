@@ -36,8 +36,6 @@ const job = {
     const currentTotalRenderJob = currentTotalJobFormated > CONFIG.JOB_LIST_DEFAULT_LENGTH
       && currentTotalJob === null ? CONFIG.JOB_LIST_DEFAULT_LENGTH : currentTotalJobFormated;
 
-    console.log(currentTotalRenderJob);
-
     const listElem = document.querySelector('.job-list');
     listElem.innerHTML = '';
 
