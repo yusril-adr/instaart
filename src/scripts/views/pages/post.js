@@ -4,6 +4,7 @@ import UrlParser from '../../routes/url-parser';
 import User from '../../data/user';
 import Post from '../../data/post';
 import TitleHelper from '../../utils/title-helper';
+import CONFIG from '../../global/config';
 
 const post = {
   async render() {
@@ -39,11 +40,11 @@ const post = {
     await this._renderPostDetail(postData, user);
     await this._renderBookmarkButton(postData, user);
     await this._renderPostCommentForm(user);
-    await this._renderCommentList(postData);
     if (user) {
       await this._initEditBtn(postData, user);
     }
     await this._initEvent(user, postData);
+    await this._renderCommentList(postData);
   },
 
   async _renderNotFound() {
@@ -88,19 +89,6 @@ const post = {
     }
 
     container.innerHTML = Templates.postCommentForm(user);
-  },
-
-  async _renderCommentList({ comments }) {
-    const container = document.querySelector('#comments-container');
-    if (comments.length < 1) {
-      container.innerHTML = Templates.postEmptyComment();
-      return;
-    }
-
-    container.innerHTML = '';
-    comments.forEach(async (comment) => {
-      container.innerHTML += Templates.postComment(comment);
-    });
   },
 
   async _initEditBtn(postData, user) {
@@ -231,6 +219,51 @@ const post = {
           'error',
         );
       }
+    });
+  },
+
+  async _renderCommentList({ comments }, currentTotalComment = null) {
+    const currentTotalCommentFormated = currentTotalComment || comments.length;
+    const currentTotalRenderComment = currentTotalCommentFormated
+      > CONFIG.COMMENT_LIST_DEFAULT_LENGTH
+        && currentTotalComment === null
+      ? CONFIG.COMMENT_LIST_DEFAULT_LENGTH : currentTotalCommentFormated;
+
+    const container = document.querySelector('#comments-container');
+    if (comments.length < 1) {
+      container.innerHTML = Templates.postEmptyComment();
+      return;
+    }
+
+    container.innerHTML = '';
+    comments.forEach(async (comment, commentIndex) => {
+      if (commentIndex + 1 > currentTotalRenderComment) return;
+
+      container.innerHTML += Templates.postComment(comment);
+    });
+
+    await this._initLoadMoreCommentBtn(currentTotalRenderComment, { comments });
+  },
+
+  async _initLoadMoreCommentBtn(currentTotalRenderComment, { comments }) {
+    const btnContainer = document.querySelector('#load-btn');
+
+    if (currentTotalRenderComment === comments.length || comments.length === 0) {
+      btnContainer.innerHTML = '';
+      return;
+    }
+
+    btnContainer.innerHTML = Templates.loadMoreBtn();
+
+    const loadBtn = document.querySelector('#load-btn button');
+    loadBtn.addEventListener('click', async (event) => {
+      event.stopPropagation();
+
+      const commentDifference = comments.length - currentTotalRenderComment;
+      const afterTotalRenderPost = commentDifference < CONFIG.COMMENT_LIST_DEFAULT_LENGTH
+        ? currentTotalRenderComment + commentDifference
+        : currentTotalRenderComment + CONFIG.COMMENT_LIST_DEFAULT_LENGTH;
+      await this._renderCommentList({ comments }, afterTotalRenderPost);
     });
   },
 };

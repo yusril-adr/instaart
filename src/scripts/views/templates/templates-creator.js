@@ -1536,6 +1536,8 @@ const Templates = {
                   </div>
                 </div>
               </div>
+
+              <div class="d-flex" id="load-btn"></div>
             </div>
           </div>
         </div>
