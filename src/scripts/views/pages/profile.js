@@ -316,7 +316,7 @@ const profile = {
       }
     });
 
-    await this._initLikeBtn(currentUser);
+    await this._initLikeBtn(currentUser, currentTotalPost);
 
     await this._initLoadMoreBtn({
       user: currentUser,
@@ -351,7 +351,7 @@ const profile = {
     });
   },
 
-  async _initLikeBtn(user) {
+  async _initLikeBtn(user, currentTotalPost) {
     const buttons = document.querySelectorAll('button.like');
     buttons.forEach(async (button) => {
       button.addEventListener('click', async (event) => {
@@ -376,7 +376,7 @@ const profile = {
           button.ariaLabel = isLiked ? 'dislike this design' : 'like this design';
           button.classList.toggle('liked');
 
-          return this.afterRender(user);
+          return this.afterRender(user, currentTotalPost);
         } catch (error) {
           await Swal.fire(
             'Oops ...',

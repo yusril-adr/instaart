@@ -42,7 +42,7 @@ const bookmark = {
         listElem.innerHTML += Templates.bookmarkPost(post, user.id);
       });
 
-      await this._initLikeBtn(user);
+      await this._initLikeBtn(user, currentTotalRenderPost);
 
       await this._initLoadMoreBtn({
         user,
@@ -58,7 +58,7 @@ const bookmark = {
     }
   },
 
-  async _initLikeBtn(user) {
+  async _initLikeBtn(user, currentTotalRenderPost) {
     const buttons = document.querySelectorAll('button.like');
     buttons.forEach(async (button) => {
       button.addEventListener('click', async (event) => {
@@ -84,7 +84,7 @@ const bookmark = {
           button.ariaLabel = isLiked ? 'batal sukai desain ini' : 'sukai desaian ini';
           button.classList.toggle('liked');
 
-          this.afterRender(user);
+          this.afterRender(user, currentTotalRenderPost);
           return;
         } catch (error) {
           await Swal.fire(

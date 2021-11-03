@@ -27,7 +27,7 @@ const searchPost = {
     await this._renderResult({
       keyword, user, filteredPost, currentTotalPost,
     });
-    await this._initLikeBtn(user);
+    await this._initLikeBtn(user, filteredPost, currentTotalPost);
     await this._initSearchForm(keyword);
   },
 
@@ -179,7 +179,7 @@ const searchPost = {
     });
   },
 
-  async _initLikeBtn(user) {
+  async _initLikeBtn(user, filteredPost, currentTotalPost) {
     const buttons = document.querySelectorAll('button.like');
     buttons.forEach(async (button) => {
       button.addEventListener('click', async (event) => {
@@ -204,7 +204,7 @@ const searchPost = {
           button.ariaLabel = isLiked ? 'dislike this design' : 'like this design';
           button.classList.toggle('liked');
 
-          return this.afterRender(user);
+          return this.afterRender(user, filteredPost, currentTotalPost);
         } catch (error) {
           await Swal.fire(
             'Oops ...',
