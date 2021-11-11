@@ -50,7 +50,7 @@ const Templates = {
   header() {
     return `
       <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light px-0">
+        <nav class="navbar navbar-expand-lg navbar-dark px-0">
           <a class="navbar-brand" href="#/">
             <img src="${CONFIG.IMAGE_PATH.BASE}/logo.png" width="32" height="32" alt="Logo" class="d-inline-block align-top">
             <span class="font-redressed font-weight-bold ml-2">InstaArt</span>
@@ -58,10 +58,10 @@ const Templates = {
 
           <ul class="navbar-nav d-none d-lg-flex">
             <li class="nav-item">
-              <a class="nav-link" href="#/">Beranda <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-light" href="#/">Beranda <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/job/">Pekerjaan</a>
+              <a class="nav-link text-light" href="#/job/">Pekerjaan</a>
             </li>
           </ul>
 
@@ -76,13 +76,13 @@ const Templates = {
                 <input type="text" class="form-control" id="navbar-search-input" placeholder="Cari ..." aria-label="Cari">
 
                 <div class="input-group-append">
-                  <button class="btn btn-outline-primary" type="submit" aria-label="cari"><i class="fas fa-search"></i></button>
+                  <button class="btn btn-light" type="submit" aria-label="cari"><i class="fas fa-search"></i></button>
                 </div>
               </div>
             </form>
 
-            <a href="#/sign-in/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-link text-decoration-none">Masuk</a>
-            <a href="#/sign-up/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-primary">Daftar</a>
+            <a href="#/sign-in/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-link text-decoration-none text-light">Masuk</a>
+            <a href="#/sign-up/" class="mt-2 mt-lg-0 ml-lg-4 btn btn-light">Daftar</a>
           </div>
         </nav>
       </div>
@@ -92,7 +92,7 @@ const Templates = {
   loginHeader({ username }) {
     return `
       <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light px-0">
+        <nav class="navbar navbar-expand-lg navbar-dark px-0">
           <a class="navbar-brand" href="#/">
             <img src="${CONFIG.IMAGE_PATH.BASE}/logo.png" width="32" height="32" alt="Logo" class="d-inline-block align-top">
             <span class="font-redressed font-weight-bold ml-2">InstaArt</span>
@@ -109,38 +109,38 @@ const Templates = {
                 <input type="text" class="form-control" id="navbar-search-input" placeholder="Cari ..." aria-label="Cari">
 
                 <div class="input-group-append">
-                  <button class="btn btn-outline-primary" type="submit" aria-label="Cari"><i class="fas fa-search"></i></button>
+                  <button class="btn btn-light" type="submit" aria-label="Cari"><i class="fas fa-search"></i></button>
                 </div>
               </div>
             </form>
 
             <ul class="navbar-nav ml-lg-2">
               <li class="nav-item home">
-                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/explore/"><i class="fas fa-home"></i> <span class="d-lg-none ml-2">Beranda</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/explore/"><i class="fas fa-home"></i> <span class="d-lg-none ml-2">Beranda</span></a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/activity/"><i class="fas fa-compass"></i> <span class="d-lg-none ml-2">Aktivitas</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/activity/"><i class="fas fa-compass"></i> <span class="d-lg-none ml-2">Aktivitas</span></a>
               </li>
               
               <li class="nav-item new-post">
-                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/new-post/"><i class="fas fa-plus-circle"></i> <span class="d-lg-none ml-2">Portofolio Baru</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/new-post/"><i class="fas fa-plus-circle"></i> <span class="d-lg-none ml-2">Portofolio Baru</span></a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/bookmark/"><i class="fas fa-bookmark"></i> <span class="d-lg-none ml-2">Disimpan</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/bookmark/"><i class="fas fa-bookmark"></i> <span class="d-lg-none ml-2">Disimpan</span></a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/favorite/"><i class="fas fa-heart"></i> <span class="d-lg-none ml-2">Disukai</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/favorite/"><i class="fas fa-heart"></i> <span class="d-lg-none ml-2">Disukai</span></a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/job/"><i class="fas fa-briefcase"></i> <span class="d-lg-none ml-2">Pekerjaan</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/job/"><i class="fas fa-briefcase"></i> <span class="d-lg-none ml-2">Pekerjaan</span></a>
               </li>
 
               <li class="nav-item profile">
-                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center" href="#/profile/${username}"><i class="fas fa-user-circle"></i> <span class="d-lg-none ml-2">Profil</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/profile/${username}"><i class="fas fa-user-circle"></i> <span class="d-lg-none ml-2">Profil</span></a>
               </li>
             </ul>
           </div>
