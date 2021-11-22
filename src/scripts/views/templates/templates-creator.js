@@ -1669,7 +1669,7 @@ const Templates = {
                 <form id="post-form">
                   <div class="form-group">
                     <label for="title">Judul</label>
-                    <input type="text" placeholder="Judul" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.POST.TITLE} required">
+                    <input type="text" placeholder="Judul" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.POST.TITLE}" required>
                   </div>
 
                   <div class="form-group">
