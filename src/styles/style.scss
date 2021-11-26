@@ -34,3 +34,8 @@ main #search {
 main #job-detail .job-desc {
   text-align: justify;
 }
+
+main #activity #activity-content {
+  height: 400px;
+  overflow-y: scroll;
+}

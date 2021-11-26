@@ -549,7 +549,7 @@ const Templates = {
   bookmarkPage() {
     return `
       <div class="container mt-4" id="bookmark">
-        <h1 class="text-center mb-4">Disimpan</h1>
+        <h1 class="text-center font-weight-bold h3 mb-4">Disimpan</h1>
         <div class="bookmark-content">
           <div class="row post-list">
             <div class="loading-container col-12">
@@ -635,7 +635,7 @@ const Templates = {
   favoritePage() {
     return `
       <div class="container mt-4" id="favorite">
-        <h1 class="text-center mb-4">Disukai</h1>
+        <h1 class="text-center font-weight-bold h3 mb-4">Disukai</h1>
         <div class="favorite-content">
           <div class="row post-list">
             <div class="loading-container col-12">

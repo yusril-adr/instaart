@@ -212,6 +212,10 @@
   .max-w-md-50 {
     max-width: 50%;
   }
+
+  .md\:text-md {
+    font-size: 1rem;
+  }
 }
 
 @media screen and (min-width: 992px) {
