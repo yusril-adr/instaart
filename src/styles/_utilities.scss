@@ -170,6 +170,9 @@
     img {
       position: absolute;
       width: 100%;
+      min-height: 240px;
+      object-fit: cover;
+      object-position: center;
     }
   
     .hover-post {
