@@ -1646,8 +1646,12 @@ const Templates = {
                       <label class="custom-file-label" for="post-image">Pilih File</label>
                     </div>
                   </div>
-        
+
                   <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Buat</button>
+
+                  <div class="d-none" id="preview-image">
+                    <img src="" alt="preview" style="width: 100%;">
+                  </div>
                 </form>
               </div>
             </div>

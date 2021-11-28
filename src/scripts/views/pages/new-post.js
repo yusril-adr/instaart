@@ -26,6 +26,7 @@ const newPost = {
     await this._initColors();
     await this._initCategories();
 
+    await this._onChangeEvent();
     await this._initSubmitEvent();
   },
 
@@ -65,6 +66,29 @@ const newPost = {
 
       if (warn.isConfirmed) window.location.href = '#/';
     }
+  },
+
+  async _onChangeEvent() {
+    const postImageInput = document.querySelector('#post-image');
+    postImageInput.addEventListener('change', () => {
+      const preview = document.querySelector('#preview-image img');
+      const file = document.querySelector('#post-image').files[0];
+      const reader = new FileReader();
+
+      reader.addEventListener('load', () => {
+        // convert image file to base64 string
+        preview.src = reader.result;
+
+        const previewImageContainer = document.querySelector('#preview-image');
+        if (previewImageContainer.classList.contains('d-none')) {
+          previewImageContainer.classList.remove('d-none');
+        }
+      }, false);
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    });
   },
 
   async _initSubmitEvent() {
