@@ -1649,7 +1649,7 @@ const Templates = {
 
                   <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Buat</button>
 
-                  <div class="d-none" id="preview-image">
+                  <div class="d-none mt-4" id="preview-image">
                     <img src="" alt="preview" style="width: 100%;">
                   </div>
                 </form>
