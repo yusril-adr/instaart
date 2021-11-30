@@ -1203,7 +1203,7 @@ const Templates = {
                   Profil
                 </a>
 
-                <a href="#/edit-profile-picture/" class="list-group-item list-group-item-action hover:bg-secondary">Foto profil</a>
+                <a href="#/edit-profile-picture/" class="list-group-item list-group-item-action hover:bg-secondary">Foto Profil</a>
 
                 <a href="#/edit-password/" class="list-group-item list-group-item-action hover:bg-secondary">Password</a>
               </div>
