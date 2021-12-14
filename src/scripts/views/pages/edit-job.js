@@ -51,7 +51,7 @@ const editJob = {
     description.value = job.description;
 
     const workTime = document.querySelector(`#work-time option[value="${job.work_time}"]`);
-    workTime.setAttribute('selected', '');
+    if (workTime) workTime.setAttribute('selected', '');
 
     const formLink = document.querySelector('input#form-link');
     formLink.value = job.form_link;
