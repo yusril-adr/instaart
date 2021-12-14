@@ -16,7 +16,7 @@ const editPassword = {
       return;
     }
 
-    await TitleHelper.setTitle('Edit Password');
+    await TitleHelper.setTitle('Edit Kata Sandi');
 
     await this._initPasswordToggler();
     await this._submitEvent();

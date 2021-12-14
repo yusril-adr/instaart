@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2021 at 04:07 PM
+-- Generation Time: Dec 14, 2021 at 09:57 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -38,7 +38,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `username`, `password`) VALUES
-(1, 'admin', '$2y$10$Mjk5FJFAdW6sIiVCj.cciO0Ttpc69yv34iVlfPPsKlwKC1OnG1FqC');
+(1, 'admin', '$2y$10$URTKkgKFZKXlK2EoYq5exuObCAgjjBhmZTQ3qH7W0heZVtOs9v1m2');
 
 -- --------------------------------------------------------
 
@@ -51,13 +51,6 @@ CREATE TABLE `bookmark_posts` (
   `post_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `bookmark_posts`
---
-
-INSERT INTO `bookmark_posts` (`id`, `post_id`, `user_id`) VALUES
-(20, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -78,7 +71,7 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 (1, 'Arsitektur'),
 (3, 'Desain Grafis'),
 (5, 'Desain Web'),
-(2, 'Fashion'),
+(11, 'Fashion'),
 (4, 'Ilustrasi');
 
 -- --------------------------------------------------------
@@ -120,13 +113,6 @@ CREATE TABLE `comments` (
   `type` varchar(10) NOT NULL DEFAULT 'comment'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `post_id`, `user_id`, `body`, `date`, `type`) VALUES
-(4, 7, 1, 'hehe', '2021-09-16 18:48:24', 'comment');
-
 -- --------------------------------------------------------
 
 --
@@ -156,16 +142,9 @@ CREATE TABLE `jobs` (
   `city_name` varchar(100) NOT NULL,
   `title` text NOT NULL,
   `description` text NOT NULL,
-  `work_time` varchar(10) NOT NULL,
+  `work_time` varchar(255) NOT NULL,
   `form_link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `jobs`
---
-
-INSERT INTO `jobs` (`id`, `user_id`, `province_id`, `province_name`, `city_id`, `city_name`, `title`, `description`, `work_time`, `form_link`) VALUES
-(6, 1, 35, 'Jawa Timur', 3578, 'Kota Surabaya', 'Front End Web Dev', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste nesciunt in qui adipisci. Impedit, consectetur distinctio? Excepturi accusantium repudiandae alias voluptatum, sunt impedit eveniet asperiores, fuga officiis iste quibusdam quis dicta totam laudantium rem fugit numquam facere similique quia molestiae assumenda consequatur! Consequatur voluptates quae voluptatem labore fugiat, deserunt autem!\n\n\n\n\nasasdasdas', 'Full Time', 'https://google.com');
 
 -- --------------------------------------------------------
 
@@ -196,13 +175,6 @@ CREATE TABLE `posts` (
   `date` datetime DEFAULT current_timestamp(),
   `insight` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `posts`
---
-
-INSERT INTO `posts` (`id`, `user_id`, `category_id`, `color_id`, `title`, `caption`, `image`, `date`, `insight`) VALUES
-(7, 1, 4, 4, 'Logo', 'a', '613eac27e030e.png', '2021-09-13 08:40:55', 23);
 
 -- --------------------------------------------------------
 
@@ -242,7 +214,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `display_name`, `biodata`, `image`, `email`, `phone_number`, `province_id`, `province_name`, `city_id`, `city_name`) VALUES
-(1, 'yusril-adr', '$2y$10$xv7h17anyHctC8H5Uu/wEOPfeP67hspahIPCsPJE3HiNhLHOU18mm', 'Yusril A. P.', 'a', '1.jpg', 'a@a', '087854029394', 35, 'Jawa Timur', 3578, 'Kota Surabaya');
+(1, 'yusril-adr', '$2y$10$hP8QgxwFBO9BWY7pT/Ou.ehBbXV6SCVweOfNbynEU.LJVx9CuZlhK', 'Yusril A. P.', 'ab', '1.jpg', 'yusril@yusril', '087854029394', 35, 'Jawa Timur', 3578, 'Kota Surabaya');
 
 --
 -- Indexes for dumped tables
@@ -345,13 +317,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `bookmark_posts`
 --
 ALTER TABLE `bookmark_posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `colors`
@@ -363,43 +335,43 @@ ALTER TABLE `colors`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `follows`
 --
 ALTER TABLE `follows`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tokens`
 --
 ALTER TABLE `tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

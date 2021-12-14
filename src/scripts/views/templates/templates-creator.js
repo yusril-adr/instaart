@@ -1343,7 +1343,7 @@ const Templates = {
           <div class="col-sm-12 col-md-8 col-lg-6 offset-lg-1 mt-4 mt-md-0">
             <div class="card shadow-sm mx-auto">
               <div class="card-body">
-                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Password</span>
+                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Kata Sandi</span>
 
                 <form id="password-form">
                   <div class="form-group">
