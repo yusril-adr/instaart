@@ -3,9 +3,9 @@ $(document).ready(() => {
   $('#dataTable').DataTable({
     language: {
       lengthMenu: 'Menampilkan _MENU_ entri',
-      zeroRecords: 'Pencarian tidak ditemukan.',
+      zeroRecords: 'Data masih kosong.',
       info: 'Menampilkan halaman _PAGE_ dari _PAGES_',
-      infoEmpty: 'Data masih kosong.',
+      infoEmpty: 'Menampilkan 0 dari 0 entri.',
       infoFiltered: '(filter dari total _MAX_ entri)',
       search: 'Cari:',
       paginate: {
