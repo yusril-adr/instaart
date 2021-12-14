@@ -144,7 +144,7 @@
       if (!$result) throw new Exception(mysqli_error($conn));
 
       $job = mysqli_fetch_assoc($result);
-      if(!$job) throw new Exception('Job not found.', 404);
+      if(!$job) throw new Exception('Pekerjaan tidak ditemukan.', 404);
 
       return $job;
     }
@@ -176,7 +176,7 @@
         WHERE id = {$this->id};"
       );
 
-      if (!$result) throw new Exception('Job not found.', 404);
+      if (!$result) throw new Exception('Pekerjaan tidak ditemukan.', 404);
 
       return $result;
     }

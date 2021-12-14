@@ -42,7 +42,7 @@
   }
 
   if(!isset($_FILES['profile_image'])) {
-    errorResponse('Image is empty or not uploaded.', 428);
+    errorResponse('Gambar kosong atau tidak terupload.', 428);
   }
 
   try {
@@ -55,11 +55,11 @@
     $extension = strtolower($extension);
 
     if (!in_array($extension, $allowedImgExtension)) {
-      throw new Exception('File is not supported', 415);
+      throw new Exception('Berkas tidak didukung.', 415);
     }
 
     if ($imgFile['error'] == 1) {
-      throw new Exception('File is exceeds maximum capacity.', 413);
+      throw new Exception('Ukuran berkas melebihi batas.', 413);
     }
 
     $user = new User($currentUsername);
@@ -79,7 +79,7 @@
     $user->updateImage($newFileName);
 
     $response['status'] = 'success';
-    $response['message'] = 'Image updated.';
+    $response['message'] = 'Gambar berhasil di update.';
     $response['filename'] = $newFileName;
     echo json_encode($response);
   } catch (Exception $error) {

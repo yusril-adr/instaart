@@ -12,7 +12,7 @@
 
       return false;
     } catch (Exception $error) {
-      throw new Exception('User or password is incorrect', 404);
+      throw new Exception('Pengguna atau kata sandi salah.', 404);
     }
 
   }
@@ -24,7 +24,7 @@
   function loginAsAdmin($username, $password) {
     $admin = new Admin($username);
 
-    if(!$admin->verifyPassword($password)) throw new Exception('Username atau password salah.', 404);
+    if(!$admin->verifyPassword($password)) throw new Exception('Pengguna atau kata sandi salah.', 404);
 
     $admin = $admin->getAdmin();
 

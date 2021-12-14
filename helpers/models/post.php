@@ -260,7 +260,7 @@
       if (!$result) throw new Exception(mysqli_error($conn));
 
       $post = mysqli_fetch_assoc($result);
-      if(!$post) throw new Exception('Post not found.', 404);
+      if(!$post) throw new Exception('Portofolio tidak ditemukan.', 404);
 
       $likes = $this->getLikes();
       $post['likes'] = $likes;
@@ -331,7 +331,7 @@
         WHERE id = {$this->id};"
       );
 
-      if (!$result) throw new Exception('Post not found.', 404);
+      if (!$result) throw new Exception('Portofolio tidak ditemukan.', 404);
 
       return $result;
     }
@@ -356,7 +356,7 @@
         WHERE id = {$this->id};"
       );
 
-      if (!$result) throw new Exception('Post not found.', 404);
+      if (!$result) throw new Exception('Portofolio tidak ditemukan.', 404);
 
       return $result;
     }

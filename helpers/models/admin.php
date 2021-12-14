@@ -230,7 +230,7 @@
   
       $data = mysqli_fetch_assoc($result);
   
-      if(!$data) throw new Exception('User atau password salah', 404);
+      if(!$data) throw new Exception('Pengguna atau Kata Sandi salah', 404);
       return password_verify($password, $data["password"]);
     }
   }

@@ -380,7 +380,7 @@
   public function followUser(int $id) {
     global $conn;
 
-    if($this->id === $id) throw new Exception('Users can\'t follow his own account.', 428);
+    if($this->id === $id) throw new Exception('Pengguna tidak dapat mengikuti dirinya sendiri.', 428);
 
     $result = mysqli_query($conn,
     "INSERT INTO follows (
@@ -397,7 +397,7 @@
   public function unFollowUser(int $id) {
     global $conn;
 
-    if($this->id === $id) throw new Exception('sers can\'t unfollow his own account.', 428);
+    if($this->id === $id) throw new Exception('Pengguna tidak dapat mengikuti dirinya sendiri.', 428);
 
     $result = mysqli_query($conn,
     "DELETE FROM follows 
@@ -606,7 +606,7 @@
       return false; 
     }
 
-    throw new Exception('Current password incorrect.', 401);
+    throw new Exception('Kata sandi lama tidak cocok.', 401);
   }
  }
 ?>
