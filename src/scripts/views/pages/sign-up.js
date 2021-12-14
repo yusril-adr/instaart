@@ -83,22 +83,22 @@ const signUp = {
   async _formValidation(input, confirmPassword) {
     const { PASSWORD_MIN_LENGTH, MAX_LENGTH } = CONFIG;
 
-    if (input.username.length > MAX_LENGTH.USER.USERNAME) throw new Error('Username is too long.');
-    if (input.username.includes(' ')) throw new Error('Username should not contains any space.');
+    if (input.username.length > MAX_LENGTH.USER.USERNAME) throw new Error('Nama pengguna terlalu panjang.');
+    if (input.username.includes(' ')) throw new Error('Nama pengguna tidak boleh mengandung spasi.');
 
-    if (input.email.length > MAX_LENGTH.USER.EMAIL) throw new Error('Email is too long.');
+    if (input.email.length > MAX_LENGTH.USER.EMAIL) throw new Error('Surel terlalu panjang.');
 
-    if (input.password.length < PASSWORD_MIN_LENGTH) throw new Error('Password is too short.');
+    if (input.password.length < PASSWORD_MIN_LENGTH) throw new Error('Kata sandi terlalu pendek.');
     if (!(await PasswordHelper.confirmPassword(input.password, confirmPassword))) {
-      throw new Error('Password didn\'t match.');
+      throw new Error('Kata sandi tidak cocok.');
     }
 
-    if (input.display_name.length > MAX_LENGTH.USER.DISPLAY_NAME) throw new Error('Display name is too long.');
+    if (input.display_name.length > MAX_LENGTH.USER.DISPLAY_NAME) throw new Error('Nama lengkap terlalu panjang.');
 
     if (!(await this._checkPhoneNumberFormat(input.phone_number))) {
-      throw new Error('Phone number format is not valid.');
+      throw new Error('Nomor telepon tidak valid.');
     }
-    if (input.phone_number.length > MAX_LENGTH.USER.PHONE_NUMBER) throw new Error('Phone number is too long.');
+    if (input.phone_number.length > MAX_LENGTH.USER.PHONE_NUMBER) throw new Error('Nomor telepon terlalu panjang.');
   },
 
   async _checkPhoneNumberFormat(phoneNumberInput) {

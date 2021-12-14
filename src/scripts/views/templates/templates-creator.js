@@ -263,15 +263,15 @@ const Templates = {
 
                 <form id="signin-form">
                   <div class="form-group">
-                    <label for="identifier">Username/Email</label>
-                    <input type="text" placeholder="Username atau Email" class="form-control" id="identifier" autocomplete="off" required>
+                    <label for="identifier">Nama Pengguna/Surel</label>
+                    <input type="text" placeholder="Nama Pengguna atau Surel" class="form-control" id="identifier" autocomplete="off" required>
                   </div>
 
                   <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">Kata Sandi</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Password" class="form-control" id="password" autocomplete="off" required>
+                      <input type="password" placeholder="Kata Sandi" class="form-control" id="password" autocomplete="off" required>
       
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="password-toggler" aria-label="perlihatkan password">
@@ -309,20 +309,20 @@ const Templates = {
 
                 <form id="signup-form">
                   <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" placeholder="Username" class="form-control" id="username" autocomplete="off" maxlength=${CONFIG.MAX_LENGTH.USER.USERNAME} required>
+                    <label for="username">Nama Pengguna</label>
+                    <input type="text" placeholder="Nama Pengguna" class="form-control" id="username" autocomplete="off" maxlength=${CONFIG.MAX_LENGTH.USER.USERNAME} required>
                   </div>
 
                   <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" placeholder="Email" class="form-control" id="email" autocomplete="off" maxlength=${CONFIG.MAX_LENGTH.USER.EMAIL} required>
+                    <label for="email">Surel</label>
+                    <input type="email" placeholder="Surel" class="form-control" id="email" autocomplete="off" maxlength=${CONFIG.MAX_LENGTH.USER.EMAIL} required>
                   </div>
 
                   <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">Kata Sandi</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Password" class="form-control" id="password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+                      <input type="password" placeholder="Kata Sandi" class="form-control" id="password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
 
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" aria-label="show password" id="password-toggler"><i class="far fa-eye"></i></button>
@@ -331,10 +331,10 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="confirm-password">Konfirmasi Password</label>
+                    <label for="confirm-password">Konfirmasi Kata Sandi</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Konfirmasi Password" class="form-control" id="confirm-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+                      <input type="password" placeholder="Konfirmasi Kata Sandi" class="form-control" id="confirm-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
 
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="confirm-password-toggler" aria-label="show password"><i class="far fa-eye"></i></button>
@@ -357,7 +357,7 @@ const Templates = {
                   <div class="form-group mb-3">
                     <label for="city">Kota</label>
                     <select class="custom-select" id="city" required>
-                      <option selected value="" disabled>Silakan pilih provinsi</option>
+                      <option selected value="" disabled>Silakan Pilih Provinsi</option>
                     </select>
                   </div>
 
@@ -368,7 +368,7 @@ const Templates = {
 
                   <div class="form-group">
                     <label for="biodata">Bio</label>
-                    <textarea class="form-control" id="biodata" rows="4" placeholder="Ceritakan sesuatu tentang dirimu"></textarea>
+                    <textarea class="form-control" id="biodata" rows="4" placeholder="Ceritakan Sesuatu Tentang Dirimu"></textarea>
                   </div>
         
                   <button type="submit" class="btn btn-primary d-block mx-auto">Daftar</button>
@@ -836,8 +836,8 @@ const Templates = {
                   <div class="form-group">
                     <label for="work-time">Waktu Kerja</label>
                     <select class="custom-select" id="work-time" required>
-                      <option value="Full Time">Full Time</option>
-                      <option value="Part Time">Part Time</option>
+                      <option value="Penuh Waktu">Penuh Waktu</option>
+                      <option value="Paruh Waktu">Paruh Waktu</option>
                     </select>
                   </div>
 
@@ -856,7 +856,7 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="form_link">Link Formulir</label>
+                    <label for="form_link">Tautan Formulir</label>
                     <input type="text" class="form-control" id="form-link" placeholder="https://www.yourcompany.com/job" required>
                   </div>
         
@@ -893,8 +893,8 @@ const Templates = {
                   <div class="form-group">
                     <label for="work-time">Waktu Kerja</label>
                     <select class="custom-select" id="work-time" required>
-                      <option value="Full Time">Full Time</option>
-                      <option value="Part Time">Part Time</option>
+                      <option value="Penuh Waktu">Penuh Waktu</option>
+                      <option value="Paruh Waktu">Paruh Waktu</option>
                     </select>
                   </div>
 
@@ -913,7 +913,7 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="form_link">Link Formulir</label>
+                    <label for="form_link">Tautan Formulir</label>
                     <input type="text" class="form-control" id="form-link" placeholder="https://www.yourcompany.com/job" required>
                   </div>
 
@@ -1112,13 +1112,13 @@ const Templates = {
 
   profileFollowBtn() {
     return `
-      <button class="btn btn-outline-primary my-3" id="follow">Follow</button>
+      <button class="btn btn-outline-primary my-3" id="follow">Ikuti</button>
     `;
   },
 
   profileUnfollowBtn() {
     return `
-      <button class="btn btn-primary my-3" id="unfollow">Unfollow</button>
+      <button class="btn btn-primary my-3" id="unfollow">Batal Mengikuti</button>
     `;
   },
 
@@ -1205,7 +1205,7 @@ const Templates = {
 
                 <a href="#/edit-profile-picture/" class="list-group-item list-group-item-action hover:bg-secondary">Foto Profil</a>
 
-                <a href="#/edit-password/" class="list-group-item list-group-item-action hover:bg-secondary">Password</a>
+                <a href="#/edit-password/" class="list-group-item list-group-item-action hover:bg-secondary">Kata Sandi</a>
               </div>
             </div>
           </div>
@@ -1217,8 +1217,8 @@ const Templates = {
 
                 <form id="profile-form">
                   <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" placeholder="Username" class="form-control" id="username" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.USERNAME}" required>
+                    <label for="username">Nama Pengguna</label>
+                    <input type="text" placeholder="Nama Pengguna" class="form-control" id="username" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.USERNAME}" required>
                   </div>
 
                   <div class="form-group">
@@ -1227,8 +1227,8 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" placeholder="Email" class="form-control" id="email" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.EMAIL}" required>
+                    <label for="email">Surel</label>
+                    <input type="email" placeholder="Surel" class="form-control" id="email" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.EMAIL}" required>
                   </div>
 
                   <div class="form-group">
@@ -1246,13 +1246,13 @@ const Templates = {
                   <div class="form-group">
                     <label for="city">Kota</label>
                     <select class="custom-select" id="city" required>
-                      <option selected value="" disabled>Silakan pilih provinsi</option>
+                      <option selected value="" disabled>Silakan Pilih Provinsi</option>
                     </select>
                   </div>
 
                   <div class="form-group">
                     <label for="bio">Bio</label>
-                    <textarea class="form-control" id="bio" rows="4" placeholder="Ceritakan sesuatu tentang dirimu"></textarea>
+                    <textarea class="form-control" id="bio" rows="4" placeholder="Ceritakan Sesuatu Tentang Dirimu"></textarea>
                   </div>
         
                   <div class="d-flex justify-content-evenly">
@@ -1285,7 +1285,7 @@ const Templates = {
                 </a>
                 <a href="#/edit-profile-picture" class="list-group-item list-group-item-action hover:bg-secondary disabled">Foto Profil</a>
 
-                <a href="#/edit-password" class="list-group-item list-group-item-action hover:bg-secondary">Password</a>
+                <a href="#/edit-password" class="list-group-item list-group-item-action hover:bg-secondary">Kata Sandi</a>
               </div>
             </div>
           </div>
@@ -1335,7 +1335,7 @@ const Templates = {
 
                 <a href="#/edit-profile-picture/" class="list-group-item list-group-item-action hover:bg-secondary">Foto Profil</a>
 
-                <a href="#/edit-password/" class="list-group-item list-group-item-action hover:bg-secondary disabled">Password</a>
+                <a href="#/edit-password/" class="list-group-item list-group-item-action hover:bg-secondary disabled">Kata Sandi</a>
               </div>
             </div>
           </div>
@@ -1347,10 +1347,10 @@ const Templates = {
 
                 <form id="password-form">
                   <div class="form-group">
-                    <label for="new-password">Password Baru</label>
+                    <label for="new-password">Kata Sandi Baru</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Password Baru" class="form-control" id="new-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+                      <input type="password" placeholder="Kata Sandi Baru" class="form-control" id="new-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
       
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="new-password-toggler" aria-label="show password"><i class="far fa-eye"></i></button>
@@ -1359,10 +1359,10 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="current-password">Password Lama</label>
+                    <label for="current-password">Kata Sandi Lama</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Password Lama" class="form-control" id="current-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+                      <input type="password" placeholder="Kata Sandi Lama" class="form-control" id="current-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
       
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="current-password-toggler" aria-label="show password">
@@ -1623,8 +1623,8 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="caption">Caption</label>
-                    <textarea class="form-control" id="caption" rows="3" placeholder="Caption"></textarea>
+                    <label for="caption">Deskripsi</label>
+                    <textarea class="form-control" id="caption" rows="3" placeholder="Deskripsi"></textarea>
                   </div>
 
                   <div class="form-group mb-3">
@@ -1640,10 +1640,10 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="post-image">Upload File</label>
+                    <label for="post-image">Upload Berkas</label>
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="post-image" required>
-                      <label class="custom-file-label" for="post-image">Pilih File</label>
+                      <label class="custom-file-label" for="post-image">Pilih Berkas</label>
                     </div>
                   </div>
 
@@ -1677,8 +1677,8 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="caption">Caption</label>
-                    <textarea class="form-control" id="caption" rows="4" placeholder="Caption"></textarea>
+                    <label for="caption">Deskripsi</label>
+                    <textarea class="form-control" id="caption" rows="4" placeholder="Deskripsi"></textarea>
                   </div>
 
                   <div class="form-group mb-3">
