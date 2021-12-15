@@ -118,6 +118,31 @@
     return $userFounds;
   }
 
+  public static function verifyRecoveryToken(string $token) {
+    global $conn;
+
+    $result = mysqli_query(
+      $conn, 
+      "SELECT
+        recovery_tokens.id,
+        recovery_tokens.token,
+        users.id as user_id,
+        users.username,
+        users.email
+      FROM recovery_tokens 
+      INNER JOIN users
+      ON recovery_tokens.user_id = users.id
+      WHERE recovery_tokens.token = '{$token}';"
+    );
+
+    if (!$result) throw new Exception(mysqli_error($conn));
+
+    $token = mysqli_fetch_assoc($result);
+    if(!$token) throw new Exception('Token tidak ditemukan.', 404);
+
+    return $token;
+  }
+
   public function verifyPassword(string $password) {
     global $conn;
 
@@ -606,7 +631,62 @@
       return false; 
     }
 
-    throw new Exception('Kata sandi lama tidak cocok.', 401);
+    throw new Exception('Password lama tidak cocok.', 401);
+  }
+
+  public function createRecoveryToken() {
+    global $conn;
+
+    if ($this->id == null) {
+      throw new Exception('Email tidak terdaftar.', 404);
+    }
+
+    $token = uniqid();
+
+    $result = mysqli_query($conn,
+    "INSERT INTO recovery_tokens (
+      token,
+      user_id
+    ) values (
+      '{$token}', 
+      '{$this->id}'
+    );");
+
+    if (!$result) throw new Exception(mysqli_error($conn));
+
+    return $token;
+  }
+
+  public function deleteRecoveryToken() {
+    global $conn;
+
+    $result = mysqli_query($conn, 
+      "DELETE FROM recovery_tokens 
+      WHERE user_id = '{$this->id}';"
+    );
+    
+    if (!$result) throw new Exception(mysqli_error($conn));
+
+    return $result;
+  }
+
+  public function recoveryPassword(string $newPassword) {
+    $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+    global $conn;
+    $user = mysqli_query(
+      $conn,
+      "UPDATE users 
+      SET
+        password = '{$hashedPassword}'
+      WHERE id = {$this->id};"
+    );
+
+    if($user) {
+      return true;
+    }
+
+    return false; 
   }
  }
 ?>

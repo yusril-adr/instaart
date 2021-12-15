@@ -248,7 +248,7 @@ const Templates = {
     `;
   },
 
-  signInpage() {
+  signInPage() {
     return `
       <div class="container" id="home">
         <div class="row">
@@ -263,15 +263,15 @@ const Templates = {
 
                 <form id="signin-form">
                   <div class="form-group">
-                    <label for="identifier">Nama Pengguna/Surel</label>
-                    <input type="text" placeholder="Nama Pengguna atau Surel" class="form-control" id="identifier" autocomplete="off" required>
+                    <label for="identifier">Username/Email</label>
+                    <input type="text" placeholder="Username atau Email" class="form-control" id="identifier" autocomplete="off" required>
                   </div>
 
                   <div class="form-group">
-                    <label for="password">Kata Sandi</label>
+                    <label for="password">Password</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Kata Sandi" class="form-control" id="password" autocomplete="off" required>
+                      <input type="password" placeholder="Password" class="form-control" id="password" autocomplete="off" required>
       
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="password-toggler" aria-label="perlihatkan password">
@@ -282,6 +282,8 @@ const Templates = {
                   </div>
         
                   <button type="submit" class="btn btn-primary d-block mx-auto">Masuk</button>
+
+                  <a href="#/forget/" class="d-block text-center mt-3 text-dark">Lupa password ?</a>
                 </form>
               </div>
             </div>
@@ -309,20 +311,20 @@ const Templates = {
 
                 <form id="signup-form">
                   <div class="form-group">
-                    <label for="username">Nama Pengguna</label>
-                    <input type="text" placeholder="Nama Pengguna" class="form-control" id="username" autocomplete="off" maxlength=${CONFIG.MAX_LENGTH.USER.USERNAME} required>
+                    <label for="username">Username</label>
+                    <input type="text" placeholder="Username" class="form-control" id="username" autocomplete="off" maxlength=${CONFIG.MAX_LENGTH.USER.USERNAME} required>
                   </div>
 
                   <div class="form-group">
-                    <label for="email">Surel</label>
-                    <input type="email" placeholder="Surel" class="form-control" id="email" autocomplete="off" maxlength=${CONFIG.MAX_LENGTH.USER.EMAIL} required>
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="Email" class="form-control" id="email" autocomplete="off" maxlength=${CONFIG.MAX_LENGTH.USER.EMAIL} required>
                   </div>
 
                   <div class="form-group">
-                    <label for="password">Kata Sandi</label>
+                    <label for="password">Password</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Kata Sandi" class="form-control" id="password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+                      <input type="password" placeholder="Password" class="form-control" id="password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
 
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" aria-label="show password" id="password-toggler"><i class="far fa-eye"></i></button>
@@ -331,10 +333,10 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="confirm-password">Konfirmasi Kata Sandi</label>
+                    <label for="confirm-password">Konfirmasi Password</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Konfirmasi Kata Sandi" class="form-control" id="confirm-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+                      <input type="password" placeholder="Konfirmasi Password" class="form-control" id="confirm-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
 
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="confirm-password-toggler" aria-label="show password"><i class="far fa-eye"></i></button>
@@ -357,7 +359,7 @@ const Templates = {
                   <div class="form-group mb-3">
                     <label for="city">Kota</label>
                     <select class="custom-select" id="city" required>
-                      <option selected value="" disabled>Silakan Pilih Provinsi</option>
+                      <option selected value="" disabled>Silakan Pilih Kota/Kabupaten</option>
                     </select>
                   </div>
 
@@ -380,6 +382,78 @@ const Templates = {
               <div class="card-body d-flex justify-content-center">
                 Sudah memiliki akun?
                 <a href="#/sign-in" class="ml-2 font-weight-bold text-primary">Masuk</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  forgetPasswordPage() {
+    return `
+      <div class="container" id="forget-password">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 offset-md-3">
+            <div class="card shadow-sm mt-3 mx-auto">
+              <div class="card-body">
+                <span class="card-title d-block font-weight-bold h1 text-center mb-3">Lupa Password</span>
+
+                <form id="forget-form">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" placeholder="Email" class="form-control" id="email" autocomplete="off" maxlength=${CONFIG.MAX_LENGTH.USER.EMAIL} required>
+                  </div>
+        
+                  <div class="d-flex justify-content-center items-center">
+                    <a href="#/sign-in/" class="btn btn-secondary d-block">Kembali</a>
+                    <button type="submit" class="btn btn-primary d-block ml-3">Kirim</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  recoveryPage() {
+    return `
+      <div class="container" id="recovery">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 offset-md-3">
+            <div class="card shadow-sm mt-3 mx-auto">
+              <div class="card-body">
+                <span class="card-title d-block font-weight-bold h1 text-center mb-3">Pemulihan Akun</span>
+
+                <form id="recovery-form">
+                  <div class="form-group">
+                    <label for="password">Password Baru</label>
+
+                    <div class="input-group">
+                      <input type="new-password" placeholder="Password Baru" class="form-control" id="new-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-light" aria-label="show password" id="new-password-toggler"><i class="far fa-eye"></i></button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="confirm-password">Konfirmasi Password Baru</label>
+
+                    <div class="input-group">
+                      <input type="password" placeholder="Konfirmasi Password Baru" class="form-control" id="confirm-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-light" id="confirm-password-toggler" aria-label="show password"><i class="far fa-eye"></i></button>
+                      </div>
+                    </div>
+                  </div>
+        
+                  <button type="submit" class="btn btn-primary d-block mx-auto">Kirim</button>
+                </form>
               </div>
             </div>
           </div>
@@ -851,7 +925,7 @@ const Templates = {
                   <div class="form-group">
                     <label for="city">Kota</label>
                     <select class="custom-select" id="city" required>
-                      <option selected value="" disabled>Silakan pilih provinsi</option>
+                      <option selected value="" disabled>Silakan Pilih Kota/Kabupaten</option>
                     </select>
                   </div>
 
@@ -908,7 +982,7 @@ const Templates = {
                   <div class="form-group">
                     <label for="city">Kota</label>
                     <select class="custom-select" id="city" required>
-                      <option selected value="" disabled>Silakan pilih provinsi</option>
+                      <option selected value="" disabled>Silakan Pilih Kota/Kabupaten</option>
                     </select>
                   </div>
 
@@ -1205,7 +1279,7 @@ const Templates = {
 
                 <a href="#/edit-profile-picture/" class="list-group-item list-group-item-action hover:bg-secondary">Foto Profil</a>
 
-                <a href="#/edit-password/" class="list-group-item list-group-item-action hover:bg-secondary">Kata Sandi</a>
+                <a href="#/edit-password/" class="list-group-item list-group-item-action hover:bg-secondary">Password</a>
               </div>
             </div>
           </div>
@@ -1217,8 +1291,8 @@ const Templates = {
 
                 <form id="profile-form">
                   <div class="form-group">
-                    <label for="username">Nama Pengguna</label>
-                    <input type="text" placeholder="Nama Pengguna" class="form-control" id="username" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.USERNAME}" required>
+                    <label for="username">Username</label>
+                    <input type="text" placeholder="Username" class="form-control" id="username" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.USERNAME}" required>
                   </div>
 
                   <div class="form-group">
@@ -1227,8 +1301,8 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="email">Surel</label>
-                    <input type="email" placeholder="Surel" class="form-control" id="email" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.EMAIL}" required>
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="Email" class="form-control" id="email" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.EMAIL}" required>
                   </div>
 
                   <div class="form-group">
@@ -1246,7 +1320,7 @@ const Templates = {
                   <div class="form-group">
                     <label for="city">Kota</label>
                     <select class="custom-select" id="city" required>
-                      <option selected value="" disabled>Silakan Pilih Provinsi</option>
+                      <option selected value="" disabled>Silakan Pilih Kota/Kabupaten</option>
                     </select>
                   </div>
 
@@ -1285,7 +1359,7 @@ const Templates = {
                 </a>
                 <a href="#/edit-profile-picture" class="list-group-item list-group-item-action hover:bg-secondary disabled">Foto Profil</a>
 
-                <a href="#/edit-password" class="list-group-item list-group-item-action hover:bg-secondary">Kata Sandi</a>
+                <a href="#/edit-password" class="list-group-item list-group-item-action hover:bg-secondary">Password</a>
               </div>
             </div>
           </div>
@@ -1335,7 +1409,7 @@ const Templates = {
 
                 <a href="#/edit-profile-picture/" class="list-group-item list-group-item-action hover:bg-secondary">Foto Profil</a>
 
-                <a href="#/edit-password/" class="list-group-item list-group-item-action hover:bg-secondary disabled">Kata Sandi</a>
+                <a href="#/edit-password/" class="list-group-item list-group-item-action hover:bg-secondary disabled">Password</a>
               </div>
             </div>
           </div>
@@ -1343,14 +1417,14 @@ const Templates = {
           <div class="col-sm-12 col-md-8 col-lg-6 offset-lg-1 mt-4 mt-md-0">
             <div class="card shadow-sm mx-auto">
               <div class="card-body">
-                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Kata Sandi</span>
+                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Password</span>
 
                 <form id="password-form">
                   <div class="form-group">
-                    <label for="new-password">Kata Sandi Baru</label>
+                    <label for="new-password">Password Baru</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Kata Sandi Baru" class="form-control" id="new-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+                      <input type="password" placeholder="Password Baru" class="form-control" id="new-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
       
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="new-password-toggler" aria-label="show password"><i class="far fa-eye"></i></button>
@@ -1359,10 +1433,10 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="current-password">Kata Sandi Lama</label>
+                    <label for="current-password">Password Lama</label>
 
                     <div class="input-group">
-                      <input type="password" placeholder="Kata Sandi Lama" class="form-control" id="current-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
+                      <input type="password" placeholder="Password Lama" class="form-control" id="current-password" autocomplete="off" minlength="${CONFIG.PASSWORD_MIN_LENGTH}" required>
       
                       <div class="input-group-append">
                         <button type="button" class="btn btn-light" id="current-password-toggler" aria-label="show password">

@@ -7,6 +7,7 @@ const CONFIG = {
   COMMENT_LIST_DEFAULT_LENGTH: 10,
   AUTH_ID_KEY: 'auth_id',
   AUTH_TOKEN_KEY: 'auth_token',
+  MAIL_SENDER_AUTH: 'instaartofc',
   ENC_KEY: 'instaart123',
   PASSWORD_MIN_LENGTH: 8,
   MONTH: [

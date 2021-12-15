@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2021 at 09:57 AM
+-- Generation Time: Dec 15, 2021 at 06:26 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -179,6 +179,18 @@ CREATE TABLE `posts` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `recovery_tokens`
+--
+
+CREATE TABLE `recovery_tokens` (
+  `id` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tokens`
 --
 
@@ -214,7 +226,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `display_name`, `biodata`, `image`, `email`, `phone_number`, `province_id`, `province_name`, `city_id`, `city_name`) VALUES
-(1, 'yusril-adr', '$2y$10$hP8QgxwFBO9BWY7pT/Ou.ehBbXV6SCVweOfNbynEU.LJVx9CuZlhK', 'Yusril A. P.', 'ab', '1.jpg', 'yusril@yusril', '087854029394', 35, 'Jawa Timur', 3578, 'Kota Surabaya');
+(1, 'yusril-adr', '$2y$10$zluCqKU6wiAhSku9Orugk.S5V4FFg6CrKysV2kYp.iagMUfwtwmV2', 'Yusril A. P.', 'ab', '1.jpg', 'yusriladr.212@gmail.com', '087854029394', 35, 'Jawa Timur', 3578, 'Kota Surabaya');
 
 --
 -- Indexes for dumped tables
@@ -287,6 +299,14 @@ ALTER TABLE `posts`
   ADD KEY `user_id` (`user_id`),
   ADD KEY `color_id` (`color_id`),
   ADD KEY `posts_ibfk_2` (`category_id`);
+
+--
+-- Indexes for table `recovery_tokens`
+--
+ALTER TABLE `recovery_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `token` (`token`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `tokens`
@@ -362,6 +382,12 @@ ALTER TABLE `posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `recovery_tokens`
+--
+ALTER TABLE `recovery_tokens`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tokens`
 --
 ALTER TABLE `tokens`
@@ -416,6 +442,12 @@ ALTER TABLE `likes`
 --
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `recovery_tokens`
+--
+ALTER TABLE `recovery_tokens`
+  ADD CONSTRAINT `recovery_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `tokens`

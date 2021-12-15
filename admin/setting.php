@@ -108,26 +108,26 @@
                                     </div> -->
 
                                     <div class="form-group">
-                                        <label for="new-password">Kata Sandi Baru</label>
+                                        <label for="new-password">Password Baru</label>
 
                                         <div class="input-group">
-                                            <input type="password" placeholder="Kata Sandi Baru" class="form-control" id="new-password" name="new-password"  autocomplete="off" minlength="8" required>
+                                            <input type="password" placeholder="Password Baru" class="form-control" id="new-password" name="new-password"  autocomplete="off" minlength="8" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="new-password-confirm">Konfirmasi Kata Sandi Baru</label>
+                                        <label for="new-password-confirm">Konfirmasi Password Baru</label>
 
                                         <div class="input-group">
-                                            <input type="password" placeholder="Konfirmasi Kata Sandi Baru" class="form-control" id="new-password-confirm" name="new-password-confirm"  autocomplete="off" minlength="8" required>
+                                            <input type="password" placeholder="Konfirmasi Password Baru" class="form-control" id="new-password-confirm" name="new-password-confirm"  autocomplete="off" minlength="8" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="current-password">Kata Sandi Lama</label>
+                                        <label for="current-password">Password Lama</label>
 
                                         <div class="input-group">
-                                            <input type="password" placeholder="Kata Sandi Lama" class="form-control" id="current-password" name="current-password" autocomplete="off" minlength="8" required>
+                                            <input type="password" placeholder="Password Lama" class="form-control" id="current-password" name="current-password" autocomplete="off" minlength="8" required>
                                         </div>
                                     </div>
 

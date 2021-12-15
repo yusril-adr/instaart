@@ -16,7 +16,7 @@ const editPassword = {
       return;
     }
 
-    await TitleHelper.setTitle('Edit Kata Sandi');
+    await TitleHelper.setTitle('Edit Password');
 
     await this._initPasswordToggler();
     await this._submitEvent();
@@ -69,7 +69,7 @@ const editPassword = {
   async _formValidation(input) {
     const { PASSWORD_MIN_LENGTH } = CONFIG;
 
-    if (input.new_password.length < PASSWORD_MIN_LENGTH) throw new Error('Your new password is too short.');
+    if (input.new_password.length < PASSWORD_MIN_LENGTH) throw new Error('Password kamu terlalu sedikit.');
   },
 };
 

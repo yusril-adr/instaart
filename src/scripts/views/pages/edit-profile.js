@@ -101,10 +101,10 @@ const editProfile = {
   async _formValidation(input) {
     const { MAX_LENGTH } = CONFIG;
 
-    if (input.username.length > MAX_LENGTH.USER.USERNAME) throw new Error('Nama pengguna terlalu panjang.');
-    if (input.username.includes(' ')) throw new Error('Nama pengguna tidak boleh mengandung spasi.');
+    if (input.username.length > MAX_LENGTH.USER.USERNAME) throw new Error('Username terlalu panjang.');
+    if (input.username.includes(' ')) throw new Error('Username tidak boleh mengandung spasi.');
 
-    if (input.email.length > MAX_LENGTH.USER.EMAIL) throw new Error('Surel terlalu panjang.');
+    if (input.email.length > MAX_LENGTH.USER.EMAIL) throw new Error('Email terlalu panjang.');
 
     if (input.display_name.length > MAX_LENGTH.USER.DISPLAY_NAME) throw new Error('Nama lengkap terlalu panjang.');
 

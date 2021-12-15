@@ -5,7 +5,7 @@ import User from '../../data/user';
 
 const home = {
   async render() {
-    return Templates.signInpage();
+    return Templates.signInPage();
   },
 
   async afterRender(user) {

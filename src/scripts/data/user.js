@@ -1,4 +1,5 @@
 import API_ENDPOINT from '../global/api-endpoint';
+import CONFIG from '../global/config';
 import Auth from './auth';
 
 const User = {
@@ -466,6 +467,91 @@ const User = {
     const response = await fetch(
       `${API_ENDPOINT.SEARCH}?type=user&keyword=${keyword}&province=${province || ''}&city=${city || ''}`,
     );
+
+    if (response.status === 500) {
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
+    }
+
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async getRecoveryToken(email) {
+    if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
+
+    const response = await fetch(API_ENDPOINT.RECOVERY_TOKEN, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+      }),
+    });
+
+    if (response.status === 500) {
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
+    }
+
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async sendRecoveryToken(data) {
+    if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
+
+    const response = await fetch(API_ENDPOINT.SEND_TOKEN, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth': CONFIG.MAIL_SENDER_AUTH,
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.status === 500) {
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
+    }
+
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async verifyRecoveryToken(token) {
+    if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
+
+    const response = await fetch(`${API_ENDPOINT.RECOVERY_TOKEN}?token=${token}`);
+
+    if (response.status === 500) {
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
+    }
+
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) throw new Error(responseJSON.message);
+
+    return responseJSON;
+  },
+
+  async recoveryPassword(inputData) {
+    if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
+
+    const response = await fetch(API_ENDPOINT.RECOVERY_PASSWORD, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputData),
+    });
 
     if (response.status === 500) {
       throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');

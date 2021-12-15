@@ -1,6 +1,8 @@
 import home from '../views/pages/home';
 import signIn from '../views/pages/signIn';
 import signUp from '../views/pages/sign-up';
+import forgetPassword from '../views/pages/forget-password';
+import recovery from '../views/pages/recovery';
 import signOut from '../views/pages/sign-out';
 import explore from '../views/pages/explore';
 import activity from '../views/pages/activity';
@@ -27,6 +29,9 @@ const routes = {
   '/sign-in': signIn,
   '/sign-up': signUp,
   '/sign-out': signOut,
+  '/forget': forgetPassword,
+  '/recovery': recovery,
+  '/recovery/verb': recovery,
   '/explore': explore,
   '/activity': activity,
   '/bookmark': bookmark,

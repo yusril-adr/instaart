@@ -83,14 +83,14 @@ const signUp = {
   async _formValidation(input, confirmPassword) {
     const { PASSWORD_MIN_LENGTH, MAX_LENGTH } = CONFIG;
 
-    if (input.username.length > MAX_LENGTH.USER.USERNAME) throw new Error('Nama pengguna terlalu panjang.');
-    if (input.username.includes(' ')) throw new Error('Nama pengguna tidak boleh mengandung spasi.');
+    if (input.username.length > MAX_LENGTH.USER.USERNAME) throw new Error('Username terlalu panjang.');
+    if (input.username.includes(' ')) throw new Error('Username tidak boleh mengandung spasi.');
 
-    if (input.email.length > MAX_LENGTH.USER.EMAIL) throw new Error('Surel terlalu panjang.');
+    if (input.email.length > MAX_LENGTH.USER.EMAIL) throw new Error('Email terlalu panjang.');
 
-    if (input.password.length < PASSWORD_MIN_LENGTH) throw new Error('Kata sandi terlalu pendek.');
+    if (input.password.length < PASSWORD_MIN_LENGTH) throw new Error('Password terlalu pendek.');
     if (!(await PasswordHelper.confirmPassword(input.password, confirmPassword))) {
-      throw new Error('Kata sandi tidak cocok.');
+      throw new Error('Password tidak cocok.');
     }
 
     if (input.display_name.length > MAX_LENGTH.USER.DISPLAY_NAME) throw new Error('Nama lengkap terlalu panjang.');
