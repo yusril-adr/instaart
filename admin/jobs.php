@@ -79,7 +79,8 @@
                                             <th>Id</th>                                            <th>Pengunggah</th>
                                             <th>Judul Pekerjaan</th>
                                             <th>Provinsi</th>
-                                            <th>Kota</th>                                            <th>Jam Kerja</th>                                            <th>Link Form</th>
+                                            <th>Kota</th>                                            
+                                            <th>Tipe Pekerjaan</th>                                            <th>Link Form</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -88,7 +89,8 @@
                                             <th>Id</th>                                            <th>Pengunggah</th>
                                             <th>Judul Pekerjaan</th>
                                             <th>Provinsi</th>
-                                            <th>Kota</th>                                            <th>Jam Kerja</th>                                            <th>Link Form</th>
+                                            <th>Kota</th>                                            
+                                            <th>Tipe Pekerjaan</th>                                            <th>Link Form</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
