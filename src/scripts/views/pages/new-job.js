@@ -53,7 +53,7 @@ const newJob = {
           city_id,
           province_name: document.querySelector(`#province option[value="${province_id}"]`).innerHTML,
           city_name: document.querySelector(`#city option[value="${city_id}"]`).innerHTML,
-          work_time: event.target['work-time'].value,
+          work_type: event.target['work-type'].value,
         };
 
         await this._formValidation(inputData);

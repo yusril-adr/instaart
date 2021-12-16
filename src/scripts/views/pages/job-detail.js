@@ -39,7 +39,7 @@ const jobDetail = {
     await this._renderDisplayName(job);
     await this._renderDescription(job);
     await this._renderLocation(job);
-    await this._renderWorkTime(job);
+    await this._renderWorkType(job);
 
     if (job.user_id === currentUser?.id) {
       await this._renderEditBtn(job, currentUser);
@@ -95,10 +95,10 @@ const jobDetail = {
     });
   },
 
-  async _renderWorkTime({ work_time }) {
-    const elems = document.querySelectorAll('.job-work-time');
+  async _renderWorkType({ work_type }) {
+    const elems = document.querySelectorAll('.job-work-type');
     elems.forEach(async (elem) => {
-      elem.innerText = work_time;
+      elem.innerText = work_type;
     });
   },
 

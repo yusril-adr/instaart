@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2021 at 06:26 PM
+-- Generation Time: Dec 16, 2021 at 01:47 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -142,7 +142,7 @@ CREATE TABLE `jobs` (
   `city_name` varchar(100) NOT NULL,
   `title` text NOT NULL,
   `description` text NOT NULL,
-  `work_time` varchar(255) NOT NULL,
+  `work_type` varchar(255) NOT NULL,
   `form_link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -199,6 +199,13 @@ CREATE TABLE `tokens` (
   `user_id` int(11) NOT NULL,
   `token` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tokens`
+--
+
+INSERT INTO `tokens` (`id`, `user_id`, `token`) VALUES
+(1, 1, '61ba8b85f320b');
 
 -- --------------------------------------------------------
 
@@ -367,7 +374,7 @@ ALTER TABLE `follows`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `likes`
@@ -391,7 +398,7 @@ ALTER TABLE `recovery_tokens`
 -- AUTO_INCREMENT for table `tokens`
 --
 ALTER TABLE `tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

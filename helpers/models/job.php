@@ -19,7 +19,7 @@
           jobs.province_name,
           jobs.city_id,
           jobs.city_name,
-          jobs.work_time,
+          jobs.work_type,
           jobs.form_link,
           users.id as user_id,
           users.username,
@@ -65,7 +65,7 @@
     public static function postJob($data, $userId) {
       global $conn;
 
-      $workTime = htmlspecialchars($data['work_time']);
+      $workTime = htmlspecialchars($data['work_type']);
       $workTime = stripslashes($workTime);
 
       $title = htmlspecialchars($data['title']);
@@ -84,7 +84,7 @@
         province_name,
         city_id,
         city_name,
-        work_time,
+        work_type,
         title,
         description, 
         form_link
@@ -94,7 +94,7 @@
         '{$data['province_name']}', 
         '{$data['city_id']}', 
         '{$data['city_name']}', 
-        '{$data['work_time']}', 
+        '{$data['work_type']}', 
         '{$title}', 
         '{$description}',  
         '{$formLink}'
@@ -129,7 +129,7 @@
           jobs.province_name,
           jobs.city_id,
           jobs.city_name,
-          jobs.work_time,
+          jobs.work_type,
           jobs.form_link,
           users.id as user_id,
           users.username,
@@ -171,7 +171,7 @@
           province_name = '{$data['province_name']}',
           city_id = '{$data['city_id']}',
           city_name = '{$data['city_name']}',
-          work_time = '{$data['work_time']}',
+          work_type = '{$data['work_type']}',
           form_link = '{$formLink}'
         WHERE id = {$this->id};"
       );

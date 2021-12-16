@@ -50,8 +50,8 @@ const editJob = {
     const description = document.querySelector('textarea#description');
     description.value = job.description;
 
-    const workTime = document.querySelector(`#work-time option[value="${job.work_time}"]`);
-    if (workTime) workTime.setAttribute('selected', '');
+    const workType = document.querySelector(`#work-type option[value="${job.work_type}"]`);
+    if (workType) workType.setAttribute('selected', '');
 
     const formLink = document.querySelector('input#form-link');
     formLink.value = job.form_link;
@@ -76,7 +76,7 @@ const editJob = {
           city_id,
           province_name: document.querySelector(`#province option[value="${province_id}"]`).innerHTML,
           city_name: document.querySelector(`#city option[value="${city_id}"]`).innerHTML,
-          work_time: event.target['work-time'].value,
+          work_type: event.target['work-type'].value,
         };
 
         await this._formValidation(inputData);

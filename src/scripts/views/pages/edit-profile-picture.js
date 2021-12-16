@@ -22,6 +22,7 @@ const editProfilePicture = {
     await TitleHelper.setTitle('Edit Foto Profil');
 
     await this._setDefaultValue(user);
+    await this._onChangeEvent();
     await this._submitEvent();
     await this._deleteEvent();
   },
@@ -29,6 +30,24 @@ const editProfilePicture = {
   async _setDefaultValue(user) {
     const img = document.querySelector('.user-image-element');
     img.src = `${CONFIG.IMAGE_PATH.USER}/${user.image}`;
+  },
+
+  async _onChangeEvent() {
+    const imageInput = document.querySelector('#profile-picture');
+    imageInput.addEventListener('change', () => {
+      const preview = document.querySelector('img.user-image-element');
+      const file = document.querySelector('#profile-picture').files[0];
+      const reader = new FileReader();
+
+      reader.addEventListener('load', () => {
+        // convert image file to base64 string
+        preview.src = reader.result;
+      }, false);
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    });
   },
 
   async _submitEvent() {

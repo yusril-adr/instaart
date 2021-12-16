@@ -103,7 +103,7 @@
                                                         <?= $job['province_name'] ?>
                                                     </td>
                                                     <td><?= $job['city_name'] ?></td>
-                                                    <td><?= $job['work_time'] ?></td>
+                                                    <td><?= $job['work_type'] ?></td>
                                                     <td>
                                                         <a href="<?= $job['form_link'] ?>" target="_blank">
                                                             <?= $job['form_link'] ?>

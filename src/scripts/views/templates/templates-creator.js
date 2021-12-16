@@ -874,7 +874,7 @@ const Templates = {
 
             <p class="mt-3"><i class="fas fa-map-marker-alt ml-1 mr-2"></i> ${job.city_name}, ${job.province_name}</p>
 
-            <p class="mt-2"><i class="fas fa-briefcase mr-2"></i> ${job.work_time}</p>
+            <p class="mt-2"><i class="fas fa-briefcase mr-2"></i> ${job.work_type}</p>
           </div>
 
           <div class="card-footer">
@@ -908,10 +908,12 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="work-time">Waktu Kerja</label>
-                    <select class="custom-select" id="work-time" required>
-                      <option value="Penuh Waktu">Penuh Waktu</option>
-                      <option value="Paruh Waktu">Paruh Waktu</option>
+                    <label for="work-type">Tipe Pekerjaan</label>
+                    <select class="custom-select" id="work-type" required>
+                      <option value="Full Time">Full Time</option>
+                      <option value="Part Time">Part Time</option>
+                      <option value="Freelance">Freelance</option>
+                      <option value="Contract">Contract</option>
                     </select>
                   </div>
 
@@ -965,10 +967,12 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="work-time">Waktu Kerja</label>
-                    <select class="custom-select" id="work-time" required>
-                      <option value="Penuh Waktu">Penuh Waktu</option>
-                      <option value="Paruh Waktu">Paruh Waktu</option>
+                    <label for="work-type">Tipe Pekerjaan</label>
+                    <select class="custom-select" id="work-type" required>
+                      <option value="Full Time">Full Time</option>
+                      <option value="Part Time">Part Time</option>
+                      <option value="Freelance">Freelance</option>
+                      <option value="Contract">Contract</option>
                     </select>
                   </div>
 
@@ -1027,7 +1031,7 @@ const Templates = {
 
                     <p class="mt-1 mb-1">
                       <i class="fas fa-briefcase mr-2"></i> 
-                      <span class="job-work-time"></span>
+                      <span class="job-work-type"></span>
                     </p>
                   </div>
 
