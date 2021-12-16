@@ -80,7 +80,7 @@
                                             <th>Nama Lengkap</th>
                                             <th>Foto profil</th>
                                             <th>Provinsi</th>
-                                            <th>Kota/Kabupaten</th>
+                                            <th>Kabupaten/Kota</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -90,7 +90,7 @@
                                             <th>Nama Lengkap</th>
                                             <th>Foto profil</th>
                                             <th>Provinsi</th>
-                                            <th>Kota/Kabupaten</th>
+                                            <th>Kabupaten/Kota</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>

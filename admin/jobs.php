@@ -76,20 +76,23 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>                                            <th>Pengunggah</th>
+                                            <th>Id</th>                                            
+                                            <th>Pengunggah</th>
                                             <th>Judul Pekerjaan</th>
                                             <th>Provinsi</th>
-                                            <th>Kota</th>                                            
-                                            <th>Tipe Pekerjaan</th>                                            <th>Link Form</th>
+                                            <th>Kabupaten/Kota</th>                                            
+                                            <th>Tipe Pekerjaan</th>                                            
+                                            <th>Link Form</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Id</th>                                            <th>Pengunggah</th>
+                                            <th>Id</th>                                            
+                                            <th>Pengunggah</th>
                                             <th>Judul Pekerjaan</th>
                                             <th>Provinsi</th>
-                                            <th>Kota</th>                                            
+                                            <th>Kabupaten/Kota</th>                                            
                                             <th>Tipe Pekerjaan</th>                                            <th>Link Form</th>
                                             <th>Aksi</th>
                                         </tr>

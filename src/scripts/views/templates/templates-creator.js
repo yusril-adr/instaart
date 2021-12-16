@@ -357,9 +357,9 @@ const Templates = {
                   </div>
 
                   <div class="form-group mb-3">
-                    <label for="city">Kota</label>
+                    <label for="city">Kabupaten/Kota</label>
                     <select class="custom-select" id="city" required>
-                      <option selected value="" disabled>Silakan Pilih Kota/Kabupaten</option>
+                      <option selected value="" disabled>Silakan Pilih Kabupaten/Kota</option>
                     </select>
                   </div>
 
@@ -925,9 +925,9 @@ const Templates = {
                   </div>                  
 
                   <div class="form-group">
-                    <label for="city">Kota</label>
+                    <label for="city">Kabupaten/Kota</label>
                     <select class="custom-select" id="city" required>
-                      <option selected value="" disabled>Silakan Pilih Kota/Kabupaten</option>
+                      <option selected value="" disabled>Silakan Pilih Kabupaten/Kota</option>
                     </select>
                   </div>
 
@@ -984,9 +984,9 @@ const Templates = {
                   </div>                  
 
                   <div class="form-group">
-                    <label for="city">Kota</label>
+                    <label for="city">Kabupaten/Kota</label>
                     <select class="custom-select" id="city" required>
-                      <option selected value="" disabled>Silakan Pilih Kota/Kabupaten</option>
+                      <option selected value="" disabled>Silakan Pilih Kabupaten/Kota</option>
                     </select>
                   </div>
 
@@ -1119,7 +1119,7 @@ const Templates = {
                   </li>
 
                   <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
-                    <span>Kota</span>
+                    <span>Kabupaten/Kota</span>
                     <span class="user-city"></span>
                   </li>
                 </ul>
@@ -1322,9 +1322,9 @@ const Templates = {
                   </div>                  
 
                   <div class="form-group">
-                    <label for="city">Kota</label>
+                    <label for="city">Kabupaten/Kota</label>
                     <select class="custom-select" id="city" required>
-                      <option selected value="" disabled>Silakan Pilih Kota/Kabupaten</option>
+                      <option selected value="" disabled>Silakan Pilih Kabupaten/Kota</option>
                     </select>
                   </div>
 
@@ -1852,7 +1852,7 @@ const Templates = {
       </div>
 
       <div class="w-50 ml-1">
-        <label for="city">Kota</label>
+        <label for="city">Kabupaten/Kota</label>
         <select class="custom-select" id="city" required>
         </select>
       </div>
