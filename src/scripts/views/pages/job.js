@@ -21,7 +21,6 @@ const job = {
       }
 
       await this._renderList({ jobList, user, currentTotalJob });
-      // await this._renderSearch({ jobList, user, currentTotalJob });
     } catch (error) {
       await Swal.fire(
         'Oops ...',
@@ -55,6 +54,10 @@ const job = {
       currentTotalRenderJob,
       jobList,
     });
+
+    await this._initSearchEvent({ user, currentTotalJob });
+
+    await this._initFilterEvent({ user, currentTotalJob });
   },
 
   async _initLoadMoreBtn({
@@ -83,30 +86,35 @@ const job = {
     });
   },
 
-  async _renderSearch({ jobList, user, currentTotalJob }) {
-    const container = document.querySelector('#job .container');
-    const jobContent = container.querySelector('.job-content');
-
-    const searchElement = document.createElement('div');
-    searchElement.className = 'card mt-4 p-4 shadow';
-    searchElement.style.borderRadius = '1rem';
-    searchElement.innerHTML = Templates.jobSearchForm();
-
-    container.insertBefore(searchElement, jobContent);
-
-    await this._initSearchEvent({ jobList, user, currentTotalJob });
-  },
-
-  async _initSearchEvent({ jobList, user, currentTotalJob }) {
+  async _initSearchEvent({ user, currentTotalJob }) {
     const searchForm = document.querySelector('#job-search-form');
     searchForm.addEventListener('submit', async (event) => {
       event.stopPropagation();
       event.preventDefault();
 
-      const keyword = event.target['navbar-search-input'].value;
-      const filterJobs = jobList.filter((jobItem) => (
-        jobItem.title.toLowerCase().includes(keyword.toLowerCase())
-      ));
+      const keyword = event.target['job-search-input'].value;
+      const workType = document.querySelector('#work-type').value;
+      const filterJobs = await Job.searchJob(keyword, {
+        work_type: workType !== 'Semua' ? workType : '',
+      });
+
+      await this._renderList({ jobList: filterJobs, user, currentTotalJob });
+    });
+  },
+
+  async _initFilterEvent({ user, currentTotalJob }) {
+    const workTypeElem = document.querySelector('#work-type');
+    workTypeElem.addEventListener('change', async (event) => {
+      event.stopPropagation();
+
+      const inputSearch = document.querySelector('#job-search-input');
+
+      const keyword = inputSearch.value;
+      const workType = workTypeElem.value;
+
+      const filterJobs = await Job.searchJob(keyword, {
+        work_type: workType !== 'Semua' ? workType : '',
+      });
 
       await this._renderList({ jobList: filterJobs, user, currentTotalJob });
     });

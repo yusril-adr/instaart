@@ -62,11 +62,34 @@
       return $jobs;
     }
 
-    public static function postJob($data, $userId) {
+    public static function searchJob(string $keyword, string $workType) {
       global $conn;
 
-      $workTime = htmlspecialchars($data['work_type']);
-      $workTime = stripslashes($workTime);
+      $query = "
+        SELECT
+          id
+        FROM jobs
+        WHERE title LIKE '%{$keyword}%'
+      ";
+
+      if ($workType !== '') {
+        $query .= " AND work_type = '{$workType}'";
+      }
+
+      $query .= "ORDER BY id DESC;";
+  
+      $result = mysqli_query($conn, $query);
+  
+      $jobFounds = [];
+      if($result->num_rows > 0) {
+        while($jobFound = mysqli_fetch_assoc($result)) $jobFounds[] = $jobFound;
+      }
+
+      return $jobFounds;
+    }
+
+    public static function postJob($data, $userId) {
+      global $conn;
 
       $title = htmlspecialchars($data['title']);
       $title = stripslashes($title);

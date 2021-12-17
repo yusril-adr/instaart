@@ -14,9 +14,12 @@
   if(!isset($_GET['province'])) $_GET['province'] = '';
   if(!isset($_GET['city'])) $_GET['city'] = '';
 
+  if(!isset($_GET['work_type'])) $_GET['work_type'] = '';
+
   try {
     $users = User::searchUser($_GET['keyword'], $_GET['province'], $_GET['city']);
     $posts = Post::searchPost($_GET['keyword'], $_GET['category'], $_GET['color']);
+    $jobs = Job::searchJob($_GET['keyword'], $_GET['work_type']);
 
     $response['user'] = [];
     foreach ($users as $user) {
@@ -30,13 +33,25 @@
       $response['post'][] = $data;
     }
 
+    $response['job'] = [];
+    json_encode($jobs);
+    foreach ($jobs as $job) {
+      $data = (new Job((int) $job['id']))->getJob();
+      $response['job'][] = $data;
+    }
+
+    if (isset($_GET['type']) && $_GET['type'] === 'user') {
+      echo json_encode($response['user']);
+      exit;
+    }
+
     if (isset($_GET['type']) && $_GET['type'] === 'post') {
       echo json_encode($response['post']);
       exit;
     }
 
-    if (isset($_GET['type']) && $_GET['type'] === 'user') {
-      echo json_encode($response['user']);
+    if (isset($_GET['type']) && $_GET['type'] === 'job') {
+      echo json_encode($response['job']);
       exit;
     }
 

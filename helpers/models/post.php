@@ -240,21 +240,21 @@
       $result = mysqli_query(
         $conn, 
         "SELECT 
-        posts.id,
-        posts.color_id,
-        posts.category_id,
-        posts.title,
-        posts.caption,
-        posts.image,
-        posts.date,
-        posts.user_id,
-        posts.insight,
-        users.image as user_image,
-        users.username
-      FROM `posts`
-      INNER JOIN users
-      ON users.id = posts.user_id
-      WHERE posts.id = {$this->id};"
+          posts.id,
+          posts.color_id,
+          posts.category_id,
+          posts.title,
+          posts.caption,
+          posts.image,
+          posts.date,
+          posts.user_id,
+          posts.insight,
+          users.image as user_image,
+          users.username
+        FROM `posts`
+        INNER JOIN users
+        ON users.id = posts.user_id
+        WHERE posts.id = {$this->id};"
       );
 
       if (!$result) throw new Exception(mysqli_error($conn));
@@ -295,7 +295,7 @@
       $result = mysqli_query(
         $conn, 
         "SELECT 
-	  users.id AS user_id,
+	        users.id AS user_id,
           users.username,
           users.image AS user_image,
           comments.id,
