@@ -25,7 +25,19 @@ const recovery = {
 
     await TitleHelper.setTitle('Pemulihan Akun');
     await this._initPasswordToggler();
-    await this._initSubmitEvent(token);
+
+    try {
+      const userData = await User.verifyRecoveryToken(token);
+      await this._initSubmitEvent(userData);
+    } catch (error) {
+      await Swal.fire(
+        'Oops ...',
+        error.message,
+        'error',
+      );
+
+      window.location.href = '#/sign-in/';
+    }
   },
 
   async _initPasswordToggler() {
@@ -38,10 +50,8 @@ const recovery = {
     await PasswordHelper.initTogglerEvent(inputCurrentPassword, buttonCurrentPassword);
   },
 
-  async _initSubmitEvent(token) {
+  async _initSubmitEvent(userData) {
     try {
-      const userData = await User.verifyRecoveryToken(token);
-
       const form = document.querySelector('form#recovery-form');
       form.addEventListener('submit', async (event) => {
         event.stopPropagation();
