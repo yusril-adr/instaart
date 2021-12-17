@@ -804,7 +804,7 @@ const Templates = {
         </div>
 
         <div class="container">
-          <div class="card mt-4 p-4 shadow" style="border-radius: 1rem;">
+          <!-- <div class="card mt-4 p-4 shadow" style="border-radius: 1rem;">
             <form class="form-block" id="job-search-form">
               <div class="input-group">
                 <input type="text" class="form-control" id="job-search-input" placeholder="Cari Pekerjaan ..." aria-label="Cari">
@@ -826,7 +826,7 @@ const Templates = {
                 </select>
               </div>
             </form>
-          </div>
+          </div> -->
 
           <div class="job-content mt-5">
             <div class="row job-list">

@@ -55,9 +55,9 @@ const job = {
       jobList,
     });
 
-    await this._initSearchEvent({ user, currentTotalJob });
+    // await this._initSearchEvent({ user, currentTotalJob });
 
-    await this._initFilterEvent({ user, currentTotalJob });
+    // await this._initFilterEvent({ user, currentTotalJob });
   },
 
   async _initLoadMoreBtn({
