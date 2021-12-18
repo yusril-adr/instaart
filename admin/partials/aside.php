@@ -69,6 +69,14 @@
         </a>
     </li>
 
+    <!-- Nav Item - Report Job -->
+    <!-- <li class="nav-item <?= startsWith($url, 'report-jobs')? 'active': '' ?>">
+        <a class="nav-link" href="report-jobs.php">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>Pekerjaan yang dilaporkan</span>
+        </a>
+    </li> -->
+
     <!-- Nav Item - Setting -->
     <li class="nav-item <?= startsWith($url, 'setting')? 'active': '' ?>">
         <a class="nav-link" href="setting.php">

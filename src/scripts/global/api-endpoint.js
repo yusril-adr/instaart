@@ -23,6 +23,8 @@ const API_ENDPOINT = {
   POST_IMAGE: `${CONFIG.API_BASE_URL}/post-image.php`,
   COMMENT: `${CONFIG.API_BASE_URL}/comment.php`,
   JOB: `${CONFIG.API_BASE_URL}/job.php`,
+  REPORT: `${CONFIG.API_BASE_URL}/report.php`,
+  REPORT_IMAGE: `${CONFIG.API_BASE_URL}/report-image.php`,
   SEARCH: `${CONFIG.API_BASE_URL}/search.php`,
   PROVINCE: `${CONFIG.LOCATION_API_BASE_URL}/provinsi`,
   CITIES: (provinceId) => `${CONFIG.LOCATION_API_BASE_URL}/kota?id_provinsi=${provinceId}`,

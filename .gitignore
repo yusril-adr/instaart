@@ -127,3 +127,5 @@ public/images/posts/*
 public/images/posts/!add-post-image-here
 public/images/users/*
 public/images/users/!default_user.png
+public/images/reports/*
+public/images/reports/!add-report-image-here

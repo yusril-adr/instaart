@@ -1046,6 +1046,8 @@ const Templates = {
                   <div class="d-flex flex-column-reverse flex-md-row mt-3">
                     <span class="job-desc"></span>
                   </div>
+
+                  <div class="d-flex" id="report-container"></div>
                 </div>
               </div>
 
@@ -1078,6 +1080,52 @@ const Templates = {
       <a href="#/edit-job/${id}" class="btn btn-outline-primary">
         <i class="far fa-edit"></i> Edit
       </a>
+    `;
+  },
+
+  jobReportBtn(id) {
+    return `
+      <a href="#/report-job/${id}" class="mx-auto mt-4 text-secondary text-sm text-decoration-none">
+        <i class="fas fa-exclamation-triangle"></i>
+        Laporkan
+      </a>
+    `;
+  },
+
+  jobReportPage() {
+    return `
+      <div class="container mt-4" id="report-job">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 offset-md-3">
+            <div class="card shadow-sm mt-3 mx-auto">
+              <div class="card-body">
+                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Laporkan Pekerjaan</span>
+
+                <form id="report-form">
+                  <div class="form-group">
+                    <label for="reason">Alasan</label>
+                    <textarea class="form-control" id="reason" rows="3" placeholder="Tuliskan Alasan Anda .."></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="reason-image">Upload Bukti Foto</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="reason-image" required>
+                      <label class="custom-file-label" for="reason-image">Pilih Berkas</label>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Laporkan</button>
+
+                  <div class="d-none mt-4" id="preview-image">
+                    <img src="" alt="preview" style="width: 100%;">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     `;
   },
 

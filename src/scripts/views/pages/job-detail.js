@@ -44,6 +44,7 @@ const jobDetail = {
     if (job.user_id === currentUser?.id) {
       await this._renderEditBtn(job, currentUser);
     } else {
+      // await this._renderReportBtn(job, currentUser);
       await this._initApplyButton(job, currentUser);
     }
   },
@@ -100,6 +101,11 @@ const jobDetail = {
     elems.forEach(async (elem) => {
       elem.innerText = work_type;
     });
+  },
+
+  async _renderReportBtn({ id }) {
+    const reportBtnContainer = document.querySelector('#report-container');
+    reportBtnContainer.innerHTML = Templates.jobReportBtn(id);
   },
 
   async _initApplyButton(job, user) {

@@ -18,36 +18,17 @@
 
   $currentUsername = User::getUserFromId($authId)['username'];
 
-  if(isset($request['setDefault'])) {
-    $user = new User($currentUsername);
-    $info = $user->getUser();
-
-    $defaultFileName = 'default_user.png';
-
-    if($info['image'] !== $defaultFileName) {
-      unlink("../public/images/users/{$info['image']}");
-    }
-
-    $user->updateImage($defaultFileName);
-
-    $response['status'] = 'success';
-    $response['message'] = 'Image updated.';
-    $response['filename'] = $defaultFileName;
-    echo json_encode($response);
-    exit;
-  }
-
   if(!isset($authId) || !checkToken($authToken, $authId)) {
     unauthorizedResponse();
   }
 
-  if(!isset($_FILES['profile_image'])) {
+  if(!isset($_FILES['reason_image'])) {
     errorResponse('Gambar kosong atau tidak terupload.', 428);
   }
 
   try {
-    $imgFile = $_FILES['profile_image'];
-    $imgSize = $_FILES["profile_image"]["size"];
+    $imgFile = $_FILES['reason_image'];
+    $imgSize = $_FILES["reason_image"]["size"];
 
     $allowedImgExtension = ["jpg",  "jpeg", "png"];
     $extension = explode('.', $imgFile['name']);
@@ -62,24 +43,13 @@
       throw new Exception('Ukuran berkas melebihi batas.', 413);
     }
 
-    $user = new User($currentUsername);
-    $info = $user->getUser();
-
-    $defaultFileName = 'default_user.png';
-
-    if($info['image'] !== $defaultFileName) {
-      unlink("../public/images/users/{$info['image']}");
-    }
-
     $randomString = uniqid();
     $newFileName = "{$randomString}.{$extension}";
     $fileTmp = $imgFile["tmp_name"];
-    move_uploaded_file($fileTmp, "../public/images/users/$newFileName");
-
-    $user->updateImage($newFileName);
+    move_uploaded_file($fileTmp, "../public/images/reports/$newFileName");
 
     $response['status'] = 'success';
-    $response['message'] = 'Gambar berhasil di update.';
+    $response['message'] = 'Gambar berhasil di simpan.';
     $response['fileName'] = $newFileName;
     echo json_encode($response);
   } catch (Exception $error) {
