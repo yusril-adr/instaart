@@ -62,7 +62,7 @@ const post = {
   async _renderCaption({ caption }) {
     const elems = document.querySelectorAll('.post-caption');
     elems.forEach(async (elem) => {
-      elem.innerText = caption;
+      elem.innerHTML = caption;
     });
   },
 

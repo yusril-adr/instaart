@@ -2,9 +2,10 @@ import Swal from 'sweetalert2';
 import Templates from '../templates/templates-creator';
 import UrlParser from '../../routes/url-parser';
 import TitleHelper from '../../utils/title-helper';
+import InputLocationHelper from '../../utils/input-location-helper';
+import SpecialCharParser from '../../utils/special-char-parser';
 import Job from '../../data/job';
 import CONFIG from '../../global/config';
-import InputLocationHelper from '../../utils/input-location-helper';
 
 const editJob = {
   async render() {
@@ -45,16 +46,16 @@ const editJob = {
 
   async _setDefaultValue(job) {
     const title = document.querySelector('input#title');
-    title.value = job.title;
+    title.value = SpecialCharParser.parse(job.title);
 
     const description = document.querySelector('textarea#description');
-    description.value = job.description;
+    description.value = SpecialCharParser.parse(job.description);
 
     const workType = document.querySelector(`#work-type option[value="${job.work_type}"]`);
     if (workType) workType.setAttribute('selected', '');
 
     const formLink = document.querySelector('input#form-link');
-    formLink.value = job.form_link;
+    formLink.value = SpecialCharParser.parse(job.form_link);
   },
 
   async _submitEvent(job) {

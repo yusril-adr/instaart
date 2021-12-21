@@ -64,14 +64,14 @@ const jobDetail = {
   async _renderTitle({ title }) {
     const elems = document.querySelectorAll('.job-title');
     elems.forEach(async (elem) => {
-      elem.innerText = title;
+      elem.innerHTML = title;
     });
   },
 
   async _renderDisplayName({ display_name }) {
     const elems = document.querySelectorAll('.user-display-name');
     elems.forEach(async (elem) => {
-      elem.innerText = display_name;
+      elem.innerHTML = display_name;
     });
   },
 
@@ -85,21 +85,21 @@ const jobDetail = {
   async _renderDescription({ description }) {
     const elems = document.querySelectorAll('.job-desc');
     elems.forEach(async (elem) => {
-      elem.innerText = description;
+      elem.innerHTML = description;
     });
   },
 
   async _renderLocation({ province_name, city_name }) {
     const elems = document.querySelectorAll('.job-location');
     elems.forEach(async (elem) => {
-      elem.innerText = ` ${city_name}, ${province_name}`;
+      elem.innerHTML = ` ${city_name}, ${province_name}`;
     });
   },
 
   async _renderWorkType({ work_type }) {
     const elems = document.querySelectorAll('.job-work-type');
     elems.forEach(async (elem) => {
-      elem.innerText = work_type;
+      elem.innerHTML = work_type;
     });
   },
 

@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import Templates from '../templates/templates-creator';
 import TitleHelper from '../../utils/title-helper';
 import InputLocationHelper from '../../utils/input-location-helper';
+import SpecialCharParser from '../../utils/special-char-parser';
 import User from '../../data/user';
 import CONFIG from '../../global/config';
 
@@ -25,19 +26,19 @@ const editProfile = {
 
   async _setDefaultValue(user) {
     const username = document.querySelector('input#username');
-    username.value = user.username;
+    username.value = SpecialCharParser.parse(user.username);
 
     const displayName = document.querySelector('input#display-name');
-    displayName.value = user.display_name;
+    displayName.value = SpecialCharParser.parse(user.display_name);
 
     const email = document.querySelector('input#email');
-    email.value = user.email;
+    email.value = SpecialCharParser.parse(user.email);
 
     const phoneNumber = document.querySelector('input#phone-number');
-    phoneNumber.value = user.phone_number;
+    phoneNumber.value = SpecialCharParser.parse(user.phone_number);
 
     const bio = document.querySelector('textarea#bio');
-    bio.value = user.biodata;
+    bio.value = SpecialCharParser.parse(user.biodata);
 
     await this._initInputLocation(user);
   },

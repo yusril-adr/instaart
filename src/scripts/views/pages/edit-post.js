@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import Templates from '../templates/templates-creator';
 import UrlParser from '../../routes/url-parser';
 import TitleHelper from '../../utils/title-helper';
+import SpecialCharParser from '../../utils/special-char-parser';
 import Post from '../../data/post';
 import CONFIG from '../../global/config';
 import Colors from '../../data/colors';
@@ -75,10 +76,10 @@ const editPost = {
 
   async _setDefaultValue(post) {
     const title = document.querySelector('input#title');
-    title.value = post.title;
+    title.value = SpecialCharParser.parse(post.title);
 
     const caption = document.querySelector('textarea#caption');
-    caption.value = post.caption;
+    caption.value = SpecialCharParser.parse(post.caption);
 
     const color = document.querySelector(`#colors option[value="${post.color_id}"]`);
     if (color) color.setAttribute('selected', '');

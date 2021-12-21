@@ -52,7 +52,7 @@ const followers = {
   async _renderUsername({ username }) {
     const elems = document.querySelectorAll('.user-username');
     elems.forEach(async (elem) => {
-      elem.innerText = username;
+      elem.innerHTML = username;
     });
   },
 

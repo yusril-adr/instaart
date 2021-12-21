@@ -81,14 +81,14 @@ const profile = {
   async _renderDisplayName({ display_name }) {
     const elems = document.querySelectorAll('.user-display-name');
     elems.forEach(async (elem) => {
-      elem.innerText = display_name;
+      elem.innerHTML = display_name;
     });
   },
 
   async _renderUsername({ username }) {
     const elems = document.querySelectorAll('.user-username');
     elems.forEach(async (elem) => {
-      elem.innerText = username;
+      elem.innerHTML = username;
     });
   },
 
@@ -182,14 +182,14 @@ const profile = {
   async _renderBio({ biodata }) {
     const elems = document.querySelectorAll('.user-bio');
     elems.forEach(async (elem) => {
-      elem.innerText = biodata;
+      elem.innerHTML = biodata;
     });
   },
 
   async _renderFollowers({ followers, username }) {
     const elems = document.querySelectorAll('.user-followers');
     elems.forEach(async (elem) => {
-      elem.innerText = followers.length;
+      elem.innerHTML = followers.length;
     });
 
     const anchor = document.querySelector('#followers-anchor');
@@ -199,7 +199,7 @@ const profile = {
   async _renderFollowing({ following, username }) {
     const elems = document.querySelectorAll('.user-following');
     elems.forEach(async (elem) => {
-      elem.innerText = following.length;
+      elem.innerHTML = following.length;
     });
 
     const anchor = document.querySelector('#following-anchor');
@@ -209,28 +209,28 @@ const profile = {
   async _renderEmail({ email }) {
     const elems = document.querySelectorAll('.user-email');
     elems.forEach(async (elem) => {
-      elem.innerText = email;
+      elem.innerHTML = email;
     });
   },
 
   async _renderPhoneNumber({ phone_number }) {
     const elems = document.querySelectorAll('.user-phone-number');
     elems.forEach(async (elem) => {
-      elem.innerText = phone_number;
+      elem.innerHTML = phone_number;
     });
   },
 
   async _renderProvince({ province_name }) {
     const elems = document.querySelectorAll('.user-province');
     elems.forEach(async (elem) => {
-      elem.innerText = province_name;
+      elem.innerHTML = province_name;
     });
   },
 
   async _renderCity({ city_name }) {
     const elems = document.querySelectorAll('.user-city');
     elems.forEach(async (elem) => {
-      elem.innerText = city_name.split(' ').splice('1').join(' ');
+      elem.innerHTML = city_name.split(' ').splice('1').join(' ');
     });
   },
 
