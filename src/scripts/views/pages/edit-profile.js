@@ -104,6 +104,10 @@ const editProfile = {
 
     if (input.username.length > MAX_LENGTH.USER.USERNAME) throw new Error('Username terlalu panjang.');
     if (input.username.includes(' ')) throw new Error('Username tidak boleh mengandung spasi.');
+    const specialChars = ['&', '>', '<', '"'];
+    specialChars.forEach((specialChar) => {
+      if (input.username.includes(specialChar)) throw new Error('Username tidak boleh mengandung \'&\', \'>\' , \'<\', \'"\'');
+    });
 
     if (input.email.length > MAX_LENGTH.USER.EMAIL) throw new Error('Email terlalu panjang.');
 
