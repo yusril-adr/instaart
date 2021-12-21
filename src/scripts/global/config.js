@@ -35,7 +35,7 @@ const CONFIG = {
       TITLE: 25,
     },
     JOB: {
-      TITLE: 100,
+      TITLE: 25,
     },
   },
   IMAGE_PATH: {
