@@ -581,7 +581,7 @@ const Templates = {
         <div class="d-flex flex-column">
           <p class="mb-0"><a href="#/profile/${activity.other_username}/" class="text-decoration-none">${activity.other_username}</a> mulai mengikuti anda.</p>
 
-          <p class="mb-0 text-sm">${date} ${month} ${year}, ${hour}:${minute}</p>
+          <p class="mb-0 text-sm">${date} ${month} ${year}, ${hour < 10 ? `0${hour}` : hour}:${minute < 10 ? `0${minute}` : minute}</p>
         </div>
       </li>
     `;
@@ -603,7 +603,7 @@ const Templates = {
         <div class="d-flex flex-column">
           <p class="mb-0"><a href="#/profile/${activity.other_username}/" class="text-decoration-none">${activity.other_username}</a> memberikan komentar pada <a href="#/post/${activity.post_id}">${activity.post_title}</a>.</p>
 
-          <p class="mb-0 text-sm">${date} ${month} ${year}, ${hour}:${minute}</p>
+          <p class="mb-0 text-sm">${date} ${month} ${year}, ${hour < 10 ? `0${hour}` : hour}:${minute < 10 ? `0${minute}` : minute}</p>
         </div>
       </li>
     `;
