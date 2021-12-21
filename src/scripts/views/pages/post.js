@@ -102,7 +102,7 @@ const post = {
     await this._initBookmarkEvent(user, postData);
     await this._initLikeEvent(user, postData);
     await this._initShareEvent(postData);
-    await this._initCommentFormEvent(user, postData);
+    if (user) await this._initCommentFormEvent(user, postData);
   },
 
   async _initBookmarkEvent(user, postData) {

@@ -213,9 +213,9 @@ const Templates = {
                 </a>
 
                 <div class="d-flex flex-column ml-2">
-                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
-
-                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary">${post.title}</a>
+                
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary text-sm">${post.username}</a>
                 </div>
               </div>
 
@@ -512,9 +512,9 @@ const Templates = {
                 </a>
 
                 <div class="d-flex flex-column ml-2">
-                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary">${post.title}</a>
 
-                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary text-sm">${post.username}</a>
                 </div>
               </div>
 
@@ -671,9 +671,9 @@ const Templates = {
                 </a>
 
                 <div class="d-flex flex-column ml-2">
-                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary">${post.title}</a>
 
-                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary text-sm">${post.username}</a>
                 </div>
               </div>
 
@@ -757,9 +757,9 @@ const Templates = {
                 </a>
 
                 <div class="d-flex flex-column ml-2">
-                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary">${post.title}</a>
 
-                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary text-sm">${post.username}</a>
                 </div>
               </div>
 
@@ -1287,9 +1287,9 @@ const Templates = {
                 </a>
 
                 <div class="d-flex flex-column ml-2">
-                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary">${post.title}</a>
 
-                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary text-sm">${post.username}</a>
                 </div>
               </div>
 
@@ -2062,9 +2062,9 @@ const Templates = {
                 </a>
 
                 <div class="d-flex flex-column ml-2">
-                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary text-sm">${post.username}</a>
 
-                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary">${post.title}</a>
                 </div>
               </div>
 
