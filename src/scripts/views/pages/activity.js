@@ -33,8 +33,13 @@ const activity = {
       }
 
       activities.forEach((activityItem) => {
-        contentElem.innerHTML += activityItem.relation === 'follow'
-          ? Templates.activityFollow(activityItem) : Templates.activityComment(activityItem);
+        if (activityItem.relation === 'follow') {
+          contentElem.innerHTML += Templates.activityFollow(activityItem);
+        } else if (activityItem.relation === 'comment') {
+          contentElem.innerHTML += Templates.activityComment(activityItem);
+        } else {
+          contentElem.innerHTML += Templates.activityLike(activityItem);
+        }
       });
     } catch (error) {
       await Swal.fire(

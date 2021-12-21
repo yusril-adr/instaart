@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2021 at 02:34 PM
+-- Generation Time: Dec 22, 2021 at 12:17 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -155,7 +155,9 @@ CREATE TABLE `jobs` (
 CREATE TABLE `likes` (
   `id` int(11) NOT NULL,
   `post_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL
+  `user_id` int(11) DEFAULT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `type` varchar(255) NOT NULL DEFAULT 'like'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -226,15 +228,15 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(15) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `display_name` varchar(35) NOT NULL,
-  `biodata` text NOT NULL,
-  `image` varchar(25) NOT NULL DEFAULT 'default_user.png',
-  `email` varchar(35) NOT NULL,
-  `phone_number` varchar(20) NOT NULL,
-  `province_id` int(11) NOT NULL,
-  `province_name` varchar(100) NOT NULL,
-  `city_id` int(11) NOT NULL,
-  `city_name` varchar(100) NOT NULL
+  `display_name` varchar(35) DEFAULT NULL,
+  `biodata` text DEFAULT NULL,
+  `image` varchar(25) DEFAULT 'default_user.png',
+  `email` varchar(35) DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
+  `province_id` int(11) DEFAULT NULL,
+  `province_name` varchar(100) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `city_name` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -242,7 +244,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `display_name`, `biodata`, `image`, `email`, `phone_number`, `province_id`, `province_name`, `city_id`, `city_name`) VALUES
-(1, 'yusril-adr', '$2y$10$zluCqKU6wiAhSku9Orugk.S5V4FFg6CrKysV2kYp.iagMUfwtwmV2', 'Yusril A. P.', 'ab', '1.jpg', 'yusriladr.212@gmail.com', '087854029394', 35, 'Jawa Timur', 3578, 'Kota Surabaya');
+(1, 'yusril-adr', '$2y$10$zluCqKU6wiAhSku9Orugk.S5V4FFg6CrKysV2kYp.iagMUfwtwmV2', '&quot;Yusril A. P.&quot;', 'ab', '1.jpg', 'yusriladr.212@gmail.com', '087854029394', 35, 'Jawa Timur', 3578, 'Kota Surabaya');
 
 --
 -- Indexes for dumped tables
@@ -402,7 +404,7 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `recovery_tokens`
@@ -420,13 +422,13 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT for table `tokens`
 --
 ALTER TABLE `tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables

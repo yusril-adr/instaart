@@ -609,6 +609,28 @@ const Templates = {
     `;
   },
 
+  activityLike(activity) {
+    const {
+      year, month, date, hour, minute,
+    } = DateHelper.parse(activity.date);
+
+    return `
+      <li class="d-flex align-items-center mb-3 pb-3">
+        <a href="#/profile/${activity.other_username}/" class="d-flex align-items-center text-decoration-none">
+          <div class="user-image mr-3">
+            <img src="./public/images/users/${activity.other_image}" alt="${activity.other_username} Profile Picture">
+          </div>
+        </a>
+
+        <div class="d-flex flex-column">
+          <p class="mb-0"><a href="#/profile/${activity.other_username}/" class="text-decoration-none">${activity.other_username}</a> menyukai <a href="#/post/${activity.post_id}">${activity.post_title}</a>.</p>
+
+          <p class="mb-0 text-sm">${date} ${month} ${year}, ${hour < 10 ? `0${hour}` : hour}:${minute < 10 ? `0${minute}` : minute}</p>
+        </div>
+      </li>
+    `;
+  },
+
   activityEmpty() {
     return `
       <li class="d-flex align-items-center">

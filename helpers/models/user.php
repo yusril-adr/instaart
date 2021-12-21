@@ -226,39 +226,57 @@
 
     $result = mysqli_query(
       $conn, 
-      " SELECT 
-          posts.id AS post_id,
-          posts.title AS post_title,
-          posts.user_id AS owner_id,
-          users.image AS other_image,
-          users.username AS other_username,
-          comments.user_id AS other_id,
-          comments.type AS relation,
-          comments.date AS date
-        FROM posts
-        INNER JOIN comments
-        ON comments.post_id = posts.id
-        INNER JOIN users
-        ON users.id = comments.user_id
-        WHERE posts.user_id = {$this->id} AND NOT users.id = {$this->id}
+      "SELECT 
+        posts.id AS post_id,
+        posts.title AS post_title,
+        posts.user_id AS owner_id,
+        users.image AS other_image,
+        users.username AS other_username,
+        comments.user_id AS other_id,
+        comments.type AS relation,
+        comments.date AS date
+      FROM posts
+      INNER JOIN comments
+      ON comments.post_id = posts.id
+      INNER JOIN users
+      ON users.id = comments.user_id
+      WHERE posts.user_id = {$this->id} AND NOT users.id = {$this->id}
         
-        UNION
-        
-        SELECT 
-          users.id AS post_id,
-          users.username AS post_title,
-          follows.following_id AS owner_id,
-          users.image AS other_image,
-          users.username AS other_username,
-          follows.follower_id AS other_id,
-          follows.type AS relation,
-          follows.date AS date
-        FROM follows
-        INNER JOIN users
-        ON users.id = follows.follower_id
-        WHERE follows.following_id = {$this->id} AND NOT users.id = {$this->id}
+      UNION
+      
+      SELECT 
+        users.id AS post_id,
+        users.username AS post_title,
+        follows.following_id AS owner_id,
+        users.image AS other_image,
+        users.username AS other_username,
+        follows.follower_id AS other_id,
+        follows.type AS relation,
+        follows.date AS date
+      FROM follows
+      INNER JOIN users
+      ON users.id = follows.follower_id
+      WHERE follows.following_id = {$this->id} AND NOT users.id = {$this->id}
 
-        ORDER BY date DESC;"
+      UNION
+      
+      SELECT 
+        users.id AS post_id,
+        users.username AS post_title,
+        likes.user_id AS owner_id,
+        users.image AS other_image,
+        users.username AS other_username,
+        likes.post_id AS other_id,
+        likes.type AS relation,
+        likes.date AS date
+      FROM likes
+      INNER JOIN users
+      ON users.id = likes.user_id
+      INNER JOIN posts
+      ON posts.id = likes.post_id
+      WHERE posts.user_id = {$this->id} AND NOT users.id = {$this->id}
+
+      ORDER BY date DESC;"
     );
 
     $activities = [];
