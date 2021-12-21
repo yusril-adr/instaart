@@ -103,23 +103,23 @@ const searchPost = {
       const container = document.querySelector('#result-container');
 
       // Render Most Likes Post List
-      // if (keyword === '') {
-      //   container.innerHTML = '';
-      //   container.innerHTML += Templates.mostLikesPostsTitle();
+      if (keyword === '') {
+        container.innerHTML = '';
+        container.innerHTML += Templates.mostLikesPostsTitle();
 
-      //   const mostLikesPosts = await Post.getMostLikes();
+        const mostLikesPosts = await Post.getMostLikes();
 
-      //   if (mostLikesPosts.length < 1) {
-      //     container.innerHTML += Templates.mostLikesPostsEmpty();
-      //     return;
-      //   }
+        if (mostLikesPosts.length < 1) {
+          container.innerHTML += Templates.mostLikesPostsEmpty();
+          return;
+        }
 
-      //   mostLikesPosts.forEach((post) => {
-      //     container.innerHTML += user
-      //       ? Templates.mostLikesPosts(post, user.id) : Templates.mostLikesPosts(post);
-      //   });
-      //   return;
-      // }
+        mostLikesPosts.forEach((post) => {
+          container.innerHTML += user
+            ? Templates.mostLikesPosts(post, user.id) : Templates.mostLikesPosts(post);
+        });
+        return;
+      }
 
       if (posts.length < 1 || keyword === '') {
         container.innerHTML = Templates.searchEmptyResult();

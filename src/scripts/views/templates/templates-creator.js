@@ -1970,7 +1970,7 @@ const Templates = {
   mostLikesPostsTitle() {
     return `
       <div class="col-12">
-        <h1 class="my-4">Paling disukai</h1>
+        <h1 class="my-4">Paling Disukai</h1>
       </div>
     `;
   },
@@ -1997,9 +1997,9 @@ const Templates = {
                 </a>
 
                 <div class="d-flex flex-column ml-2">
-                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary">${post.username}</a>
+                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary">${post.title}</a>
 
-                  <a href="#/post/${post.id}/" class="text-decoration-none hover:text-primary text-sm">${post.title}</a>
+                  <a href="#/profile/${post.username}/" class="text-decoration-none hover:text-primary text-sm">${post.username}</a>
                 </div>
               </div>
 
