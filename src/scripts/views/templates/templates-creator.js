@@ -828,7 +828,7 @@ const Templates = {
         </div>
 
         <div class="container">
-          <!-- <div class="card mt-4 p-4 shadow" style="border-radius: 1rem;">
+          <div class="card mt-4 p-4 shadow" style="border-radius: 1rem;">
             <form class="form-block" id="job-search-form">
               <div class="input-group">
                 <input type="text" class="form-control" id="job-search-input" placeholder="Cari Pekerjaan ..." aria-label="Cari">
@@ -839,18 +839,31 @@ const Templates = {
               </div>
 
               <div class="d-flex flex-column flex-md-row align-items-md-center mx-0 mt-3">
-                <label for="work-type" class="d-block mb-0 mr-md-2">Tipe Pekerjaan :</label>
+                <div class="d-flex flex-column flex-md-row align-items-md-center">
+                  <label for="work-type" class="d-block mb-0 mr-md-2 min-w-fit">Tipe Pekerjaan :</label>
 
-                <select class="d-block custom-select max-w-md-150px" id="work-type" required>
-                  <option value="Semua">Semua</option>
-                  <option value="Full Time">Full Time</option>
-                  <option value="Part Time">Part Time</option>
-                  <option value="Freelance">Freelance</option>
-                  <option value="Contract">Contract</option>
-                </select>
+                  <select class="d-block custom-select max-w-md-150px" id="work-type" required>
+                    <option value="Semua">Semua</option>
+                    <option value="Full Time">Full Time</option>
+                    <option value="Part Time">Part Time</option>
+                    <option value="Freelance">Freelance</option>
+                    <option value="Contract">Contract</option>
+                  </select>
+                </div>
+
+                <div class="d-flex flex-column flex-md-row align-items-md-center ml-md-3 mt-3 mt-md-0">
+                  <label for="shift" class="d-block mb-0 mr-md-2 min-w-fit">Shift :</label>
+
+                  <select class="d-block custom-select max-w-md-150px" id="shift" required>
+                    <option value="Semua">Semua</option>
+                    <option value="WFO-WFH">WFO-WFH</option>
+                    <option value="WFO">WFO</option>
+                    <option value="WFH">WFH</option>
+                  </select>
+                </div>
               </div>
             </form>
-          </div> -->
+          </div>
 
           <div class="job-content mt-5">
             <div class="row job-list">
@@ -953,7 +966,7 @@ const Templates = {
                   <div class="form-group">
                     <label for="shift">Shift</label>
                     <select class="custom-select" id="shift" required>
-                      <option value="WFO & WFH">WFO & WFH</option>
+                      <option value="WFO-WFH">WFO-WFH</option>
                       <option value="WFO">WFO</option>
                       <option value="WFH">WFH</option>
                     </select>
@@ -1021,7 +1034,7 @@ const Templates = {
                   <div class="form-group">
                     <label for="shift">Shift</label>
                     <select class="custom-select" id="shift" required>
-                      <option value="WFO & WFH">WFO & WFH</option>
+                      <option value="WFO-WFH">WFO-WFH</option>
                       <option value="WFO">WFO</option>
                       <option value="WFH">WFH</option>
                     </select>

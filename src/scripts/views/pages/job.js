@@ -55,9 +55,9 @@ const job = {
       jobList,
     });
 
-    // await this._initSearchEvent({ user, currentTotalJob });
+    await this._initSearchEvent({ user, currentTotalJob });
 
-    // await this._initFilterEvent({ user, currentTotalJob });
+    await this._initFilterEvent({ user, currentTotalJob });
   },
 
   async _initLoadMoreBtn({
@@ -94,8 +94,10 @@ const job = {
 
       const keyword = event.target['job-search-input'].value;
       const workType = document.querySelector('#work-type').value;
+      const shift = document.querySelector('#shift').value;
       const filterJobs = await Job.searchJob(keyword, {
         work_type: workType !== 'Semua' ? workType : '',
+        shift: shift !== 'Semua' ? shift : '',
       });
 
       await this._renderList({ jobList: filterJobs, user, currentTotalJob });
@@ -111,9 +113,27 @@ const job = {
 
       const keyword = inputSearch.value;
       const workType = workTypeElem.value;
-
+      const shift = document.querySelector('#shift').value;
       const filterJobs = await Job.searchJob(keyword, {
         work_type: workType !== 'Semua' ? workType : '',
+        shift: shift !== 'Semua' ? shift : '',
+      });
+
+      await this._renderList({ jobList: filterJobs, user, currentTotalJob });
+    });
+
+    const shiftElem = document.querySelector('#shift');
+    shiftElem.addEventListener('change', async (event) => {
+      event.stopPropagation();
+
+      const inputSearch = document.querySelector('#job-search-input');
+
+      const keyword = inputSearch.value;
+      const workType = workTypeElem.value;
+      const shift = document.querySelector('#shift').value;
+      const filterJobs = await Job.searchJob(keyword, {
+        work_type: workType !== 'Semua' ? workType : '',
+        shift: shift !== 'Semua' ? shift : '',
       });
 
       await this._renderList({ jobList: filterJobs, user, currentTotalJob });

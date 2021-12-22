@@ -122,9 +122,9 @@ const Job = {
     return responseJSON;
   },
 
-  async searchJob(keyword, { work_type = null } = {}) {
+  async searchJob(keyword, { work_type = null, shift = null } = {}) {
     const response = await fetch(
-      `${API_ENDPOINT.SEARCH}?type=job&keyword=${keyword}&work_type=${work_type || ''}`,
+      `${API_ENDPOINT.SEARCH}?type=job&keyword=${keyword}&work_type=${work_type || ''}&shift=${shift || ''}`,
     );
     if (response.status === 500) {
       throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');

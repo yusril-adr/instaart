@@ -63,7 +63,7 @@
       return $jobs;
     }
 
-    public static function searchJob(string $keyword, string $workType) {
+    public static function searchJob(string $keyword, string $workType, string $shift) {
       global $conn;
 
       $query = "
@@ -75,6 +75,10 @@
 
       if ($workType !== '') {
         $query .= " AND work_type = '{$workType}'";
+      }
+
+      if ($shift !== '') {
+        $query .= " AND shift = '{$shift}'";
       }
 
       $query .= "ORDER BY id DESC;";

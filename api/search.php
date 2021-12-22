@@ -15,11 +15,12 @@
   if(!isset($_GET['city'])) $_GET['city'] = '';
 
   if(!isset($_GET['work_type'])) $_GET['work_type'] = '';
+  if(!isset($_GET['shift'])) $_GET['shift'] = '';
 
   try {
     $users = User::searchUser($_GET['keyword'], $_GET['province'], $_GET['city']);
     $posts = Post::searchPost($_GET['keyword'], $_GET['category'], $_GET['color']);
-    $jobs = Job::searchJob($_GET['keyword'], $_GET['work_type']);
+    $jobs = Job::searchJob($_GET['keyword'], $_GET['work_type'], $_GET['shift']);
 
     $response['user'] = [];
     foreach ($users as $user) {
