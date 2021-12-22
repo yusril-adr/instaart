@@ -107,7 +107,7 @@ const searchUser = {
 
       const container = document.querySelector('#result-container');
 
-      if (users.length < 1 || keyword === '') {
+      if (users.length < 1) {
         container.innerHTML = Templates.searchEmptyResult();
         return;
       }

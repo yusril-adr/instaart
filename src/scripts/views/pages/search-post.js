@@ -103,7 +103,9 @@ const searchPost = {
       const container = document.querySelector('#result-container');
 
       // Render Most Likes Post List
-      if (keyword === '') {
+      const category = document.querySelector('#categories').value;
+      const color = document.querySelector('#colors').value;
+      if (keyword === '' && category === '0' && color === '0') {
         container.innerHTML = '';
         container.innerHTML += Templates.mostLikesPostsTitle();
 
@@ -121,7 +123,7 @@ const searchPost = {
         return;
       }
 
-      if (posts.length < 1 || keyword === '') {
+      if (posts.length < 1) {
         container.innerHTML = Templates.searchEmptyResult();
         return;
       }
