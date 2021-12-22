@@ -69,17 +69,59 @@ const newPost = {
   },
 
   async _onChangeEvent() {
-    const postImageInput = document.querySelector('#post-image');
-    postImageInput.addEventListener('change', () => {
-      const preview = document.querySelector('#preview-image img');
-      const file = document.querySelector('#post-image').files[0];
+    const postImageInputOne = document.querySelector('#post-image-1');
+    postImageInputOne.addEventListener('change', () => {
+      const preview = document.querySelector('#preview-image-1 img');
+      const file = document.querySelector('#post-image-1').files[0];
       const reader = new FileReader();
 
       reader.addEventListener('load', () => {
         // convert image file to base64 string
         preview.src = reader.result;
 
-        const previewImageContainer = document.querySelector('#preview-image');
+        const previewImageContainer = document.querySelector('#preview-image-1');
+        if (previewImageContainer.classList.contains('d-none')) {
+          previewImageContainer.classList.remove('d-none');
+        }
+      }, false);
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    });
+
+    const postImageInputTwo = document.querySelector('#post-image-2');
+    postImageInputTwo.addEventListener('change', () => {
+      const preview = document.querySelector('#preview-image-2 img');
+      const file = document.querySelector('#post-image-2').files[0];
+      const reader = new FileReader();
+
+      reader.addEventListener('load', () => {
+        // convert image file to base64 string
+        preview.src = reader.result;
+
+        const previewImageContainer = document.querySelector('#preview-image-2');
+        if (previewImageContainer.classList.contains('d-none')) {
+          previewImageContainer.classList.remove('d-none');
+        }
+      }, false);
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    });
+
+    const postImageInputThree = document.querySelector('#post-image-3');
+    postImageInputThree.addEventListener('change', () => {
+      const preview = document.querySelector('#preview-image-3 img');
+      const file = document.querySelector('#post-image-3').files[0];
+      const reader = new FileReader();
+
+      reader.addEventListener('load', () => {
+        // convert image file to base64 string
+        preview.src = reader.result;
+
+        const previewImageContainer = document.querySelector('#preview-image-3');
         if (previewImageContainer.classList.contains('d-none')) {
           previewImageContainer.classList.remove('d-none');
         }
@@ -107,12 +149,28 @@ const newPost = {
 
         await this._formValidation(inputData);
 
-        const formImg = new FormData();
-        formImg.append('image', event.target['post-image'].files[0]);
+        const formImages = [];
+
+        const formImgOne = new FormData();
+        formImgOne.append('image', event.target['post-image-1'].files[0]);
+
+        formImages.push(formImgOne);
+
+        if (event.target['post-image-2'].files[0]) {
+          const formImgTwo = new FormData();
+          formImgTwo.append('image', event.target['post-image-2'].files[0]);
+          formImages.push(formImgTwo);
+        }
+
+        if (event.target['post-image-3'].files[0]) {
+          const formImgThree = new FormData();
+          formImgThree.append('image', event.target['post-image-3'].files[0]);
+          formImages.push(formImgThree);
+        }
 
         Swal.showLoading();
 
-        const post = await Post.newPost(inputData, formImg);
+        const post = await Post.newPost(inputData, formImages);
 
         await Swal.fire(
           'Berhasil !',

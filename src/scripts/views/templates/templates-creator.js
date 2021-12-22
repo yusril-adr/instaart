@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import CONFIG from '../../global/config';
 import DateHelper from '../../utils/date-helper';
 
@@ -1730,6 +1731,13 @@ const Templates = {
 
       <div class="card shadow mt-4">
         <img src="${CONFIG.IMAGE_PATH.POST}/${post.image}" alt="${post.title} Image" class="card-img-top w-100">
+        ${post.images[1]
+          ? `<img src="${CONFIG.IMAGE_PATH.POST}/${post.images[1]}" alt="${post.title} Image" class="card-img-top w-100">` : ''
+        }
+
+        ${post.images[2]
+          ? `<img src="${CONFIG.IMAGE_PATH.POST}/${post.images[2]}" alt="${post.title} Image" class="card-img-top w-100">` : ''
+        }
 
         <div class="bg-dark py-5">
           <button 
@@ -1879,17 +1887,43 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="post-image">Upload Berkas</label>
+                    <label for="post-image-1">Upload Berkas 1 (Cover)</label>
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="post-image" required>
+                      <input type="file" class="custom-file-input" id="post-image-1" required>
+                      <label class="custom-file-label" for="post-image">Pilih Berkas</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="post-image-2">Upload Berkas 2 (Optional)</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="post-image-2">
+                      <label class="custom-file-label" for="post-image">Pilih Berkas</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="post-image-3">Upload Berkas 3 (Optional)</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="post-image-3">
                       <label class="custom-file-label" for="post-image">Pilih Berkas</label>
                     </div>
                   </div>
 
                   <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Buat</button>
 
-                  <div class="d-none mt-4" id="preview-image">
-                    <img src="" alt="preview" style="width: 100%;">
+                  <div class="mt-4">
+                    <div class="d-none" id="preview-image-1">
+                      <img src="" alt="preview" style="width: 100%;">
+                    </div>
+
+                    <div class="d-none" id="preview-image-2">
+                      <img src="" alt="preview" style="width: 100%;">
+                    </div>
+
+                    <div class="d-none" id="preview-image-3">
+                      <img src="" alt="preview" style="width: 100%;">
+                    </div>
                   </div>
                 </form>
               </div>

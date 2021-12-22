@@ -26,7 +26,7 @@
 
   try {
     $imgFile = $_FILES['image'];
-    $imgSize = $_FILES["image"]["size"];
+    $imgSize = $_FILES['image']["size"];
 
     $allowedImgExtension = ["jpg",  "jpeg", "png"];
     $extension = explode('.', $imgFile['name']);

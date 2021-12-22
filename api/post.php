@@ -51,6 +51,11 @@
         $result = Post::newPost($request, (int) $authId);
 
         if ($result) {
+          $postId = Post::getPostsFromUser((int) $authId)[0]['id'];
+          $imageResult = Post::postAllImages($postId, $request['images']);
+        }
+
+        if ($result && $imageResult) {
           $response['status'] = 'success';
           $response['message'] = 'Post added.';
           $response['id'] = Post::getPostsFromUser((int) $authId)[0]['id'];

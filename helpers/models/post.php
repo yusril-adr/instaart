@@ -182,12 +182,31 @@
         '{$userId}',
         '{$data['category_id']}',
         '{$data['color_id']}',
-        '{$title}', 
+        '{$title}',
         '{$caption}',  
         '{$data['image']}'
       );");
 
       return $result;
+    }
+
+    public static function postAllImages($postId, $images) {
+      global $conn;
+
+      foreach($images as $image) {
+        $query = "INSERT INTO post_images (
+          post_id,
+          image
+        ) values (
+          '{$postId}',
+          '{$image}'
+        );";
+
+        $result = mysqli_query($conn, $query);
+        if (!$result) throw new Exception(mysqli_error($conn));
+      }
+
+      return true;
     }
 
     public static function searchPost(string $keyword, string $category_id, string $color_id) {
@@ -267,7 +286,29 @@
 
       $comments = $this->getComments();
       $post['comments'] = $comments;
+
+      $images = $this->getAllImages();
+      $post['images'] = $images;
       return $post;
+    }
+
+    public function getAllImages() {
+      global $conn;
+
+      $result = mysqli_query(
+        $conn, 
+        "SELECT image
+        FROM post_images
+        WHERE post_id = '{$this->id}';"
+      );
+  
+      $images = [];
+  
+      if($result->num_rows > 0) {
+        while($image = mysqli_fetch_assoc($result)) $images[] = $image['image'];
+      }
+
+      return $images;
     }
 
     public function getLikes() {
@@ -365,8 +406,12 @@
       global $conn;
 
       $info = $this->getPost();
-      unlink("../public/images/posts/{$info['image']}");
+      foreach($info['images'] as $imageName) {
+        unlink("../public/images/posts/{$imageName}");
+      }
 
+
+      $this->deleteImages();
       $this->deleteBookmarks();
       $this->deleteLikes();
       $this->deleteComments();
@@ -379,6 +424,18 @@
 
       if (!$result) throw new Exception(mysqli_error($conn));
 
+      return $result;
+    }
+
+    private function deleteImages() {
+      global $conn;
+  
+      $result = mysqli_query(
+        $conn, 
+        "DELETE FROM post_images
+        WHERE post_id = {$this->id};"
+      );
+  
       return $result;
     }
 

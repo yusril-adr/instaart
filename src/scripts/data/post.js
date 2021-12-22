@@ -107,11 +107,42 @@ const Post = {
     return responseJSON;
   },
 
-  async newPost(formData, formImage) {
+  async newPost(formData, formImages) {
     if (!navigator.onLine) throw new Error('Koneksi internet dibutuhkan.');
 
     const { authId, authToken } = await Auth.getAuth();
 
+    const fileNames = await Promise.all(
+      formImages.map(async (formImage) => this.uploadImage(authId, authToken, formImage)),
+    );
+
+    const responsePost = await fetch(`${API_ENDPOINT.POST}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Id': authId,
+        'X-Auth-Token': authToken,
+      },
+      body: JSON.stringify({
+        ...formData,
+        image: fileNames[0],
+        images: [
+          ...fileNames,
+        ],
+      }),
+    });
+
+    if (responsePost.status === 500) {
+      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
+    }
+    const responsePostJSON = await responsePost.json();
+
+    if (responsePost.status !== 200) throw new Error(responsePostJSON.message);
+
+    return responsePostJSON;
+  },
+
+  async uploadImage(authId, authToken, formImage) {
     const responseImg = await fetch(API_ENDPOINT.POST_IMAGE, {
       method: 'POST',
       headers: {
@@ -130,24 +161,7 @@ const Post = {
     if (responseImg.status !== 200) throw new Error(responseImgJSON.message);
     const imageName = responseImgJSON.fileName;
 
-    const responsePost = await fetch(`${API_ENDPOINT.POST}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Auth-Id': authId,
-        'X-Auth-Token': authToken,
-      },
-      body: JSON.stringify({ ...formData, image: imageName }),
-    });
-
-    if (responsePost.status === 500) {
-      throw new Error('Server mengalami kegagalan atau server sedang dalam keadaan maintenance.');
-    }
-    const responsePostJSON = await responsePost.json();
-
-    if (responsePost.status !== 200) throw new Error(responsePostJSON.message);
-
-    return responsePostJSON;
+    return imageName;
   },
 
   async updatePost(inputData) {
