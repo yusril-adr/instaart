@@ -1170,7 +1170,7 @@ const Templates = {
 
                   <div id="user-button-container"></div>
 
-                  <span class="mt-3 user-bio"></span>
+                  <span class="mt-3 user-bio pre-wrap"></span>
                 </div>
 
                 <ul class="list-group list-group-flush text-sm md:text-md w-100">
@@ -1721,7 +1721,7 @@ const Templates = {
         </div>
 
         <div class="card-body">
-          <span class="post-caption"></span>
+          <span class="post-caption pre-wrap"></span>
         </div>
 
         <div class="card-footer">
