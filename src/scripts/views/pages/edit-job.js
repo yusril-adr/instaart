@@ -54,6 +54,9 @@ const editJob = {
     const workType = document.querySelector(`#work-type option[value="${job.work_type}"]`);
     if (workType) workType.setAttribute('selected', '');
 
+    const shift = document.querySelector(`#work-type option[value="${job.shift}"]`);
+    if (shift) shift.setAttribute('selected', '');
+
     const formLink = document.querySelector('input#form-link');
     formLink.value = SpecialCharParser.parse(job.form_link);
   },
@@ -78,6 +81,7 @@ const editJob = {
           province_name: document.querySelector(`#province option[value="${province_id}"]`).innerHTML,
           city_name: document.querySelector(`#city option[value="${city_id}"]`).innerHTML,
           work_type: event.target['work-type'].value,
+          shift: event.target.shift.value,
         };
 
         await this._formValidation(inputData);

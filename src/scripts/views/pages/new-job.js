@@ -54,6 +54,7 @@ const newJob = {
           province_name: document.querySelector(`#province option[value="${province_id}"]`).innerHTML,
           city_name: document.querySelector(`#city option[value="${city_id}"]`).innerHTML,
           work_type: event.target['work-type'].value,
+          shift: event.target.shift.value,
         };
 
         await this._formValidation(inputData);

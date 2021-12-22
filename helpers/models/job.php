@@ -20,6 +20,7 @@
           jobs.city_id,
           jobs.city_name,
           jobs.work_type,
+          jobs.shift,
           jobs.form_link,
           users.id as user_id,
           users.username,
@@ -108,6 +109,7 @@
         city_id,
         city_name,
         work_type,
+        shift,
         title,
         description, 
         form_link
@@ -118,6 +120,7 @@
         '{$data['city_id']}', 
         '{$data['city_name']}', 
         '{$data['work_type']}', 
+        '{$data['shift']}', 
         '{$title}', 
         '{$description}',  
         '{$formLink}'
@@ -153,6 +156,7 @@
           jobs.city_id,
           jobs.city_name,
           jobs.work_type,
+          jobs.shift,
           jobs.form_link,
           users.id as user_id,
           users.username,
@@ -195,6 +199,7 @@
           city_id = '{$data['city_id']}',
           city_name = '{$data['city_name']}',
           work_type = '{$data['work_type']}',
+          shift = '{$data['shift']}',
           form_link = '{$formLink}'
         WHERE id = {$this->id};"
       );

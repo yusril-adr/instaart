@@ -907,6 +907,7 @@ const Templates = {
             <p class="mt-3"><i class="fas fa-map-marker-alt ml-1 mr-2"></i> ${job.city_name}, ${job.province_name}</p>
 
             <p class="mt-2"><i class="fas fa-briefcase mr-2"></i> ${job.work_type}</p>
+            <p class="mt-2"><i class="fas fa-building mr-2"></i> ${job.shift}</p>
           </div>
 
           <div class="card-footer">
@@ -946,6 +947,15 @@ const Templates = {
                       <option value="Part Time">Part Time</option>
                       <option value="Freelance">Freelance</option>
                       <option value="Contract">Contract</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="shift">Shift</label>
+                    <select class="custom-select" id="shift" required>
+                      <option value="WFO & WFH">WFO & WFH</option>
+                      <option value="WFO">WFO</option>
+                      <option value="WFH">WFH</option>
                     </select>
                   </div>
 
@@ -1009,6 +1019,15 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
+                    <label for="shift">Shift</label>
+                    <select class="custom-select" id="shift" required>
+                      <option value="WFO & WFH">WFO & WFH</option>
+                      <option value="WFO">WFO</option>
+                      <option value="WFH">WFH</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
                     <label for="province">Provinsi</label>
                     <select class="custom-select" id="province" required>
                       <option selected value="" disabled>Provinsi</option>
@@ -1056,14 +1075,19 @@ const Templates = {
                   <span class="h6 text-secondary text-center user-display-name"></span>
 
                   <div class="d-flex flex-column justifiy-content-center align-items-center pt-0 px-3 pb-3">
-                    <p class="mb-1">
+                    <p class="mb-2">
                       <i class="fas fa-map-marker-alt ml-1 mr-2"></i> 
                       <span class="job-location"></span>
                     </p>
 
-                    <p class="mt-1 mb-1">
+                    <p class="mb-2">
                       <i class="fas fa-briefcase mr-2"></i> 
                       <span class="job-work-type"></span>
+                    </p>
+
+                    <p class="mb-2">
+                      <i class="fas fa-building mr-2"></i> 
+                      <span class="job-shift"></span>
                     </p>
                   </div>
 

@@ -40,6 +40,7 @@ const jobDetail = {
     await this._renderDescription(job);
     await this._renderLocation(job);
     await this._renderWorkType(job);
+    await this._renderShift(job);
 
     if (job.user_id === currentUser?.id) {
       await this._renderEditBtn(job, currentUser);
@@ -100,6 +101,13 @@ const jobDetail = {
     const elems = document.querySelectorAll('.job-work-type');
     elems.forEach(async (elem) => {
       elem.innerHTML = work_type;
+    });
+  },
+
+  async _renderShift({ shift }) {
+    const elems = document.querySelectorAll('.job-shift');
+    elems.forEach(async (elem) => {
+      elem.innerHTML = shift;
     });
   },
 
