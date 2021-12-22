@@ -189,12 +189,20 @@ const post = {
     button.addEventListener('click', async (event) => {
       event.stopPropagation();
 
-      navigator.clipboard.writeText(window.location.href);
+      try {
+        await navigator.clipboard.writeText(window.location.href);
 
-      await Swal.fire({
-        icon: 'success',
-        title: 'Tautan berhasil disalin dan siap untuk dibagikan',
-      });
+        await Swal.fire({
+          icon: 'success',
+          title: 'Tautan berhasil disalin dan siap untuk dibagikan',
+        });
+      } catch (error) {
+        await Swal.fire(
+          'Oops ...',
+          error.message,
+          'error',
+        );
+      }
     });
   },
 

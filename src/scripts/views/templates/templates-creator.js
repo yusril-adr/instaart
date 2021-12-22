@@ -92,11 +92,20 @@ const Templates = {
   loginHeader({ username }) {
     return `
       <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark px-0">
+        <nav class="navbar navbar-expand-xl navbar-dark px-0">
           <a class="navbar-brand" href="#/">
             <img src="${CONFIG.IMAGE_PATH.BASE}/logo.png" width="32" height="32" alt="Logo" class="d-inline-block align-top">
             <span class="font-redressed font-weight-bold ml-2">InstaArt</span>
           </a>
+
+          <ul class="navbar-nav d-none d-lg-flex">
+            <li class="nav-item">
+              <a class="nav-link text-light" href="#/explore">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="#/job/">Pekerjaan</a>
+            </li>
+          </ul>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,32 +124,32 @@ const Templates = {
             </form>
 
             <ul class="navbar-nav ml-lg-2">
-              <li class="nav-item home">
-                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/explore/"><i class="fas fa-home"></i> <span class="d-lg-none ml-2">Beranda</span></a>
+              <li class="nav-item home d-lg-none">
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/explore/"><i class="fas fa-home"></i> <span class="ml-2">Beranda</span></a>
               </li>
 
-              <li class="nav-item">
+              <!-- <li class="nav-item d-lg-none">
                 <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/activity/"><i class="fas fa-compass"></i> <span class="d-lg-none ml-2">Aktivitas</span></a>
               </li>
               
-              <li class="nav-item new-post">
+              <li class="nav-item new-post d-lg-none">
                 <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/new-post/"><i class="fas fa-plus-circle"></i> <span class="d-lg-none ml-2">Portofolio Baru</span></a>
               </li>
 
-              <li class="nav-item">
+              <li class="nav-item d-lg-none">
                 <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/bookmark/"><i class="fas fa-bookmark"></i> <span class="d-lg-none ml-2">Disimpan</span></a>
               </li>
 
-              <li class="nav-item">
+              <li class="nav-item d-lg-none">
                 <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/favorite/"><i class="fas fa-heart"></i> <span class="d-lg-none ml-2">Disukai</span></a>
-              </li>
+              </li> -->
 
-              <li class="nav-item">
+              <li class="nav-item d-lg-none">
                 <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/job/"><i class="fas fa-briefcase"></i> <span class="d-lg-none ml-2">Pekerjaan</span></a>
               </li>
 
               <li class="nav-item profile">
-                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/profile/${username}"><i class="fas fa-user-circle"></i> <span class="d-lg-none ml-2">Profil</span></a>
+                <a class="nav-link px-0 ml-lg-2 d-flex align-items-center text-light" href="#/profile/${username}"><i class="fas fa-user-circle"></i> <span class="ml-2">Profil</span></a>
               </li>
             </ul>
           </div>
@@ -665,8 +674,7 @@ const Templates = {
     return `
       <div class="empty-result-container">
         <i class="far fa-smile-wink h1 text-secondary"></i>
-        <span class="h4 text-secondary text-center">Belum ada desain untuk saat ini.</span>
-        <span class="mt-4 h6 text-secondary">Kirim desain pertamamu <a href="#/new-post/" class="text-primary">Disini</a>.</span>
+        <span class="h4 text-secondary text-center">Belum ada desain yang kamu simpan untuk saat ini.</span>
       </div>
     `;
   },
@@ -751,8 +759,7 @@ const Templates = {
     return `
       <div class="empty-result-container">
         <i class="far fa-smile-wink h1 text-secondary"></i>
-        <span class="h4 text-secondary text-center">Belum ada desain untuk saat ini.</span>
-        <span class="mt-4 h6 text-secondary">Kirim desain pertamamu <a href="#/new-post/" class="text-primary">Disini</a>.</span>
+        <span class="h4 text-secondary text-center">Belum ada desain yang kamu sukai untuk saat ini.</span>
       </div>
     `;
   },
@@ -1349,7 +1356,7 @@ const Templates = {
       <div class="container mt-4" id="edit-profile">
         <div class="row">
           <div class="col-sm-12 col-md-4">
-            <div class="card sahdow">
+            <div class="card">
               <div class="card-header font-weight-bold">
                 Pengaturan Akun
               </div>
@@ -1362,6 +1369,24 @@ const Templates = {
                 <a href="#/edit-profile-picture/" class="list-group-item list-group-item-action hover:bg-secondary">Foto Profil</a>
 
                 <a href="#/edit-password/" class="list-group-item list-group-item-action hover:bg-secondary">Password</a>
+              </div>
+            </div>
+
+            <div class="card mt-3">
+              <div class="card-header font-weight-bold">
+                Halaman Pribadi
+              </div>
+
+              <div class="list-group">
+                <a href="#/activity/" class="list-group-item list-group-item-action hover:bg-secondary">
+                  Aktivitas
+                </a>
+
+                <a href="#/bookmark/" class="list-group-item list-group-item-action hover:bg-secondary">Disimpan</a>
+
+                <a href="#/favorite/" class="list-group-item list-group-item-action hover:bg-secondary">Disukai</a>
+
+                <a href="#/user-jobs/" class="list-group-item list-group-item-action hover:bg-secondary">Daftar Pekerjaan yang Dibuat</a>
               </div>
             </div>
           </div>
@@ -1430,7 +1455,7 @@ const Templates = {
       <div class="container mt-4" id="edit-profile-picture">
         <div class="row">
           <div class="col-sm-12 col-md-4">
-            <div class="card sahdow">
+            <div class="card">
               <div class="card-header font-weight-bold">
                 Pengaturan Akun
               </div>
@@ -1442,6 +1467,24 @@ const Templates = {
                 <a href="#/edit-profile-picture" class="list-group-item list-group-item-action hover:bg-secondary disabled">Foto Profil</a>
 
                 <a href="#/edit-password" class="list-group-item list-group-item-action hover:bg-secondary">Password</a>
+              </div>
+            </div>
+
+            <div class="card mt-3">
+              <div class="card-header font-weight-bold">
+                Halaman Pribadi
+              </div>
+
+              <div class="list-group">
+                <a href="#/activity/" class="list-group-item list-group-item-action hover:bg-secondary">
+                  Aktivitas
+                </a>
+
+                <a href="#/bookmark/" class="list-group-item list-group-item-action hover:bg-secondary">Disimpan</a>
+
+                <a href="#/favorite/" class="list-group-item list-group-item-action hover:bg-secondary">Disukai</a>
+
+                <a href="#/user-jobs/" class="list-group-item list-group-item-action hover:bg-secondary">Daftar Pekerjaan yang Dibuat</a>
               </div>
             </div>
           </div>
@@ -1479,7 +1522,7 @@ const Templates = {
       <div class="container mt-4" id="edit-password">
         <div class="row">
           <div class="col-sm-12 col-md-4">
-            <div class="card sahdow">
+            <div class="card">
               <div class="card-header font-weight-bold">
                 Pengaturan Akun
               </div>
@@ -1492,6 +1535,24 @@ const Templates = {
                 <a href="#/edit-profile-picture/" class="list-group-item list-group-item-action hover:bg-secondary">Foto Profil</a>
 
                 <a href="#/edit-password/" class="list-group-item list-group-item-action hover:bg-secondary disabled">Password</a>
+              </div>
+            </div>
+
+            <div class="card mt-3">
+              <div class="card-header font-weight-bold">
+                Halaman Pribadi
+              </div>
+
+              <div class="list-group">
+                <a href="#/activity/" class="list-group-item list-group-item-action hover:bg-secondary">
+                  Aktivitas
+                </a>
+
+                <a href="#/bookmark/" class="list-group-item list-group-item-action hover:bg-secondary">Disimpan</a>
+
+                <a href="#/favorite/" class="list-group-item list-group-item-action hover:bg-secondary">Disukai</a>
+
+                <a href="#/user-jobs/" class="list-group-item list-group-item-action hover:bg-secondary">Daftar Pekerjaan yang Dibuat</a>
               </div>
             </div>
           </div>
