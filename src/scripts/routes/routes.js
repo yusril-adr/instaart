@@ -12,7 +12,6 @@ import job from '../views/pages/job';
 import jobDetail from '../views/pages/job-detail';
 import newJob from '../views/pages/new-job';
 import editJob from '../views/pages/edit-job';
-import reportJob from '../views/pages/report-job';
 import profile from '../views/pages/profile';
 import editProfile from '../views/pages/edit-profile';
 import editProfilePicture from '../views/pages/edit-profile-picture';
@@ -41,8 +40,6 @@ const routes = {
   '/job/verb': jobDetail,
   '/new-job': newJob,
   '/edit-job/verb': editJob,
-  // '/report-job': reportJob,
-  // '/report-job/verb': reportJob,
   '/profile/verb': profile,
   '/edit-profile': editProfile,
   '/edit-profile-picture': editProfilePicture,

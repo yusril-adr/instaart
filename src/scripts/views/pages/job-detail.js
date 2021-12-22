@@ -32,6 +32,14 @@ const jobDetail = {
 
     if (!job) return this._renderNotFound();
 
+    if (job.is_accepted === 'false' && job.user_id !== currentUser?.id) {
+      return this._renderNotFound();
+    }
+
+    if (job.is_accepted === 'false' && !currentUser) {
+      return this._renderNotFound();
+    }
+
     TitleHelper.setTitle(job.title);
 
     await this._renderProfileImage(job);
@@ -51,7 +59,7 @@ const jobDetail = {
   },
 
   async _renderNotFound() {
-    const container = document.querySelector('.container#job');
+    const container = document.querySelector('.container#job-detail');
     container.innerHTML = Templates.jobNotFound();
   },
 

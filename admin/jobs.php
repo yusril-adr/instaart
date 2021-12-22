@@ -7,7 +7,7 @@
   $pageTitle = 'Daftar Pekerjaan';
 
   try {
-    $jobs = Job::getJobs();
+    $jobs = Job::getAllJobs();
   } catch (Exception $error) {
     $error = $error;
   }
@@ -83,6 +83,7 @@
                                             <th>Kabupaten/Kota</th>                                            
                                             <th>Tipe Pekerjaan</th>                                            
                                             <th>Link Form</th>
+                                            <th>Sudah Divalidasi</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -94,6 +95,7 @@
                                             <th>Provinsi</th>
                                             <th>Kabupaten/Kota</th>                                            
                                             <th>Tipe Pekerjaan</th>                                            <th>Link Form</th>
+                                            <th>Sudah Divalidasi</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
@@ -114,6 +116,14 @@
                                                             <?= $job['form_link'] ?>
                                                         </a>
                                                     </td>
+
+                                                    <td>
+                                                        <?php if($job['is_accepted'] == 'true') : ?>
+                                                            <span class="text-info font-weight-bold">Sudah</span>
+                                                        <?php else : ?>
+                                                            <span class="text-danger font-weight-bold">Belum</span>
+                                                        <?php endif; ?>
+                                                    </td>
                                                     <td>
                                                         <form method="POST" class="form-delete d-flex">
                                                             <a 
@@ -129,9 +139,33 @@
 
                                                             <input type="hidden" name="job-id" value="<?= $job['id'] ?>">
 
+                                                            <?php if($job['is_accepted'] == 'true') : ?>
+                                                                <button 
+                                                                    type="button" 
+                                                                    class="btn btn-warning mx-3 unvalid-job-toggler"
+                                                                    data-toggle="tooltip"
+                                                                    data-placement="bottom" 
+                                                                    title="Batal Validasi"
+                                                                    jobId="<?= $job['id'] ?>"
+                                                                >
+                                                                    <i class="far fa-check-circle"></i>
+                                                                </button>
+                                                            <?php else : ?>
+                                                                <button 
+                                                                    type="button" 
+                                                                    class="btn btn-warning mx-3 valid-job-toggler"
+                                                                    data-toggle="tooltip"
+                                                                    data-placement="bottom" 
+                                                                    title="Validasi"
+                                                                    jobId="<?= $job['id'] ?>"
+                                                                >
+                                                                    <i class="fas fa-check-circle"></i>
+                                                                </button>
+                                                            <?php endif; ?>
+                                                            
                                                             <button 
                                                                 type="submit" 
-                                                                class="btn btn-danger ml-3"
+                                                                class="btn btn-danger"
                                                                 data-toggle="tooltip"
                                                                 data-placement="bottom" 
                                                                 title="Hapus"
@@ -222,6 +256,86 @@
                         },
                         body: JSON.stringify({
                             id: event.target.querySelector('[name=job-id]').value,
+                        }),
+                    }).then(function(response) {
+                        return response.json(); 
+                    }).then(function(json) {
+                        if(json.status !== 'success') throw new Error(json.message);
+                        Swal.fire('Sukses', json.message, 'success')
+                        .then(function() { location.reload(); });
+                    }).catch(function(error) {
+                        Swal.fire('Oopss ...', error.message, 'error');
+                    });
+                });
+            });
+        });
+
+        const validBtns = document.querySelectorAll('button.valid-job-toggler');
+        validBtns.forEach(function(validBtn) {
+            validBtn.addEventListener('click', function(event) {
+                event.stopPropagation();
+                event.preventDefault();
+
+                Swal.fire({
+                    title: 'Rubah status manjadi sudah divalidasi?',
+                    text: "Pastikan pekerjaan sudah benar-benar divalidasi.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Iya!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (!result.isConfirmed) return;
+
+                    fetch('./toggle-job-validation.php', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            id: validBtn.getAttribute('jobId'),
+                            is_accepted: 'true',
+                        }),
+                    }).then(function(response) {
+                        return response.json(); 
+                    }).then(function(json) {
+                        if(json.status !== 'success') throw new Error(json.message);
+                        Swal.fire('Sukses', json.message, 'success')
+                        .then(function() { location.reload(); });
+                    }).catch(function(error) {
+                        Swal.fire('Oopss ...', error.message, 'error');
+                    });
+                });
+            });
+        });
+
+        const unvalidBtns = document.querySelectorAll('button.unvalid-job-toggler');
+        unvalidBtns.forEach(function(unvalidBtn) {
+            unvalidBtn.addEventListener('click', function(event) {
+                event.stopPropagation();
+                event.preventDefault();
+
+                Swal.fire({
+                    title: 'Rubah status manjadi belum divalidasi?',
+                    text: "Pekerjaan akan disembunyikan, hanya admin dan pembuat pekerjaan yang dapat melihat pekerjaan ini.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Iya!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (!result.isConfirmed) return;
+
+                    fetch('./toggle-job-validation.php', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            id: unvalidBtn.getAttribute('jobId'),
+                            is_accepted: 'false',
                         }),
                     }).then(function(response) {
                         return response.json(); 

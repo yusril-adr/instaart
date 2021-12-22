@@ -481,6 +481,10 @@ const Templates = {
 
           <div class="d-flex" id="load-btn"></div>
         </div>
+
+        <a id="edit" href="#/new-post/" class="btn btn-info rounded-circle btn-float" aria-label="New post">
+          <i class="fas fa-plus"></i>
+        </a>
       </div>
     `;
   },

@@ -29,6 +29,43 @@
         FROM jobs 
         INNER JOIN users
         ON jobs.user_id = users.id
+        WHERE jobs.is_accepted = 'true'
+        ORDER BY id DESC;"
+      );
+
+      $jobs = [];
+
+      if($result->num_rows > 0) {
+        while($job = mysqli_fetch_assoc($result)) $jobs[] = $job;
+      }
+
+      return $jobs;
+    }
+
+    public static function getAllJobs() {
+      global $conn;
+
+      $result = mysqli_query(
+        $conn, 
+        "SELECT
+          jobs.id,
+          jobs.title,
+          jobs.description,
+          jobs.province_id,
+          jobs.province_name,
+          jobs.city_id,
+          jobs.city_name,
+          jobs.work_type,
+          jobs.shift,
+          jobs.form_link,
+          jobs.is_accepted,
+          users.id as user_id,
+          users.username,
+          users.display_name as user_display_name,
+          users.image as user_image
+        FROM jobs 
+        INNER JOIN users
+        ON jobs.user_id = users.id
         ORDER BY id DESC;"
       );
 
@@ -70,7 +107,7 @@
         SELECT
           id
         FROM jobs
-        WHERE title LIKE '%{$keyword}%'
+        WHERE title LIKE '%{$keyword}%' AND is_accepted = 'true'
       ";
 
       if ($workType !== '') {
@@ -162,6 +199,7 @@
           jobs.work_type,
           jobs.shift,
           jobs.form_link,
+          jobs.is_accepted,
           users.id as user_id,
           users.username,
           users.display_name,
@@ -205,6 +243,22 @@
           work_type = '{$data['work_type']}',
           shift = '{$data['shift']}',
           form_link = '{$formLink}'
+        WHERE id = {$this->id};"
+      );
+
+      if (!$result) throw new Exception('Pekerjaan tidak ditemukan.', 404);
+
+      return $result;
+    }
+
+    public function updateJobValidation($status) {
+      global $conn;
+
+      $result = mysqli_query(
+        $conn, 
+        "UPDATE jobs
+        SET
+         is_accepted = '{$status}'
         WHERE id = {$this->id};"
       );
 

@@ -63,7 +63,7 @@ const newJob = {
 
         await Swal.fire(
           'Berhasil',
-          'Pekerjaan berhasil dibuat',
+          'Pekerjaan kamu akan muncul pada halaman pekerjaan setelah melalui proses validasi.',
           'success',
         );
         window.location.hash = `#/job/${job.id}`;
