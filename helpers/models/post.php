@@ -41,7 +41,7 @@
         ON likes.post_id = posts.id
         GROUP BY posts.id
         ORDER BY likes DESC
-        LIMIT 10;"
+        LIMIT 12;"
       );
 
       if (!$result) throw new Exception(mysqli_error($conn));
