@@ -29,7 +29,7 @@ const CONFIG = {
       USERNAME: 15,
       DISPLAY_NAME: 35,
       EMAIL: 35,
-      PHONE_NUMBER: 20,
+      // PHONE_NUMBER: 20,
     },
     POST: {
       TITLE: 25,

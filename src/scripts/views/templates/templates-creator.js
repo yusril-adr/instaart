@@ -373,11 +373,6 @@ const Templates = {
                   </div>
 
                   <div class="form-group">
-                    <label for="phone-number">Nomor Telepon</label>
-                    <input type="text" placeholder="Contoh: 08xxx" class="form-control" id="phone-number" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.PHONE_NUMBER}" required>
-                  </div>
-
-                  <div class="form-group">
                     <label for="biodata">Bio</label>
                     <textarea class="form-control" id="biodata" rows="4" placeholder="Ceritakan Sesuatu Tentang Dirimu"></textarea>
                   </div>
@@ -1194,11 +1189,6 @@ const Templates = {
                   </li>
 
                   <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
-                    <span>Nomor Telepon</span>
-                    <span class="user-phone-number"></span>
-                  </li>
-
-                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
                     <span>Provinsi</span>
                     <span class="user-province"></span>
                   </li>
@@ -1410,11 +1400,6 @@ const Templates = {
                   <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" placeholder="Email" class="form-control" id="email" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.EMAIL}" required>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="phone-number">Nomor Telepon</label>
-                    <input type="text" placeholder="Ex: 08xxx" class="form-control" id="phone-number" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.USER.PHONE_NUMBER}" required>
                   </div>
 
                   <div class="form-group">

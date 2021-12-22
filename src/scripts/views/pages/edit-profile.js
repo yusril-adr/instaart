@@ -34,9 +34,6 @@ const editProfile = {
     const email = document.querySelector('input#email');
     email.value = SpecialCharParser.parse(user.email);
 
-    const phoneNumber = document.querySelector('input#phone-number');
-    phoneNumber.value = SpecialCharParser.parse(user.phone_number);
-
     const bio = document.querySelector('textarea#bio');
     bio.value = SpecialCharParser.parse(user.biodata);
 
@@ -67,7 +64,6 @@ const editProfile = {
           username: event.target.username.value,
           email: event.target.email.value,
           display_name: event.target['display-name'].value,
-          phone_number: event.target['phone-number'].value,
           province_id,
           city_id,
           province_name: document.querySelector(`#province option[value="${province_id}"]`).innerHTML,
@@ -112,11 +108,6 @@ const editProfile = {
     if (input.email.length > MAX_LENGTH.USER.EMAIL) throw new Error('Email terlalu panjang.');
 
     if (input.display_name.length > MAX_LENGTH.USER.DISPLAY_NAME) throw new Error('Nama lengkap terlalu panjang.');
-
-    if (!(await this._checkPhoneNumberFormat(input.phone_number))) {
-      throw new Error('Nomor telepon tidak valid.');
-    }
-    if (input.phone_number.length > MAX_LENGTH.USER.PHONE_NUMBER) throw new Error('Nomor telepon terlalu panjang.');
   },
 
   async _checkPhoneNumberFormat(phoneNumberInput) {

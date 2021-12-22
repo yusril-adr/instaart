@@ -55,7 +55,6 @@ const signUp = {
           password: event.target.password.value,
           email: event.target.email.value,
           display_name: event.target['display-name'].value,
-          phone_number: event.target['phone-number'].value,
           biodata: event.target.biodata.value,
           province_id,
           city_id,
@@ -98,11 +97,6 @@ const signUp = {
     }
 
     if (input.display_name.length > MAX_LENGTH.USER.DISPLAY_NAME) throw new Error('Nama lengkap terlalu panjang.');
-
-    if (!(await this._checkPhoneNumberFormat(input.phone_number))) {
-      throw new Error('Nomor telepon tidak valid.');
-    }
-    if (input.phone_number.length > MAX_LENGTH.USER.PHONE_NUMBER) throw new Error('Nomor telepon terlalu panjang.');
   },
 
   async _checkPhoneNumberFormat(phoneNumberInput) {

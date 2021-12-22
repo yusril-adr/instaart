@@ -59,7 +59,6 @@ const profile = {
     await this._renderBio(targetedUser);
     await this._renderFollowers(targetedUser);
     await this._renderFollowing(targetedUser);
-    await this._renderPhoneNumber(targetedUser);
     await this._renderProvince(targetedUser);
     await this._renderCity(targetedUser);
     await this._renderMailOrSignOutBtn(targetedUser, currentUser);
@@ -210,13 +209,6 @@ const profile = {
     const elems = document.querySelectorAll('.user-email');
     elems.forEach(async (elem) => {
       elem.innerHTML = email;
-    });
-  },
-
-  async _renderPhoneNumber({ phone_number }) {
-    const elems = document.querySelectorAll('.user-phone-number');
-    elems.forEach(async (elem) => {
-      elem.innerHTML = phone_number;
     });
   },
 
