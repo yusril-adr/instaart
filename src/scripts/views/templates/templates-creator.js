@@ -945,7 +945,7 @@ const Templates = {
                 <form id="job-form">
                   <div class="form-group">
                     <label for="title">Nama Pekerjaan</label>
-                    <input type="text" placeholder="Nama Pekerjaan" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.JOB.TITLE}" required>
+                    <input type="text" placeholder="Nama Pekerjaan (${CONFIG.MAX_LENGTH.JOB.TITLE} Karakter)" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.JOB.TITLE}" required>
                   </div>
 
                   <div class="form-group">
@@ -1013,7 +1013,7 @@ const Templates = {
                 <form id="job-form">
                   <div class="form-group">
                     <label for="title">Nama Pekerjaan</label>
-                    <input type="text" placeholder="Nama Pekerjaan" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.JOB.TITLE}" required>
+                    <input type="text" placeholder="Nama Pekerjaan (${CONFIG.MAX_LENGTH.JOB.TITLE} Karakter)" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.JOB.TITLE}" required>
                   </div>
 
                   <div class="form-group">
@@ -1858,7 +1858,7 @@ const Templates = {
                 <form id="post-form">
                   <div class="form-group">
                     <label for="title">Judul</label>
-                    <input type="text" placeholder="Judul" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.POST.TITLE}" required>
+                    <input type="text" placeholder="Judul (${CONFIG.MAX_LENGTH.POST.TITLE} Karakter)" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.POST.TITLE}" required>
                   </div>
 
                   <div class="form-group">
@@ -1912,7 +1912,7 @@ const Templates = {
                 <form id="post-form">
                   <div class="form-group">
                     <label for="title">Judul</label>
-                    <input type="text" placeholder="Judul" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.POST.TITLE}" required>
+                    <input type="text" placeholder="Judul (${CONFIG.MAX_LENGTH.POST.TITLE} Karakter)" class="form-control" id="title" autocomplete="off" maxlength="${CONFIG.MAX_LENGTH.POST.TITLE}" required>
                   </div>
 
                   <div class="form-group">
