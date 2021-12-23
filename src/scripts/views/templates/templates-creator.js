@@ -996,6 +996,13 @@ const Templates = {
                     <label for="form_link">Tautan Formulir</label>
                     <input type="text" class="form-control" id="form-link" placeholder="https://www.yourcompany.com/job" required>
                   </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <input class="mr-1" type="checkbox" id="terms" required>
+                    <label class="text-sm" for="terms">
+                      Saya telah menyetujui <span class="text-primary" id="terms-text">persyaratan</span> pekerjaan dari InstaArt.
+                    </label>
+                  </div>
         
                   <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Buat</button>
                 </form>

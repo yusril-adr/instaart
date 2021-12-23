@@ -31,6 +31,18 @@ main #search {
   min-height: 300px;
 }
 
+main #new-job {
+  label[for="terms"] {
+    margin-bottom: 0;
+    line-height: 1;
+  }
+
+  #terms-text:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
 main #job-detail .job-desc {
   text-align: justify;
 }
@@ -38,4 +50,13 @@ main #job-detail .job-desc {
 main #activity #activity-content {
   height: 400px;
   overflow-y: scroll;
+}
+
+@media (min-width: 1200px) {
+  main #new-job {
+    label[for="terms"] {
+      line-height: .5;
+      font-size: 1rem;
+    }
+  }
 }

@@ -25,6 +25,7 @@ const newJob = {
     await TitleHelper.setTitle('Pekerjaan Baru');
 
     await this._initInputLocation();
+    await this._initTerms();
     await this._initSubmitEvent();
   },
 
@@ -33,6 +34,39 @@ const newJob = {
     const cityElem = document.querySelector('#city');
 
     await InputLocationHelper.init(provinceElem, cityElem);
+  },
+
+  async _initTerms() {
+    const termsText = document.querySelector('#terms-text');
+    termsText.addEventListener('click', async (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+
+      await Swal.fire({
+        html: `
+          <span class="text-sm" style="display: block; text-align: left;">
+            PERJANJIAN MENGUNGGAH PEKERJAAN di SITUS http://instaart.expectron.tech/<br>
+            <br>
+            Perjanjian Penggunaan Layanan Situs http://instaart.expectron.tech/ (Perjanjian) antara Pengguna sebagai pengunggah pekerjaan di situs http://instaart.expectron.tech/, ini memuat syarat-syarat dan ketentuan penggunaan layanan unggah pekerjaan situs http://instaart.expectron.tech/ .<br>
+            <br>
+            Mohon untuk membaca dengan hati-hati Perjanjian ini. Anda harus membaca, memahami, menerima dan menyetujui semua persyaratan dan ketentuan dalam Perjanjian ini sebelum menggunakan aplikasi dan/atau menerima konten yang terdapat di dalamnya.<br>
+            Jika Anda tidak menerima dan menyetujui Perjanjian ini, anda tidak diperkenankan untuk mengunggah pekerjaan ke situs http://instaart.expectron.tech/.<br>
+            <br>
+            Ketentuan Mengunggah Pekerjaan<br>
+            <br>
+            1.  Setiap Pengguna yang  mengunggah pekerjaan berkewajiban penuh mengisi data pekerjaan dengan sebenar-benarnya.<br>
+            2.  Setiap Pengguna bertanggung jawab atas seluruh infomasi pekerjaan yang telah di unggahnya ke http://instaart.expectron.tech/.<br>
+            3.  Setiap Pengguna yang mengunggah pekerjaan wajib menunggu konfimasi admin untuk pekerjaan yang telah di unggah .<br>
+            4.  Jika Data Pekerjaan yang di unggah tidak benar admin memiliki hak untuk menolak pekerjaan tersebut.<br>
+            <br>
+            PENUTUP<br>
+            <br>
+            <br>
+            Dengan menggunakan aplikasi dan/atau melanjutkan akses terhadap situs http://instaart.expectron.tech/, Anda menyetujui persyaratan dan ketentuan Kami, dan oleh karena itu menyetujui untuk terikat dalam suatu kontrak dengan Kami dan oleh karenanya Anda menyatakan persetujuan untuk dapat menerima layanan dan akses atas seluruh konten yang terdapat dalam aplikasi ini.
+          </span>
+        `,
+      });
+    });
   },
 
   async _initSubmitEvent() {
