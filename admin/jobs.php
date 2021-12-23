@@ -141,7 +141,7 @@
 
                                                             <input type="hidden" name="job-id" value="<?= $job['id'] ?>">
 
-                                                            <?php if($job['is_accepted'] == 'true') : ?>
+                                                            <?php if($job['is_accepted'] == 'true') { ?>
                                                                 <button 
                                                                     type="button" 
                                                                     class="btn btn-warning mx-3 unvalid-job-toggler"
@@ -152,7 +152,29 @@
                                                                 >
                                                                     <i class="fas fa-times-circle"></i>
                                                                 </button>
-                                                            <?php else : ?>
+                                                            <?php } else if($job['is_accepted'] == 'pending') { ?>
+                                                                <button 
+                                                                    type="button" 
+                                                                    class="btn btn-warning ml-3 valid-job-toggler"
+                                                                    data-toggle="tooltip"
+                                                                    data-placement="bottom" 
+                                                                    title="Validasi"
+                                                                    jobId="<?= $job['id'] ?>"
+                                                                >
+                                                                    <i class="fas fa-check-circle"></i>
+                                                                </button>
+
+                                                                <button 
+                                                                    type="button" 
+                                                                    class="btn btn-warning mx-3 unvalid-job-toggler"
+                                                                    data-toggle="tooltip"
+                                                                    data-placement="bottom" 
+                                                                    title="Tolak Validasi"
+                                                                    jobId="<?= $job['id'] ?>"
+                                                                >
+                                                                    <i class="fas fa-times-circle"></i>
+                                                                </button>
+                                                            <?php } else { ?>
                                                                 <button 
                                                                     type="button" 
                                                                     class="btn btn-warning mx-3 valid-job-toggler"
@@ -163,7 +185,7 @@
                                                                 >
                                                                     <i class="fas fa-check-circle"></i>
                                                                 </button>
-                                                            <?php endif; ?>
+                                                            <?php } ?>
                                                             
                                                             <button 
                                                                 type="submit" 
