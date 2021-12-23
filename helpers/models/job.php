@@ -66,7 +66,7 @@
         FROM jobs 
         INNER JOIN users
         ON jobs.user_id = users.id
-        ORDER BY id DESC;"
+        ORDER BY jobs.id DESC;"
       );
 
       $jobs = [];

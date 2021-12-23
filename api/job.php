@@ -24,6 +24,13 @@
           exit;
         }
 
+        if(isset($_GET['user_id'])) {
+          $jobs = Job::getJobsFromUser($_GET['user_id']);
+
+          echo json_encode($jobs);
+          exit;
+        }
+
         $jobs = Job::getJobs();
 
         echo json_encode($jobs);

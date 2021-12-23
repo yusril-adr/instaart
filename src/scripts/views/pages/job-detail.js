@@ -32,11 +32,7 @@ const jobDetail = {
 
     if (!job) return this._renderNotFound();
 
-    if (job.is_accepted === 'false' && job.user_id !== currentUser?.id) {
-      return this._renderNotFound();
-    }
-
-    if (job.is_accepted === 'false' && !currentUser) {
+    if (job.is_accepted !== 'true' && (job.user_id !== currentUser?.id || !currentUser)) {
       return this._renderNotFound();
     }
 

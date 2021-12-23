@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable indent */
 import CONFIG from '../../global/config';
 import DateHelper from '../../utils/date-helper';
@@ -1158,36 +1159,73 @@ const Templates = {
     `;
   },
 
-  jobReportPage() {
+  jobUserPage() {
     return `
-      <div class="container mt-4" id="report-job">
-        <div class="row">
-          <div class="col-sm-12 col-md-6 offset-md-3">
-            <div class="card shadow-sm mt-3 mx-auto">
-              <div class="card-body">
-                <span class="card-title d-block font-weight-bold h3 text-center mb-3">Laporkan Pekerjaan</span>
-
-                <form id="report-form">
-                  <div class="form-group">
-                    <label for="reason">Alasan</label>
-                    <textarea class="form-control" id="reason" rows="3" placeholder="Tuliskan Alasan Anda .."></textarea>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="reason-image">Upload Bukti Foto</label>
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="reason-image" required>
-                      <label class="custom-file-label" for="reason-image">Pilih Berkas</label>
-                    </div>
-                  </div>
-
-                  <button type="submit" class="btn btn-primary d-block mx-auto mt-4">Laporkan</button>
-
-                  <div class="d-none mt-4" id="preview-image">
-                    <img src="" alt="preview" style="width: 100%;">
-                  </div>
-                </form>
+      <div class="container mt-4" id="user-jobs">
+        <h1 class="text-center font-weight-bold h3 mb-4">Pekerjaan yang Dibuat</h1>
+        <div class="job-content mt-5">
+          <div class="row job-list">
+            <div class="loading-container col-12">
+              <div class="spinner-border text-secondary" role="status">
+                <span class="sr-only">Loading...</span>
               </div>
+            </div>
+          </div>
+
+          <div class="d-flex" id="load-btn"></div>
+        </div>
+      </div>
+    `;
+  },
+
+  jobUserEmptyList() {
+    return `
+      <div class="empty-result-container">
+        <i class="far fa-smile-wink h1 text-secondary"></i>
+        <span class="h4 text-secondary text-center">Belum ada pekerjaan yang kamu buat untuk saat ini.</span>
+      </div>
+    `;
+  },
+
+  jobUserItem(job) {
+    return `
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="card shadow rounded">          
+          <div class="card-body">
+            <a href="#/profile/${job.username}/" class="d-flex align-items-center text-decoration-none hover:text-primary">
+              <div class="user-image-sm">
+                <img src="${CONFIG.IMAGE_PATH.USER}/${job.user_image}" alt="user-image">
+              </div>
+
+              <span class="ml-2">${job.username}</span>
+            </a>
+
+            <p class="card-title text-ellipsis d-block my-2 h4">${job.title}</p>
+
+            <p class="mt-3"><i class="fas fa-map-marker-alt ml-1 mr-2"></i> ${job.city_name}, ${job.province_name}</p>
+
+            <p class="mt-2"><i class="fas fa-briefcase mr-2"></i> ${job.work_type}</p>
+            <p class="mt-2"><i class="fas fa-building mr-2"></i> ${job.shift}</p>
+            <p class="d-flex align-items-center">
+              <i 
+                ${job.is_accepted === 'true'
+                  ? 'class="fas fa-check-circle text-info mr-2"' : job.is_accepted === 'false'
+                  ? 'class="fas fa-times-circle text-danger mr-2"' : 'class="fas fa-clock text-warning mr-2"'}
+              ></i> <span
+                ${job.is_accepted === 'true'
+                ? 'class="text-info"' : job.is_accepted === 'false'
+                ? 'class="text-danger"' : 'class="text-warning"'}
+              >
+                ${job.is_accepted === 'true'
+                  ? 'Valid' : job.is_accepted === 'false'
+                  ? 'Tidak Valid' : 'Menunggu validasi'}
+              </span>
+            </p>
+          </div>
+
+          <div class="card-footer">
+            <div class="w-100 d-flex justify-content-center align-items-center">
+              <a href="#/job/${job.id}" class="btn btn-primary">Detail</a>
             </div>
           </div>
         </div>

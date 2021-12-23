@@ -83,7 +83,7 @@
                                             <th>Kabupaten/Kota</th>                                            
                                             <th>Tipe Pekerjaan</th>                                            
                                             <th>Link Form</th>
-                                            <th>Sudah Divalidasi</th>
+                                            <th>Validasi</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -95,7 +95,7 @@
                                             <th>Provinsi</th>
                                             <th>Kabupaten/Kota</th>                                            
                                             <th>Tipe Pekerjaan</th>                                            <th>Link Form</th>
-                                            <th>Sudah Divalidasi</th>
+                                            <th>Validasi</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
@@ -119,9 +119,11 @@
 
                                                     <td>
                                                         <?php if($job['is_accepted'] == 'true') : ?>
-                                                            <span class="text-info font-weight-bold">Sudah</span>
+                                                            <span class="text-info font-weight-bold">Valid</span>
+                                                        <?php elseif($job['is_accepted'] == 'false') : ?>
+                                                            <span class="text-danger font-weight-bold">Ditolak</span>
                                                         <?php else : ?>
-                                                            <span class="text-danger font-weight-bold">Belum</span>
+                                                            <span class="text-warning font-weight-bold">Pending</span>
                                                         <?php endif; ?>
                                                     </td>
                                                     <td>
@@ -145,10 +147,10 @@
                                                                     class="btn btn-warning mx-3 unvalid-job-toggler"
                                                                     data-toggle="tooltip"
                                                                     data-placement="bottom" 
-                                                                    title="Batal Validasi"
+                                                                    title="Tolak Validasi"
                                                                     jobId="<?= $job['id'] ?>"
                                                                 >
-                                                                    <i class="far fa-check-circle"></i>
+                                                                    <i class="fas fa-times-circle"></i>
                                                                 </button>
                                                             <?php else : ?>
                                                                 <button 
