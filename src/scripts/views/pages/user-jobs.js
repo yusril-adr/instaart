@@ -15,7 +15,7 @@ const userJobs = {
       const jobList = await Job.getUserJobs();
 
       if (jobList.length < 1) {
-        const container = document.querySelector('#job .job-content');
+        const container = document.querySelector('#user-jobs .job-content');
         container.innerHTML = Templates.jobUserEmptyList();
         return;
       }
